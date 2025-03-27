@@ -1,10 +1,11 @@
 /**
  * Header Component
- * 
+ *
  * This component provides the main navigation header for the application.
  */
 
 import Link from 'next/link';
+import { Suspense } from 'react';
 import { SearchBar } from '../search/search-bar';
 
 /**
@@ -16,7 +17,7 @@ interface HeaderProps {
 
 /**
  * Header component
- * 
+ *
  * @param props Component props
  * @returns React component
  */
@@ -29,7 +30,9 @@ export function Header({ className = '' }: HeaderProps) {
         </Link>
         
         <div className="hidden md:block">
-          <SearchBar />
+          <Suspense fallback={<div className="w-64 h-10 bg-gray-100 rounded animate-pulse"></div>}>
+            <SearchBar />
+          </Suspense>
         </div>
         
         <nav className="flex items-center space-x-4">
