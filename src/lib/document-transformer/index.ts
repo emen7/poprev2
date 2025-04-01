@@ -8,6 +8,7 @@
 
 import { transformMarkdown } from './markdown-transformer';
 import { transformDocx } from './docx-transformer';
+import { transformPerplexity } from './perplexity-transformer';
 import { normalizeContent } from './content-normalizer';
 import { validateContent } from './content-validator';
 import { enrichMetadata } from './metadata-enricher';
@@ -37,8 +38,8 @@ export async function transformDocument(
       parsedContent = await transformDocx(content as Buffer);
       break;
     case 'perplexity':
-      // TODO: Implement Perplexity parser
-      throw new Error('Perplexity parser not yet implemented');
+      parsedContent = await transformPerplexity(content as string);
+      break;
     default:
       throw new Error(`Unsupported document type: ${type}`);
   }
