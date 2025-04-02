@@ -8,7 +8,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import type { SearchResult } from '../../lib/search/engine';
+import type { SearchResult } from '@poprev/reference-parser/src/engine';
 
 /**
  * Props for the SearchResults component

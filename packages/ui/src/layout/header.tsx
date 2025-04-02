@@ -6,7 +6,7 @@
 
 import Link from 'next/link';
 import { Suspense } from 'react';
-import { SearchBar } from '../search/search-bar';
+import { SearchBar } from '../search';
 
 /**
  * Props for the Header component
