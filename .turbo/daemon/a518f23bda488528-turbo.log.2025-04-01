@@ -1,0 +1,919 @@
+2025-04-01T20:56:58.765407Z  WARN build:build_inner: turborepo_repository::package_graph::builder: Unable to calculate transitive closures: Workspace 'packages/audio-services' not found in lockfile
+2025-04-01T20:56:58.871896Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf(".turbo\\cookies\\1.cookie"), AnchoredSystemPathBuf(".turbo"), AnchoredSystemPathBuf(".turbo\\daemon")}
+2025-04-01T20:56:58.871927Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T20:56:58.968695Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\.turbo-cookie"), AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-04-01T20:56:58.968713Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T20:56:59.050158Z  WARN daemon_server: turborepo_lib::commands::daemon: daemon already running
+2025-04-01T20:56:59.479896Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-04-01T20:56:59.479912Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T20:57:07.374882Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T20:57:07.374897Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T20:57:08.173666Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T20:57:08.173679Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T20:57:08.281357Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T20:57:08.473861Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T20:57:08.473878Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T20:57:08.538875Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T20:59:40.358641Z  WARN build:build_inner: turborepo_repository::package_graph::builder: Unable to calculate transitive closures: Workspace 'packages/audio-services' not found in lockfile
+2025-04-01T20:59:40.464198Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\1.cookie")}
+2025-04-01T20:59:40.464224Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T20:59:40.573438Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf(".turbo\\cookies\\1.cookie"), AnchoredSystemPathBuf(".turbo\\cookies\\.turbo-cookie"), AnchoredSystemPathBuf(".turbo")}
+2025-04-01T20:59:40.573465Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T20:59:40.627952Z  WARN daemon_server: turborepo_lib::commands::daemon: daemon already running
+2025-04-01T20:59:41.066809Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T20:59:41.066844Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T20:59:47.067276Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T20:59:47.067290Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T20:59:47.461691Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T20:59:47.461710Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T20:59:47.615839Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T20:59:47.763051Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T20:59:47.763065Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T20:59:47.847687Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T21:05:37.263501Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:05:37.263520Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:05:37.370564Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:05:37.370600Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:05:37.871710Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:05:37.871733Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:08:27.070838Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:08:27.070865Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:07.467037Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:09:07.467057Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:07.575211Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:09:07.575232Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:08.073885Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:09:08.073910Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:12.973741Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:09:12.973760Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:13.471733Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:09:13.471750Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:17.560646Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\examples\\ReaderWrapper.tsx"), AnchoredSystemPathBuf("src\\examples")}
+2025-04-01T21:09:17.560662Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:21.270481Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\examples\\ReaderWrapper.tsx")}
+2025-04-01T21:09:21.270499Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:22.272910Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:09:22.272931Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:22.365610Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:09:22.365630Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:22.961002Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:09:22.961018Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:28.968812Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\examples\\ReaderWrapper.tsx")}
+2025-04-01T21:09:28.968867Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:29.867404Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:09:29.867421Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:29.960536Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:09:29.960552Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:30.460781Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:09:30.460796Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:36.072567Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\examples\\ReaderWrapper.tsx")}
+2025-04-01T21:09:36.072599Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:37.075425Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:09:37.075442Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:37.170970Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:09:37.170990Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:37.668127Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:09:37.668143Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:45.573441Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\examples\\reader-example.tsx")}
+2025-04-01T21:09:45.573456Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:46.567803Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:09:46.567825Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:47.066067Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:09:47.066090Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:52.571721Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\examples\\reader-example.tsx")}
+2025-04-01T21:09:52.571745Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:53.568574Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:09:53.568595Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:53.661311Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:09:53.661354Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:54.160404Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:09:54.160425Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:54.267470Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:09:54.267497Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:57.462480Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:09:57.462498Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:57.570032Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:09:57.570051Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:09:58.069502Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:09:58.069523Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:10:03.960782Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:10:03.960798Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:10:04.068064Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:10:04.068082Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:10:04.673145Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:10:04.673164Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:13:02.994271Z  WARN build:build_inner: turborepo_repository::package_graph::builder: Unable to calculate transitive closures: Workspace 'packages/audio-services' not found in lockfile
+2025-04-01T21:13:03.199359Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo"), AnchoredSystemPathBuf(".turbo\\cookies\\.turbo-cookie"), AnchoredSystemPathBuf(".turbo\\cookies\\1.cookie"), AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-04-01T21:13:03.199394Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:13:03.303764Z  WARN daemon_server: turborepo_lib::commands::daemon: daemon already running
+2025-04-01T21:13:03.601421Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:13:03.601446Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:13:09.997344Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T21:13:09.997372Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T21:13:10.801824Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T21:13:10.801861Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T21:13:10.961112Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T21:13:10.961277Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T21:13:10.961285Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T21:13:10.961314Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T21:13:11.095219Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T21:13:11.095239Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T21:13:11.224576Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T21:14:56.099313Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:14:56.099327Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:14:56.210633Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:14:56.210653Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:14:56.708700Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:14:56.708720Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:15:00.796709Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:15:00.796724Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:15:00.906275Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:15:00.906294Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:15:01.295648Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:15:01.295669Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:15:05.096161Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:15:05.096179Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:15:05.203528Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:15:05.203552Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:15:06.407349Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:15:06.407375Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:15:11.297815Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:15:11.297837Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:15:11.809229Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:15:11.809254Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:18:47.096663Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:18:47.096682Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:18:47.205008Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:18:47.205027Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:18:47.596229Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:18:47.596244Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:18:47.699749Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:18:47.699762Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:18:53.895873Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:18:53.895889Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:18:54.001877Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:18:54.001899Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:18:54.503113Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:18:54.503146Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:19:01.098246Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\components\\PaperTTSPlayerWrapper.tsx")}
+2025-04-01T21:19:01.098266Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T21:19:01.298403Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\components")}
+2025-04-01T21:19:01.298424Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T21:19:01.298483Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T21:19:05.699915Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\components\\PaperTTSPlayerWrapper.tsx")}
+2025-04-01T21:19:05.699936Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T21:19:06.907085Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:19:06.907106Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:19:07.000346Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:19:07.000363Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:19:07.498086Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:19:07.498100Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:19:13.900836Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\app\\paper\\[id]\\page.tsx")}
+2025-04-01T21:19:13.900858Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T21:19:15.004806Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:19:15.004829Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:19:15.097131Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:19:15.097163Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:19:15.595848Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:19:15.595861Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:19:20.706665Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\app\\paper\\[id]\\page.tsx")}
+2025-04-01T21:19:20.706688Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T21:19:21.902422Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:19:21.902440Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:19:22.010355Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:19:22.010374Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:19:22.806470Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:19:22.806489Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:19:26.708822Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:19:26.708845Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:19:26.802732Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:19:26.802751Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:19:27.300056Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:19:27.300077Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:19:34.902139Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\app\\paper\\[id]\\section\\[sectionId]\\page.tsx")}
+2025-04-01T21:19:34.902174Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T21:19:35.051611Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\app\\paper\\[id]\\section\\[sectionId]\\page.tsx")}
+2025-04-01T21:19:35.051624Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T21:19:35.051676Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T21:19:36.302444Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:19:36.302479Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:19:36.412225Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:19:36.412250Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:19:37.097003Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:19:37.097026Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:19:41.996610Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\app\\paper\\[id]\\section\\[sectionId]\\page.tsx")}
+2025-04-01T21:19:41.996705Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T21:19:43.509632Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:19:43.509658Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:19:44.108828Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:19:44.108849Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:26:46.910719Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:26:46.910747Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:26:51.905149Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:26:51.905166Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:26:53.101903Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(""), AnchoredSystemPathBuf("improved-demo.html")}
+2025-04-01T21:26:53.101917Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:30:55.907756Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:30:55.907783Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:30:56.000910Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:30:56.000936Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:30:56.795785Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:30:56.795801Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:31:08.210139Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:31:08.210174Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:31:08.710996Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:31:08.711011Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:33:15.805173Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("integration-plan-for-navigation-and-settings.md")}
+2025-04-01T21:33:15.805198Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:33:15.897211Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2025-04-01T21:33:15.897228Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2025-04-01T21:34:06.995481Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("integration-plan-for-navigation-and-settings.md")}
+2025-04-01T21:34:06.995498Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:34:08.203149Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:34:08.203168Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:34:08.297363Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:34:08.297429Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:34:08.795706Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:34:08.795728Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:34:39.498451Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("navigation-settings-implementation-roadmap.md")}
+2025-04-01T21:34:39.498495Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:34:39.605363Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2025-04-01T21:34:39.605381Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2025-04-01T21:35:06.708122Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("navigation-settings-implementation-roadmap.md")}
+2025-04-01T21:35:06.708163Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:35:07.699681Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:35:07.699811Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:35:08.198182Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:35:08.198202Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:35:11.803813Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("reader-component-architecture.md")}
+2025-04-01T21:35:11.803869Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:35:11.896144Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2025-04-01T21:35:11.896161Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2025-04-01T21:35:32.600019Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("reader-component-architecture.md")}
+2025-04-01T21:35:32.600036Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:35:33.606705Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:35:33.606721Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:35:34.105220Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:35:34.105235Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:35:37.799670Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("ub-reader-navigation-settings-summary.md")}
+2025-04-01T21:35:37.799691Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:35:37.905547Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2025-04-01T21:35:37.905576Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2025-04-01T21:35:56.796049Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("ub-reader-navigation-settings-summary.md")}
+2025-04-01T21:35:56.796086Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:35:56.905721Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("ub-reader-navigation-settings-summary.md")}
+2025-04-01T21:35:56.905756Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:35:57.807256Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:35:57.807276Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:35:58.306658Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:35:58.306674Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:37:11.207084Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(""), AnchoredSystemPathBuf("ub-reader-ui-specifications.md")}
+2025-04-01T21:37:11.207098Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:37:50.603593Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("ub-reader-ui-specifications.md")}
+2025-04-01T21:37:50.603650Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:37:51.595679Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:37:51.595696Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:37:51.703316Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:37:51.703343Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:37:52.204475Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:37:52.204491Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:37:55.598839Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("ub-reader-testing-strategy.md")}
+2025-04-01T21:37:55.598855Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:37:55.708040Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2025-04-01T21:37:55.708067Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2025-04-01T21:38:26.103986Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("ub-reader-testing-strategy.md")}
+2025-04-01T21:38:26.104013Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:38:27.300513Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:38:27.300533Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:38:27.407907Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:38:27.407926Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:38:28.011591Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:38:28.011622Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:39:21.314908Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("ub-reader-navigation-settings-master-plan.md")}
+2025-04-01T21:39:21.314929Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:39:21.409618Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2025-04-01T21:39:21.409640Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2025-04-01T21:39:49.620526Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("ub-reader-navigation-settings-master-plan.md")}
+2025-04-01T21:39:49.620546Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:39:50.618232Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:39:50.618249Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:39:50.725512Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:39:50.725531Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:39:51.225293Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:39:51.225310Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:41:14.142155Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:41:14.142175Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:41:14.236229Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:41:14.236249Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:41:14.735230Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:41:14.735247Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:41:31.943347Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:41:31.943373Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:41:32.052787Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:41:32.052805Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:41:32.550290Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:41:32.550303Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:41:42.750934Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\models\\config.ts")}
+2025-04-01T21:41:42.750952Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:41:43.652499Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:41:43.652514Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:41:43.746034Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:41:43.746052Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:41:44.246639Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:41:44.246653Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:41:54.851192Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\models\\config.ts")}
+2025-04-01T21:41:54.851211Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:41:55.848892Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:41:55.848906Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:41:55.958557Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:41:55.958574Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:41:56.644296Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:41:56.644311Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:42:07.450602Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:42:07.450617Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:42:07.561506Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:42:07.561525Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:42:08.059565Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:42:08.059605Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:42:15.059276Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:42:15.059294Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:42:15.558777Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:42:15.558795Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:42:29.055581Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\models\\config.ts")}
+2025-04-01T21:42:29.055600Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:42:30.060782Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:42:30.060798Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:42:30.661100Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:42:30.661119Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:42:39.654711Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\models\\config.ts")}
+2025-04-01T21:42:39.654726Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:42:40.660932Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:42:40.660953Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:42:41.269331Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:42:41.269380Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:42:46.357803Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:42:46.357828Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:42:46.968268Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:42:46.968287Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:42:57.565793Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\components\\ReaderNavigation.tsx")}
+2025-04-01T21:42:57.565840Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:42:58.666960Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:42:58.667016Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:42:59.271486Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:42:59.271502Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:43:09.575293Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\components\\ReaderNavigation.tsx")}
+2025-04-01T21:43:09.575310Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:43:10.563763Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:43:10.563779Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:43:10.670894Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:43:10.670914Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:43:11.170433Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:43:11.170446Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:43:56.178155Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\components\\ReaderNavigation.tsx")}
+2025-04-01T21:43:56.178174Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:43:57.273750Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:43:57.273767Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:43:57.383326Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:43:57.383349Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:43:57.978577Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:43:57.978600Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:44:05.580506Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\components\\ReaderNavigation.tsx")}
+2025-04-01T21:44:05.580528Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:44:06.683395Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:44:06.683413Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:44:07.184138Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:44:07.184166Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:44:10.989657Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\components\\ReaderNavigation.css")}
+2025-04-01T21:44:10.989669Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:44:11.180549Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\components")}
+2025-04-01T21:44:11.180565Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:44:41.595174Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\components\\ReaderNavigation.css")}
+2025-04-01T21:44:41.595199Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:44:42.583709Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:44:42.583732Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:44:42.690476Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:44:42.690493Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:44:43.189406Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:44:43.189424Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:44:49.895530Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\components\\ReaderNavigation.tsx")}
+2025-04-01T21:44:49.895552Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:44:51.087078Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:44:51.087107Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:44:51.796971Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:44:51.796989Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:44:54.795349Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\components\\ReaderSettings.tsx")}
+2025-04-01T21:44:54.795370Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:44:54.887281Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\components")}
+2025-04-01T21:44:54.887302Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:45:24.703721Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\components\\ReaderSettings.tsx")}
+2025-04-01T21:45:24.703780Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:45:25.700772Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:45:25.700787Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:45:25.808344Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:45:25.808367Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:45:26.199799Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:45:26.199815Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:45:30.400860Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\components\\ReaderSettings.css")}
+2025-04-01T21:45:30.400878Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:45:30.595012Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\components")}
+2025-04-01T21:45:30.595028Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:45:48.806982Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\components\\ReaderSettings.css")}
+2025-04-01T21:45:48.807010Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:45:49.906429Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:45:49.906482Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:45:50.405463Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:45:50.405481Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:45:55.811418Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:45:55.811452Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:45:55.905176Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:45:55.905200Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:45:56.401362Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:45:56.401381Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:46:04.415495Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\components\\Reader.tsx")}
+2025-04-01T21:46:04.415507Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:46:05.410472Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:46:05.410492Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:46:05.909181Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:46:05.909194Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:46:14.717885Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\components\\Reader.tsx")}
+2025-04-01T21:46:14.717908Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:46:15.610532Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:46:15.610551Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:46:15.707674Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:46:15.707690Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:46:16.206720Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:46:16.206740Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:46:23.215516Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\components\\Reader.tsx")}
+2025-04-01T21:46:23.215541Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:46:24.307600Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:46:24.307617Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:46:25.006657Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:46:25.006675Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:46:51.719145Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\components\\Reader.tsx")}
+2025-04-01T21:46:51.719178Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:46:52.820773Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:46:52.820789Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:46:52.914445Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:46:52.914461Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:46:53.521404Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:46:53.521416Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:46:58.819621Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:46:58.819640Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:46:58.926884Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:46:58.926901Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:46:59.422939Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:46:59.422952Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:47:13.620217Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\components\\Reader.css")}
+2025-04-01T21:47:13.620236Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:47:14.624857Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:47:14.624876Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:47:15.232811Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:47:15.232830Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:47:30.529448Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\lib\\reader-core\\components\\Reader.css")}
+2025-04-01T21:47:30.529463Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:47:31.534649Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:47:31.534674Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:47:31.626468Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:47:31.626485Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:47:32.232129Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:47:32.232142Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:47:36.424490Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\examples\\enhanced-reader-example.tsx")}
+2025-04-01T21:47:36.424547Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:47:36.625297Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\examples")}
+2025-04-01T21:47:36.625316Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:47:59.535118Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\examples\\enhanced-reader-example.tsx")}
+2025-04-01T21:47:59.535134Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:48:00.542257Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:48:00.542274Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:48:00.635115Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:48:00.635139Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:48:01.133775Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:48:01.133790Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:48:04.943620Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\app\\enhanced-reader-example"), AnchoredSystemPathBuf("src\\app\\enhanced-reader-example\\page.tsx")}
+2025-04-01T21:48:04.943647Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:48:05.130577Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\app\\enhanced-reader-example"), AnchoredSystemPathBuf("src\\app")}
+2025-04-01T21:48:05.130591Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:48:08.738644Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\app\\enhanced-reader-example\\page.tsx")}
+2025-04-01T21:48:08.738662Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:48:09.839248Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:48:09.839268Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:48:10.430132Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:48:10.430176Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:48:13.433097Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\examples\\enhanced-reader-example.css")}
+2025-04-01T21:48:13.433155Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:48:13.744784Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\examples")}
+2025-04-01T21:48:13.744805Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:48:22.146026Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\examples\\enhanced-reader-example.css")}
+2025-04-01T21:48:22.146047Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:48:23.138342Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:48:23.138359Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:48:23.247236Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T21:48:23.247258Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:48:23.733117Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:48:23.733178Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:48:30.346796Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\examples\\enhanced-reader-example.tsx")}
+2025-04-01T21:48:30.346813Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:48:31.436696Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T21:48:31.436711Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T21:48:31.937502Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T21:48:31.937520Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:32:41.138299Z  WARN build:build_inner: turborepo_repository::package_graph::builder: Unable to calculate transitive closures: Workspace 'packages/audio-services' not found in lockfile
+2025-04-01T23:32:41.344956Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf(".turbo"), AnchoredSystemPathBuf(".turbo\\cookies\\.turbo-cookie"), AnchoredSystemPathBuf(".turbo\\cookies\\1.cookie")}
+2025-04-01T23:32:41.344987Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:32:41.388736Z  WARN daemon_server: turborepo_lib::commands::daemon: daemon already running
+2025-04-01T23:32:41.652827Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-04-01T23:32:41.652847Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:32:41.748645Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:32:41.748664Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:32:49.746681Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T23:32:49.746704Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:32:50.122329Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T23:32:50.122346Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:32:50.122434Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T23:32:50.440274Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T23:32:50.440297Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:32:50.927809Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T23:32:50.928045Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T23:32:50.928060Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:32:50.928175Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T23:33:18.855206Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:33:18.855228Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:33:18.947912Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:33:18.947975Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:33:19.448455Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:33:19.448473Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:40:53.159469Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:40:53.159496Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:40:53.657537Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:40:53.657568Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:41:03.759739Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:41:03.759763Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:41:04.366251Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:41:04.366267Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:41:09.156225Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:41:09.156247Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:41:09.669253Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:41:09.669268Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:41:16.164070Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:41:16.164140Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:41:16.262781Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:41:16.262799Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:41:16.762964Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:41:16.762982Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:41:24.458135Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:41:24.458172Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:41:24.568365Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:41:24.568383Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:41:25.160107Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:41:25.160124Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:41:28.867945Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:41:28.867965Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:41:28.960720Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:41:28.960739Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:41:29.457489Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:41:29.457507Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:41:36.257915Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:41:36.257932Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:41:36.367600Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:41:36.367627Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:41:36.867989Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:41:36.868008Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:41:44.070069Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\2.cookie")}
+2025-04-01T23:41:44.070096Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:41:44.364588Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-04-01T23:41:44.364610Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:41:51.759694Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T23:41:51.759717Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:41:51.903114Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T23:41:52.255722Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T23:41:52.255748Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:41:52.353162Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T23:41:52.564084Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T23:41:52.564120Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:41:52.595793Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T23:42:14.360580Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:42:14.360600Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:42:14.468225Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:42:14.468246Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:42:14.968122Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:42:14.968143Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:42:19.662863Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:42:19.662884Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:42:19.755798Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:42:19.755818Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:42:20.159737Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:42:20.159756Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:42:31.267655Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:42:31.267677Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:42:31.361548Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:42:31.361564Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:42:31.870277Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:42:31.870294Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:42:39.268373Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:42:39.268395Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:42:39.359145Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:42:39.359169Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:42:40.270778Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:42:40.270797Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:42:45.156401Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:42:45.156423Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:42:45.264338Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:42:45.264389Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:42:45.964040Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:42:45.964066Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:42:51.359254Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:42:51.359273Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:42:51.468756Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:42:51.468777Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:42:51.967352Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:42:51.967374Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:42:59.359937Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:42:59.359960Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:42:59.561861Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:42:59.561889Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:43:00.462894Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:43:00.462918Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:43:07.163536Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\3.cookie")}
+2025-04-01T23:43:07.163554Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:43:07.458194Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-04-01T23:43:07.458209Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:43:12.674010Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T23:43:12.674030Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:43:12.984543Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T23:43:14.171018Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T23:43:14.171057Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:43:14.238109Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T23:43:43.261208Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:43:43.261226Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:43:43.370100Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:43:43.370121Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:43:43.869104Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:43:43.869135Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:04.261826Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("check-page.js")}
+2025-04-01T23:44:04.261846Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:04.368670Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2025-04-01T23:44:04.368687Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2025-04-01T23:44:08.257910Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("check-page.js")}
+2025-04-01T23:44:08.257928Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:09.466468Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:44:09.466482Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:09.560843Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:44:09.560862Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:10.165209Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:44:10.165229Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:17.160690Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:44:17.160710Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:17.269932Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:44:17.269950Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:17.771045Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:44:17.771064Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:26.564773Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("check-page.js")}
+2025-04-01T23:44:26.564788Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:26.665484Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("check-page.js")}
+2025-04-01T23:44:26.665504Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:27.658348Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:44:27.658368Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:27.766632Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:44:27.766656Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:28.266301Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:44:28.266314Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:40.359464Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:44:40.359486Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:40.469622Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:44:40.469640Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:41.171530Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:44:41.171559Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:45.959494Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\app\\perplexity-test\\page.tsx"), AnchoredSystemPathBuf("src\\app\\perplexity-test")}
+2025-04-01T23:44:45.959529Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:46.161674Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\app"), AnchoredSystemPathBuf("src\\app\\perplexity-test")}
+2025-04-01T23:44:46.161708Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:48.766505Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\app\\perplexity-test\\page.tsx")}
+2025-04-01T23:44:48.766543Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:49.772757Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:44:49.772788Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:49.866905Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:44:49.866932Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:44:50.461841Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:44:50.461857Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:45:03.771656Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("check-page.js")}
+2025-04-01T23:45:03.771711Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:45:04.762775Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:45:04.762796Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:45:04.873231Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:45:04.873250Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:45:05.368927Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:45:05.368943Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:46:11.461742Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:46:11.461759Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:46:11.570913Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:46:11.570931Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:46:12.066537Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:46:12.066575Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:46:29.874564Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\4.cookie")}
+2025-04-01T23:46:29.874584Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:46:30.169893Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-04-01T23:46:30.169915Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:46:36.862686Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T23:46:36.862711Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:46:36.959999Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T23:46:37.371358Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T23:46:37.371376Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:46:37.620829Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T23:46:37.620955Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T23:46:37.620964Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:46:37.621052Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T23:46:52.673738Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:46:52.673753Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:46:53.163402Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:46:53.163421Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:49:59.869220Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:49:59.869243Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:49:59.977431Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:49:59.977448Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:50:00.770710Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:50:00.770730Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:50:10.180922Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:50:10.180939Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:50:10.679578Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:50:10.679596Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:50:21.178983Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:50:21.178997Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:50:21.271605Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:50:21.271620Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:50:21.771759Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:50:21.771775Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:50:27.076341Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:50:27.076353Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:50:27.169739Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:50:27.169756Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:50:27.775890Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:50:27.775939Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:50:34.569341Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:50:34.569354Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:50:34.680249Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:50:34.680270Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:50:35.182482Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:50:35.182561Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:50:40.966802Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:50:40.966831Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:50:41.076239Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:50:41.076255Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:50:41.573545Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:50:41.573567Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:50:48.167450Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:50:48.167477Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:50:48.681833Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:50:48.681847Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:51:09.469235Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src\\.next")}
+2025-04-01T23:51:09.469255Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:51:09.980028Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("src")}
+2025-04-01T23:51:09.980094Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:51:10.678632Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\5.cookie")}
+2025-04-01T23:51:10.678652Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:51:10.880520Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-04-01T23:51:10.880539Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:51:13.510396Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:51:13.510432Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:51:14.184231Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:51:14.184250Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:51:17.281889Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:51:17.281914Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:51:18.279159Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T23:51:18.279176Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:51:18.368367Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T23:51:18.680867Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T23:51:18.680888Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:51:18.815623Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T23:51:18.815756Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\.next")}
+2025-04-01T23:51:18.815764Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:51:18.815829Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T23:51:35.677811Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:51:35.677837Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:51:35.770874Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:51:35.770893Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:51:36.268182Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:51:36.268207Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:51:42.071371Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:51:42.071388Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:51:42.180541Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:51:42.180564Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:51:42.675253Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:51:42.675274Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:51:46.876818Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\app\\perplexity-example\\page.tsx"), AnchoredSystemPathBuf("apps\\reader\\app\\perplexity-example")}
+2025-04-01T23:51:46.877095Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:51:47.269790Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\app")}
+2025-04-01T23:51:47.269806Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:51:47.269903Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T23:51:58.675143Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\app\\perplexity-example\\page.tsx")}
+2025-04-01T23:51:58.675162Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:51:59.681480Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:51:59.681496Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:51:59.773831Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:51:59.773847Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:52:00.274772Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:52:00.274786Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:52:03.883666Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\app\\perplexity-test"), AnchoredSystemPathBuf("apps\\reader\\app\\perplexity-test\\page.tsx")}
+2025-04-01T23:52:03.883685Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:52:04.206444Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\app")}
+2025-04-01T23:52:04.206456Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:52:04.206518Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-01T23:52:06.669814Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\app\\perplexity-test\\page.tsx")}
+2025-04-01T23:52:06.669841Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:52:07.773876Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:52:07.773892Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:52:07.881359Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:52:07.881378Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:52:08.379923Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:52:08.379951Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:52:16.779543Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:52:16.779560Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:52:16.871964Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:52:16.871980Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:52:17.578332Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:52:17.578356Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:52:33.970107Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:52:33.970146Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:52:34.078201Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:52:34.078220Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:52:35.183924Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:52:35.183937Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:53:58.772677Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:53:58.772700Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:53:58.880726Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:53:58.880744Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:53:59.376556Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:53:59.376592Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:54:10.675541Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\reader\\app\\page.tsx")}
+2025-04-01T23:54:10.675577Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("ub-reader"), path: AnchoredSystemPathBuf("apps\\reader") }}))
+2025-04-01T23:54:11.772944Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:54:11.772961Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:54:11.882724Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:54:11.882743Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:54:12.473444Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:54:12.473464Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:56:18.273854Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:56:18.273875Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:56:18.882133Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:56:18.882158Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:57:38.086283Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:57:38.086298Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:57:38.180138Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:57:38.180159Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:57:38.680257Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:57:38.680272Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:57:46.579853Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:57:46.579871Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:57:46.688309Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:57:46.688329Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:57:47.185745Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:57:47.185762Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:58:00.982976Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:58:00.982995Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:58:01.090378Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:58:01.090399Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:58:01.577821Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:58:01.577840Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:58:18.783594Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:58:18.783610Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:58:18.890332Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:58:18.890355Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:58:19.388599Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference"), AnchoredSystemPathBuf("almanac-reference\\.git_disabled")}
+2025-04-01T23:58:19.388622Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:58:47.781045Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:58:47.781075Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:58:47.888580Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:58:47.888599Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:58:48.390051Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference\\.git_disabled"), AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:58:48.390081Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:58:54.999213Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".gitignore")}
+2025-04-01T23:58:54.999265Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:58:55.978022Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:58:55.978039Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:58:56.085479Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:58:56.085509Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:58:56.487644Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:58:56.487656Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:59:07.489114Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:59:07.489165Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:59:07.584257Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:59:07.584275Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:59:08.084905Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:59:08.084924Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:59:19.483092Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:59:19.483115Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:59:19.585127Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:59:19.585145Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:59:20.181048Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:59:20.181080Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:59:27.978545Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:59:27.978562Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:59:28.087839Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:59:28.087858Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:59:28.585444Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:59:28.585462Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:59:41.486836Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:59:41.486851Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:59:41.580580Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\a518f23bda488528-turbo.log.2025-04-01")}
+2025-04-01T23:59:41.580599Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-01T23:59:42.079182Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("almanac-reference")}
+2025-04-01T23:59:42.079226Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))

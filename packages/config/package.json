@@ -1,0 +1,17 @@
+{
+  "name": "@ub-ecosystem/config",
+  "version": "0.1.0",
+  "description": "Configuration utilities for the UB Ecosystem",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist && rm -rf node_modules",
+    "lint": "eslint src --ext .ts,.tsx"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.0.4",
+    "eslint": "^8.40.0"
+  }
+}

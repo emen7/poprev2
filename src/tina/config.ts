@@ -164,11 +164,11 @@ export default defineConfig({
           router: ({ document }) => `/scientific/${document._sys.filename}`,
         },
       },
-      // Perplexity Document Collection
+      // UB Gems Document Collection
       {
-        name: "perplexity",
-        label: "Perplexity Documents",
-        path: "content/raw/perplexity",
+        name: "ubgems",
+        label: "UB Gems Documents",
+        path: "content/raw/ubgems/markdown",
         fields: [
           {
             type: "string",
@@ -201,28 +201,18 @@ export default defineConfig({
           },
           {
             type: "string",
-            name: "question",
-            label: "Original Question",
-            required: true,
+            name: "source",
+            label: "Source",
           },
           {
-            type: "object",
-            name: "responses",
-            label: "Responses",
-            list: true,
-            fields: [
-              {
-                name: "responseText",
-                label: "Response Text",
-                type: "rich-text",
-              },
-              {
-                name: "sources",
-                label: "Sources",
-                type: "string",
-                list: true,
-              },
-            ],
+            type: "string",
+            name: "paperNumber",
+            label: "Paper Number",
+          },
+          {
+            type: "string",
+            name: "sectionNumber",
+            label: "Section Number",
           },
           {
             type: "rich-text",
@@ -232,14 +222,70 @@ export default defineConfig({
           },
         ],
         ui: {
-          router: ({ document }) => `/perplexity/${document._sys.filename}`,
+          router: ({ document }) => `/ubgems/${document._sys.filename}`,
+        },
+      },
+      // UB Catechism Document Collection
+      {
+        name: "ubcatechism",
+        label: "UB Catechism Documents",
+        path: "content/raw/ubcatechism/markdown",
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "string",
+            name: "author",
+            label: "Author",
+          },
+          {
+            type: "datetime",
+            name: "date",
+            label: "Publication Date",
+          },
+          {
+            type: "string",
+            name: "categories",
+            label: "Categories",
+            list: true,
+          },
+          {
+            type: "string",
+            name: "tags",
+            label: "Tags",
+            list: true,
+          },
+          {
+            type: "string",
+            name: "questionNumber",
+            label: "Question Number",
+          },
+          {
+            type: "string",
+            name: "topic",
+            label: "Topic",
+          },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Body",
+            isBody: true,
+          },
+        ],
+        ui: {
+          router: ({ document }) => `/ubcatechism/${document._sys.filename}`,
         },
       },
       // Lectionary Document Collection
       {
         name: "lectionary",
         label: "Lectionary Documents",
-        path: "content/raw/lectionary",
+        path: "content/raw/lectionary/markdown",
         fields: [
           {
             type: "string",

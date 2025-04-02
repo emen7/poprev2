@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { DocumentReader } from './document-reader';
 import { TransformedDocument } from '../lib/document-transformer/types';
+import { useTina } from './tina-provider';
+import { fetchDocument } from '../tina/client';
 
 interface TinaDocumentLoaderProps {
   relativePath: string;
@@ -13,25 +15,54 @@ export function TinaDocumentLoader({ relativePath, documentType }: TinaDocumentL
   const [document, setDocument] = useState<TransformedDocument | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { client } = useTina();
 
   useEffect(() => {
     async function loadDocument() {
       try {
-        // For now, we'll use a simple fetch to get the content
-        // In a production environment, you would use the TinaCMS client
-        const response = await fetch(`/api/content?path=${documentType === 'post' ? 'posts' : documentType}/${relativePath}`);
+        // Use the TinaCMS client to fetch the document
+        const tinaData = await fetchDocument(relativePath, documentType);
         
-        if (!response.ok) {
-          throw new Error(`Failed to load document: ${response.statusText}`);
+        if (!tinaData || !tinaData.data) {
+          throw new Error(`Failed to load document: ${relativePath}`);
         }
         
-        const content = await response.text();
+        // Extract the content from the Tina response
+        // The structure depends on the collection type
+        const documentData = tinaData.data[documentType];
+        
+        if (!documentData) {
+          throw new Error(`Document not found: ${relativePath}`);
+        }
+        
+        // Convert the Tina document to markdown
+        // This is a simplified approach - in a production environment,
+        // you would use a more robust conversion process
+        let markdownContent = '';
+        
+        // Add frontmatter
+        markdownContent += '---\n';
+        markdownContent += `title: ${documentData.title || 'Untitled'}\n`;
+        if (documentData.author) markdownContent += `author: ${documentData.author}\n`;
+        if (documentData.date) markdownContent += `date: ${documentData.date}\n`;
+        if (documentData.categories && documentData.categories.length > 0) {
+          markdownContent += `categories: [${documentData.categories.join(', ')}]\n`;
+        }
+        if (documentData.tags && documentData.tags.length > 0) {
+          markdownContent += `tags: [${documentData.tags.join(', ')}]\n`;
+        }
+        markdownContent += '---\n\n';
+        
+        // Add body content
+        if (documentData.body) {
+          markdownContent += documentData.body;
+        }
         
         // Import the transformation system
         const { transformDocument } = await import('../lib/document-transformer');
         
         // Transform the content
-        const transformedDocument = await transformDocument(content, 'markdown');
+        const transformedDocument = await transformDocument(markdownContent, 'markdown');
         
         // Set the document
         setDocument(transformedDocument);
@@ -44,7 +75,7 @@ export function TinaDocumentLoader({ relativePath, documentType }: TinaDocumentL
     }
     
     loadDocument();
-  }, [relativePath, documentType]);
+  }, [relativePath, documentType, client]);
 
   // If loading, show a loading message
   if (loading) {

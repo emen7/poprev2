@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ub-ecosystem/ui": ["packages/ui/src"],
+      "@ub-ecosystem/content-transformer": ["packages/content-transformer/src"],
+      "@ub-ecosystem/reference-parser": ["packages/reference-parser/src"],
+      "@ub-ecosystem/data-models": ["packages/data-models/src"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

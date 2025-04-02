@@ -1,126 +1,135 @@
-/**
- * Scientific Content Homepage
- * 
- * This page serves as the entry point for the scientific content site.
- */
+"use client";
 
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { TinaCMSProvider } from '../../components/tina-provider';
+import { fetchDocumentList } from '../../tina/client';
 
 /**
- * Scientific homepage component
+ * Scientific Documents Index Page
  * 
- * @returns React component
+ * This page displays a list of all scientific documents available in the system.
+ * It fetches the list from TinaCMS and provides links to individual document pages.
  */
-export default function ScientificHomePage() {
+export default function ScientificIndexPage() {
+  const [documents, setDocuments] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function loadDocuments() {
+      try {
+        // Fetch the list of scientific documents from TinaCMS
+        const data = await fetchDocumentList('scientific');
+        
+        if (!data || !data.scientificConnection || !data.scientificConnection.edges) {
+          throw new Error('Failed to load documents');
+        }
+        
+        // Extract the documents from the response
+        const docs = data.scientificConnection.edges.map((edge: any) => edge.node);
+        setDocuments(docs);
+      } catch (err) {
+        console.error('Error loading documents:', err);
+        setError(err instanceof Error ? err.message : String(err));
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    loadDocuments();
+  }, []);
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      <header className="mb-12 text-center">
-        <h1 className="text-4xl font-bold mb-4">Scientific Content</h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Explore scientific papers, research, and analysis related to The Urantia Book cosmology and other topics.
-        </p>
-      </header>
-      
-      <div className="max-w-3xl mx-auto mb-12">
-        <div className="bg-white shadow-md rounded-lg p-6">
-          <h2 className="text-2xl font-bold mb-4">Search Scientific Content</h2>
-          <p className="mb-4 text-gray-600">
-            Use our search tool to find scientific content by keyword, author, or topic.
-          </p>
-          <div className="flex">
-            <Link
-              href="/search?type=scientific"
-              className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
-            >
-              Search Scientific Content
-            </Link>
-          </div>
-        </div>
-      </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-        <div className="bg-white shadow-md rounded-lg overflow-hidden">
-          <div className="p-6">
-            <h3 className="text-xl font-bold mb-2">Cosmology</h3>
-            <p className="text-gray-600 mb-4">
-              Explore papers on cosmological principles, universe structure, and astronomical observations.
-            </p>
-            <Link
-              href="/search?q=cosmology&type=scientific"
-              className="text-blue-600 hover:text-blue-800 font-medium"
-            >
-              Browse Cosmology Papers →
-            </Link>
-          </div>
-        </div>
+    <TinaCMSProvider>
+      <div className="container mx-auto py-8 px-4">
+        <h1 className="text-3xl font-bold mb-8">Scientific Documents</h1>
         
-        <div className="bg-white shadow-md rounded-lg overflow-hidden">
-          <div className="p-6">
-            <h3 className="text-xl font-bold mb-2">Physics</h3>
-            <p className="text-gray-600 mb-4">
-              Discover research on physics concepts, energy systems, and physical laws.
-            </p>
-            <Link
-              href="/search?q=physics&type=scientific"
-              className="text-blue-600 hover:text-blue-800 font-medium"
-            >
-              Browse Physics Papers →
-            </Link>
+        {loading && (
+          <div className="text-center py-8">
+            <p>Loading documents...</p>
           </div>
-        </div>
+        )}
         
-        <div className="bg-white shadow-md rounded-lg overflow-hidden">
-          <div className="p-6">
-            <h3 className="text-xl font-bold mb-2">Mathematics</h3>
-            <p className="text-gray-600 mb-4">
-              Explore mathematical concepts, models, and applications in scientific research.
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            <p>Error: {error}</p>
+            <p className="mt-2">
+              Using fallback document list for demonstration purposes.
             </p>
-            <Link
-              href="/search?q=mathematics&type=scientific"
-              className="text-blue-600 hover:text-blue-800 font-medium"
-            >
-              Browse Mathematics Papers →
+          </div>
+        )}
+        
+        {/* If we have documents from TinaCMS, display them */}
+        {!loading && documents.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {documents.map((doc) => (
+              <Link 
+                key={doc._sys.filename} 
+                href={`/scientific/${doc._sys.filename}`}
+                className="block"
+              >
+                <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
+                  <h2 className="text-xl font-bold mb-2">{doc.title}</h2>
+                  {doc.author && (
+                    <p className="text-gray-600 mb-2">By: {doc.author}</p>
+                  )}
+                  {doc.date && (
+                    <p className="text-gray-500 text-sm mb-2">{new Date(doc.date).toLocaleDateString()}</p>
+                  )}
+                  {doc.abstract && (
+                    <p className="text-gray-700 mt-2 line-clamp-3">{doc.abstract}</p>
+                  )}
+                  <div className="mt-4">
+                    <span className="text-blue-500 hover:underline">Read more →</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+        
+        {/* Fallback for demonstration or when no documents are available */}
+        {(!loading && documents.length === 0) || error ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Example document 1 */}
+            <Link href="/scientific/quantum-computing-advances" className="block">
+              <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
+                <h2 className="text-xl font-bold mb-2">Quantum Computing Advances</h2>
+                <p className="text-gray-600 mb-2">By: Dr. Jane Smith</p>
+                <p className="text-gray-500 text-sm mb-2">March 15, 2025</p>
+                <p className="text-gray-700 mt-2 line-clamp-3">
+                  Recent advances in quantum computing have led to significant breakthroughs in algorithm efficiency and error correction.
+                </p>
+                <div className="mt-4">
+                  <span className="text-blue-500 hover:underline">Read more →</span>
+                </div>
+              </div>
+            </Link>
+            
+            {/* Example document 2 */}
+            <Link href="/scientific/climate-change-research" className="block">
+              <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
+                <h2 className="text-xl font-bold mb-2">Climate Change Research</h2>
+                <p className="text-gray-600 mb-2">By: Dr. Michael Johnson</p>
+                <p className="text-gray-500 text-sm mb-2">February 28, 2025</p>
+                <p className="text-gray-700 mt-2 line-clamp-3">
+                  New research on climate change impacts reveals accelerating effects on global ecosystems and potential mitigation strategies.
+                </p>
+                <div className="mt-4">
+                  <span className="text-blue-500 hover:underline">Read more →</span>
+                </div>
+              </div>
             </Link>
           </div>
+        ) : null}
+        
+        <div className="mt-8 text-center">
+          <Link href="/admin" className="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+            Add New Scientific Document
+          </Link>
         </div>
       </div>
-      
-      <div className="bg-gray-50 rounded-lg p-8 mb-12">
-        <h2 className="text-2xl font-bold mb-4">Featured Documents</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="border border-gray-200 rounded-lg p-4 bg-white">
-            <h3 className="font-bold mb-2">
-              <Link
-                href="/search?q=timescape&type=scientific"
-                className="text-blue-600 hover:text-blue-800"
-              >
-                Exploring the Timescape Model
-              </Link>
-            </h3>
-            <p className="text-sm text-gray-600">
-              An analysis of the Timescape Model and its relation to Urantia Book cosmology, with implications for the distance to Andromeda.
-            </p>
-          </div>
-          
-          <div className="border border-gray-200 rounded-lg p-4 bg-white">
-            <h3 className="font-bold mb-2">
-              <Link
-                href="/search?q=quantum&type=scientific"
-                className="text-blue-600 hover:text-blue-800"
-              >
-                Quantum Computing: Principles and Applications
-              </Link>
-            </h3>
-            <p className="text-sm text-gray-600">
-              An overview of quantum computing principles and their potential applications in solving complex computational problems.
-            </p>
-          </div>
-        </div>
-      </div>
-      
-      <footer className="text-center text-gray-500 text-sm">
-        <p>Scientific Content Portal - Part of the PopRev2 Project</p>
-      </footer>
-    </div>
+    </TinaCMSProvider>
   );
 }

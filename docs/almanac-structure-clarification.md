@@ -10,13 +10,13 @@ The repository currently contains the Urantia Book JSON files in one primary loc
 
 There are two distinct almanac-related components in the repository:
 
-1. **Current Almanac Reference** (available in two locations)
+1. **Current Almanac Reference**
 
-   - `almanac-reference/` - Original location in the root directory
-   - `sandbox/almanac-reference/` - Copy in the sandbox directory
-   - Both are cloned from https://github.com/emen7/almanac-live
+   - Located in `sandbox/almanac-reference/`
+   - Cloned from https://github.com/emen7/almanac-live
    - Serves as reference material for the new almanac
    - Contains the original HTML files
+   - The duplicate copy in the root directory has been removed
 
 2. **New Almanac** (`apps/almanac-new/`)
    - Will be a complete restructuring of the content from almanac-live
@@ -33,7 +33,7 @@ To reduce duplication and clarify the structure:
 
 2. We have removed duplicate copies from:
 
-   - `almanac-reference/ub-json`
+   - `almanac-reference/ub-json` (root directory removed)
    - `sandbox/almanac-reference/data/urantia-book`
    - `sandbox/almanac-reference/ub-json`
    - `apps/almanac/content/ub` (directory renamed to `apps/almanac-new`)
@@ -51,6 +51,6 @@ To reduce duplication and clarify the structure:
   - References the Urantia Book through the UB Reader
   - Will have its own content structure without duplicating UB content
 
-- **Reference Material** (`sandbox/almanac-reference/` and `almanac-reference/`) - Original almanac for reference
+- **Reference Material** (`sandbox/almanac-reference/`) - Original almanac for reference
   - Will not be actively used in the application
   - Serves as a reference for the development of the new almanac

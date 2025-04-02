@@ -2,7 +2,7 @@
 content-backup/
 
 # Separate git repositories
-almanac-reference/
+/almanac-reference/
 
 # Documentation files that don't need to be tracked
 poprev2 proposed plan.md

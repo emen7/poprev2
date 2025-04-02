@@ -1,0 +1,27 @@
+{
+  "name": "@ub-ecosystem/audio-services",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint src/**/*.ts",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@ub-ecosystem/data-models": "^0.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.4",
+    "jest": "^29.5.0",
+    "@types/jest": "^29.5.1",
+    "eslint": "^8.40.0"
+  },
+  "optionalDependencies": {
+    "narakeet-api": "^1.0.0",
+    "aws-sdk": "^2.1.0",
+    "@google-cloud/text-to-speech": "^4.0.0",
+    "@azure/ai-text-analytics": "^5.1.0"
+  }
+}

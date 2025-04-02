@@ -10,9 +10,20 @@ content/
 │   ├── scientific/              # Scientific articles
 │   │   ├── markdown/            # Markdown format
 │   │   └── docx/                # DOCX format
-│   ├── perplexity/              # Perplexity responses
-│   └── lectionary/              # Lectionary articles
-└── transformed/                 # (Future) Pre-transformed content
+│   ├── lectionary/              # Lectionary articles
+│   │   ├── markdown/            # Markdown format
+│   │   └── docx/                # DOCX format
+│   ├── ubgems/                  # UB Gems articles
+│   │   ├── markdown/            # Markdown format
+│   │   └── docx/                # DOCX format
+│   └── ubcatechism/             # UB Catechism articles
+│       ├── markdown/            # Markdown format
+│       └── docx/                # DOCX format
+└── processed/                   # Processed content for web/download
+    ├── scientific/              # Processed scientific content
+    ├── lectionary/              # Processed lectionary content
+    ├── ubgems/                  # Processed UB Gems content
+    └── ubcatechism/             # Processed UB Catechism content
 ```
 
 ## Usage Guidelines
@@ -21,7 +32,7 @@ content/
 
 1. Place raw content files in the appropriate directory based on:
 
-   - **Purpose**: scientific, perplexity, or lectionary
+   - **Purpose**: scientific, lectionary, ubgems, or ubcatechism
    - **Format**: markdown or docx
 
 2. File naming convention:
@@ -37,15 +48,21 @@ content/
 - References should be properly formatted
 - Images should be placed in a related assets directory
 
-#### Perplexity Responses
-
-- Should include the original question
-- May include multiple responses in a thread
-
 #### Lectionary Articles
 
 - Should include scripture references
 - May include seasonal information
+
+#### UB Gems Articles
+
+- Should include source information (paper number, section)
+- Should include proper frontmatter with metadata
+- References should be properly formatted
+
+#### UB Catechism Articles
+
+- Should include question number and topic
+- Should include proper frontmatter with metadata
 
 ## Transformation Process
 
@@ -54,12 +71,22 @@ The document transformation system will:
 1. Read files from the `raw` directory
 2. Transform them into a standardized internal format
 3. Extract and enhance metadata
-4. Make them available for display through the reader component
+4. Store processed versions in the `processed` directory
+5. Make them available for display through the reader component
+
+## Processed Content
+
+The `processed` directory contains web-optimized and download-ready versions of the content:
+
+- Web-optimized content for faster loading
+- Download-ready formats (PDF, DOCX, etc.)
+- Content with enhanced metadata and formatting
 
 ## Future Enhancements
 
-In future phases, this directory will also include:
+In future phases, this directory structure will be further enhanced with:
 
-- Pre-transformed content for faster loading
-- Additional content categories
-- Media assets related to the content
+- Automated processing pipelines
+- Version control for content revisions
+- Advanced search indexing
+- Media assets management

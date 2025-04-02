@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-rgb: 30, 30, 30;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+}
+
+/* UB Reader specific styles */
+.ub-paper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.ub-paper-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.ub-paper-author {
+  font-style: italic;
+  margin-bottom: 2rem;
+  color: rgb(100, 100, 100);
+}
+
+.ub-section {
+  margin-bottom: 2rem;
+}
+
+.ub-section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.ub-paragraph {
+  display: flex;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.ub-paragraph-number {
+  flex-shrink: 0;
+  width: 2rem;
+  font-weight: bold;
+  color: rgb(100, 100, 100);
+}
+
+.ub-paragraph-text {
+  flex-grow: 1;
+}
+
+.ub-reference {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+.ub-reference:hover {
+  text-decoration: underline;
+}
