@@ -1,0 +1,32 @@
+{
+  "name": "ub-almanac",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3002",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "clean": "rm -rf .next && rm -rf node_modules"
+  },
+  "dependencies": {
+    "@ub-ecosystem/content-transformer": "*",
+    "@ub-ecosystem/data-models": "*",
+    "@ub-ecosystem/reference-parser": "*",
+    "@ub-ecosystem/ui": "*",
+    "next": "^13.4.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.35",
+    "@types/react-dom": "^18.0.11",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.40.0",
+    "eslint-config-next": "^13.4.1",
+    "postcss": "^8.4.23",
+    "tailwindcss": "^3.3.2",
+    "typescript": "^5.0.4"
+  }
+}

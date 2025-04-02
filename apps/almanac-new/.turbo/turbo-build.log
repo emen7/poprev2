@@ -1,0 +1,16 @@
+
+> ub-almanac@0.1.0 build
+> next build
+
+
+> Build error occurred
+Error: > Couldn't find any `pages` or `app` directory. Please create one under the project root
+    at findPagesDir (C:\Users\neufe\Documents\aaWebHub\poprev2\node_modules\next\dist\lib\find-pages-dir.js:42:15)
+    at C:\Users\neufe\Documents\aaWebHub\poprev2\node_modules\next\dist\build\index.js:235:73
+    at async Span.traceAsyncFn (C:\Users\neufe\Documents\aaWebHub\poprev2\node_modules\next\dist\trace\trace.js:105:20)
+    at async build (C:\Users\neufe\Documents\aaWebHub\poprev2\node_modules\next\dist\build\index.js:185:29)
+    at async main (C:\Users\neufe\Documents\aaWebHub\poprev2\node_modules\next\dist\bin\next:157:5)
+npm ERR! Lifecycle script `build` failed with error: 
+npm ERR! Error: command failed 
+npm ERR!   in workspace: ub-almanac@0.1.0 
+npm ERR!   at location: C:\Users\neufe\Documents\aaWebHub\poprev2\apps\almanac 

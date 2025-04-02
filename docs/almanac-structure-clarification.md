@@ -18,7 +18,7 @@ There are two distinct almanac-related components in the repository:
    - Serves as reference material for the new almanac
    - Contains the original HTML files
 
-2. **New Almanac** (`apps/almanac/`)
+2. **New Almanac** (`apps/almanac-new/`)
    - Will be a complete restructuring of the content from almanac-live
    - Uses a modern architecture with Next.js
    - Will reference the UB Reader for Urantia Book content rather than duplicating it
@@ -36,7 +36,7 @@ To reduce duplication and clarify the structure:
    - `almanac-reference/ub-json`
    - `sandbox/almanac-reference/data/urantia-book`
    - `sandbox/almanac-reference/ub-json`
-   - `apps/almanac/content/ub`
+   - `apps/almanac/content/ub` (directory renamed to `apps/almanac-new`)
 
 3. Any code that references these files will be updated to use the primary location
 
@@ -46,7 +46,7 @@ To reduce duplication and clarify the structure:
 
   - Uses the JSON files in `apps/reader/content/ub-json`
 
-- **New Almanac** (`apps/almanac/`) - Modernized version of the almanac
+- **New Almanac** (`apps/almanac-new/`) - Modernized version of the almanac
 
   - References the Urantia Book through the UB Reader
   - Will have its own content structure without duplicating UB content
