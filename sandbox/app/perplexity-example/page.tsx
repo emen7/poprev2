@@ -4,7 +4,7 @@
  * This page demonstrates the Perplexity transformer in action.
  */
 
-import { transformContent } from '@poprev/content-transformer';
+import { transformContent } from '../../../packages/content-transformer/src';
 import { DocumentReader } from '../../components/document-reader';
 
 // Sample Perplexity response

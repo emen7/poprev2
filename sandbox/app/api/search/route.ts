@@ -7,7 +7,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
-import { SearchEngine, SearchOptions } from '@poprev/reference-parser/src/engine';
+import { SearchEngine, SearchOptions } from '../../../packages/reference-parser/src/engine';
 import type { SearchableDocument } from '../../../lib/search/indexer';
 
 // Cache for search engine instance

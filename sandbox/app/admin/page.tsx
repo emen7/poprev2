@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from 'react';
-import { TinaCMSProvider } from '@poprev/ui';
+import { TinaCMSProvider } from '../../../packages/ui/src/tina';
 
 /**
  * Admin Page
