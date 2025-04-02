@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { TinaCMSProvider } from '../../components/tina-provider';
+import { TinaCMSProvider } from '@poprev/ui';
 import { fetchDocumentList } from '../../tina/client';
 
 /**

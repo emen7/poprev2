@@ -4,7 +4,7 @@
  * This page demonstrates the Perplexity transformer in action.
  */
 
-import { transformDocument } from '../../lib/document-transformer';
+import { transformContent } from '@poprev/content-transformer';
 import { DocumentReader } from '../../components/document-reader';
 
 // Sample Perplexity response
@@ -30,7 +30,7 @@ https://en.wikipedia.org/wiki/The_Urantia_Book`;
 
 export default async function PerplexityExamplePage() {
   // Transform the sample Perplexity response
-  const transformedDocument = await transformDocument(samplePerplexityResponse, 'perplexity');
+  const transformedDocument = await transformContent(samplePerplexityResponse, 'perplexity');
   
   return (
     <div className="container mx-auto py-8 px-4">
