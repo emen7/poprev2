@@ -1,0 +1,568 @@
+/**
+ * Reader Core Styles
+ * 
+ * This file contains the base styles for the Reader component.
+ * These styles can be customized through the configuration.
+ */
+
+/* CSS Variables for theming */
+.reader-container {
+  /* Default values that will be overridden by inline styles */
+  --reader-primary-color: #0070f3;
+  --reader-secondary-color: #6c757d;
+  --reader-background-color: #ffffff;
+  --reader-text-color: #333333;
+  --reader-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  --reader-heading-font-family: var(--reader-font-family);
+  --reader-code-font-family: "SFMono-Regular", Consolas, "Liberation Mono",
+    Menlo, monospace;
+  --reader-line-height: 1.6;
+  --reader-heading-line-height: 1.3;
+  --reader-border-color: #eaeaea;
+  --reader-hover-color: #0051a8;
+  --reader-active-color: #004088;
+  --reader-blockquote-color: #555;
+  --reader-code-background: #f6f8fa;
+  --reader-table-background: #f9f9f9;
+  --reader-toc-background: #f9f9f9;
+  --reader-max-width: 800px;
+  --reader-spacing: 1rem;
+  --reader-border-radius: 0.5rem;
+  --reader-panel-background: #f7fafc;
+
+  /* Apply base styles */
+  font-family: var(--reader-font-family);
+  line-height: var(--reader-line-height);
+  color: var(--reader-text-color);
+  background-color: var(--reader-background-color);
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: var(--reader-spacing);
+}
+
+/* Header Styles */
+.reader-header {
+  margin-bottom: calc(var(--reader-spacing) * 2);
+  padding-bottom: var(--reader-spacing);
+  border-bottom: 1px solid var(--reader-border-color);
+}
+
+.reader-logo {
+  margin-bottom: var(--reader-spacing);
+}
+
+.reader-logo img {
+  max-height: 50px;
+  width: auto;
+}
+
+.reader-title-container {
+  margin-bottom: var(--reader-spacing);
+}
+
+.reader-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  line-height: var(--reader-heading-line-height);
+  color: var(--reader-text-color);
+}
+
+.reader-subtitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: var(--reader-secondary-color);
+}
+
+.reader-metadata {
+  font-size: 0.9rem;
+  color: var(--reader-secondary-color);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.reader-author,
+.reader-date,
+.reader-categories,
+.reader-tags {
+  margin-right: 1rem;
+}
+
+.reader-linkback {
+  margin-top: var(--reader-spacing);
+}
+
+.reader-linkback a {
+  color: var(--reader-primary-color);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.reader-linkback a:hover {
+  color: var(--reader-hover-color);
+  text-decoration: underline;
+}
+
+/* Main Content Layout */
+.reader-main {
+  display: flex;
+  gap: calc(var(--reader-spacing) * 2);
+}
+
+/* Navigation Styles */
+.reader-navigation {
+  flex: 0 0 250px;
+  position: sticky;
+  top: var(--reader-spacing);
+  max-height: calc(100vh - var(--reader-spacing) * 2);
+  overflow-y: auto;
+  padding-right: var(--reader-spacing);
+}
+
+.reader-breadcrumbs {
+  margin-bottom: var(--reader-spacing);
+  font-size: 0.9rem;
+  color: var(--reader-secondary-color);
+}
+
+.reader-breadcrumb-separator {
+  margin: 0 0.5rem;
+}
+
+.reader-toc {
+  background-color: var(--reader-toc-background);
+  padding: 1.5rem;
+  border-radius: var(--reader-border-radius);
+  margin-bottom: calc(var(--reader-spacing) * 2);
+}
+
+.reader-toc-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.reader-toc-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reader-toc-item {
+  margin-bottom: 0.5rem;
+}
+
+.reader-toc-link {
+  color: var(--reader-primary-color);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.reader-toc-link:hover {
+  color: var(--reader-hover-color);
+  text-decoration: underline;
+}
+
+.reader-toc-item.active .reader-toc-link {
+  font-weight: 600;
+  color: var(--reader-active-color);
+}
+
+.reader-toc-level-1 {
+  font-weight: 600;
+}
+
+.reader-toc-level-2 {
+  padding-left: 1rem;
+}
+
+.reader-toc-level-3 {
+  padding-left: 2rem;
+}
+
+.reader-toc-level-4 {
+  padding-left: 3rem;
+}
+
+.reader-toc-level-5,
+.reader-toc-level-6 {
+  padding-left: 4rem;
+}
+
+.reader-toc-sublist {
+  list-style-type: none;
+  padding: 0;
+  margin: 0.5rem 0 0 1rem;
+}
+
+.reader-relationship-map {
+  background-color: var(--reader-toc-background);
+  padding: 1.5rem;
+  border-radius: var(--reader-border-radius);
+}
+
+.reader-relationship-map-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.reader-relationship-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reader-relationship-item {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid var(--reader-border-color);
+  border-radius: var(--reader-border-radius);
+}
+
+.reader-relationship-type {
+  font-weight: 600;
+  color: var(--reader-primary-color);
+  margin-right: 0.5rem;
+}
+
+.reader-relationship-target {
+  font-style: italic;
+}
+
+.reader-relationship-description {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--reader-secondary-color);
+}
+
+/* Content Styles */
+.reader-content {
+  flex: 1;
+  min-width: 0; /* Prevent flex item from overflowing */
+}
+
+.reader-loading {
+  padding: calc(var(--reader-spacing) * 2);
+  text-align: center;
+  color: var(--reader-secondary-color);
+  font-style: italic;
+}
+
+.reader-section {
+  margin-bottom: calc(var(--reader-spacing) * 2);
+}
+
+.reader-section-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: var(--reader-spacing);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--reader-border-color);
+  cursor: pointer;
+}
+
+.reader-section-title:hover {
+  color: var(--reader-primary-color);
+}
+
+.reader-subsections {
+  margin-left: var(--reader-spacing);
+  padding-left: var(--reader-spacing);
+  border-left: 2px solid var(--reader-border-color);
+}
+
+.reader-paragraph {
+  margin-bottom: 1.5rem;
+}
+
+.reader-references {
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.reader-reference {
+  display: inline-block;
+  margin-right: 0.5rem;
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.25rem;
+  background-color: var(--reader-code-background);
+  color: var(--reader-primary-color);
+}
+
+.reader-reference-direct {
+  background-color: rgba(0, 112, 243, 0.1);
+}
+
+.reader-reference-conceptual {
+  background-color: rgba(108, 117, 125, 0.1);
+}
+
+.reader-reference-supporting {
+  background-color: rgba(40, 167, 69, 0.1);
+}
+
+/* Typography Styles */
+.reader-h1,
+.reader-h2,
+.reader-h3,
+.reader-h4,
+.reader-h5,
+.reader-h6 {
+  margin-top: calc(var(--reader-spacing) * 2);
+  margin-bottom: var(--reader-spacing);
+  font-weight: 600;
+  line-height: var(--reader-heading-line-height);
+  font-family: var(--reader-heading-font-family);
+}
+
+.reader-h1 {
+  font-size: 2.25rem;
+  border-bottom: 1px solid var(--reader-border-color);
+  padding-bottom: 0.5rem;
+}
+
+.reader-h2 {
+  font-size: 1.75rem;
+}
+
+.reader-h3 {
+  font-size: 1.5rem;
+}
+
+.reader-h4 {
+  font-size: 1.25rem;
+}
+
+.reader-h5 {
+  font-size: 1.1rem;
+}
+
+.reader-h6 {
+  font-size: 1rem;
+}
+
+.reader-ordered-list,
+.reader-unordered-list {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.reader-list-item {
+  margin-bottom: 0.5rem;
+}
+
+.reader-link {
+  color: var(--reader-primary-color);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.reader-link:hover {
+  color: var(--reader-hover-color);
+  text-decoration: underline;
+}
+
+.reader-image {
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem 0;
+  border-radius: var(--reader-border-radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.reader-blockquote {
+  border-left: 4px solid var(--reader-primary-color);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  color: var(--reader-blockquote-color);
+  font-style: italic;
+}
+
+.reader-code-block {
+  background-color: var(--reader-code-background);
+  border-radius: var(--reader-border-radius);
+  padding: 1rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  font-family: var(--reader-code-font-family);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.reader-inline-code {
+  background-color: var(--reader-code-background);
+  border-radius: 0.25rem;
+  padding: 0.2rem 0.4rem;
+  font-family: var(--reader-code-font-family);
+  font-size: 0.9em;
+}
+
+.reader-emphasis {
+  font-style: italic;
+}
+
+.reader-strong {
+  font-weight: 700;
+}
+
+.reader-hr {
+  border: 0;
+  height: 1px;
+  background-color: var(--reader-border-color);
+  margin: 2rem 0;
+}
+
+.reader-table-container {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.reader-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.reader-table-row:nth-child(even) {
+  background-color: var(--reader-table-background);
+}
+
+.reader-table-cell {
+  padding: 0.75rem;
+  border: 1px solid var(--reader-border-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .reader-main {
+    flex-direction: column;
+  }
+
+  .reader-navigation {
+    flex: none;
+    position: static;
+    max-height: none;
+    width: 100%;
+    padding-right: 0;
+    margin-bottom: var(--reader-spacing);
+  }
+
+  .reader-title {
+    font-size: 2rem;
+  }
+
+  .reader-subtitle {
+    font-size: 1.25rem;
+  }
+
+  .reader-h1 {
+    font-size: 1.75rem;
+  }
+
+  .reader-h2 {
+    font-size: 1.5rem;
+  }
+
+  .reader-h3 {
+    font-size: 1.25rem;
+  }
+
+  .reader-metadata {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .reader-toc {
+    padding: 1rem;
+  }
+}
+
+/* Dark Theme Styles */
+.reader-container[data-theme="dark"] {
+  --reader-background-color: #1a202c;
+  --reader-text-color: #e2e8f0;
+  --reader-border-color: #4a5568;
+  --reader-hover-color: #63b3ed;
+  --reader-active-color: #90cdf4;
+  --reader-blockquote-color: #a0aec0;
+  --reader-code-background: #2d3748;
+  --reader-table-background: #2d3748;
+  --reader-toc-background: #2d3748;
+  --reader-panel-background: #2d3748;
+}
+
+/* Sidebar Navigation */
+.reader-sidebar {
+  flex: 0 0 250px;
+  position: sticky;
+  top: var(--reader-spacing);
+  max-height: calc(100vh - var(--reader-spacing) * 2);
+  overflow-y: auto;
+  padding-right: var(--reader-spacing);
+}
+
+.reader-sidebar-navigation {
+  position: static;
+  max-height: none;
+}
+
+/* Header Buttons */
+.reader-header-button {
+  background: none;
+  border: none;
+  color: var(--reader-secondary-color);
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: color 0.2s, background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.reader-header-button:hover {
+  color: var(--reader-primary-color);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.reader-header-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--reader-primary-color);
+}
+
+/* Font Size Adjustments */
+.reader-container {
+  font-size: var(--reader-font-size);
+}
+
+/* Line Spacing Adjustments */
+.reader-container {
+  line-height: var(--reader-line-height);
+}
+
+/* Text Width Adjustments */
+.reader-container {
+  max-width: var(--reader-max-width);
+}
+
+/* Paragraph Numbers */
+.reader-paragraph-number {
+  display: inline-block;
+  min-width: 2rem;
+  margin-right: 0.5rem;
+  color: var(--reader-secondary-color);
+  font-size: 0.75rem;
+  text-align: right;
+  user-select: none;
+}
+
+.reader-paragraph-number.hidden {
+  display: none;
+}
