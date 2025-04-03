@@ -1,0 +1,464 @@
+/**
+ * Notation System Notes Styles
+ * 
+ * This file contains styles for the notes functionality of the notation system,
+ * including the note editor, notes panel, and notes list view.
+ */
+
+/* Note Editor */
+.note-editor {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: #222222;
+  border-radius: 4px;
+}
+
+.note-editor-toolbar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #333333;
+}
+
+.note-editor-button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 4px;
+  background-color: #333333;
+  color: #e2e8f0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.note-editor-button:hover {
+  background-color: #444444;
+}
+
+.note-editor-textarea {
+  flex: 1;
+  min-height: 150px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  background-color: #333333;
+  color: #e2e8f0;
+  border: none;
+  border-radius: 4px;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+.note-editor-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.note-editor-cancel,
+.note-editor-save {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.note-editor-cancel {
+  background-color: #333333;
+  color: #e2e8f0;
+}
+
+.note-editor-save {
+  background-color: #7fc8f5;
+  color: #222222;
+  font-weight: bold;
+}
+
+.note-editor-cancel:hover {
+  background-color: #444444;
+}
+
+.note-editor-save:hover {
+  background-color: #6ab8e5;
+}
+
+/* Notes Panel */
+.notes-panel {
+  position: fixed;
+  top: 56px;
+  right: 0;
+  bottom: 0;
+  width: 350px;
+  background-color: #222222;
+  border-left: 1px solid #333333;
+  z-index: 40;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.notes-panel.open {
+  transform: translateX(0);
+}
+
+.notes-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #333333;
+}
+
+.notes-panel-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #7fc8f5;
+  margin: 0;
+}
+
+.notes-panel-close {
+  background: none;
+  border: none;
+  color: #e2e8f0;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.notes-panel-close:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.notes-panel-highlight {
+  padding: 1rem;
+  border-bottom: 1px solid #333333;
+}
+
+.notes-panel-highlight-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.notes-panel-highlight-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.notes-panel-highlight-color.yellow {
+  background-color: var(--highlight-yellow-dark);
+}
+
+.notes-panel-highlight-color.green {
+  background-color: var(--highlight-green-dark);
+}
+
+.notes-panel-highlight-color.orange {
+  background-color: var(--highlight-orange-dark);
+}
+
+.notes-panel-highlight-color.purple {
+  background-color: var(--highlight-purple-dark);
+}
+
+.notes-panel-highlight-paper {
+  font-size: 0.875rem;
+  color: #a0aec0;
+}
+
+.notes-panel-highlight-text {
+  font-style: italic;
+  color: #e2e8f0;
+  line-height: 1.5;
+}
+
+.notes-panel-note {
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.notes-panel-note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.notes-panel-note-date {
+  font-size: 0.875rem;
+  color: #a0aec0;
+}
+
+.notes-panel-note-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.notes-panel-note-edit,
+.notes-panel-note-delete {
+  background: none;
+  border: none;
+  color: #e2e8f0;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.notes-panel-note-edit:hover,
+.notes-panel-note-delete:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.notes-panel-note-content {
+  color: #e2e8f0;
+  line-height: 1.5;
+  overflow-y: auto;
+}
+
+.notes-panel-note-content p {
+  margin-bottom: 0.5rem;
+}
+
+/* Notes List View */
+.notes-list-view {
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.notes-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #333333;
+}
+
+.notes-list-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #7fc8f5;
+  margin: 0;
+}
+
+.notes-list-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.notes-list-sort {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.notes-list-sort label {
+  font-size: 0.875rem;
+  color: #a0aec0;
+}
+
+.notes-list-sort select {
+  padding: 0.25rem 0.5rem;
+  background-color: #333333;
+  color: #e2e8f0;
+  border: none;
+  border-radius: 4px;
+}
+
+.notes-list-filters {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.notes-list-filter-button {
+  background: none;
+  border: none;
+  color: #e2e8f0;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.notes-list-filter-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.notes-list-filter-button.active {
+  background-color: rgba(127, 200, 245, 0.2);
+  color: #7fc8f5;
+}
+
+.notes-list-color-filters {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.notes-list-color-filter {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.notes-list-color-filter.yellow {
+  background-color: var(--highlight-yellow-dark);
+}
+
+.notes-list-color-filter.green {
+  background-color: var(--highlight-green-dark);
+}
+
+.notes-list-color-filter.orange {
+  background-color: var(--highlight-orange-dark);
+}
+
+.notes-list-color-filter.purple {
+  background-color: var(--highlight-purple-dark);
+}
+
+.notes-list-color-filter.active {
+  box-shadow: 0 0 0 2px #7fc8f5;
+}
+
+.notes-list-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.notes-list-empty {
+  padding: 2rem;
+  text-align: center;
+  color: #a0aec0;
+  font-style: italic;
+}
+
+.notes-list-item {
+  padding: 1rem;
+  background-color: #333333;
+  border-radius: 4px;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+}
+
+.notes-list-item.yellow {
+  border-left-color: var(--highlight-yellow-dark);
+}
+
+.notes-list-item.green {
+  border-left-color: var(--highlight-green-dark);
+}
+
+.notes-list-item.orange {
+  border-left-color: var(--highlight-orange-dark);
+}
+
+.notes-list-item.purple {
+  border-left-color: var(--highlight-purple-dark);
+}
+
+.notes-list-item:hover {
+  background-color: #444444;
+}
+
+.notes-list-item-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.notes-list-item-paper {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.notes-list-item-date {
+  font-size: 0.75rem;
+  color: #a0aec0;
+}
+
+.notes-list-item-text {
+  font-style: italic;
+  color: #e2e8f0;
+  margin-bottom: 0.5rem;
+}
+
+.notes-list-item-note {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #444444;
+}
+
+.notes-list-item-note-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.notes-list-item-note-icon {
+  color: #7fc8f5;
+}
+
+.notes-list-item-note-date {
+  font-size: 0.75rem;
+  color: #a0aec0;
+}
+
+.notes-list-item-note-preview {
+  font-size: 0.875rem;
+  color: #a0aec0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .notes-panel {
+    width: 85%;
+    max-width: 350px;
+  }
+
+  .notes-list-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .notes-list-controls {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

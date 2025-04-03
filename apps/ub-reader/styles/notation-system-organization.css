@@ -1,0 +1,510 @@
+/**
+ * Notation System Organization Styles
+ * 
+ * This file contains styles for the organization features of the notation system,
+ * including tags and collections.
+ */
+
+/* Tag Input */
+.tag-input {
+  margin-top: 0.5rem;
+}
+
+.tag-input-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: #333333;
+  border-radius: 4px;
+  min-height: 40px;
+}
+
+.tag-input-tag {
+  display: flex;
+  align-items: center;
+  background-color: rgba(127, 200, 245, 0.2);
+  color: #7fc8f5;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.tag-input-tag-text {
+  margin-right: 0.25rem;
+}
+
+.tag-input-tag-remove {
+  background: none;
+  border: none;
+  color: #7fc8f5;
+  cursor: pointer;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.tag-input-tag-remove:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.tag-input-field {
+  flex: 1;
+  min-width: 100px;
+  background: none;
+  border: none;
+  color: #e2e8f0;
+  font-size: 0.875rem;
+  padding: 0.25rem 0;
+  outline: none;
+}
+
+.tag-input-help {
+  font-size: 0.75rem;
+  color: #a0aec0;
+  margin-top: 0.25rem;
+}
+
+/* Notes Panel Tags Section */
+.notes-panel-tags {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #333333;
+}
+
+.notes-panel-tags-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 0.5rem;
+}
+
+/* Collection Manager */
+.collection-manager {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.collection-manager.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.collection-manager-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #222222;
+  border-bottom: 1px solid #333333;
+  border-radius: 8px 8px 0 0;
+  width: 100%;
+  max-width: 900px;
+}
+
+.collection-manager-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #7fc8f5;
+  margin: 0;
+}
+
+.collection-manager-close {
+  background: none;
+  border: none;
+  color: #e2e8f0;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.collection-manager-close:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.collection-manager-content {
+  display: flex;
+  background-color: #222222;
+  border-radius: 0 0 8px 8px;
+  width: 100%;
+  max-width: 900px;
+  height: 70vh;
+  max-height: 600px;
+  overflow: hidden;
+}
+
+.collection-manager-sidebar {
+  width: 250px;
+  border-right: 1px solid #333333;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.collection-manager-new-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: rgba(127, 200, 245, 0.1);
+  color: #7fc8f5;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  text-align: left;
+}
+
+.collection-manager-new-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.collection-manager-new-button:hover {
+  background-color: rgba(127, 200, 245, 0.2);
+}
+
+.collection-manager-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.5rem 0;
+}
+
+.collection-manager-empty {
+  padding: 1rem;
+  text-align: center;
+  color: #a0aec0;
+  font-style: italic;
+}
+
+.collection-manager-item {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+}
+
+.collection-manager-item.active {
+  background-color: rgba(127, 200, 245, 0.1);
+  border-left-color: #7fc8f5;
+}
+
+.collection-manager-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.collection-manager-item-name {
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 0.25rem;
+}
+
+.collection-manager-item-count {
+  font-size: 0.75rem;
+  color: #a0aec0;
+}
+
+.collection-manager-details {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.collection-manager-placeholder {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #a0aec0;
+  text-align: center;
+}
+
+.collection-manager-placeholder-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.collection-manager-placeholder-text {
+  font-size: 1.25rem;
+}
+
+.collection-manager-edit {
+  padding: 1rem;
+}
+
+.collection-manager-edit-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 1.5rem;
+}
+
+.collection-manager-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.collection-manager-edit-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.collection-manager-edit-field label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.collection-manager-edit-field input,
+.collection-manager-edit-field textarea {
+  padding: 0.75rem;
+  background-color: #333333;
+  color: #e2e8f0;
+  border: none;
+  border-radius: 4px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.collection-manager-edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.collection-manager-edit-cancel,
+.collection-manager-edit-save {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.collection-manager-edit-cancel {
+  background-color: #333333;
+  color: #e2e8f0;
+}
+
+.collection-manager-edit-save {
+  background-color: #7fc8f5;
+  color: #222222;
+  font-weight: bold;
+}
+
+.collection-manager-edit-cancel:hover {
+  background-color: #444444;
+}
+
+.collection-manager-edit-save:hover {
+  background-color: #6ab8e5;
+}
+
+.collection-manager-edit-save:disabled {
+  background-color: #555555;
+  color: #888888;
+  cursor: not-allowed;
+}
+
+.collection-manager-view {
+  padding: 1rem;
+}
+
+.collection-manager-view-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.collection-manager-view-info {
+  flex: 1;
+}
+
+.collection-manager-view-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 0.5rem;
+}
+
+.collection-manager-view-meta {
+  display: flex;
+  gap: 1rem;
+  color: #a0aec0;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.collection-manager-view-description {
+  color: #e2e8f0;
+  line-height: 1.5;
+}
+
+.collection-manager-view-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.collection-manager-view-edit,
+.collection-manager-view-delete {
+  background: none;
+  border: none;
+  color: #e2e8f0;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.collection-manager-view-edit:hover,
+.collection-manager-view-delete:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.collection-manager-highlights {
+  margin-top: 1rem;
+}
+
+.collection-manager-highlights-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #333333;
+}
+
+.collection-manager-highlights-empty {
+  padding: 1rem;
+  text-align: center;
+  color: #a0aec0;
+  font-style: italic;
+}
+
+.collection-manager-highlights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.collection-manager-highlight {
+  padding: 1rem;
+  background-color: #333333;
+  border-radius: 4px;
+  border-left: 4px solid transparent;
+}
+
+.collection-manager-highlight.yellow {
+  border-left-color: var(--highlight-yellow-dark);
+}
+
+.collection-manager-highlight.green {
+  border-left-color: var(--highlight-green-dark);
+}
+
+.collection-manager-highlight.orange {
+  border-left-color: var(--highlight-orange-dark);
+}
+
+.collection-manager-highlight.purple {
+  border-left-color: var(--highlight-purple-dark);
+}
+
+.collection-manager-highlight-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.collection-manager-highlight-paper {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.collection-manager-highlight-remove {
+  background: none;
+  border: none;
+  color: #e2e8f0;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.collection-manager-highlight-remove:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.collection-manager-highlight-text {
+  font-style: italic;
+  color: #e2e8f0;
+  margin-bottom: 0.5rem;
+}
+
+.collection-manager-highlight-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.collection-manager-highlight-tag {
+  font-size: 0.75rem;
+  color: #7fc8f5;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .collection-manager {
+    padding: 1rem;
+  }
+
+  .collection-manager-content {
+    flex-direction: column;
+    height: auto;
+    max-height: none;
+  }
+
+  .collection-manager-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #333333;
+    max-height: 200px;
+  }
+}

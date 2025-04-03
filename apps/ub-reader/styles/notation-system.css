@@ -1,0 +1,219 @@
+/**
+ * Notation System Styles
+ * 
+ * This file contains styles for the notation system, including
+ * highlights, notes, and UI components.
+ */
+
+/* Highlight colors */
+:root {
+  /* Light theme highlight colors */
+  --highlight-yellow: rgba(255, 255, 0, 0.3);
+  --highlight-green: rgba(0, 255, 0, 0.3);
+  --highlight-orange: rgba(255, 165, 0, 0.3);
+  --highlight-purple: rgba(128, 0, 128, 0.3);
+
+  /* Dark theme highlight colors (more opaque for better visibility) */
+  --highlight-yellow-dark: rgba(255, 255, 0, 0.5);
+  --highlight-green-dark: rgba(0, 255, 0, 0.5);
+  --highlight-orange-dark: rgba(255, 165, 0, 0.5);
+  --highlight-purple-dark: rgba(128, 0, 128, 0.5);
+}
+
+/* Highlighted text styles */
+.highlighted-text {
+  position: relative;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+/* Light theme highlight colors */
+.theme-light .highlighted-text.yellow {
+  background-color: var(--highlight-yellow);
+}
+
+.theme-light .highlighted-text.green {
+  background-color: var(--highlight-green);
+}
+
+.theme-light .highlighted-text.orange {
+  background-color: var(--highlight-orange);
+}
+
+.theme-light .highlighted-text.purple {
+  background-color: var(--highlight-purple);
+}
+
+/* Dark theme highlight colors */
+.theme-dark .highlighted-text.yellow {
+  background-color: var(--highlight-yellow-dark);
+}
+
+.theme-dark .highlighted-text.green {
+  background-color: var(--highlight-green-dark);
+}
+
+.theme-dark .highlighted-text.orange {
+  background-color: var(--highlight-orange-dark);
+}
+
+.theme-dark .highlighted-text.purple {
+  background-color: var(--highlight-purple-dark);
+}
+
+/* Note indicator */
+.note-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #7fc8f5; /* Match the blue color used in the reader */
+  position: absolute;
+  top: -4px;
+  right: -4px;
+}
+
+/* Margin indicators */
+.margin-indicator {
+  position: absolute;
+  left: -20px;
+  width: 4px;
+  height: 1em;
+  border-radius: 2px;
+}
+
+.margin-indicator.yellow {
+  background-color: var(--highlight-yellow);
+}
+
+.margin-indicator.green {
+  background-color: var(--highlight-green);
+}
+
+.margin-indicator.orange {
+  background-color: var(--highlight-orange);
+}
+
+.margin-indicator.purple {
+  background-color: var(--highlight-purple);
+}
+
+.margin-indicator.has-note {
+  width: 6px;
+}
+
+/* Selection menu */
+.selection-menu {
+  position: absolute;
+  background-color: #222222; /* Match header background */
+  border: 1px solid #333333;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  display: flex;
+  padding: 4px;
+}
+
+.selection-menu-button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 4px;
+  margin: 0 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selection-menu-button.yellow {
+  background-color: var(--highlight-yellow-dark);
+}
+
+.selection-menu-button.green {
+  background-color: var(--highlight-green-dark);
+}
+
+.selection-menu-button.orange {
+  background-color: var(--highlight-orange-dark);
+}
+
+.selection-menu-button.purple {
+  background-color: var(--highlight-purple-dark);
+}
+
+.selection-menu-button.note {
+  background-color: #7fc8f5; /* Match the blue color used in the reader */
+  color: white;
+}
+
+.selection-menu-button.copy {
+  background-color: #333333;
+  color: white;
+}
+
+.selection-menu-button:hover {
+  opacity: 0.8;
+}
+
+/* Notes panel (will be expanded in future phases) */
+.notes-panel {
+  position: fixed;
+  top: 56px;
+  right: 0;
+  bottom: 0;
+  width: 350px;
+  background-color: #222222; /* Match header background */
+  border-left: 1px solid #333333;
+  z-index: 40;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+}
+
+.notes-panel.open {
+  transform: translateX(0);
+}
+
+/* Notes list view (will be expanded in future phases) */
+.notes-list-view {
+  padding: 1rem;
+}
+
+.notes-list-item {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.notes-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.notes-list-item-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.notes-list-item-title {
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.notes-list-item-date {
+  font-size: 0.75rem;
+  color: #a0aec0;
+}
+
+.notes-list-item-content {
+  color: #a0aec0;
+  font-size: 0.875rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
