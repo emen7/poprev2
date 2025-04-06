@@ -1,3 +1,5 @@
+Caution! This is code for testing made by a non-pro in training for testing.
+
 # PopRev2 Platform
 
 A comprehensive ecosystem for document transformation, reading, and content management with TinaCMS integration.
@@ -43,7 +45,7 @@ The Publications app is used for various publication types:
 - Scientific
 - Lectionary
 - Catechism
-- PopRev (formerly UBgems/Perplexity)
+- UBgems - a blog
 
 Each publication type is configured through environment variables and shares the same codebase.
 
