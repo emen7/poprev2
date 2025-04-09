@@ -13,5 +13,8 @@ export * from './types';
 // Export reducers
 export * from './reducers';
 
+// Export services
+export * from './services';
+
 // Export examples
 export * from './examples';

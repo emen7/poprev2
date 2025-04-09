@@ -6,3 +6,4 @@ export const examples = {
 // Export example components
 export * from './SelectionExample';
 export * from './NotesExample';
+export * from './UBContentExample';
