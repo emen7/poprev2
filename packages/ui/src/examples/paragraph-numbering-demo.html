@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paragraph Numbering Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .demo-controls {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .control-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        /* Paragraph container */
+        .paragraph-container {
+            position: relative;
+            margin-bottom: 30px;
+            border: 1px solid #eaeaea;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        /* Paragraph numbering column */
+        .paragraph-numbering-column {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 50px;
+            background-color: #f9f9f9;
+            border-right: 1px solid #eaeaea;
+            padding-top: 20px;
+        }
+
+        /* Paragraph content */
+        .paragraph-content {
+            margin-left: 60px;
+        }
+
+        /* Paragraph */
+        .paragraph {
+            position: relative;
+            margin-bottom: 1rem;
+            padding: 5px 0;
+        }
+
+        /* Paragraph number */
+        .paragraph-number {
+            position: absolute;
+            left: -60px;
+            top: 5px;
+            width: 50px;
+            text-align: right;
+            padding-right: 10px;
+            color: #888;
+            font-size: 12px;
+            user-select: none;
+        }
+
+        /* Note indicator */
+        .note-indicator {
+            position: absolute;
+            left: -75px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            color: #3498db;
+            font-size: 10px;
+            user-select: none;
+        }
+
+        /* Highlighted paragraph */
+        .paragraph-highlighted {
+            background-color: rgba(127, 200, 245, 0.1);
+            border-radius: 4px;
+        }
+
+        /* Indented paragraph */
+        .paragraph-indented {
+            padding-left: 20px;
+        }
+
+        /* List paragraph */
+        .paragraph-list {
+            position: relative;
+        }
+
+        .list-number,
+        .list-bullet {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .paragraph-list .paragraph-text {
+            padding-left: 20px;
+        }
+
+        /* Toggle button */
+        .toggle-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            border: 1px solid #eaeaea;
+        }
+
+        .toggle-button:hover {
+            background-color: #f5f5f5;
+        }
+
+        .toggle-icon {
+            width: 20px;
+            height: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="17" y1="18" x2="3" y2="18"></line></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Paragraph Numbering Demo</h1>
+
+    <div class="demo-controls">
+        <div class="control-group">
+            <label>Format Type:</label>
+            <label>
+                <input type="radio" name="formatType" value="traditional" checked> Traditional
+            </label>
+            <label>
+                <input type="radio" name="formatType" value="modern"> Modern
+            </label>
+        </div>
+
+        <div class="control-group">
+            <label>Numbering Style:</label>
+            <label>
+                <input type="radio" name="numberingStyle" value="vertical" checked> Vertical Column
+            </label>
+            <label>
+                <input type="radio" name="numberingStyle" value="inline"> Inline
+            </label>
+        </div>
+    </div>
+
+    <div class="paragraph-container">
+        <div class="paragraph-numbering-column"></div>
+        <div class="paragraph-content">
+            <div class="paragraph" data-paragraph-id="p1">
+                <div class="note-indicator">●</div>
+                <div class="paragraph-number">1</div>
+                <div class="paragraph-text">This is the first paragraph of the example. It demonstrates the basic
+                    paragraph rendering with the new numbering system.</div>
+            </div>
+
+            <div class="paragraph" data-paragraph-id="p2">
+                <div class="paragraph-number">2</div>
+                <div class="paragraph-text">The second paragraph has no notes attached to it. Notice how the note
+                    indicator is not shown for this paragraph.</div>
+            </div>
+
+            <div class="paragraph" data-paragraph-id="p3">
+                <div class="note-indicator">●</div>
+                <div class="paragraph-number">3</div>
+                <div class="paragraph-text">This paragraph has notes attached to it, so you can see the note indicator
+                    in the numbering column.</div>
+            </div>
+
+            <div class="paragraph paragraph-indented" data-paragraph-id="p4">
+                <div class="paragraph-number">4</div>
+                <div class="paragraph-text">This is an indented paragraph, which might represent a quote or special
+                    section in the text.</div>
+            </div>
+
+            <div class="paragraph paragraph-list" data-paragraph-id="p5">
+                <div class="note-indicator">●</div>
+                <div class="paragraph-number">5</div>
+                <div class="paragraph-text">
+                    <span class="list-number">5.</span> This is a numbered list item.
+                </div>
+            </div>
+
+            <div class="paragraph paragraph-list" data-paragraph-id="p6">
+                <div class="paragraph-number">6</div>
+                <div class="paragraph-text">
+                    <span class="list-number">6.</span> This is another numbered list item.
+                </div>
+            </div>
+
+            <div class="paragraph paragraph-list" data-paragraph-id="p7">
+                <div class="paragraph-number">7</div>
+                <div class="paragraph-text">
+                    <span class="list-bullet">•</span> This is a bulleted list item.
+                </div>
+            </div>
+
+            <div class="paragraph paragraph-list" data-paragraph-id="p8">
+                <div class="note-indicator">●</div>
+                <div class="paragraph-number">8</div>
+                <div class="paragraph-text">
+                    <span class="list-bullet">•</span> This is another bulleted list item with notes.
+                </div>
+            </div>
+
+            <div class="paragraph" data-paragraph-id="p9">
+                <div class="paragraph-number">9</div>
+                <div class="paragraph-text">This paragraph marks a topic change in the text.</div>
+            </div>
+
+            <div class="paragraph" data-paragraph-id="p10">
+                <div class="note-indicator">●</div>
+                <div class="paragraph-number">10</div>
+                <div class="paragraph-text">This is the final paragraph in our example, demonstrating the complete
+                    numbering system.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toggle-button">
+        <div class="toggle-icon"></div>
+    </div>
+
+    <script>
+        // Toggle paragraph numbering visibility
+        const toggleButton = document.querySelector('.toggle-button');
+        const paragraphNumberingColumn = document.querySelector('.paragraph-numbering-column');
+        const paragraphNumbers = document.querySelectorAll('.paragraph-number');
+        const noteIndicators = document.querySelectorAll('.note-indicator');
+        const paragraphContent = document.querySelector('.paragraph-content');
+
+        let numbersVisible = true;
+
+        toggleButton.addEventListener('click', () => {
+            numbersVisible = !numbersVisible;
+
+            if (numbersVisible) {
+                paragraphNumberingColumn.style.display = 'block';
+                paragraphNumbers.forEach(number => number.style.display = 'block');
+                noteIndicators.forEach(indicator => indicator.style.display = 'block');
+                paragraphContent.style.marginLeft = '60px';
+            } else {
+                paragraphNumberingColumn.style.display = 'none';
+                paragraphNumbers.forEach(number => number.style.display = 'none');
+                noteIndicators.forEach(indicator => indicator.style.display = 'none');
+                paragraphContent.style.marginLeft = '0';
+            }
+        });
+
+        // Handle paragraph click to highlight
+        const paragraphs = document.querySelectorAll('.paragraph');
+
+        paragraphs.forEach(paragraph => {
+            paragraph.addEventListener('click', () => {
+                // Toggle highlight
+                paragraph.classList.toggle('paragraph-highlighted');
+            });
+        });
+
+        // Handle format type change
+        const formatTypeRadios = document.querySelectorAll('input[name="formatType"]');
+
+        formatTypeRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                const formatType = radio.value;
+
+                // Apply format type
+                if (formatType === 'traditional') {
+                    // Traditional formatting
+                    paragraphs.forEach(paragraph => {
+                        paragraph.style.paddingLeft = '0';
+                    });
+                } else {
+                    // Modern formatting
+                    paragraphs.forEach(paragraph => {
+                        paragraph.style.paddingLeft = '10px';
+                    });
+                }
+            });
+        });
+
+        // Handle numbering style change
+        const numberingStyleRadios = document.querySelectorAll('input[name="numberingStyle"]');
+
+        numberingStyleRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                const numberingStyle = radio.value;
+
+                // Apply numbering style
+                if (numberingStyle === 'vertical') {
+                    // Vertical numbering
+                    paragraphNumberingColumn.style.display = 'block';
+                    paragraphContent.style.marginLeft = '60px';
+
+                    paragraphNumbers.forEach(number => {
+                        number.style.position = 'absolute';
+                        number.style.left = '-60px';
+                    });
+
+                    noteIndicators.forEach(indicator => {
+                        indicator.style.position = 'absolute';
+                        indicator.style.left = '-75px';
+                    });
+                } else {
+                    // Inline numbering
+                    paragraphNumberingColumn.style.display = 'none';
+                    paragraphContent.style.marginLeft = '0';
+
+                    paragraphNumbers.forEach(number => {
+                        number.style.position = 'static';
+                        number.style.display = 'inline-block';
+                        number.style.marginRight = '10px';
+                    });
+
+                    noteIndicators.forEach(indicator => {
+                        indicator.style.position = 'static';
+                        indicator.style.display = 'inline-block';
+                        indicator.style.marginRight = '5px';
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

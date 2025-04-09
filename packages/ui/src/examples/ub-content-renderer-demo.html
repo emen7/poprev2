@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UB Content Renderer Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .demo-controls {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .control-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            width: 50px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Content container */
+        .content-container {
+            position: relative;
+            margin-bottom: 30px;
+            border: 1px solid #eaeaea;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        /* Loading indicator */
+        .loading-indicator {
+            text-align: center;
+            padding: 50px;
+            font-style: italic;
+            color: #666;
+        }
+
+        /* Paper title */
+        .paper-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Section title */
+        .section-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 30px 0 15px;
+        }
+
+        /* Paragraph numbering column */
+        .paragraph-numbering-column {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 50px;
+            background-color: #f9f9f9;
+            border-right: 1px solid #eaeaea;
+            padding-top: 20px;
+        }
+
+        /* Paragraph content */
+        .paragraph-content {
+            margin-left: 60px;
+        }
+
+        /* Paragraph */
+        .paragraph {
+            position: relative;
+            margin-bottom: 1rem;
+            padding: 5px 0;
+        }
+
+        /* Paragraph number */
+        .paragraph-number {
+            position: absolute;
+            left: -60px;
+            top: 5px;
+            width: 50px;
+            text-align: right;
+            padding-right: 10px;
+            color: #888;
+            font-size: 12px;
+            user-select: none;
+        }
+
+        /* Note indicator */
+        .note-indicator {
+            position: absolute;
+            left: -75px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            color: #3498db;
+            font-size: 10px;
+            user-select: none;
+        }
+
+        /* Highlighted paragraph */
+        .paragraph-highlighted {
+            background-color: rgba(127, 200, 245, 0.1);
+            border-radius: 4px;
+        }
+
+        /* Indented paragraph */
+        .paragraph-indented {
+            padding-left: 20px;
+        }
+
+        /* List paragraph */
+        .paragraph-list {
+            position: relative;
+        }
+
+        .list-number,
+        .list-bullet {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .paragraph-list .paragraph-text {
+            padding-left: 20px;
+        }
+
+        /* Toggle button */
+        .toggle-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            border: 1px solid #eaeaea;
+        }
+
+        .toggle-button:hover {
+            background-color: #f5f5f5;
+        }
+
+        .toggle-icon {
+            width: 20px;
+            height: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="17" y1="18" x2="3" y2="18"></line></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>UB Content Renderer Demo</h1>
+
+    <div class="demo-controls">
+        <div class="control-group">
+            <label>Paper ID:</label>
+            <input type="text" id="paperId" value="1">
+        </div>
+
+        <div class="control-group">
+            <label>Section ID:</label>
+            <input type="text" id="sectionId" value="1">
+        </div>
+
+        <div class="control-group">
+            <label>Format Type:</label>
+            <label>
+                <input type="radio" name="formatType" value="traditional" checked> Traditional
+            </label>
+            <label>
+                <input type="radio" name="formatType" value="modern"> Modern
+            </label>
+        </div>
+
+        <div class="control-group">
+            <label>Numbering Style:</label>
+            <label>
+                <input type="radio" name="numberingStyle" value="vertical" checked> Vertical Column
+            </label>
+            <label>
+                <input type="radio" name="numberingStyle" value="inline"> Inline
+            </label>
+        </div>
+
+        <div class="control-group">
+            <button id="loadButton">Load Content</button>
+        </div>
+    </div>
+
+    <div id="contentContainer" class="content-container">
+        <div class="loading-indicator">
+            Enter a paper ID and section ID, then click "Load Content" to load UB content.
+        </div>
+    </div>
+
+    <div class="toggle-button">
+        <div class="toggle-icon"></div>
+    </div>
+
+    <script>
+        // DOM elements
+        const paperIdInput = document.getElementById('paperId');
+        const sectionIdInput = document.getElementById('sectionId');
+        const loadButton = document.getElementById('loadButton');
+        const contentContainer = document.getElementById('contentContainer');
+        const toggleButton = document.querySelector('.toggle-button');
+
+        // State
+        let numbersVisible = true;
+        let formatType = 'traditional';
+        let numberingStyle = 'vertical';
+
+        // Load content
+        loadButton.addEventListener('click', () => {
+            const paperId = paperIdInput.value;
+            const sectionId = sectionIdInput.value;
+
+            // Show loading indicator
+            contentContainer.innerHTML = '<div class="loading-indicator">Loading UB content...</div>';
+
+            // Simulate loading delay
+            setTimeout(() => {
+                // Generate mock content
+                generateMockContent(paperId, sectionId);
+            }, 1000);
+        });
+
+        // Generate mock content
+        function generateMockContent(paperId, sectionId) {
+            // Create content structure
+            let html = '';
+
+            // Paper title
+            html += `<div class="paper-title">Paper ${paperId}: The Universal Father</div>`;
+
+            // Section title
+            html += `<div class="section-title">Section ${sectionId}: The Father's Name</div>`;
+
+            // Paragraph numbering column
+            html += '<div class="paragraph-numbering-column"></div>';
+
+            // Paragraph content
+            html += '<div class="paragraph-content">';
+
+            // Generate paragraphs
+            for (let i = 1; i <= 10; i++) {
+                const hasNotes = i % 3 === 0; // Every third paragraph has notes
+                const isIndented = i % 5 === 0; // Every fifth paragraph is indented
+                const isList = i % 7 === 0; // Every seventh paragraph is a list item
+                const listType = i % 14 === 0 ? 'bullet' : 'number'; // Alternate list types
+
+                // Paragraph classes
+                let paragraphClasses = 'paragraph';
+                if (isIndented) paragraphClasses += ' paragraph-indented';
+                if (isList) paragraphClasses += ' paragraph-list';
+
+                // Paragraph HTML
+                html += `<div class="${paragraphClasses}" data-paragraph-id="p${i}">`;
+
+                // Note indicator
+                if (hasNotes) {
+                    html += '<div class="note-indicator">●</div>';
+                }
+
+                // Paragraph number
+                html += `<div class="paragraph-number">${i}</div>`;
+
+                // Paragraph text
+                html += '<div class="paragraph-text">';
+
+                // List marker
+                if (isList) {
+                    if (listType === 'bullet') {
+                        html += '<span class="list-bullet">•</span> ';
+                    } else {
+                        html += `<span class="list-number">${i}.</span> `;
+                    }
+                }
+
+                // Paragraph content
+                html += `This is paragraph ${i} of paper ${paperId}, section ${sectionId}. `;
+                html += 'It demonstrates the UB content rendering with paragraph numbering. ';
+
+                if (hasNotes) {
+                    html += 'This paragraph has notes attached to it. ';
+                }
+
+                if (isIndented) {
+                    html += 'This paragraph is indented to represent a quote or special section. ';
+                }
+
+                if (isList) {
+                    html += `This is a ${listType === 'bullet' ? 'bulleted' : 'numbered'} list item. `;
+                }
+
+                html += '</div>'; // End paragraph-text
+                html += '</div>'; // End paragraph
+            }
+
+            html += '</div>'; // End paragraph-content
+
+            // Update content container
+            contentContainer.innerHTML = html;
+
+            // Apply current format type and numbering style
+            applyFormatType();
+            applyNumberingStyle();
+
+            // Add event listeners to paragraphs
+            const paragraphs = document.querySelectorAll('.paragraph');
+            paragraphs.forEach(paragraph => {
+                paragraph.addEventListener('click', () => {
+                    // Toggle highlight
+                    paragraph.classList.toggle('paragraph-highlighted');
+                });
+            });
+        }
+
+        // Toggle paragraph numbering visibility
+        toggleButton.addEventListener('click', () => {
+            numbersVisible = !numbersVisible;
+
+            const paragraphNumberingColumn = document.querySelector('.paragraph-numbering-column');
+            const paragraphNumbers = document.querySelectorAll('.paragraph-number');
+            const noteIndicators = document.querySelectorAll('.note-indicator');
+            const paragraphContent = document.querySelector('.paragraph-content');
+
+            if (!paragraphNumberingColumn) return;
+
+            if (numbersVisible) {
+                paragraphNumberingColumn.style.display = 'block';
+                paragraphNumbers.forEach(number => number.style.display = 'block');
+                noteIndicators.forEach(indicator => indicator.style.display = 'block');
+                paragraphContent.style.marginLeft = '60px';
+            } else {
+                paragraphNumberingColumn.style.display = 'none';
+                paragraphNumbers.forEach(number => number.style.display = 'none');
+                noteIndicators.forEach(indicator => indicator.style.display = 'none');
+                paragraphContent.style.marginLeft = '0';
+            }
+        });
+
+        // Handle format type change
+        const formatTypeRadios = document.querySelectorAll('input[name="formatType"]');
+        formatTypeRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                formatType = radio.value;
+                applyFormatType();
+            });
+        });
+
+        // Apply format type
+        function applyFormatType() {
+            const paragraphs = document.querySelectorAll('.paragraph');
+            if (!paragraphs.length) return;
+
+            if (formatType === 'traditional') {
+                // Traditional formatting
+                paragraphs.forEach(paragraph => {
+                    paragraph.style.paddingLeft = '0';
+                });
+            } else {
+                // Modern formatting
+                paragraphs.forEach(paragraph => {
+                    paragraph.style.paddingLeft = '10px';
+                });
+            }
+        }
+
+        // Handle numbering style change
+        const numberingStyleRadios = document.querySelectorAll('input[name="numberingStyle"]');
+        numberingStyleRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                numberingStyle = radio.value;
+                applyNumberingStyle();
+            });
+        });
+
+        // Apply numbering style
+        function applyNumberingStyle() {
+            const paragraphNumberingColumn = document.querySelector('.paragraph-numbering-column');
+            const paragraphNumbers = document.querySelectorAll('.paragraph-number');
+            const noteIndicators = document.querySelectorAll('.note-indicator');
+            const paragraphContent = document.querySelector('.paragraph-content');
+
+            if (!paragraphNumberingColumn) return;
+
+            if (numberingStyle === 'vertical') {
+                // Vertical numbering
+                paragraphNumberingColumn.style.display = 'block';
+                paragraphContent.style.marginLeft = '60px';
+
+                paragraphNumbers.forEach(number => {
+                    number.style.position = 'absolute';
+                    number.style.left = '-60px';
+                });
+
+                noteIndicators.forEach(indicator => {
+                    indicator.style.position = 'absolute';
+                    indicator.style.left = '-75px';
+                });
+            } else {
+                // Inline numbering
+                paragraphNumberingColumn.style.display = 'none';
+                paragraphContent.style.marginLeft = '0';
+
+                paragraphNumbers.forEach(number => {
+                    number.style.position = 'static';
+                    number.style.display = 'inline-block';
+                    number.style.marginRight = '10px';
+                });
+
+                noteIndicators.forEach(indicator => {
+                    indicator.style.position = 'static';
+                    indicator.style.display = 'inline-block';
+                    indicator.style.marginRight = '5px';
+                });
+            }
+        }
+
+        // Load initial content
+        loadButton.click();
+    </script>
+</body>
+
+</html>
