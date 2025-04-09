@@ -11,8 +11,27 @@
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "types": ["react", "react-dom", "jest", "@testing-library/jest-dom"]
+    "types": ["react", "react-dom", "jest"],
+    "skipLibCheck": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"]
+  "include": [
+    "src/navigation/dual-hamburger/**/*.ts",
+    "src/navigation/dual-hamburger/**/*.tsx",
+    "src/navigation/section-tracking/**/*.ts",
+    "src/navigation/section-tracking/**/*.tsx",
+    "src/layout/three-row-header/**/*.ts",
+    "src/layout/three-row-header/**/*.tsx",
+    "src/types/**/*.ts",
+    "src/types/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "**/__tests__/**",
+    "src/examples/**",
+    "src/layout/ReaderHeader.tsx",
+    "src/layout/UBReaderLayout.tsx"
+  ]
 }

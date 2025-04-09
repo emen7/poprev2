@@ -1,0 +1,25 @@
+.sectionTracker {
+  position: relative;
+  scroll-margin-top: 150px; /* Adjust based on header height */
+}
+
+.active {
+  /* Optional: Add styles for the active section */
+}
+
+.debug {
+  position: relative;
+}
+
+.debug::before {
+  content: attr(data-section-id);
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(255, 0, 0, 0.2);
+  color: red;
+  font-size: 10px;
+  padding: 2px 4px;
+  z-index: 100;
+  pointer-events: none;
+}

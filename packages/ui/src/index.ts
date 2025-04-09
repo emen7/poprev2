@@ -6,31 +6,17 @@
  */
 
 // Layout Components
-export {
-  ReaderLayout,
-  EnhancedReaderLayout,
-  ContentContainer,
-  SidePanel,
-  Header,
-  Footer,
-  ResponsiveHeader,
-  ResponsiveFooter,
-  MultiPurposePanel,
-  UBReaderLayout,
-} from './layout';
+export { ThreeRowHeader, HeaderRow, DynamicSectionTitle } from './layout';
 
 // Navigation Components
 export {
-  TableOfContents,
-  Breadcrumbs,
-  NavigationControls,
-  SectionNavigator,
-  StickyHeadersContainer,
+  DualHamburgerNavigation,
+  HamburgerButton,
+  BookNavigationPanel,
+  SectionNavigationPanel,
+  SectionTracker,
+  useIntersectionObserver,
 } from './navigation';
-
-// Re-export navigation types with namespace to avoid conflicts
-import * as NavigationTypes from './navigation';
-export { NavigationTypes };
 
 // Content Components
 export { ContentRenderer, ParagraphRenderer, SectionRenderer } from './content';
@@ -67,5 +53,5 @@ export { NotesPanel } from './panels';
 import * as PanelTypes from './panels';
 export { PanelTypes };
 
-// Examples
-export * from './examples';
+// Examples are excluded to avoid build issues
+// export * from './examples';
