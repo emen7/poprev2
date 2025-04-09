@@ -1,15 +1,21 @@
 /**
- * Reader Core
- * 
- * This is the main entry point for the Reader Core library.
- * It exports all components, models, and utilities.
+ * UB Ecosystem Data Models
+ *
+ * This is the main entry point for the data models package.
+ * It exports all models for use in applications.
  */
 
-// Export components
-export * from './components';
+// Document Models
+export * from './document';
 
-// Export models
-export * from './models';
+// Publication Models
+export * from './publication';
 
-// Export utilities
-export * from './utils';
+// Annotation Models
+export * from './annotation';
+
+// User Models
+export * from './user';
+
+// Search Models
+export * from './search';

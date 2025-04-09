@@ -1,16 +1,17 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../config/tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src",
     "composite": true,
+    "noEmit": false,
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "types": ["react", "react-dom"]
+    "types": ["react", "react-dom", "jest", "@testing-library/jest-dom"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"]

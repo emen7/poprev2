@@ -1,70 +1,90 @@
-/**
- * Header Component
- *
- * This component provides the main navigation header for the application.
- */
+import React, { ReactNode } from 'react';
+import './Header.css';
 
-import Link from 'next/link';
-import { Suspense } from 'react';
-import { SearchBar } from '../search';
+export interface HeaderProps {
+  /**
+   * Left section content (typically navigation controls)
+   */
+  leftContent?: ReactNode;
 
-/**
- * Props for the Header component
- */
-interface HeaderProps {
+  /**
+   * Center section content (typically title)
+   */
+  centerContent?: ReactNode;
+
+  /**
+   * Right section content (typically actions/settings)
+   */
+  rightContent?: ReactNode;
+
+  /**
+   * Whether the header is fixed at the top
+   * @default true
+   */
+  fixed?: boolean;
+
+  /**
+   * Whether to show a border at the bottom of the header
+   * @default true
+   */
+  showBorder?: boolean;
+
+  /**
+   * Additional CSS class name
+   */
   className?: string;
+
+  /**
+   * Whether to make the header transparent when scrolled to top
+   * @default false
+   */
+  transparentOnTop?: boolean;
+
+  /**
+   * Whether to show a shadow under the header
+   * @default true
+   */
+  showShadow?: boolean;
 }
 
 /**
- * Header component
+ * Header Component
  *
- * @param props Component props
- * @returns React component
+ * A flexible header component with three content sections (left, center, right).
+ * Supports fixed positioning, border, and transparency options.
  */
-export function Header({ className = '' }: HeaderProps) {
+export function Header({
+  leftContent,
+  centerContent,
+  rightContent,
+  fixed = true,
+  showBorder = true,
+  className = '',
+  transparentOnTop = false,
+  showShadow = true,
+}: HeaderProps) {
+  const headerClasses = [
+    'reader-header',
+    fixed ? 'reader-header-fixed' : '',
+    showBorder ? 'reader-header-bordered' : '',
+    transparentOnTop ? 'reader-header-transparent-on-top' : '',
+    showShadow ? 'reader-header-shadow' : '',
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
-    <header className={`border-b border-gray-200 bg-white ${className}`}>
-      <div className="container mx-auto flex items-center justify-between px-4 py-4">
-        <Link href="/" className="text-xl font-bold">
-          PopRev2
-        </Link>
-        
-        <div className="hidden md:block">
-          <Suspense fallback={<div className="w-64 h-10 bg-gray-100 rounded animate-pulse"></div>}>
-            <SearchBar />
-          </Suspense>
-        </div>
-        
-        <nav className="flex items-center space-x-4">
-          <Link href="/" className="text-gray-600 hover:text-gray-900">
-            Home
-          </Link>
-          <Link href="/search" className="text-gray-600 hover:text-gray-900">
-            Search
-          </Link>
-          <Link href="/admin" className="text-gray-600 hover:text-gray-900">
-            Admin
-          </Link>
-          
-          {/* Mobile search icon */}
-          <Link href="/search" className="md:hidden">
-            <svg
-              className="h-5 w-5 text-gray-600"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="11" cy="11" r="8" />
-              <path d="m21 21-4.3-4.3" />
-            </svg>
-            <span className="sr-only">Search</span>
-          </Link>
-        </nav>
+    <header className={headerClasses}>
+      <div className="reader-header-container">
+        {leftContent && <div className="reader-header-left">{leftContent}</div>}
+
+        {centerContent && <div className="reader-header-center">{centerContent}</div>}
+
+        {rightContent && <div className="reader-header-right">{rightContent}</div>}
       </div>
     </header>
   );
 }
+
+export default Header;
