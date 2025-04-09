@@ -1,69 +1,89 @@
-import { SelectionState, SelectionAction, SelectionActionType } from '../types/selection.types';
+import {
+  SelectionState,
+  SelectionAction,
+  SelectionActionType,
+  TextSelection,
+} from '../types/selection.types';
+
+// Simple ID generation function
+const generateId = () => `selection_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
 export const initialSelectionState: SelectionState = {
-  isSelecting: false,
-  selectedText: '',
-  selectedParagraphId: '',
-  selectionPosition: null,
-  selectedOptions: {
-    note: false,
-    quote: false,
-    highlight: false,
-  },
+  currentSelection: null,
+  savedSelections: [],
+  isSelectionModeActive: false,
+  currentColor: '#ffeb3b', // Default yellow highlight color
 };
 
 export function selectionReducer(state: SelectionState, action: SelectionAction): SelectionState {
   switch (action.type) {
-    case SelectionActionType.START_SELECTION:
+    case SelectionActionType.SET_CURRENT_SELECTION:
       return {
         ...state,
-        isSelecting: true,
-        selectedParagraphId: action.payload.paragraphId,
-        // Reset other selection state
-        selectedText: '',
-        selectionPosition: null,
-        selectedOptions: {
-          note: false,
-          quote: false,
-          highlight: false,
-        },
+        currentSelection: action.payload.selection,
       };
 
-    case SelectionActionType.UPDATE_SELECTION:
+    case SelectionActionType.CLEAR_CURRENT_SELECTION:
       return {
         ...state,
-        selectedText: action.payload.text,
-        selectionPosition: action.payload.position,
+        currentSelection: null,
       };
 
-    case SelectionActionType.END_SELECTION:
-      // Only end selection if text was actually selected
-      if (!state.selectedText) {
-        return initialSelectionState;
+    case SelectionActionType.SAVE_SELECTION:
+      // Only save if there's a current selection
+      if (!state.currentSelection) {
+        return state;
       }
-      return {
-        ...state,
-        isSelecting: false,
+
+      const newSelection: TextSelection = {
+        ...state.currentSelection,
+        id: generateId(), // Generate a unique ID
+        color: state.currentColor,
+        createdAt: Date.now(),
       };
 
-    case SelectionActionType.CLEAR_SELECTION:
-      return initialSelectionState;
-
-    case SelectionActionType.TOGGLE_OPTION:
       return {
         ...state,
-        selectedOptions: {
-          ...state.selectedOptions,
-          [action.payload.option]: !state.selectedOptions[action.payload.option],
-        },
+        currentSelection: null,
+        savedSelections: [...state.savedSelections, newSelection],
       };
 
-    case SelectionActionType.CONFIRM_SELECTION:
-      // Keep the selection data but reset the UI state
+    case SelectionActionType.DELETE_SELECTION:
       return {
         ...state,
-        isSelecting: false,
-        selectionPosition: null,
+        savedSelections: state.savedSelections.filter(
+          selection => selection.id !== action.payload.id
+        ),
+      };
+
+    case SelectionActionType.SET_SELECTION_MODE:
+      return {
+        ...state,
+        isSelectionModeActive: action.payload.isActive,
+      };
+
+    case SelectionActionType.SET_SELECTION_COLOR:
+      return {
+        ...state,
+        currentColor: action.payload.color,
+      };
+
+    case SelectionActionType.ACTIVATE_SELECTION:
+      return {
+        ...state,
+        savedSelections: state.savedSelections.map(selection => ({
+          ...selection,
+          isActive: selection.id === action.payload.id,
+        })),
+      };
+
+    case SelectionActionType.DEACTIVATE_ALL_SELECTIONS:
+      return {
+        ...state,
+        savedSelections: state.savedSelections.map(selection => ({
+          ...selection,
+          isActive: false,
+        })),
       };
 
     default:

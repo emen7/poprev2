@@ -1,6 +1,6 @@
 import { useContext, useCallback } from 'react';
 import { SelectionContext } from '../contexts/SelectionContext';
-import { SelectionActionType, SelectionOption } from '../types/selection.types';
+import { SelectionActionType, TextSelection } from '../types/selection.types';
 
 /**
  * Hook for accessing and manipulating text selection state
@@ -17,70 +17,88 @@ export function useSelection() {
   const { state, dispatch } = context;
 
   // Provide action creators for common operations
-  const startSelection = useCallback(
-    (paragraphId: string) => {
+  const setCurrentSelection = useCallback(
+    (selection: TextSelection) => {
       dispatch({
-        type: SelectionActionType.START_SELECTION,
-        payload: { paragraphId },
+        type: SelectionActionType.SET_CURRENT_SELECTION,
+        payload: { selection },
       });
     },
     [dispatch]
   );
 
-  const updateSelection = useCallback(
-    (text: string, position: { top: number; left: number } | null) => {
+  const clearCurrentSelection = useCallback(() => {
+    dispatch({ type: SelectionActionType.CLEAR_CURRENT_SELECTION });
+  }, [dispatch]);
+
+  const saveSelection = useCallback(() => {
+    dispatch({ type: SelectionActionType.SAVE_SELECTION });
+  }, [dispatch]);
+
+  const deleteSelection = useCallback(
+    (id: string) => {
       dispatch({
-        type: SelectionActionType.UPDATE_SELECTION,
-        payload: { text, position },
+        type: SelectionActionType.DELETE_SELECTION,
+        payload: { id },
       });
     },
     [dispatch]
   );
 
-  const endSelection = useCallback(() => {
-    dispatch({ type: SelectionActionType.END_SELECTION });
-  }, [dispatch]);
-
-  const clearSelection = useCallback(() => {
-    dispatch({ type: SelectionActionType.CLEAR_SELECTION });
-  }, [dispatch]);
-
-  const toggleOption = useCallback(
-    (option: SelectionOption) => {
+  const setSelectionMode = useCallback(
+    (isActive: boolean) => {
       dispatch({
-        type: SelectionActionType.TOGGLE_OPTION,
-        payload: { option },
+        type: SelectionActionType.SET_SELECTION_MODE,
+        payload: { isActive },
       });
     },
     [dispatch]
   );
 
-  const confirmSelection = useCallback(() => {
-    dispatch({ type: SelectionActionType.CONFIRM_SELECTION });
-  }, [dispatch]);
+  const setSelectionColor = useCallback(
+    (color: string) => {
+      dispatch({
+        type: SelectionActionType.SET_SELECTION_COLOR,
+        payload: { color },
+      });
+    },
+    [dispatch]
+  );
 
-  const hasSelectedOptions = useCallback(() => {
-    return Object.values(state.selectedOptions).some(value => value);
-  }, [state.selectedOptions]);
+  const activateSelection = useCallback(
+    (id: string) => {
+      dispatch({
+        type: SelectionActionType.ACTIVATE_SELECTION,
+        payload: { id },
+      });
+    },
+    [dispatch]
+  );
+
+  const deactivateAllSelections = useCallback(() => {
+    dispatch({ type: SelectionActionType.DEACTIVATE_ALL_SELECTIONS });
+  }, [dispatch]);
 
   return {
     // State properties
-    isSelecting: state.isSelecting,
-    selectedText: state.selectedText,
-    selectedParagraphId: state.selectedParagraphId,
-    selectionPosition: state.selectionPosition,
-    selectedOptions: state.selectedOptions,
+    currentSelection: state.currentSelection,
+    savedSelections: state.savedSelections,
+    isSelectionModeActive: state.isSelectionModeActive,
+    currentColor: state.currentColor,
 
     // Computed properties
-    hasSelectedOptions: hasSelectedOptions(),
+    hasSelections: state.savedSelections.length > 0,
+    hasActiveSelection: state.savedSelections.some(s => s.isActive),
 
     // Actions
-    startSelection,
-    updateSelection,
-    endSelection,
-    clearSelection,
-    toggleOption,
-    confirmSelection,
+    setCurrentSelection,
+    clearCurrentSelection,
+    saveSelection,
+    deleteSelection,
+    setSelectionMode,
+    setSelectionColor,
+    activateSelection,
+    deactivateAllSelections,
 
     // Raw dispatch for advanced usage
     dispatch,

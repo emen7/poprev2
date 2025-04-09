@@ -1,60 +1,89 @@
 import { Dispatch } from 'react';
 
+export interface TextSelection {
+  /**
+   * Unique identifier for the selection
+   */
+  id: string;
+
+  /**
+   * The selected text content
+   */
+  text: string;
+
+  /**
+   * The paragraph ID where the selection starts
+   */
+  paragraphId: string;
+
+  /**
+   * The start offset within the paragraph
+   */
+  startOffset: number;
+
+  /**
+   * The end offset within the paragraph
+   */
+  endOffset: number;
+
+  /**
+   * The selection color
+   */
+  color?: string;
+
+  /**
+   * Timestamp when the selection was created
+   */
+  createdAt: number;
+
+  /**
+   * Whether the selection is currently active
+   */
+  isActive?: boolean;
+}
+
 export interface SelectionState {
   /**
-   * Whether text is currently being selected
+   * Current active selection
    */
-  isSelecting: boolean;
+  currentSelection: TextSelection | null;
 
   /**
-   * The currently selected text
+   * All saved selections
    */
-  selectedText: string;
+  savedSelections: TextSelection[];
 
   /**
-   * The ID of the paragraph containing the selection
+   * Whether the selection mode is active
    */
-  selectedParagraphId: string;
+  isSelectionModeActive: boolean;
 
   /**
-   * The position of the selection for displaying controls
+   * The current selection color
    */
-  selectionPosition: { top: number; left: number } | null;
-
-  /**
-   * The selected options for the current selection
-   */
-  selectedOptions: {
-    note: boolean;
-    quote: boolean;
-    highlight: boolean;
-  };
+  currentColor: string;
 }
 
 export enum SelectionActionType {
-  START_SELECTION = 'START_SELECTION',
-  UPDATE_SELECTION = 'UPDATE_SELECTION',
-  END_SELECTION = 'END_SELECTION',
-  CLEAR_SELECTION = 'CLEAR_SELECTION',
-  TOGGLE_OPTION = 'TOGGLE_OPTION',
-  CONFIRM_SELECTION = 'CONFIRM_SELECTION',
+  SET_CURRENT_SELECTION = 'SET_CURRENT_SELECTION',
+  CLEAR_CURRENT_SELECTION = 'CLEAR_CURRENT_SELECTION',
+  SAVE_SELECTION = 'SAVE_SELECTION',
+  DELETE_SELECTION = 'DELETE_SELECTION',
+  SET_SELECTION_MODE = 'SET_SELECTION_MODE',
+  SET_SELECTION_COLOR = 'SET_SELECTION_COLOR',
+  ACTIVATE_SELECTION = 'ACTIVATE_SELECTION',
+  DEACTIVATE_ALL_SELECTIONS = 'DEACTIVATE_ALL_SELECTIONS',
 }
 
-export type SelectionOption = 'note' | 'quote' | 'highlight';
-
 export type SelectionAction =
-  | { type: SelectionActionType.START_SELECTION; payload: { paragraphId: string } }
-  | {
-      type: SelectionActionType.UPDATE_SELECTION;
-      payload: {
-        text: string;
-        position: { top: number; left: number } | null;
-      };
-    }
-  | { type: SelectionActionType.END_SELECTION }
-  | { type: SelectionActionType.CLEAR_SELECTION }
-  | { type: SelectionActionType.TOGGLE_OPTION; payload: { option: SelectionOption } }
-  | { type: SelectionActionType.CONFIRM_SELECTION };
+  | { type: SelectionActionType.SET_CURRENT_SELECTION; payload: { selection: TextSelection } }
+  | { type: SelectionActionType.CLEAR_CURRENT_SELECTION }
+  | { type: SelectionActionType.SAVE_SELECTION }
+  | { type: SelectionActionType.DELETE_SELECTION; payload: { id: string } }
+  | { type: SelectionActionType.SET_SELECTION_MODE; payload: { isActive: boolean } }
+  | { type: SelectionActionType.SET_SELECTION_COLOR; payload: { color: string } }
+  | { type: SelectionActionType.ACTIVATE_SELECTION; payload: { id: string } }
+  | { type: SelectionActionType.DEACTIVATE_ALL_SELECTIONS };
 
 export interface SelectionContextType {
   state: SelectionState;

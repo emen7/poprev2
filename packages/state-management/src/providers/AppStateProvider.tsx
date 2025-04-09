@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { NavigationProvider } from '../contexts/NavigationContext';
 import { PullupProvider } from '../contexts/PullupContext';
+import { SelectionProvider } from '../contexts/SelectionContext';
 
 interface AppStateProviderProps {
   /**
@@ -40,7 +41,9 @@ export function AppStateProvider({
 }: AppStateProviderProps) {
   return (
     <NavigationProvider>
-      <PullupProvider persistentBreakpoint={persistentBreakpoint}>{children}</PullupProvider>
+      <PullupProvider persistentBreakpoint={persistentBreakpoint}>
+        <SelectionProvider>{children}</SelectionProvider>
+      </PullupProvider>
     </NavigationProvider>
   );
 }

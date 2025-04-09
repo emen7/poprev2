@@ -4,6 +4,7 @@ import {
   SelectionState,
   SelectionAction,
   SelectionActionType,
+  TextSelection,
 } from '../types/selection.types';
 import { selectionReducer, initialSelectionState } from '../reducers/selectionReducer';
 
@@ -25,12 +26,16 @@ export function SelectionProvider({ children, initialState = {} }: SelectionProv
   // Handle text selection events
   useEffect(() => {
     const handleSelectionChange = () => {
+      if (!state.isSelectionModeActive) {
+        return; // Only process selections when selection mode is active
+      }
+
       const selection = window.getSelection();
 
       if (!selection || selection.isCollapsed) {
         // No text selected
-        if (state.selectedText) {
-          dispatch({ type: SelectionActionType.END_SELECTION });
+        if (state.currentSelection) {
+          dispatch({ type: SelectionActionType.CLEAR_CURRENT_SELECTION });
         }
         return;
       }
@@ -39,27 +44,38 @@ export function SelectionProvider({ children, initialState = {} }: SelectionProv
 
       if (!selectedText) {
         // Empty selection
-        if (state.selectedText) {
-          dispatch({ type: SelectionActionType.END_SELECTION });
+        if (state.currentSelection) {
+          dispatch({ type: SelectionActionType.CLEAR_CURRENT_SELECTION });
         }
         return;
       }
 
-      // Get selection position for displaying controls
+      // Get selection position and range information
       const range = selection.getRangeAt(0);
-      const rect = range.getBoundingClientRect();
-      const position = {
-        top: rect.top + window.scrollY - 40, // Position above the selection
-        left: rect.left + rect.width / 2 + window.scrollX, // Center horizontally
+      const paragraphElement = range.startContainer.parentElement?.closest('[data-paragraph-id]');
+
+      if (!paragraphElement) {
+        return; // Not selecting within a paragraph
+      }
+
+      const paragraphId = paragraphElement.getAttribute('data-paragraph-id') || '';
+      const startOffset = range.startOffset;
+      const endOffset = range.endOffset;
+
+      // Create a new selection object
+      const newSelection: TextSelection = {
+        id: '', // Will be assigned when saved
+        text: selectedText,
+        paragraphId,
+        startOffset,
+        endOffset,
+        createdAt: Date.now(),
       };
 
       // Update selection state
       dispatch({
-        type: SelectionActionType.UPDATE_SELECTION,
-        payload: {
-          text: selectedText,
-          position,
-        },
+        type: SelectionActionType.SET_CURRENT_SELECTION,
+        payload: { selection: newSelection },
       });
     };
 
@@ -70,7 +86,7 @@ export function SelectionProvider({ children, initialState = {} }: SelectionProv
     return () => {
       document.removeEventListener('selectionchange', handleSelectionChange);
     };
-  }, [state.selectedText]);
+  }, [state.isSelectionModeActive, state.currentSelection]);
 
   // Memoize context value to prevent unnecessary re-renders
   const contextValue = useMemo(() => ({ state, dispatch }), [state]);
