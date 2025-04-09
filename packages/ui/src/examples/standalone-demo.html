@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paragraph Numbering Standalone Demo</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1,
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Demo section */
+        .demo-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* Paragraph container */
+        .paragraph-container {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        /* Paragraph numbering column */
+        .paragraph-numbering-column {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 50px;
+            background-color: #f9f9f9;
+            border-right: 1px solid #eaeaea;
+        }
+
+        /* Paragraph content */
+        .paragraph-content {
+            margin-left: 60px;
+        }
+
+        /* Paragraph */
+        .paragraph {
+            position: relative;
+            margin-bottom: 1rem;
+            padding: 5px 0;
+        }
+
+        /* Paragraph number */
+        .paragraph-number {
+            position: absolute;
+            left: -60px;
+            top: 5px;
+            width: 50px;
+            text-align: right;
+            padding-right: 10px;
+            color: #888;
+            font-size: 12px;
+            user-select: none;
+        }
+
+        /* Note indicator */
+        .note-indicator {
+            position: absolute;
+            left: -75px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            color: #3498db;
+            font-size: 10px;
+            user-select: none;
+        }
+
+        /* Highlighted paragraph */
+        .paragraph-highlighted {
+            background-color: rgba(127, 200, 245, 0.1);
+            border-radius: 4px;
+        }
+
+        /* Indented paragraph */
+        .paragraph-indented {
+            padding-left: 20px;
+        }
+
+        /* List paragraph */
+        .paragraph-list {
+            position: relative;
+        }
+
+        .list-number,
+        .list-bullet {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .paragraph-list .paragraph-text {
+            padding-left: 20px;
+        }
+
+        /* Controls */
+        .controls {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+
+        .control-group {
+            margin-bottom: 10px;
+        }
+
+        .control-group:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Toggle button */
+        .toggle-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            border: 1px solid #eaeaea;
+        }
+
+        .toggle-button:hover {
+            background-color: #f5f5f5;
+        }
+
+        .toggle-icon {
+            width: 20px;
+            height: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="17" y1="18" x2="3" y2="18"></line></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Paragraph Numbering Standalone Demo</h1>
+        <p>This is a standalone demo of the paragraph numbering system for the Urantia Book reader. It demonstrates the
+            vertical column for paragraph numbers and note indicators.</p>
+
+        <div class="demo-section">
+            <h2>Basic Paragraph Numbering</h2>
+            <p>This example shows basic paragraph numbering with note indicators.</p>
+
+            <div class="controls">
+                <div class="control-group">
+                    <button id="toggleNumbersBtn">Toggle Numbers</button>
+                    <button id="toggleHighlightBtn">Highlight Paragraph 3</button>
+                </div>
+            </div>
+
+            <div class="paragraph-container" id="basicDemo">
+                <div class="paragraph-numbering-column"></div>
+                <div class="paragraph-content">
+                    <div class="paragraph" data-paragraph-id="p1">
+                        <div class="note-indicator">●</div>
+                        <div class="paragraph-number">1</div>
+                        <div class="paragraph-text">This is the first paragraph of the example. It demonstrates the
+                            basic paragraph rendering with the new numbering system.</div>
+                    </div>
+
+                    <div class="paragraph" data-paragraph-id="p2">
+                        <div class="paragraph-number">2</div>
+                        <div class="paragraph-text">The second paragraph has no notes attached to it. Notice how the
+                            note indicator is not shown for this paragraph.</div>
+                    </div>
+
+                    <div class="paragraph" data-paragraph-id="p3">
+                        <div class="note-indicator">●</div>
+                        <div class="paragraph-number">3</div>
+                        <div class="paragraph-text">This paragraph has notes attached to it, so you can see the note
+                            indicator in the numbering column.</div>
+                    </div>
+
+                    <div class="paragraph paragraph-indented" data-paragraph-id="p4">
+                        <div class="paragraph-number">4</div>
+                        <div class="paragraph-text">This is an indented paragraph, which might represent a quote or
+                            special section in the text.</div>
+                    </div>
+
+                    <div class="paragraph paragraph-list" data-paragraph-id="p5">
+                        <div class="note-indicator">●</div>
+                        <div class="paragraph-number">5</div>
+                        <div class="paragraph-text">
+                            <span class="list-number">5.</span> This is a numbered list item.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>UB Content Example</h2>
+            <p>This example shows how the paragraph numbering system would look with UB content.</p>
+
+            <div class="controls">
+                <div class="control-group">
+                    <button id="loadContentBtn">Load Content</button>
+                </div>
+            </div>
+
+            <div id="ubContentDemo">
+                <div class="loading-message">Click "Load Content" to load UB content.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Basic Demo
+        const toggleNumbersBtn = document.getElementById('toggleNumbersBtn');
+        const toggleHighlightBtn = document.getElementById('toggleHighlightBtn');
+        const basicDemo = document.getElementById('basicDemo');
+
+        // Toggle numbers
+        let numbersVisible = true;
+        toggleNumbersBtn.addEventListener('click', () => {
+            numbersVisible = !numbersVisible;
+
+            const paragraphNumberingColumn = basicDemo.querySelector('.paragraph-numbering-column');
+            const paragraphNumbers = basicDemo.querySelectorAll('.paragraph-number');
+            const noteIndicators = basicDemo.querySelectorAll('.note-indicator');
+            const paragraphContent = basicDemo.querySelector('.paragraph-content');
+
+            if (numbersVisible) {
+                paragraphNumberingColumn.style.display = 'block';
+                paragraphNumbers.forEach(number => number.style.display = 'block');
+                noteIndicators.forEach(indicator => indicator.style.display = 'block');
+                paragraphContent.style.marginLeft = '60px';
+                toggleNumbersBtn.textContent = 'Hide Numbers';
+            } else {
+                paragraphNumberingColumn.style.display = 'none';
+                paragraphNumbers.forEach(number => number.style.display = 'none');
+                noteIndicators.forEach(indicator => indicator.style.display = 'none');
+                paragraphContent.style.marginLeft = '0';
+                toggleNumbersBtn.textContent = 'Show Numbers';
+            }
+        });
+
+        // Toggle highlight
+        let paragraph3Highlighted = false;
+        toggleHighlightBtn.addEventListener('click', () => {
+            paragraph3Highlighted = !paragraph3Highlighted;
+
+            const paragraph3 = basicDemo.querySelector('[data-paragraph-id="p3"]');
+
+            if (paragraph3Highlighted) {
+                paragraph3.classList.add('paragraph-highlighted');
+                toggleHighlightBtn.textContent = 'Unhighlight Paragraph 3';
+            } else {
+                paragraph3.classList.remove('paragraph-highlighted');
+                toggleHighlightBtn.textContent = 'Highlight Paragraph 3';
+            }
+        });
+
+        // UB Content Demo
+        const loadContentBtn = document.getElementById('loadContentBtn');
+        const ubContentDemo = document.getElementById('ubContentDemo');
+
+        loadContentBtn.addEventListener('click', () => {
+            // Show loading message
+            ubContentDemo.innerHTML = '<div class="loading-message">Loading UB content...</div>';
+
+            // Simulate loading delay
+            setTimeout(() => {
+                // Generate UB content
+                let html = '';
+
+                // Paper title
+                html += '<div class="paper-title">Paper 1: The Universal Father</div>';
+
+                // Section title
+                html += '<div class="section-title">Section 1: The Father\'s Name</div>';
+
+                // Paragraph container
+                html += '<div class="paragraph-container">';
+                html += '<div class="paragraph-numbering-column"></div>';
+                html += '<div class="paragraph-content">';
+
+                // Paragraphs
+                html += `
+          <div class="paragraph" data-paragraph-id="p1">
+            <div class="note-indicator">●</div>
+            <div class="paragraph-number">1</div>
+            <div class="paragraph-text">Of all the names by which God the Father is known throughout the universes, those which designate him as the First Source and the Universe Center are most often encountered. The First Father is known by various names in different universes and in different sectors of the same universe. The names which the creature assigns to the Creator are much dependent on the creature's concept of the Creator.</div>
+          </div>
+          
+          <div class="paragraph" data-paragraph-id="p2">
+            <div class="paragraph-number">2</div>
+            <div class="paragraph-text">The Universal Father never imposes any form of arbitrary recognition, formal worship, or slavish service upon the intelligent will creatures of the universes. The evolutionary inhabitants of the worlds of time and space must of themselves — in their own hearts — recognize, love, and voluntarily worship him.</div>
+          </div>
+          
+          <div class="paragraph" data-paragraph-id="p3">
+            <div class="note-indicator">●</div>
+            <div class="paragraph-number">3</div>
+            <div class="paragraph-text">When you have once become truly God-conscious, after you really discover the majestic Creator and begin to experience the realization of the indwelling presence of the divine controller, then, in accordance with your enlightenment and in accordance with the manner and method by which the divine Sons reveal God, you will find a name for the Universal Father which will be adequately expressive of your concept of the First Great Source and Center.</div>
+          </div>
+          
+          <div class="paragraph paragraph-indented" data-paragraph-id="p4">
+            <div class="paragraph-number">4</div>
+            <div class="paragraph-text">Near the center of the universe of universes, the Universal Father is generally known by names which may be regarded as meaning the First Source. Farther out in the universes of space, the terms employed to designate the Universal Father more often mean the Universal Center.</div>
+          </div>
+          
+          <div class="paragraph" data-paragraph-id="p5">
+            <div class="note-indicator">●</div>
+            <div class="paragraph-number">5</div>
+            <div class="paragraph-text">On those worlds where a Paradise Son has lived a bestowal life, God is generally known by some name indicative of personal relationship, tender affection, and fatherly devotion. On your constellation headquarters God is referred to as the Universal Father, and on different planets in your local system of inhabited worlds he is variously known as the Father of Fathers, the Paradise Father, the Havona Father, and the Spirit Father.</div>
+          </div>
+        `;
+
+                html += '</div>'; // End paragraph-content
+                html += '</div>'; // End paragraph-container
+
+                // Update content
+                ubContentDemo.innerHTML = html;
+
+                // Add event listeners
+                const paragraphs = ubContentDemo.querySelectorAll('.paragraph');
+                paragraphs.forEach(paragraph => {
+                    paragraph.addEventListener('click', () => {
+                        paragraph.classList.toggle('paragraph-highlighted');
+                    });
+                });
+
+                // Add toggle button
+                const toggleBtn = document.createElement('button');
+                toggleBtn.textContent = 'Toggle Numbers';
+                toggleBtn.style.marginTop = '20px';
+                ubContentDemo.appendChild(toggleBtn);
+
+                // Toggle numbers functionality
+                let numbersVisible = true;
+                toggleBtn.addEventListener('click', () => {
+                    numbersVisible = !numbersVisible;
+
+                    const paragraphNumberingColumn = ubContentDemo.querySelector('.paragraph-numbering-column');
+                    const paragraphNumbers = ubContentDemo.querySelectorAll('.paragraph-number');
+                    const noteIndicators = ubContentDemo.querySelectorAll('.note-indicator');
+                    const paragraphContent = ubContentDemo.querySelector('.paragraph-content');
+
+                    if (numbersVisible) {
+                        paragraphNumberingColumn.style.display = 'block';
+                        paragraphNumbers.forEach(number => number.style.display = 'block');
+                        noteIndicators.forEach(indicator => indicator.style.display = 'block');
+                        paragraphContent.style.marginLeft = '60px';
+                        toggleBtn.textContent = 'Hide Numbers';
+                    } else {
+                        paragraphNumberingColumn.style.display = 'none';
+                        paragraphNumbers.forEach(number => number.style.display = 'none');
+                        noteIndicators.forEach(indicator => indicator.style.display = 'none');
+                        paragraphContent.style.marginLeft = '0';
+                        toggleBtn.textContent = 'Show Numbers';
+                    }
+                });
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>
