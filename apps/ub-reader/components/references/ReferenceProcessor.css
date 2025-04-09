@@ -1,0 +1,104 @@
+/**
+ * Reference Processor Styles
+ */
+
+/* Reference links */
+.ub-reference {
+  color: #0070f3;
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  border-bottom: 1px dotted #0070f3;
+  transition: all 0.2s ease;
+}
+
+.ub-reference:hover {
+  background-color: rgba(0, 112, 243, 0.1);
+  border-bottom: 1px solid #0070f3;
+}
+
+/* Valid and invalid references */
+.ub-reference.valid-reference {
+  color: #0070f3;
+  border-bottom-color: #0070f3;
+}
+
+.ub-reference.invalid-reference {
+  color: #e53e3e;
+  border-bottom-color: #e53e3e;
+  cursor: not-allowed;
+}
+
+.ub-reference.invalid-reference:hover {
+  background-color: rgba(229, 62, 62, 0.1);
+}
+
+/* Reference tooltip */
+.reference-tooltip {
+  position: fixed;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  pointer-events: none;
+  max-width: 300px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.2s ease;
+}
+
+/* Reference types */
+.ub-reference[data-reference-type='paper'] {
+  font-weight: 500;
+}
+
+.ub-reference[data-reference-type='paper-section'] {
+  font-weight: normal;
+}
+
+.ub-reference[data-reference-type='paper-section-paragraph'] {
+  font-style: italic;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .ub-reference {
+    color: #3291ff;
+    border-bottom-color: #3291ff;
+  }
+
+  .ub-reference:hover {
+    background-color: rgba(50, 145, 255, 0.1);
+  }
+
+  .ub-reference.valid-reference {
+    color: #3291ff;
+    border-bottom-color: #3291ff;
+  }
+
+  .ub-reference.invalid-reference {
+    color: #f56565;
+    border-bottom-color: #f56565;
+  }
+
+  .ub-reference.invalid-reference:hover {
+    background-color: rgba(245, 101, 101, 0.1);
+  }
+
+  .reference-tooltip {
+    background-color: rgba(30, 30, 30, 0.9);
+  }
+}

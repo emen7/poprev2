@@ -1,0 +1,167 @@
+https://mathpix.com/convert/**
+ * Traditional Theme Styles
+ *
+ * This file contains styles specific to the Traditional theme.
+ * Matches the original book's presentation.
+ */
+
+/* Traditional Theme Root Variables */
+.content-traditional {
+  /* Typography */
+  --content-font-family: var(--font-serif);
+  --content-line-height: var(--line-height-normal);
+
+  /* Spacing */
+  --content-paragraph-spacing: var(--spacing-md);
+  --content-list-item-spacing: var(--spacing-sm);
+
+  /* List formatting */
+  --content-paragraph-indent: 2rem;
+}
+
+/* Traditional Theme Typography */
+.content-traditional .ub-paragraph-text {
+  font-family: var(--content-font-family);
+  line-height: var(--content-line-height);
+}
+
+/* Traditional Theme Emphasis - Standard emphasis for italicized text */
+.content-traditional .ub-emphasis {
+  font-style: italic;
+  font-weight: normal;
+}
+
+.content-traditional .ub-strong-emphasis {
+  font-style: italic;
+  font-weight: bold;
+}
+
+/* Traditional Theme ALL CAPS - Standard emphasis for words in ALL CAPS */
+.content-traditional .ub-all-caps {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: normal;
+}
+
+.content-traditional .ub-strong-all-caps {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: bold;
+}
+
+/* Traditional Theme Paragraph Structure - Paragraph-style with numbers inline with text */
+.content-traditional .ub-paragraph {
+  margin-bottom: var(--content-paragraph-spacing);
+  text-indent: 0;
+}
+
+.content-traditional .ub-paragraph-number {
+  display: inline-block;
+  margin-right: var(--spacing-sm);
+  color: var(--color-text); /* Same color as text */
+  font-size: var(--font-size-sm);
+  vertical-align: super;
+}
+
+.content-traditional .ub-paragraph-text {
+  display: inline;
+}
+
+/* Traditional Theme List Formatting - Updated for visual alignment with good copy behavior */
+.content-traditional .ub-list {
+  margin-bottom: var(--spacing-lg);
+}
+
+.content-traditional .ub-list-numbered {
+  padding-left: 0;
+}
+
+.content-traditional .ub-list-item {
+  margin-bottom: var(--content-list-item-spacing);
+}
+
+/* List item wrapper provides positioning context */
+.content-traditional .ub-list-item-wrapper {
+  position: relative;
+  display: block;
+  text-indent: var(--content-paragraph-indent);
+}
+
+/* Visually displayed number (positioned inline) */
+.content-traditional .ub-list-item-number-visual {
+  display: inline;
+  color: var(--color-text);
+  user-select: none; /* Prevent selection of the visual number */
+}
+
+/* Visually displayed content */
+.content-traditional .ub-list-item-content-visual {
+  display: inline;
+  user-select: none; /* Prevent selection of the visual content */
+}
+
+/* Hidden element for copying (contains both number and content) */
+.content-traditional .ub-list-item-copy-text {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  user-select: text; /* Allow selection for copying */
+  pointer-events: none; /* Allow clicking through to the visual elements */
+  z-index: -1;
+  text-indent: var(--content-paragraph-indent);
+}
+
+.content-traditional .ub-list-nested {
+  margin-left: var(--content-paragraph-indent);
+  margin-top: var(--spacing-sm);
+}
+
+/* Traditional Theme List with Dots Between Elements */
+.content-traditional .ub-list-with-dots .ub-list-item:not(:last-child)::after {
+  content: '...............';
+  display: block;
+  color: var(--color-text); /* Same color as text */
+  opacity: 0.5;
+  margin: var(--spacing-sm) 0;
+  text-align: center;
+}
+
+/* Traditional Theme Table Formatting */
+.content-traditional .ub-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: var(--spacing-lg) 0;
+  font-family: var(--content-font-family);
+}
+
+.content-traditional .ub-table th,
+.content-traditional .ub-table td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: left;
+  border: 1px solid var(--color-border);
+}
+
+.content-traditional .ub-table th {
+  background-color: var(--color-hover);
+  font-weight: bold;
+}
+
+/* Traditional Theme Section Divider - Standard paragraph spacing without visual indicators */
+.content-traditional .ub-section-divider {
+  display: none; /* Hidden in traditional theme */
+}
+
+/* Traditional Theme Extra Spacing Between Paragraphs (for topic changes) */
+.content-traditional .ub-paragraph.ub-topic-change {
+  margin-top: var(--spacing-lg);
+}
+
+/* Traditional Theme Responsive Adjustments */
+@media (max-width: 768px) {
+  .content-traditional {
+    --content-paragraph-indent: 1.5rem;
+  }
+}

@@ -1,0 +1,165 @@
+/**
+ * Modern Theme Styles
+ *
+ * This file contains styles specific to the Modern theme.
+ * Based on the project notes from revelationary.net.
+ */
+
+/* Modern Theme Root Variables */
+.content-modern {
+  /* Typography */
+  --content-font-family: var(--font-sans-serif);
+  --content-line-height: var(--line-height-normal);
+
+  /* Spacing */
+  --content-paragraph-spacing: var(--spacing-md);
+  --content-list-item-spacing: var(--spacing-sm);
+
+  /* List formatting */
+  --content-list-indent: 2rem;
+  --content-list-number-width: 2rem;
+}
+
+/* Modern Theme Typography */
+.content-modern .ub-paragraph-text {
+  font-family: var(--content-font-family);
+  line-height: var(--content-line-height);
+}
+
+/* Modern Theme Emphasis - Increased boldness for italicized words */
+.content-modern .ub-emphasis {
+  font-style: italic;
+  font-weight: 500; /* Slightly bolder than normal */
+}
+
+.content-modern .ub-strong-emphasis {
+  font-style: italic;
+  font-weight: 700; /* Bold */
+}
+
+/* Modern Theme ALL CAPS - Increased boldness for words in ALL CAPS */
+.content-modern .ub-all-caps {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500; /* Slightly bolder than normal */
+}
+
+.content-modern .ub-strong-all-caps {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700; /* Bold */
+}
+
+/* Modern Theme Paragraph Structure */
+.content-modern .ub-paragraph {
+  display: flex;
+  margin-bottom: var(--content-paragraph-spacing);
+  text-indent: 0; /* No paragraph indentation in modern publishing */
+}
+
+.content-modern .ub-paragraph-number {
+  min-width: var(--content-list-number-width);
+  margin-right: var(--spacing-sm);
+  text-align: right;
+  color: var(--color-text); /* Same color as text */
+  font-size: var(--font-size-sm);
+  user-select: text; /* Make paragraph numbers selectable for copying */
+}
+
+.content-modern .ub-paragraph-text {
+  flex: 1;
+}
+
+/* Modern Theme List Formatting - Updated for visual alignment with good copy behavior */
+.content-modern .ub-list {
+  margin-left: var(--content-list-indent);
+  margin-bottom: var(--spacing-lg);
+}
+
+.content-modern .ub-list-numbered {
+  padding-left: 0;
+}
+
+.content-modern .ub-list-item {
+  margin-bottom: var(--content-list-item-spacing);
+}
+
+/* List item wrapper provides positioning context */
+.content-modern .ub-list-item-wrapper {
+  position: relative;
+  display: block;
+}
+
+/* Visually displayed number (positioned absolutely) */
+.content-modern .ub-list-item-number-visual {
+  position: absolute;
+  left: calc(-1 * var(--content-list-number-width));
+  width: var(--content-list-number-width);
+  text-align: right;
+  color: var(--color-text);
+  user-select: none; /* Prevent selection of the visual number */
+}
+
+/* Visually displayed content */
+.content-modern .ub-list-item-content-visual {
+  display: inline-block;
+  user-select: none; /* Prevent selection of the visual content */
+}
+
+/* Hidden element for copying (contains both number and content) */
+.content-modern .ub-list-item-copy-text {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  user-select: text; /* Allow selection for copying */
+  pointer-events: none; /* Allow clicking through to the visual elements */
+  z-index: -1;
+}
+
+.content-modern .ub-list-nested {
+  margin-left: var(--content-list-indent);
+  margin-top: var(--spacing-sm);
+}
+
+/* Modern Theme Table Formatting */
+.content-modern .ub-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: var(--spacing-lg) 0;
+}
+
+.content-modern .ub-table th,
+.content-modern .ub-table td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: left;
+  border: 1px solid var(--color-border);
+}
+
+.content-modern .ub-table th {
+  background-color: var(--color-hover);
+  font-weight: bold;
+}
+
+/* Modern Theme Section Divider - Visual indicators between paragraphs for topic changes */
+.content-modern .ub-section-divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: var(--spacing-lg) auto;
+  width: 50%;
+  opacity: 0.3;
+}
+
+/* Modern Theme Responsive Adjustments */
+@media (max-width: 768px) {
+  .content-modern {
+    --content-list-indent: 1rem;
+    --content-list-number-width: 1.5rem;
+  }
+
+  .content-modern .ub-paragraph-number {
+    min-width: 1.5rem;
+  }
+}
