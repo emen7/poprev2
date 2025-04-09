@@ -4,8 +4,57 @@ import {
   PullupState,
   PullupAction,
   PullupActionType,
+  PullupTab,
 } from '../types/pullup.types';
-import { pullupReducer, initialPullupState } from '../reducers/pullupReducer';
+
+// Initial state for pullup
+export const initialPullupState: PullupState = {
+  isOpen: false,
+  activeTab: 'notes',
+  height: 300,
+  isPersistent: false,
+};
+
+// Pullup reducer function
+export function pullupReducer(state: PullupState, action: PullupAction): PullupState {
+  switch (action.type) {
+    case PullupActionType.OPEN_PULLUP:
+      return {
+        ...state,
+        isOpen: true,
+        activeTab: action.payload?.tab || state.activeTab,
+      };
+
+    case PullupActionType.CLOSE_PULLUP:
+      return {
+        ...state,
+        isOpen: false,
+      };
+
+    case PullupActionType.SET_ACTIVE_TAB:
+      return {
+        ...state,
+        activeTab: action.payload.tab,
+        // Open pullup if it's closed and a tab is selected
+        isOpen: true,
+      };
+
+    case PullupActionType.SET_HEIGHT:
+      return {
+        ...state,
+        height: action.payload.height,
+      };
+
+    case PullupActionType.SET_PERSISTENT:
+      return {
+        ...state,
+        isPersistent: action.payload.isPersistent,
+      };
+
+    default:
+      return state;
+  }
+}
 
 // Create context with undefined default value
 export const PullupContext = createContext<PullupContextType | undefined>(undefined);
@@ -13,10 +62,6 @@ export const PullupContext = createContext<PullupContextType | undefined>(undefi
 interface PullupProviderProps {
   children: ReactNode;
   initialState?: Partial<PullupState>;
-  /**
-   * Breakpoint width in pixels for persistent mode
-   * @default 1024
-   */
   persistentBreakpoint?: number;
 }
 
@@ -31,12 +76,11 @@ export function PullupProvider({
   // Create reducer state and dispatch
   const [state, dispatch] = useReducer(pullupReducer, mergedInitialState);
 
-  // Handle responsive behavior
+  // Handle responsive behavior for persistent mode
   useEffect(() => {
     const handleResize = () => {
       const isPersistent = window.innerWidth >= persistentBreakpoint;
 
-      // Only dispatch if the value is changing
       if (isPersistent !== state.isPersistent) {
         dispatch({
           type: PullupActionType.SET_PERSISTENT,
@@ -45,7 +89,7 @@ export function PullupProvider({
       }
     };
 
-    // Set initial value
+    // Set initial state
     handleResize();
 
     // Add event listener

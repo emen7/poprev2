@@ -3,7 +3,7 @@ import { PullupContext } from '../contexts/PullupContext';
 import { PullupActionType, PullupTab } from '../types/pullup.types';
 
 /**
- * Hook for accessing and manipulating pullup panel state
+ * Hook for accessing and manipulating pullup state
  *
  * @returns Pullup state and actions
  */
@@ -30,6 +30,14 @@ export function usePullup() {
   const closePullup = useCallback(() => {
     dispatch({ type: PullupActionType.CLOSE_PULLUP });
   }, [dispatch]);
+
+  const togglePullup = useCallback(() => {
+    if (state.isOpen) {
+      dispatch({ type: PullupActionType.CLOSE_PULLUP });
+    } else {
+      dispatch({ type: PullupActionType.OPEN_PULLUP });
+    }
+  }, [dispatch, state.isOpen]);
 
   const setActiveTab = useCallback(
     (tab: PullupTab) => {
@@ -60,14 +68,6 @@ export function usePullup() {
     },
     [dispatch]
   );
-
-  const togglePullup = useCallback(() => {
-    if (state.isOpen) {
-      dispatch({ type: PullupActionType.CLOSE_PULLUP });
-    } else {
-      dispatch({ type: PullupActionType.OPEN_PULLUP });
-    }
-  }, [dispatch, state.isOpen]);
 
   return {
     // State properties

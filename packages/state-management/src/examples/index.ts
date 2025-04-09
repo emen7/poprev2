@@ -1,6 +1,4 @@
-export * from './NavigationExample';
-export * from './PullupExample';
-export * from './SelectionExample';
-
-// Re-export for convenience
-export { AppStateProvider } from '../providers/AppStateProvider';
+// Export a dummy object to make this a proper module
+export const examples = {
+  version: '0.1.0',
+};

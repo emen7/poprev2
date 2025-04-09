@@ -1,15 +1,15 @@
-# State Management Package
+# UB Ecosystem State Management
 
-A standardized state management solution for the UB Ecosystem using React Context.
+A comprehensive state management solution for the UB Ecosystem, providing centralized state management for navigation, pullup panels, text selection, and notes.
 
-## Overview
+## Features
 
-This package provides a comprehensive state management solution for the UB Ecosystem, focusing on four key areas:
-
-1. **Navigation**: Managing navigation state, including book and section navigation panels, current paper and section.
-2. **Pullup**: Managing the bottom pullup panel, including its open state, active tab, and height.
-3. **Selection**: Managing text selection, including selected text, position, and options (note, quote, highlight).
-4. **Notes**: Managing notes and quotes, including creation, updating, and persistence.
+- **Navigation State Management**: Manage book and section navigation panels
+- **Pullup Panel State Management**: Control pullup panels with tabs for notes, quotes, and settings
+- **Text Selection State Management**: Handle text selection and highlighting
+- **Notes State Management**: Manage user notes and annotations
+- **TypeScript Support**: Full TypeScript support with comprehensive type definitions
+- **React Hooks**: Easy-to-use React hooks for accessing and manipulating state
 
 ## Installation
 
@@ -19,79 +19,128 @@ npm install @ub-ecosystem/state-management
 
 ## Usage
 
-### Setting Up the Providers
+### Basic Setup
 
 Wrap your application with the `AppStateProvider` to provide access to all state management contexts:
 
-```tsx
+```jsx
 import { AppStateProvider } from '@ub-ecosystem/state-management';
 
 function App() {
   return (
-    <AppStateProvider documentId="paper1">
+    <AppStateProvider documentId="my-document">
       <YourApp />
     </AppStateProvider>
   );
 }
 ```
 
-### Using the Hooks
+### Navigation State
 
-Access and manipulate state using the provided hooks:
+Use the `useNavigation` hook to access and manipulate navigation state:
 
-```tsx
-import { useNavigation, usePullup, useSelection, useNotes } from '@ub-ecosystem/state-management';
+```jsx
+import { useNavigation } from '@ub-ecosystem/state-management';
 
-function YourComponent() {
-  // Navigation state and actions
-  const { isBookNavOpen, toggleBookNav, setCurrentPaper } = useNavigation();
+function NavigationHeader() {
+  const {
+    isBookNavOpen,
+    isSectionNavOpen,
+    currentSectionTitle,
+    toggleBookNav,
+    toggleSectionNav,
+    updateSectionTitle,
+  } = useNavigation();
 
-  // Pullup state and actions
-  const { isOpen, activeTab, openPullup, closePullup } = usePullup();
-
-  // Selection state and actions
-  const { selectedText, toggleOption, confirmSelection } = useSelection();
-
-  // Notes state and actions
-  const { notes, quotes, addNote, addQuote } = useNotes();
-
-  // Your component logic...
+  return (
+    <header>
+      <button onClick={toggleBookNav}>{isBookNavOpen ? 'Close Book Nav' : 'Open Book Nav'}</button>
+      <button onClick={toggleSectionNav}>
+        {isSectionNavOpen ? 'Close Section Nav' : 'Open Section Nav'}
+      </button>
+      <h1>{currentSectionTitle}</h1>
+    </header>
+  );
 }
 ```
+
+### Pullup Panel State
+
+Use the `usePullup` hook to access and manipulate pullup panel state:
+
+```jsx
+import { usePullup } from '@ub-ecosystem/state-management';
+
+function PullupPanel() {
+  const { isOpen, activeTab, height, openPullup, closePullup, setActiveTab, setHeight } =
+    usePullup();
+
+  return (
+    <div className={`pullup-panel ${isOpen ? 'open' : ''}`} style={{ height }}>
+      <div className="tabs">
+        <button
+          className={activeTab === 'notes' ? 'active' : ''}
+          onClick={() => setActiveTab('notes')}
+        >
+          Notes
+        </button>
+        <button
+          className={activeTab === 'quotes' ? 'active' : ''}
+          onClick={() => setActiveTab('quotes')}
+        >
+          Quotes
+        </button>
+        <button onClick={closePullup}>Close</button>
+      </div>
+      <div className="content">
+        {activeTab === 'notes' && <NotesContent />}
+        {activeTab === 'quotes' && <QuotesContent />}
+      </div>
+    </div>
+  );
+}
+```
+
+## Examples
+
+Check out the examples directory for more detailed examples:
+
+- `navigation-demo.html`: A simple HTML demo of the navigation system
+- `live-server-demo.html`: A more comprehensive demo that can be viewed with Live Server
+- `react-navigation-demo.jsx`: A React-based demo of the navigation system
 
 ## API Reference
 
 ### Providers
 
-- `AppStateProvider`: Combined provider for all state management contexts
+- `AppStateProvider`: Combined provider that wraps all state management contexts
 - `NavigationProvider`: Provider for navigation state
 - `PullupProvider`: Provider for pullup panel state
-- `SelectionProvider`: Provider for text selection state
-- `NotesProvider`: Provider for notes and quotes state
 
 ### Hooks
 
 - `useNavigation`: Hook for accessing and manipulating navigation state
 - `usePullup`: Hook for accessing and manipulating pullup panel state
-- `useSelection`: Hook for accessing and manipulating text selection state
-- `useNotes`: Hook for accessing and manipulating notes and quotes
 
 ### Types
 
-- `NavigationState`: Type for navigation state
-- `PullupState`: Type for pullup panel state
-- `SelectionState`: Type for text selection state
-- `NotesState`: Type for notes and quotes state
-- `Note`: Type for a note
-- `Quote`: Type for a quote
+- `NavigationState`: Type definition for navigation state
+- `PullupState`: Type definition for pullup panel state
+- `PullupTab`: Type definition for pullup panel tabs ('notes' | 'quotes' | 'settings')
 
-## Examples
+## Development
 
-The package includes example components demonstrating the use of each hook:
+### Building the Package
 
-- `NavigationExample`: Demonstrates the use of the `useNavigation` hook
-- `PullupExample`: Demonstrates the use of the `usePullup` hook
-- `SelectionExample`: Demonstrates the use of the `useSelection` hook
+```bash
+npm run build
+```
+
+### Running Tests
+
+```bash
+npm test
+```
 
 ## License
 

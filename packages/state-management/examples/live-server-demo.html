@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UB Reader State Management Demo</title>
+    <style>
+        /* Base styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #f8f8f8;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .three-row-header {
+            width: 100%;
+        }
+
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .top-row {
+            height: 60px;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .paper-row {
+            height: 50px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .section-row {
+            height: 40px;
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .left-content,
+        .right-content {
+            flex: 1;
+        }
+
+        .center-content {
+            flex: 2;
+            text-align: center;
+        }
+
+        .main-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .paper-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        /* Dual Hamburger Navigation */
+        .dual-hamburger-navigation {
+            display: flex;
+            align-items: center;
+        }
+
+        .hamburger-button {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            position: relative;
+        }
+
+        .hamburger-button.book {
+            width: 32px;
+            height: 24px;
+        }
+
+        .hamburger-button.section {
+            width: 24px;
+            height: 18px;
+            margin-left: 8px;
+        }
+
+        .bar {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger-button.open .bar:nth-child(1) {
+            transform: translateY(10px) rotate(45deg);
+        }
+
+        .hamburger-button.open .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-button.open .bar:nth-child(3) {
+            transform: translateY(-10px) rotate(-45deg);
+        }
+
+        .hamburger-button.section.open .bar:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger-button.section.open .bar:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* Navigation Panels */
+        .navigation-panel {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .section-panel {
+            width: 280px;
+            background-color: #f5f5f5;
+        }
+
+        .navigation-panel.open {
+            transform: translateX(300px);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .panel-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .close-button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            padding: 5px;
+        }
+
+        .navigation-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navigation-item {
+            margin-bottom: 10px;
+        }
+
+        .navigation-link {
+            display: block;
+            padding: 10px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+
+        .navigation-link:hover,
+        .navigation-link:focus {
+            background-color: #f0f0f0;
+        }
+
+        /* Pullup Panel */
+        .pullup-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 900;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .pullup-panel.open {
+            transform: translateY(0);
+        }
+
+        .pullup-handle {
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f5f5;
+            cursor: ns-resize;
+        }
+
+        .handle-bar {
+            width: 50px;
+            height: 5px;
+            background-color: #ccc;
+            border-radius: 2.5px;
+        }
+
+        .pullup-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .pullup-tab {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-bottom: 2px solid transparent;
+        }
+
+        .pullup-tab.active {
+            border-bottom-color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .pullup-content {
+            padding: 20px;
+            height: 300px;
+            overflow-y: auto;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 800;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Content */
+        .content {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .pullup-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .pullup-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Three-Row Header -->
+        <header>
+            <div class="three-row-header">
+                <div class="header-row top-row">
+                    <div class="left-content">
+                        <!-- Dual Hamburger Navigation -->
+                        <div class="dual-hamburger-navigation">
+                            <button id="bookNavButton" class="hamburger-button book"
+                                aria-label="Toggle book navigation">
+                                <span class="bar"></span>
+                                <span class="bar"></span>
+                                <span class="bar"></span>
+                            </button>
+                            <button id="sectionNavButton" class="hamburger-button section"
+                                aria-label="Toggle section navigation">
+                                <span class="bar"></span>
+                                <span class="bar"></span>
+                                <span class="bar"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="center-content">
+                        <h1 class="main-title">Urantia Book</h1>
+                    </div>
+                    <div class="right-content">
+                        <button id="pullupButton" class="pullup-button">Open Notes</button>
+                    </div>
+                </div>
+                <div class="header-row paper-row">
+                    <div class="center-content">
+                        <h2 class="paper-title">State Management Demo</h2>
+                    </div>
+                </div>
+                <div class="header-row section-row">
+                    <div class="center-content">
+                        <h3 id="currentSection" class="section-title">Introduction</h3>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Book Navigation Panel -->
+        <nav id="bookPanel" class="navigation-panel">
+            <div class="panel-header">
+                <h2 class="panel-title">Book Navigation</h2>
+                <button id="closeBookPanel" class="close-button">&times;</button>
+            </div>
+            <ul class="navigation-list">
+                <li class="navigation-item">
+                    <a href="#" class="navigation-link" data-section="The Universal Father">
+                        The Universal Father
+                    </a>
+                </li>
+                <li class="navigation-item">
+                    <a href="#" class="navigation-link" data-section="The Nature of God">
+                        The Nature of God
+                    </a>
+                </li>
+                <li class="navigation-item">
+                    <a href="#" class="navigation-link" data-section="The Attributes of God">
+                        The Attributes of God
+                    </a>
+                </li>
+                <li class="navigation-item">
+                    <a href="#" class="navigation-link" data-section="God's Relation to the Universe">
+                        God's Relation to the Universe
+                    </a>
+                </li>
+                <li class="navigation-item">
+                    <a href="#" class="navigation-link" data-section="God's Relation to the Individual">
+                        God's Relation to the Individual
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Section Navigation Panel -->
+        <nav id="sectionPanel" class="navigation-panel section-panel">
+            <div class="panel-header">
+                <h2 class="panel-title">Section Navigation</h2>
+                <button id="closeSectionPanel" class="close-button">&times;</button>
+            </div>
+            <ul class="navigation-list">
+                <li class="navigation-item">
+                    <a href="#" class="navigation-link" data-section="Introduction">
+                        Introduction
+                    </a>
+                </li>
+                <li class="navigation-item">
+                    <a href="#" class="navigation-link" data-section="State Management">
+                        State Management
+                    </a>
+                </li>
+                <li class="navigation-item">
+                    <a href="#" class="navigation-link" data-section="Navigation System">
+                        Navigation System
+                    </a>
+                </li>
+                <li class="navigation-item">
+                    <a href="#" class="navigation-link" data-section="Pullup System">
+                        Pullup System
+                    </a>
+                </li>
+                <li class="navigation-item">
+                    <a href="#" class="navigation-link" data-section="Conclusion">
+                        Conclusion
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Pullup Panel -->
+        <div id="pullupPanel" class="pullup-panel">
+            <div id="pullupHandle" class="pullup-handle">
+                <div class="handle-bar"></div>
+            </div>
+            <div class="pullup-tabs">
+                <button id="notesTab" class="pullup-tab active">Notes</button>
+                <button id="quotesTab" class="pullup-tab">Quotes</button>
+                <button id="settingsTab" class="pullup-tab">Settings</button>
+                <button id="closePullup" class="close-button">&times;</button>
+            </div>
+            <div id="pullupContent" class="pullup-content">
+                <div id="notesContent" class="tab-content">
+                    <h3>Notes</h3>
+                    <p>Your notes will appear here.</p>
+                    <textarea rows="8" style="width: 100%;" placeholder="Add your notes here..."></textarea>
+                </div>
+                <div id="quotesContent" class="tab-content" style="display: none;">
+                    <h3>Quotes</h3>
+                    <p>Your saved quotes will appear here.</p>
+                    <ul>
+                        <li>"Truth is always a revelation: autorevelation when it emerges as a result of the work of the
+                            indwelling Adjuster; epochal revelation when it is presented by the function of some other
+                            celestial agency, group, or personality."</li>
+                        <li>"The doing of the will of God is nothing more or less than an exhibition of creature
+                            willingness to share the inner life with God."</li>
+                    </ul>
+                </div>
+                <div id="settingsContent" class="tab-content" style="display: none;">
+                    <h3>Settings</h3>
+                    <p>Reader settings:</p>
+                    <div>
+                        <label>
+                            <input type="checkbox" checked> Enable dark mode
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="checkbox" checked> Show paragraph numbers
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Font size:
+                            <select>
+                                <option>Small</option>
+                                <option selected>Medium</option>
+                                <option>Large</option>
+                                <option>Extra Large</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overlay -->
+        <div id="overlay" class="overlay"></div>
+
+        <!-- Main Content -->
+        <main class="content">
+            <section id="section1" class="section">
+                <h2>State Management Demo</h2>
+                <p>
+                    This is a demonstration of the state management system for the UB Reader. It shows how the
+                    navigation and pullup components work together using a centralized state management approach.
+                </p>
+                <p>The state management system handles:</p>
+                <ul>
+                    <li>Navigation state (book navigation, section navigation)</li>
+                    <li>Pullup panel state (open/closed, active tab, height)</li>
+                    <li>Section tracking</li>
+                </ul>
+                <p>Try clicking on the hamburger buttons in the top-left corner to open the navigation panels, or click
+                    the "Open Notes" button to open the pullup panel.</p>
+            </section>
+
+            <section id="section2" class="section">
+                <h2>How It Works</h2>
+                <p>The state management system uses a combination of context providers and hooks to manage the
+                    application state. The main components are:</p>
+                <ul>
+                    <li><strong>NavigationContext</strong>: Manages the navigation state</li>
+                    <li><strong>PullupContext</strong>: Manages the pullup panel state</li>
+                    <li><strong>useNavigation</strong>: Hook for accessing and manipulating navigation state</li>
+                    <li><strong>usePullup</strong>: Hook for accessing and manipulating pullup state</li>
+                </ul>
+                <p>This demo uses vanilla JavaScript to simulate the behavior of the React-based state management
+                    system.</p>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // State management
+        const state = {
+            navigation: {
+                isBookNavOpen: false,
+                isSectionNavOpen: false,
+                currentSection: 'Introduction'
+            },
+            pullup: {
+                isOpen: false,
+                activeTab: 'notes',
+                height: 300
+            }
+        };
+
+        // DOM elements
+        const bookNavButton = document.getElementById('bookNavButton');
+        const sectionNavButton = document.getElementById('sectionNavButton');
+        const bookPanel = document.getElementById('bookPanel');
+        const sectionPanel = document.getElementById('sectionPanel');
+        const closeBookPanel = document.getElementById('closeBookPanel');
+        const closeSectionPanel = document.getElementById('closeSectionPanel');
+        const currentSectionElement = document.getElementById('currentSection');
+        const navigationLinks = document.querySelectorAll('.navigation-link');
+        const pullupButton = document.getElementById('pullupButton');
+        const pullupPanel = document.getElementById('pullupPanel');
+        const closePullup = document.getElementById('closePullup');
+        const pullupTabs = document.querySelectorAll('.pullup-tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const overlay = document.getElementById('overlay');
+
+        // Update UI based on state
+        function updateUI() {
+            // Update navigation
+            bookNavButton.classList.toggle('open', state.navigation.isBookNavOpen);
+            sectionNavButton.classList.toggle('open', state.navigation.isSectionNavOpen);
+            bookPanel.classList.toggle('open', state.navigation.isBookNavOpen);
+            sectionPanel.classList.toggle('open', state.navigation.isSectionNavOpen);
+            currentSectionElement.textContent = state.navigation.currentSection;
+
+            // Update pullup
+            pullupPanel.classList.toggle('open', state.pullup.isOpen);
+            pullupPanel.style.height = `${state.pullup.height}px`;
+
+            pullupTabs.forEach(tab => {
+                const tabId = tab.id.replace('Tab', '');
+                tab.classList.toggle('active', tabId === state.pullup.activeTab);
+            });
+
+            tabContents.forEach(content => {
+                const contentId = content.id.replace('Content', '');
+                content.style.display = contentId === state.pullup.activeTab ? 'block' : 'none';
+            });
+
+            // Update overlay
+            overlay.classList.toggle('visible',
+                state.navigation.isBookNavOpen ||
+                state.navigation.isSectionNavOpen ||
+                state.pullup.isOpen
+            );
+        }
+
+        // Navigation actions
+        function toggleBookNav() {
+            state.navigation.isBookNavOpen = !state.navigation.isBookNavOpen;
+
+            // Close section nav if opening book nav
+            if (state.navigation.isBookNavOpen) {
+                state.navigation.isSectionNavOpen = false;
+            }
+
+            updateUI();
+        }
+
+        function toggleSectionNav() {
+            state.navigation.isSectionNavOpen = !state.navigation.isSectionNavOpen;
+
+            // Close book nav if opening section nav
+            if (state.navigation.isSectionNavOpen) {
+                state.navigation.isBookNavOpen = false;
+            }
+
+            updateUI();
+        }
+
+        function updateSection(section) {
+            state.navigation.currentSection = section;
+            updateUI();
+        }
+
+        // Pullup actions
+        function togglePullup() {
+            state.pullup.isOpen = !state.pullup.isOpen;
+            updateUI();
+        }
+
+        function setActiveTab(tab) {
+            state.pullup.activeTab = tab;
+            updateUI();
+        }
+
+        // Close all panels
+        function closeAllPanels() {
+            state.navigation.isBookNavOpen = false;
+            state.navigation.isSectionNavOpen = false;
+            state.pullup.isOpen = false;
+            updateUI();
+        }
+
+        // Event listeners
+        bookNavButton.addEventListener('click', toggleBookNav);
+        sectionNavButton.addEventListener('click', toggleSectionNav);
+        closeBookPanel.addEventListener('click', toggleBookNav);
+        closeSectionPanel.addEventListener('click', toggleSectionNav);
+
+        navigationLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const section = link.getAttribute('data-section');
+                updateSection(section);
+                closeAllPanels();
+            });
+        });
+
+        pullupButton.addEventListener('click', () => {
+            state.pullup.isOpen = true;
+            state.pullup.activeTab = 'notes';
+            updateUI();
+        });
+
+        closePullup.addEventListener('click', () => {
+            state.pullup.isOpen = false;
+            updateUI();
+        });
+
+        pullupTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.id.replace('Tab', '');
+                setActiveTab(tabId);
+            });
+        });
+
+        overlay.addEventListener('click', closeAllPanels);
+
+        // Initial UI update
+        updateUI();
+    </script>
+</body>
+
+</html>

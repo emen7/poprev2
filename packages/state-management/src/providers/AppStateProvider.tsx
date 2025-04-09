@@ -1,8 +1,6 @@
 import React, { ReactNode } from 'react';
 import { NavigationProvider } from '../contexts/NavigationContext';
 import { PullupProvider } from '../contexts/PullupContext';
-import { SelectionProvider } from '../contexts/SelectionContext';
-import { NotesProvider } from '../contexts/NotesContext';
 
 interface AppStateProviderProps {
   /**
@@ -42,13 +40,7 @@ export function AppStateProvider({
 }: AppStateProviderProps) {
   return (
     <NavigationProvider>
-      <PullupProvider persistentBreakpoint={persistentBreakpoint}>
-        <SelectionProvider>
-          <NotesProvider initialState={{ documentId }} persistNotes={persistNotes}>
-            {children}
-          </NotesProvider>
-        </SelectionProvider>
-      </PullupProvider>
+      <PullupProvider persistentBreakpoint={persistentBreakpoint}>{children}</PullupProvider>
     </NavigationProvider>
   );
 }
