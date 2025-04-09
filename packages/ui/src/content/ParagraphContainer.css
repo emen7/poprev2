@@ -1,0 +1,70 @@
+/* ParagraphContainer Component Styles */
+
+.paragraph-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Container with vertical numbering */
+.paragraph-container-vertical-numbering {
+  padding-left: 50px; /* Space for the numbering column */
+}
+
+/* Toggle button for paragraph numbering */
+.paragraph-numbering-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  border: 1px solid #eaeaea;
+  transition: all 0.3s ease;
+}
+
+.paragraph-numbering-toggle:hover {
+  background-color: #f5f5f5;
+}
+
+.paragraph-numbering-toggle-icon {
+  width: 20px;
+  height: 20px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="17" y1="18" x2="3" y2="18"></line></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .paragraph-container-vertical-numbering {
+    padding-left: 40px; /* Smaller space for the numbering column on mobile */
+  }
+
+  .paragraph-numbering-toggle {
+    width: 36px;
+    height: 36px;
+    bottom: 16px;
+    left: 16px;
+  }
+
+  .paragraph-numbering-toggle-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Media query for very small screens */
+@media (max-width: 480px) {
+  .paragraph-container-vertical-numbering {
+    padding-left: 30px; /* Even smaller space for the numbering column on very small screens */
+  }
+}

@@ -12,3 +12,12 @@ export type { Paragraph, ParagraphRendererProps } from './ParagraphRenderer';
 
 export { default as SectionRenderer } from './SectionRenderer';
 export type { Section, SectionRendererProps } from './SectionRenderer';
+
+export { ParagraphNumbering, ParagraphNumberingContainer } from './ParagraphNumbering';
+export type {
+  ParagraphNumberingProps,
+  ParagraphNumberingContainerProps,
+} from './ParagraphNumbering';
+
+export { default as ParagraphContainer } from './ParagraphContainer';
+export type { ParagraphContainerProps } from './ParagraphContainer';

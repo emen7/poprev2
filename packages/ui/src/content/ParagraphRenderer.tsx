@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 import './ParagraphRenderer.css';
+import { ParagraphNumbering } from './ParagraphNumbering';
 
 export interface Paragraph {
   /**
@@ -16,6 +17,11 @@ export interface Paragraph {
    * Paragraph text content (can include HTML)
    */
   text: string;
+
+  /**
+   * Whether this paragraph has notes
+   */
+  hasNotes?: boolean;
 
   /**
    * Optional metadata for the paragraph
@@ -71,6 +77,12 @@ export interface ParagraphRendererProps {
   showNumber?: boolean;
 
   /**
+   * Whether to use the new vertical numbering column
+   * @default false
+   */
+  useVerticalNumbering?: boolean;
+
+  /**
    * Whether this paragraph is highlighted
    * @default false
    */
@@ -107,6 +119,7 @@ export const ParagraphRenderer = forwardRef<HTMLDivElement, ParagraphRendererPro
       paragraph,
       formatType,
       showNumber = true,
+      useVerticalNumbering = false,
       isHighlighted = false,
       onVisible,
       className = '',
@@ -114,7 +127,7 @@ export const ParagraphRenderer = forwardRef<HTMLDivElement, ParagraphRendererPro
     }: ParagraphRendererProps,
     ref
   ) {
-    const { id, number, text, metadata = {} } = paragraph;
+    const { id, number, text, hasNotes = false, metadata = {} } = paragraph;
     const { isIndented, isList, listType, isTable, isTopicChange } = metadata;
 
     // Determine paragraph classes
@@ -126,6 +139,7 @@ export const ParagraphRenderer = forwardRef<HTMLDivElement, ParagraphRendererPro
       isList ? `paragraph-list paragraph-list-${listType}` : '',
       isTable ? 'paragraph-table' : '',
       isTopicChange ? 'paragraph-topic-change' : '',
+      useVerticalNumbering ? 'paragraph-vertical-numbering' : '',
       className,
     ]
       .filter(Boolean)
@@ -142,12 +156,29 @@ export const ParagraphRenderer = forwardRef<HTMLDivElement, ParagraphRendererPro
     const paragraphNumberOnly =
       typeof number === 'string' && number.includes('.') ? number.split('.').pop() : number;
 
+    // Convert paragraph number to a numeric value for the vertical numbering
+    const numericParagraphNumber =
+      typeof paragraphNumberOnly === 'string'
+        ? parseInt(paragraphNumberOnly, 10) || 0 // Default to 0 if parsing fails
+        : typeof paragraphNumberOnly === 'number'
+        ? paragraphNumberOnly
+        : 0; // Default to 0 if undefined
+
     // For list items, we need special handling to ensure numbers are visible
     // and avoid using <li> elements for better copy/paste experience
     if (isList && listType === 'numbered') {
       return (
         <div className={paragraphClasses} data-paragraph-id={id} ref={ref} onClick={handleClick}>
-          {showNumber && <span className="paragraph-number">{paragraphNumberOnly}</span>}
+          {showNumber && !useVerticalNumbering && (
+            <span className="paragraph-number">{paragraphNumberOnly}</span>
+          )}
+          {showNumber && useVerticalNumbering && (
+            <ParagraphNumbering
+              number={numericParagraphNumber}
+              hasNotes={hasNotes}
+              visible={showNumber}
+            />
+          )}
           <div className="paragraph-text">
             <span className="list-number">{number}.</span> {/* Explicit number for lists */}
             <span dangerouslySetInnerHTML={{ __html: text }} />
@@ -157,7 +188,16 @@ export const ParagraphRenderer = forwardRef<HTMLDivElement, ParagraphRendererPro
     } else if (isList && listType === 'bulleted') {
       return (
         <div className={paragraphClasses} data-paragraph-id={id} ref={ref} onClick={handleClick}>
-          {showNumber && <span className="paragraph-number">{paragraphNumberOnly}</span>}
+          {showNumber && !useVerticalNumbering && (
+            <span className="paragraph-number">{paragraphNumberOnly}</span>
+          )}
+          {showNumber && useVerticalNumbering && (
+            <ParagraphNumbering
+              number={numericParagraphNumber}
+              hasNotes={hasNotes}
+              visible={showNumber}
+            />
+          )}
           <div className="paragraph-text">
             <span className="list-bullet">•</span> {/* Bullet for bulleted lists */}
             <span dangerouslySetInnerHTML={{ __html: text }} />
@@ -168,7 +208,16 @@ export const ParagraphRenderer = forwardRef<HTMLDivElement, ParagraphRendererPro
       // Standard paragraph rendering
       return (
         <div className={paragraphClasses} data-paragraph-id={id} ref={ref} onClick={handleClick}>
-          {showNumber && <span className="paragraph-number">{paragraphNumberOnly}</span>}
+          {showNumber && !useVerticalNumbering && (
+            <span className="paragraph-number">{paragraphNumberOnly}</span>
+          )}
+          {showNumber && useVerticalNumbering && (
+            <ParagraphNumbering
+              number={numericParagraphNumber}
+              hasNotes={hasNotes}
+              visible={showNumber}
+            />
+          )}
           <div className="paragraph-text" dangerouslySetInnerHTML={{ __html: text }} />
         </div>
       );

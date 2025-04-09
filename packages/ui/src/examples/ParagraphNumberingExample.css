@@ -1,0 +1,101 @@
+/* ParagraphNumberingExample Component Styles */
+
+.paragraph-numbering-example {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.example-header {
+  margin-bottom: 30px;
+}
+
+.example-header h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.example-header p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.example-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.control-group label {
+  font-weight: bold;
+  color: #333;
+}
+
+.radio-group {
+  display: flex;
+  gap: 15px;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.radio-group input[type='radio'] {
+  margin: 0;
+}
+
+.example-content {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.example-footer {
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+}
+
+/* Custom theme variables for the example */
+.paragraph-numbering-example {
+  --paragraph-number-color: rgba(100, 100, 200, 0.8);
+  --paragraph-highlight-bg: rgba(100, 200, 255, 0.1);
+  --paragraph-topic-change-color: rgba(100, 150, 200, 0.3);
+  --paragraph-table-border: #ccc;
+  --paragraph-table-header-bg: rgba(100, 150, 200, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .paragraph-numbering-example {
+    padding: 15px;
+  }
+
+  .example-controls {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .example-content {
+    padding: 15px;
+  }
+}

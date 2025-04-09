@@ -1,0 +1,108 @@
+/* Paragraph numbering container */
+.paragraph-numbering-container {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+/* Column for paragraph numbers */
+.paragraph-numbering-column {
+  width: 50px;
+  flex-shrink: 0;
+  position: relative;
+  border-right: 1px solid #eaeaea;
+  background-color: #f9f9f9;
+}
+
+/* Main content area */
+.paragraph-content {
+  flex: 1;
+  padding-left: 15px;
+  position: relative;
+}
+
+/* Individual paragraph numbering */
+.paragraph-numbering {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  pointer-events: none; /* Make it non-selectable */
+  user-select: none;
+}
+
+/* Paragraph number */
+.paragraph-number {
+  font-size: 12px;
+  color: #666;
+  font-family: 'Arial', sans-serif;
+  text-align: right;
+  margin-right: 5px;
+}
+
+/* Note indicator */
+.paragraph-note-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #3498db;
+  font-size: 8px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .paragraph-numbering-column {
+    width: 40px;
+  }
+
+  .paragraph-number {
+    font-size: 10px;
+  }
+
+  .paragraph-note-indicator {
+    width: 6px;
+    height: 6px;
+    font-size: 6px;
+  }
+}
+
+/* Toggle button for paragraph numbering */
+.paragraph-numbering-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  border: 1px solid #eaeaea;
+  transition: all 0.3s ease;
+}
+
+.paragraph-numbering-toggle:hover {
+  background-color: #f5f5f5;
+}
+
+.paragraph-numbering-toggle-icon {
+  width: 20px;
+  height: 20px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="17" y1="18" x2="3" y2="18"></line></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+}

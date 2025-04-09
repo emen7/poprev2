@@ -9,3 +9,5 @@ export type { EnhancedReaderDemo as EnhancedReaderDemoType } from './EnhancedRea
 
 export { default as UBReaderDemo } from './UBReaderDemo';
 export type { UBReaderDemoProps } from './UBReaderDemo';
+
+export { default as ParagraphNumberingExample } from './ParagraphNumberingExample';

@@ -191,6 +191,30 @@
   margin-bottom: 0.5rem;
 }
 
+/* Vertical Numbering Styles */
+.paragraph-vertical-numbering {
+  position: relative;
+  padding-left: 0 !important; /* Override other padding */
+  margin-left: 0 !important; /* Override other margins */
+}
+
+.paragraph-vertical-numbering .paragraph-text {
+  margin-left: 0 !important; /* Override other margins */
+  padding-left: 0 !important; /* Override other padding */
+}
+
+.paragraph-format-traditional.paragraph-vertical-numbering,
+.paragraph-format-modern.paragraph-vertical-numbering {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.paragraph-format-traditional.paragraph-vertical-numbering .paragraph-text,
+.paragraph-format-modern.paragraph-vertical-numbering .paragraph-text {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .paragraph-format-traditional .paragraph-number {
