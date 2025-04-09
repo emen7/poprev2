@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selection Menu Standalone Demo</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1,
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Demo section */
+        .demo-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* Content container */
+        .content-container {
+            position: relative;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #eaeaea;
+            border-radius: 5px;
+        }
+
+        /* Selection menu */
+        .selection-menu {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 8px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 150px;
+            animation: fadeIn 0.2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .selection-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-button {
+            background: none;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 4px 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .action-button:hover {
+            background-color: #f0f0f0;
+            border-color: #ccc;
+        }
+
+        .action-button.selected {
+            background-color: #e6f7ff;
+            border-color: #1890ff;
+            color: #1890ff;
+        }
+
+        .selection-controls {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .confirm-button,
+        .cancel-button {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .confirm-button {
+            background-color: #52c41a;
+            color: white;
+            border: none;
+        }
+
+        .confirm-button:hover {
+            background-color: #73d13d;
+        }
+
+        .cancel-button {
+            background-color: #f5f5f5;
+            color: #666;
+            border: 1px solid #ddd;
+        }
+
+        .cancel-button:hover {
+            background-color: #fafafa;
+            color: #333;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #eaeaea;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .copy-message {
+            padding: 10px;
+            background-color: #e6f7ff;
+            border: 1px solid #91d5ff;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            color: #1890ff;
+            font-size: 14px;
+        }
+
+        .notes-container,
+        .quotes-container {
+            margin-bottom: 20px;
+        }
+
+        .notes-container h3,
+        .quotes-container h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .notes-container ul,
+        .quotes-container ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .notes-container li,
+        .quotes-container li {
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .note-text {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .note-selection {
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Selection Menu Standalone Demo</h1>
+        <p>This is a standalone demo of the selection menu for the Urantia Book reader. Select text in the content below
+            to see the selection menu.</p>
+
+        <div class="demo-section">
+            <h2>The Universal Father</h2>
+            <div class="content-container" id="contentContainer">
+                <p>
+                    Of all the names by which God the Father is known throughout the universes, those which designate
+                    him as the First Source and the Universe Center are most often encountered. The First Father is
+                    known by various names in different universes and in different sectors of the same universe. The
+                    names which the creature assigns to the Creator are much dependent on the creature's concept of the
+                    Creator.
+                </p>
+                <p>
+                    The Universal Father never imposes any form of arbitrary recognition, formal worship, or slavish
+                    service upon the intelligent will creatures of the universes. The evolutionary inhabitants of the
+                    worlds of time and space must of themselves — in their own hearts — recognize, love, and voluntarily
+                    worship him.
+                </p>
+                <p>
+                    When you have once become truly God-conscious, after you really discover the majestic Creator and
+                    begin to experience the realization of the indwelling presence of the divine controller, then, in
+                    accordance with your enlightenment and in accordance with the manner and method by which the divine
+                    Sons reveal God, you will find a name for the Universal Father which will be adequately expressive
+                    of your concept of the First Great Source and Center.
+                </p>
+            </div>
+
+            <div class="sidebar" id="sidebar">
+                <div id="copyMessage" class="copy-message" style="display: none;"></div>
+
+                <div id="notesContainer" class="notes-container" style="display: none;">
+                    <h3>Notes</h3>
+                    <ul id="notesList"></ul>
+                </div>
+
+                <div id="quotesContainer" class="quotes-container" style="display: none;">
+                    <h3>Quotes</h3>
+                    <ul id="quotesList"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM elements
+        const contentContainer = document.getElementById('contentContainer');
+        const sidebar = document.getElementById('sidebar');
+        const copyMessage = document.getElementById('copyMessage');
+        const notesContainer = document.getElementById('notesContainer');
+        const notesList = document.getElementById('notesList');
+        const quotesContainer = document.getElementById('quotesContainer');
+        const quotesList = document.getElementById('quotesList');
+
+        // State
+        let selectionMenu = null;
+        let selectedText = '';
+        let selectedAction = null;
+
+        // Create selection menu
+        function createSelectionMenu(position) {
+            // Remove existing menu if any
+            removeSelectionMenu();
+
+            // Create menu element
+            selectionMenu = document.createElement('div');
+            selectionMenu.className = 'selection-menu';
+            selectionMenu.style.top = `${position.top}px`;
+            selectionMenu.style.left = `${position.left}px`;
+
+            // Create actions container
+            const actionsContainer = document.createElement('div');
+            actionsContainer.className = 'selection-actions';
+
+            // Create action buttons
+            const copyButton = document.createElement('button');
+            copyButton.className = 'action-button';
+            copyButton.textContent = '[copy]';
+            copyButton.addEventListener('click', () => {
+                selectedAction = 'copy';
+                updateActionButtons();
+            });
+
+            const noteButton = document.createElement('button');
+            noteButton.className = 'action-button';
+            noteButton.textContent = '[note]';
+            noteButton.addEventListener('click', () => {
+                selectedAction = 'note';
+                updateActionButtons();
+            });
+
+            const quoteButton = document.createElement('button');
+            quoteButton.className = 'action-button';
+            quoteButton.textContent = '[quote]';
+            quoteButton.addEventListener('click', () => {
+                selectedAction = 'quote';
+                updateActionButtons();
+            });
+
+            // Add buttons to actions container
+            actionsContainer.appendChild(copyButton);
+            actionsContainer.appendChild(noteButton);
+            actionsContainer.appendChild(quoteButton);
+
+            // Create controls container
+            const controlsContainer = document.createElement('div');
+            controlsContainer.className = 'selection-controls';
+
+            // Create confirm button
+            const confirmButton = document.createElement('button');
+            confirmButton.className = 'confirm-button';
+            confirmButton.textContent = '✓';
+            confirmButton.title = 'Apply';
+            confirmButton.addEventListener('click', handleConfirm);
+
+            // Create cancel button
+            const cancelButton = document.createElement('button');
+            cancelButton.className = 'cancel-button';
+            cancelButton.textContent = '✕';
+            cancelButton.title = 'Cancel';
+            cancelButton.addEventListener('click', removeSelectionMenu);
+
+            // Add buttons to controls container
+            controlsContainer.appendChild(confirmButton);
+            controlsContainer.appendChild(cancelButton);
+
+            // Add containers to menu
+            selectionMenu.appendChild(actionsContainer);
+            selectionMenu.appendChild(controlsContainer);
+
+            // Add menu to document
+            document.body.appendChild(selectionMenu);
+
+            // Function to update action buttons
+            function updateActionButtons() {
+                // Reset all buttons
+                copyButton.className = 'action-button';
+                noteButton.className = 'action-button';
+                quoteButton.className = 'action-button';
+
+                // Highlight selected button
+                if (selectedAction === 'copy') {
+                    copyButton.className = 'action-button selected';
+                } else if (selectedAction === 'note') {
+                    noteButton.className = 'action-button selected';
+                } else if (selectedAction === 'quote') {
+                    quoteButton.className = 'action-button selected';
+                }
+            }
+        }
+
+        // Remove selection menu
+        function removeSelectionMenu() {
+            if (selectionMenu) {
+                document.body.removeChild(selectionMenu);
+                selectionMenu = null;
+                selectedAction = null;
+            }
+        }
+
+        // Handle confirm button click
+        function handleConfirm() {
+            if (selectedAction === 'copy') {
+                // Copy selected text
+                navigator.clipboard.writeText(selectedText).then(() => {
+                    // Show copy message
+                    copyMessage.textContent = `Copied: "${selectedText.substring(0, 30)}${selectedText.length > 30 ? '...' : ''}"`;
+                    copyMessage.style.display = 'block';
+
+                    // Hide message after 3 seconds
+                    setTimeout(() => {
+                        copyMessage.style.display = 'none';
+                    }, 3000);
+                }).catch(err => {
+                    console.error('Failed to copy text:', err);
+                });
+            } else if (selectedAction === 'note') {
+                // Add note
+                const noteItem = document.createElement('li');
+
+                const noteText = document.createElement('div');
+                noteText.className = 'note-text';
+                noteText.textContent = `Note added at ${new Date().toLocaleTimeString()}`;
+
+                const noteSelection = document.createElement('div');
+                noteSelection.className = 'note-selection';
+                noteSelection.textContent = `"${selectedText}"`;
+
+                noteItem.appendChild(noteText);
+                noteItem.appendChild(noteSelection);
+                notesList.appendChild(noteItem);
+
+                // Show notes container
+                notesContainer.style.display = 'block';
+            } else if (selectedAction === 'quote') {
+                // Add quote
+                const quoteItem = document.createElement('li');
+                quoteItem.textContent = `"${selectedText}"`;
+                quotesList.appendChild(quoteItem);
+
+                // Show quotes container
+                quotesContainer.style.display = 'block';
+            }
+
+            // Remove selection menu
+            removeSelectionMenu();
+        }
+
+        // Handle mouse up event
+        contentContainer.addEventListener('mouseup', (event) => {
+            // Ignore right-click
+            if (event.button === 2) return;
+
+            // Get selection
+            const selection = window.getSelection();
+            if (!selection || selection.isCollapsed) {
+                removeSelectionMenu();
+                return;
+            }
+
+            // Get selected text
+            selectedText = selection.toString().trim();
+            if (selectedText.length < 3) {
+                removeSelectionMenu();
+                return;
+            }
+
+            // Calculate menu position
+            const range = selection.getRangeAt(0);
+            const rect = range.getBoundingClientRect();
+
+            const position = {
+                top: rect.bottom + window.scrollY + 10,
+                left: rect.left + window.scrollX,
+            };
+
+            // Create selection menu
+            createSelectionMenu(position);
+        });
+
+        // Handle context menu event (right-click)
+        contentContainer.addEventListener('contextmenu', (event) => {
+            // Get selection
+            const selection = window.getSelection();
+            if (!selection || selection.isCollapsed) return;
+
+            // Get selected text
+            selectedText = selection.toString().trim();
+            if (selectedText.length < 3) return;
+
+            // Prevent default context menu
+            event.preventDefault();
+
+            // Calculate menu position
+            const position = {
+                top: event.clientY + window.scrollY,
+                left: event.clientX + window.scrollX,
+            };
+
+            // Create selection menu
+            createSelectionMenu(position);
+        });
+
+        // Handle click outside
+        document.addEventListener('mousedown', (event) => {
+            if (selectionMenu && !selectionMenu.contains(event.target) && !contentContainer.contains(event.target)) {
+                removeSelectionMenu();
+            }
+        });
+    </script>
+</body>
+
+</html>

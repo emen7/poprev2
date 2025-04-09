@@ -13,3 +13,5 @@ export type { UBReaderDemoProps } from './UBReaderDemo';
 export { default as ParagraphNumberingExample } from './ParagraphNumberingExample';
 
 export { default as UBContentRendererExample } from './UBContentRendererExample';
+
+export { default as SelectionMenuExample } from './SelectionMenuExample';

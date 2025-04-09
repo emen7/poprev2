@@ -53,5 +53,12 @@ export { NotesPanel } from './panels';
 import * as PanelTypes from './panels';
 export { PanelTypes };
 
+// Selection Components and Hooks
+export { SelectionMenu, useSelectionMenu } from './selection';
+
+// Re-export selection types with namespace to avoid conflicts
+import * as SelectionTypes from './selection';
+export { SelectionTypes };
+
 // Examples are excluded to avoid build issues
 // export * from './examples';
