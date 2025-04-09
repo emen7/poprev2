@@ -1,0 +1,1 @@
+{"version":3,"file":"SectionNavigationPanel.d.ts","sourceRoot":"","sources":["../../../src/navigation/dual-hamburger/SectionNavigationPanel.tsx"],"names":[],"mappings":"AAIA,MAAM,WAAW,2BAA2B;IAC1C;;OAEG;IACH,MAAM,EAAE,OAAO,CAAC;IAEhB;;OAEG;IACH,SAAS,CAAC,EAAE,MAAM,CAAC;CACpB;AAED;;;;GAIG;AACH,wBAAgB,sBAAsB,CAAC,EAAE,MAAM,EAAE,SAAc,EAAE,EAAE,2BAA2B,2CAuE7F;AAED,eAAe,sBAAsB,CAAC"}

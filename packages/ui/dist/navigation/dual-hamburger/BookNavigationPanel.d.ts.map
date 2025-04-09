@@ -1,0 +1,1 @@
+{"version":3,"file":"BookNavigationPanel.d.ts","sourceRoot":"","sources":["../../../src/navigation/dual-hamburger/BookNavigationPanel.tsx"],"names":[],"mappings":"AAIA,MAAM,WAAW,wBAAwB;IACvC;;OAEG;IACH,MAAM,EAAE,OAAO,CAAC;IAEhB;;OAEG;IACH,SAAS,CAAC,EAAE,MAAM,CAAC;CACpB;AAED;;;;GAIG;AACH,wBAAgB,mBAAmB,CAAC,EAAE,MAAM,EAAE,SAAc,EAAE,EAAE,wBAAwB,2CAoDvF;AAED,eAAe,mBAAmB,CAAC"}

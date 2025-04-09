@@ -1,0 +1,1 @@
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../src/scientific/index.ts"],"names":[],"mappings":"AAAA;;;;;GAKG;AAEH,OAAO,EAAE,OAAO,IAAI,iBAAiB,EAAE,MAAM,qBAAqB,CAAC;AACnE,cAAc,qBAAqB,CAAC;AAEpC,OAAO,EAAE,OAAO,IAAI,0BAA0B,EAAE,MAAM,8BAA8B,CAAC;AACrF,cAAc,8BAA8B,CAAC;AAE7C,OAAO,EAAE,OAAO,IAAI,wBAAwB,EAAE,MAAM,4BAA4B,CAAC;AACjF,cAAc,4BAA4B,CAAC"}

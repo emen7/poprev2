@@ -1,37 +1,24 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
+import { AppStateProvider, useNavigation } from '@ub-ecosystem/state-management';
+import { ThreeRowHeader, SectionTracker, DualHamburgerNavigation } from '@ub-ecosystem/ui';
 
 /**
- * Navigation Example Page
+ * Navigation Example Page Content
  *
- * This page demonstrates the navigation components concept.
+ * This component contains the actual content of the page and uses the
+ * navigation hooks from the state management package.
  */
-export default function NavigationExamplePage() {
-  const [isBookNavOpen, setIsBookNavOpen] = useState(false);
-  const [isSectionNavOpen, setIsSectionNavOpen] = useState(false);
-  const [currentSectionTitle, setCurrentSectionTitle] = useState('Introduction');
-
-  // Toggle book navigation
-  const toggleBookNav = () => {
-    setIsBookNavOpen(!isBookNavOpen);
-    if (!isBookNavOpen) {
-      setIsSectionNavOpen(false);
-    }
-  };
-
-  // Toggle section navigation
-  const toggleSectionNav = () => {
-    setIsSectionNavOpen(!isSectionNavOpen);
-    if (!isSectionNavOpen) {
-      setIsBookNavOpen(false);
-    }
-  };
-
-  // Update section title when a section becomes visible
-  const updateSectionTitle = (title: string) => {
-    setCurrentSectionTitle(title);
-  };
+function NavigationExampleContent() {
+  const {
+    isBookNavOpen,
+    isSectionNavOpen,
+    currentSectionTitle,
+    toggleBookNav,
+    toggleSectionNav,
+    updateSectionTitle,
+  } = useNavigation();
 
   return (
     <div className="navigation-example-page">
@@ -73,7 +60,7 @@ export default function NavigationExamplePage() {
         </div>
         <div className="header-row section-row">
           <div className="center-content">
-            <h3 className="section-title">{currentSectionTitle}</h3>
+            <h3 className="section-title">{currentSectionTitle || 'Introduction'}</h3>
           </div>
         </div>
       </header>
@@ -204,8 +191,8 @@ export default function NavigationExamplePage() {
       <div
         className={`overlay ${isBookNavOpen || isSectionNavOpen ? 'visible' : ''}`}
         onClick={() => {
-          setIsBookNavOpen(false);
-          setIsSectionNavOpen(false);
+          if (isBookNavOpen) toggleBookNav();
+          if (isSectionNavOpen) toggleSectionNav();
         }}
         aria-hidden="true"
       ></div>
@@ -605,5 +592,19 @@ export default function NavigationExamplePage() {
         }
       `}</style>
     </div>
+  );
+}
+
+/**
+ * Navigation Example Page
+ *
+ * This page demonstrates the navigation components concept.
+ * It uses the state management package to manage navigation state.
+ */
+export default function NavigationExamplePage() {
+  return (
+    <AppStateProvider documentId="navigation-example">
+      <NavigationExampleContent />
+    </AppStateProvider>
   );
 }

@@ -1,3 +1,2 @@
-import { Header } from './header';
-export { Header };
+export * from './three-row-header';
 //# sourceMappingURL=index.js.map

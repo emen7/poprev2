@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { AppStateProvider, useNavigation } from '@ub-ecosystem/state-management';
 import { ContentContainer } from '../layout/ContentContainer';
 import { ContentRenderer } from '../content/ContentRenderer';
 import { Header } from '../layout/header';
@@ -9,23 +10,44 @@ import { mockDocument } from '../content/mockDocument';
 import './NavigationExample.css';
 
 /**
- * NavigationExample Component
+ * NavigationExampleContent Component
  *
- * A simple example that demonstrates the essential navigation features:
- * - Header with navigation controls
- * - Table of contents with section linking
- * - Prev/next navigation
- * - Footer with navigation information
+ * This is the inner component that uses the state management hooks.
  */
-export function NavigationExample() {
-  // State for format type
-  const [formatType, setFormatType] = useState<'traditional' | 'modern'>('traditional');
+function NavigationExampleContent() {
+  // State from state management
+  const {
+    currentSectionId: navCurrentSectionId,
+    setCurrentSection,
+    updateSectionTitle,
+  } = useNavigation();
 
-  // State for paragraph numbering
+  // Local state for format type and paragraph numbering
+  const [formatType, setFormatType] = useState<'traditional' | 'modern'>('traditional');
   const [showNumbers, setShowNumbers] = useState(true);
 
-  // State for current section
+  // Local state for current section ID (synced with navigation state)
   const [currentSectionId, setCurrentSectionId] = useState(mockDocument.sections[0].id);
+
+  // Sync local state with navigation state
+  useEffect(() => {
+    if (navCurrentSectionId && navCurrentSectionId !== currentSectionId) {
+      setCurrentSectionId(navCurrentSectionId);
+    }
+  }, [navCurrentSectionId]);
+
+  // Update navigation state when local state changes
+  useEffect(() => {
+    if (currentSectionId) {
+      setCurrentSection(currentSectionId);
+
+      // Also update the section title in the navigation state
+      const currentSection = mockDocument.sections.find(section => section.id === currentSectionId);
+      if (currentSection) {
+        updateSectionTitle(currentSection.title);
+      }
+    }
+  }, [currentSectionId, setCurrentSection, updateSectionTitle]);
 
   // Generate table of contents items from the mock document
   const tocItems: TOCItem[] = mockDocument.sections.map(section => ({
@@ -153,7 +175,10 @@ export function NavigationExample() {
               formatType={formatType}
               showParagraphNumbers={showNumbers}
               onSectionVisible={sectionId => {
-                console.log(`Section visible: ${sectionId}`);
+                // Update the navigation state when a section becomes visible
+                if (sectionId !== currentSectionId) {
+                  setCurrentSectionId(sectionId);
+                }
               }}
             />
           </ContentContainer>
@@ -167,6 +192,26 @@ export function NavigationExample() {
         copyrightText={`© ${new Date().getFullYear()} UB Reader`}
       />
     </div>
+  );
+}
+
+/**
+ * NavigationExample Component
+ *
+ * A simple example that demonstrates the essential navigation features:
+ * - Header with navigation controls
+ * - Table of contents with section linking
+ * - Prev/next navigation
+ * - Footer with navigation information
+ *
+ * This component is now wrapped with the AppStateProvider to provide
+ * access to the state management system.
+ */
+export function NavigationExample() {
+  return (
+    <AppStateProvider documentId="navigation-example">
+      <NavigationExampleContent />
+    </AppStateProvider>
   );
 }
 
