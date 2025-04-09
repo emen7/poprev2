@@ -2,3 +2,11 @@
 > @ub-ecosystem/reference-parser@0.1.0 build
 > tsc
 
+src/engine.ts(8,18): error TS2307: Cannot find module 'fuse.js' or its corresponding type declarations.
+src/engine.ts(10,33): error TS2307: Cannot find module 'fuse.js' or its corresponding type declarations.
+src/indexer.ts(8,61): error TS2307: Cannot find module '../document-transformer/types' or its corresponding type declarations.
+src/indexer.ts(104,31): error TS7006: Parameter 'child' implicitly has an 'any' type.
+npm ERR! Lifecycle script `build` failed with error: 
+npm ERR! Error: command failed 
+npm ERR!   in workspace: @ub-ecosystem/reference-parser@0.1.0 
+npm ERR!   at location: C:\Users\neufe\Documents\aaWebHub\poprev2\packages\reference-parser 

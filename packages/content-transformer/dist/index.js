@@ -1,32 +1,68 @@
-"use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
-var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-  }
-  return to;
-};
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-
-// src/index.ts
-var src_exports = {};
-__export(src_exports, {
-  transformContent: () => transformContent
-});
-module.exports = __toCommonJS(src_exports);
-async function transformContent(content, documentType, options = {}) {
-  throw new Error("Not implemented yet. This package is under development.");
+/**
+ * Content Transformer Package
+ *
+ * This package provides utilities for transforming content from various formats
+ * (markdown, docx, perplexity) into a standardized internal format with enhanced metadata.
+ */
+// Import functions from modules
+import { transformMarkdown } from './markdown-transformer';
+import { transformDocx } from './docx-transformer';
+import { transformPerplexity } from './perplexity-transformer';
+import { normalizeContent } from './content-normalizer';
+import { enrichMetadata } from './metadata-enricher';
+import { validateContent } from './content-validator';
+// Export all types
+export * from './types';
+// Export transformer functions
+export { transformMarkdown } from './markdown-transformer';
+export { transformDocx } from './docx-transformer';
+export { transformPerplexity } from './perplexity-transformer';
+export { normalizeContent, standardizeHeadingHierarchy, normalizeLinks, normalizeImages } from './content-normalizer';
+export { enrichMetadata } from './metadata-enricher';
+export { validateContent } from './content-validator';
+/**
+ * Transform content from a source format into the standardized format
+ *
+ * @param content The content to transform
+ * @param documentType The type of document (markdown, docx, perplexity)
+ * @param options Transformation options
+ * @returns A transformed document
+ */
+export async function transformContent(content, documentType, options = {}) {
+    let transformedContent;
+    // Step 1: Transform the content based on document type
+    switch (documentType) {
+        case 'markdown':
+            if (typeof content !== 'string') {
+                throw new Error('Markdown content must be a string');
+            }
+            transformedContent = await transformMarkdown(content);
+            break;
+        case 'docx':
+            if (!(content instanceof Buffer)) {
+                throw new Error('DOCX content must be a Buffer');
+            }
+            transformedContent = await transformDocx(content);
+            break;
+        case 'perplexity':
+            if (typeof content !== 'string') {
+                throw new Error('Perplexity content must be a string');
+            }
+            transformedContent = await transformPerplexity(content);
+            break;
+        default:
+            throw new Error(`Unsupported document type: ${documentType}`);
+    }
+    // Step 2: Normalize the content structure
+    transformedContent = await normalizeContent(transformedContent);
+    // Step 3: Enrich with metadata
+    transformedContent = await enrichMetadata(transformedContent, options);
+    // Step 4: Validate and sanitize the content
+    transformedContent = await validateContent(transformedContent);
+    // Add publicationType if provided in options
+    if (options.publicationType) {
+        transformedContent.publicationType = options.publicationType;
+    }
+    return transformedContent;
 }
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
-  transformContent
-});
+//# sourceMappingURL=index.js.map

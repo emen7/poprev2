@@ -12,6 +12,10 @@ import {
   UBReference,
   parseUBReference,
 } from '../types/ub-content.types';
+import { loadJsonFile, fileExists } from '../utils/fileUtils';
+
+// Base path for UB content
+const UB_CONTENT_BASE_PATH = '/apps/ub-reader/content/ub-json';
 
 /**
  * Service for loading and accessing Urantia Book content
@@ -102,15 +106,37 @@ export class UBContentService {
    */
   private async loadParts(): Promise<UBPart[]> {
     try {
-      // In a real implementation, this would load the parts from the JSON files
-      // For now, we'll use a placeholder implementation that returns an empty array
-      // This will be replaced with actual file loading logic
+      const parts: UBPart[] = [];
 
-      // Placeholder for loading parts from JSON files
-      const response = await fetch('/apps/ub-reader/content/ub-json/1-part.json');
-      const partData = await response.json();
+      // Load part 1
+      const part1Exists = await fileExists(`${UB_CONTENT_BASE_PATH}/1-part.json`);
+      if (part1Exists) {
+        const part1Data = await loadJsonFile<UBPart[]>(`${UB_CONTENT_BASE_PATH}/1-part.json`);
+        parts.push(...part1Data);
+      }
 
-      return partData as UBPart[];
+      // Load part 2
+      const part2Exists = await fileExists(`${UB_CONTENT_BASE_PATH}/2-part.json`);
+      if (part2Exists) {
+        const part2Data = await loadJsonFile<UBPart[]>(`${UB_CONTENT_BASE_PATH}/2-part.json`);
+        parts.push(...part2Data);
+      }
+
+      // Load part 3
+      const part3Exists = await fileExists(`${UB_CONTENT_BASE_PATH}/3-part.json`);
+      if (part3Exists) {
+        const part3Data = await loadJsonFile<UBPart[]>(`${UB_CONTENT_BASE_PATH}/3-part.json`);
+        parts.push(...part3Data);
+      }
+
+      // Load part 4
+      const part4Exists = await fileExists(`${UB_CONTENT_BASE_PATH}/4-part.json`);
+      if (part4Exists) {
+        const part4Data = await loadJsonFile<UBPart[]>(`${UB_CONTENT_BASE_PATH}/4-part.json`);
+        parts.push(...part4Data);
+      }
+
+      return parts;
     } catch (error) {
       console.error('Error loading UB parts:', error);
       throw error;
@@ -124,16 +150,13 @@ export class UBContentService {
    */
   private async processPartContent(part: UBPart): Promise<StructuredUBPart> {
     try {
-      // In a real implementation, this would load the papers for the part
-      // For now, we'll use a placeholder implementation that returns an empty array
-
-      // Placeholder for loading papers for the part
+      // Create the structured part
       const structuredPart: StructuredUBPart = {
         part,
         papers: [],
       };
 
-      // Load papers for the part (placeholder)
+      // Load papers for the part
       const papers = await this.loadPapersForPart(part.partId);
 
       // Process each paper
@@ -156,11 +179,53 @@ export class UBContentService {
    */
   private async loadPapersForPart(partId: string): Promise<UBPaper[]> {
     try {
-      // In a real implementation, this would load the papers for the part from the JSON files
-      // For now, we'll use a placeholder implementation that returns an empty array
+      const papers: UBPaper[] = [];
 
-      // Placeholder for loading papers for the part
-      return [];
+      // Determine the paper range for the part
+      let startPaper = 0;
+      let endPaper = 0;
+
+      switch (partId) {
+        case '1':
+          startPaper = 1;
+          endPaper = 31;
+          break;
+        case '2':
+          startPaper = 32;
+          endPaper = 56;
+          break;
+        case '3':
+          startPaper = 57;
+          endPaper = 119;
+          break;
+        case '4':
+          startPaper = 120;
+          endPaper = 196;
+          break;
+        default:
+          throw new Error(`Invalid part ID: ${partId}`);
+      }
+
+      // Load each paper in the range
+      for (let i = startPaper; i <= endPaper; i++) {
+        const paperNumber = i.toString().padStart(3, '0');
+        const paperExists = await fileExists(`${UB_CONTENT_BASE_PATH}/${paperNumber}.json`);
+
+        if (paperExists) {
+          const paperData = await loadJsonFile<UBContentItem[]>(
+            `${UB_CONTENT_BASE_PATH}/${paperNumber}.json`
+          );
+
+          // Find the paper item
+          const paperItem = paperData.find(item => item.type === 'paper') as UBPaper;
+
+          if (paperItem) {
+            papers.push(paperItem);
+          }
+        }
+      }
+
+      return papers;
     } catch (error) {
       console.error(`Error loading papers for part ${partId}:`, error);
       throw error;
@@ -174,17 +239,17 @@ export class UBContentService {
    */
   private async processPaperContent(paper: UBPaper): Promise<StructuredUBPaper> {
     try {
-      // In a real implementation, this would load the sections and paragraphs for the paper
-      // For now, we'll use a placeholder implementation that returns an empty array
-
-      // Placeholder for loading sections and paragraphs for the paper
+      // Create the structured paper
       const structuredPaper: StructuredUBPaper = {
         paper,
         sections: [],
       };
 
-      // Load sections and paragraphs for the paper (placeholder)
-      const paperContent = await this.loadPaperContent(paper.paperId);
+      // Load the paper content
+      const paperNumber = paper.paperId.padStart(3, '0');
+      const paperContent = await loadJsonFile<UBContentItem[]>(
+        `${UB_CONTENT_BASE_PATH}/${paperNumber}.json`
+      );
 
       // Group the content by section
       const sectionMap = new Map<string, UBContentItem[]>();
@@ -234,24 +299,6 @@ export class UBContentService {
       return structuredPaper;
     } catch (error) {
       console.error(`Error processing paper ${paper.paperId}:`, error);
-      throw error;
-    }
-  }
-
-  /**
-   * Load the content for a paper
-   * @param paperId Paper ID
-   * @returns Promise that resolves to an array of UB content items
-   */
-  private async loadPaperContent(paperId: string): Promise<UBContentItem[]> {
-    try {
-      // In a real implementation, this would load the content for the paper from the JSON file
-      // For now, we'll use a placeholder implementation that returns an empty array
-
-      // Placeholder for loading content for the paper
-      return [];
-    } catch (error) {
-      console.error(`Error loading content for paper ${paperId}:`, error);
       throw error;
     }
   }

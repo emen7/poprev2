@@ -16,5 +16,8 @@ export * from './reducers';
 // Export services
 export * from './services';
 
+// Export utils
+export * from './utils';
+
 // Export examples
 export * from './examples';
