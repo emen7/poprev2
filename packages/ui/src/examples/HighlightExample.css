@@ -1,0 +1,145 @@
+/* HighlightExample Component Styles */
+
+.highlight-example {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #fff;
+}
+
+.highlight-example.dark-mode {
+  color: #ddd;
+  background-color: #222;
+}
+
+.highlight-example h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.example-description {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.highlight-example.dark-mode .example-description {
+  color: #aaa;
+}
+
+.example-controls {
+  margin-bottom: 20px;
+}
+
+.dark-mode-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.dark-mode-toggle input {
+  margin: 0;
+}
+
+.example-container {
+  display: flex;
+  gap: 20px;
+}
+
+.content-container {
+  flex: 2;
+  padding: 20px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+}
+
+.highlight-example.dark-mode .content-container {
+  border-color: #444;
+  background-color: #333;
+  color: #ddd;
+}
+
+.content-container h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.content-container p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.sidebar {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.highlight-example.dark-mode .sidebar {
+  border-color: #444;
+  background-color: #2a2a2a;
+}
+
+.copy-message {
+  padding: 10px;
+  background-color: #e6f7ff;
+  border: 1px solid #91d5ff;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  color: #1890ff;
+  font-size: 14px;
+}
+
+.highlight-example.dark-mode .copy-message {
+  background-color: #111d2c;
+  border-color: #177ddc;
+  color: #40a9ff;
+}
+
+.instructions {
+  margin-bottom: 20px;
+}
+
+.instructions h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.instructions ol {
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.instructions li {
+  margin-bottom: 5px;
+}
+
+.instructions p {
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+}
+
+.highlight-example.dark-mode .instructions p {
+  color: #aaa;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .example-container {
+    flex-direction: column;
+  }
+
+  .content-container,
+  .sidebar {
+    flex: 1;
+  }
+}

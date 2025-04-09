@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { HighlightColor } from './HighlightColorPicker';
 
 export interface SelectionPosition {
   top: number;
@@ -35,6 +36,12 @@ export interface UseSelectionMenuOptions {
    * @default { top: 10, left: 0 }
    */
   offset?: { top: number; left: number };
+
+  /**
+   * Whether the component is in dark mode
+   * @default false
+   */
+  darkMode?: boolean;
 }
 
 export interface UseSelectionMenuResult {
@@ -67,6 +74,16 @@ export interface UseSelectionMenuResult {
    * Copy the selected text to clipboard
    */
   copySelectedText: () => void;
+
+  /**
+   * Highlight the selected text
+   */
+  highlightSelectedText: (color: HighlightColor) => void;
+
+  /**
+   * Whether the component is in dark mode
+   */
+  darkMode: boolean;
 }
 
 /**
@@ -78,6 +95,7 @@ export function useSelectionMenu({
   showOnMouseUp = true,
   minSelectionLength = 1,
   offset = { top: 10, left: 0 },
+  darkMode = false,
 }: UseSelectionMenuOptions = {}): UseSelectionMenuResult {
   // State for menu visibility
   const [isMenuVisible, setIsMenuVisible] = useState<boolean>(false);
@@ -133,6 +151,54 @@ export function useSelectionMenu({
       });
     }
   }, [selectedText]);
+
+  // Highlight selected text
+  const highlightSelectedText = useCallback(
+    (color: HighlightColor) => {
+      const selection = window.getSelection();
+      if (!selection || selection.isCollapsed) return;
+
+      // Get the selected range
+      const range = selection.getRangeAt(0);
+
+      // Create a span element for the highlight
+      const highlightSpan = document.createElement('span');
+
+      // Set the highlight color based on dark mode
+      if (darkMode) {
+        // In dark mode, change the text color
+        highlightSpan.style.color = color;
+      } else {
+        // In light mode, use background highlight
+        highlightSpan.style.backgroundColor = `rgba(${getColorRGB(color)}, 0.5)`;
+      }
+
+      // Surround the selected text with the highlight span
+      range.surroundContents(highlightSpan);
+
+      // Collapse the selection
+      selection.removeAllRanges();
+    },
+    [darkMode]
+  );
+
+  // Helper function to get RGB values for colors
+  const getColorRGB = (color: HighlightColor): string => {
+    switch (color) {
+      case 'yellow':
+        return '255, 255, 0';
+      case 'green':
+        return '0, 255, 0';
+      case 'blue':
+        return '0, 191, 255';
+      case 'pink':
+        return '255, 105, 180';
+      case 'purple':
+        return '147, 112, 219';
+      default:
+        return '255, 255, 0';
+    }
+  };
 
   // Handle mouse up event
   const handleMouseUp = useCallback(
@@ -194,6 +260,8 @@ export function useSelectionMenu({
     showMenu,
     hideMenu,
     copySelectedText,
+    highlightSelectedText,
+    darkMode,
   };
 }
 

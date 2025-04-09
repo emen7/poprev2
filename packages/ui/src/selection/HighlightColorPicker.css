@@ -1,0 +1,136 @@
+/* HighlightColorPicker Component Styles */
+
+.highlight-color-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.highlight-color-picker-dark {
+  background-color: #333;
+}
+
+.highlight-color-options {
+  display: flex;
+  gap: 8px;
+}
+
+.highlight-color-option {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.highlight-color-option:hover {
+  transform: scale(1.1);
+}
+
+.highlight-color-selected {
+  border: 2px solid #333;
+  transform: scale(1.1);
+}
+
+.highlight-color-picker-dark .highlight-color-selected {
+  border-color: #fff;
+}
+
+/* Color options */
+.highlight-color-yellow {
+  background-color: rgba(255, 255, 0, 0.5);
+}
+
+.highlight-color-green {
+  background-color: rgba(0, 255, 0, 0.5);
+}
+
+.highlight-color-blue {
+  background-color: rgba(0, 191, 255, 0.5);
+}
+
+.highlight-color-pink {
+  background-color: rgba(255, 105, 180, 0.5);
+}
+
+.highlight-color-purple {
+  background-color: rgba(147, 112, 219, 0.5);
+}
+
+/* Dark mode colors (text colors) */
+.highlight-color-picker-dark .highlight-color-yellow {
+  background-color: #ffff00;
+}
+
+.highlight-color-picker-dark .highlight-color-green {
+  background-color: #00ff00;
+}
+
+.highlight-color-picker-dark .highlight-color-blue {
+  background-color: #00bfff;
+}
+
+.highlight-color-picker-dark .highlight-color-pink {
+  background-color: #ff69b4;
+}
+
+.highlight-color-picker-dark .highlight-color-purple {
+  background-color: #9370db;
+}
+
+/* Controls */
+.highlight-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.highlight-confirm,
+.highlight-cancel {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.highlight-confirm {
+  background-color: #52c41a;
+  color: white;
+  border: none;
+}
+
+.highlight-confirm:hover {
+  background-color: #73d13d;
+}
+
+.highlight-cancel {
+  background-color: #f5f5f5;
+  color: #666;
+  border: 1px solid #ddd;
+}
+
+.highlight-cancel:hover {
+  background-color: #fafafa;
+  color: #333;
+}
+
+.highlight-color-picker-dark .highlight-cancel {
+  background-color: #444;
+  color: #ddd;
+  border-color: #555;
+}
+
+.highlight-color-picker-dark .highlight-cancel:hover {
+  background-color: #555;
+  color: #fff;
+}

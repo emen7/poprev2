@@ -13,3 +13,6 @@ export type {
   UseSelectionMenuOptions,
   UseSelectionMenuResult,
 } from './useSelectionMenu';
+
+export { default as HighlightColorPicker } from './HighlightColorPicker';
+export type { HighlightColor, HighlightColorPickerProps } from './HighlightColorPicker';

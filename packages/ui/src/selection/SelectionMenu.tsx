@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { HighlightColorPicker, HighlightColor } from './HighlightColorPicker';
 import './SelectionMenu.css';
 
 export interface SelectionMenuProps {
@@ -28,6 +29,16 @@ export interface SelectionMenuProps {
   onQuote?: () => void;
 
   /**
+   * Function called when the highlight action is selected
+   */
+  onHighlight?: (color: HighlightColor) => void;
+
+  /**
+   * Whether the component is in dark mode
+   */
+  darkMode?: boolean;
+
+  /**
    * Function called when the menu is closed
    */
   onClose?: () => void;
@@ -36,7 +47,7 @@ export interface SelectionMenuProps {
 /**
  * SelectionMenu Component
  *
- * A component that displays a menu for text selection with options for copying, adding notes, and saving quotes.
+ * A component that displays a menu for text selection with options for highlighting, copying, adding notes, and saving quotes.
  */
 export const SelectionMenu: React.FC<SelectionMenuProps> = ({
   position,
@@ -44,16 +55,21 @@ export const SelectionMenu: React.FC<SelectionMenuProps> = ({
   onCopy,
   onNote,
   onQuote,
+  onHighlight,
+  darkMode = false,
   onClose,
 }) => {
   // State for the selected action
-  const [selectedAction, setSelectedAction] = useState<'copy' | 'note' | 'quote' | null>(null);
+  const [selectedAction, setSelectedAction] = useState<string | null>(null);
+
+  // State for the selected highlight color
+  const [selectedColor, setSelectedColor] = useState<HighlightColor>('yellow');
 
   // Ref for the menu element
   const menuRef = useRef<HTMLDivElement>(null);
 
   // Handle action selection
-  const handleActionSelect = (action: 'copy' | 'note' | 'quote') => {
+  const handleActionSelect = (action: string) => {
     setSelectedAction(action);
   };
 
@@ -65,6 +81,8 @@ export const SelectionMenu: React.FC<SelectionMenuProps> = ({
       onNote();
     } else if (selectedAction === 'quote' && onQuote) {
       onQuote();
+    } else if (selectedAction === 'highlight' && onHighlight) {
+      onHighlight(selectedColor);
     }
 
     // Close the menu
@@ -75,6 +93,23 @@ export const SelectionMenu: React.FC<SelectionMenuProps> = ({
 
   // Handle cancel button click
   const handleCancel = () => {
+    if (onClose) {
+      onClose();
+    }
+  };
+
+  // Handle highlight color selection
+  const handleColorSelect = (color: HighlightColor) => {
+    setSelectedColor(color);
+  };
+
+  // Handle highlight confirm
+  const handleHighlightConfirm = () => {
+    if (onHighlight) {
+      onHighlight(selectedColor);
+    }
+
+    // Close the menu
     if (onClose) {
       onClose();
     }
@@ -118,38 +153,68 @@ export const SelectionMenu: React.FC<SelectionMenuProps> = ({
 
   return (
     <div
-      className="selection-menu"
+      className={`selection-menu ${darkMode ? 'selection-menu-dark' : ''}`}
       style={{ top: adjustedPosition.top, left: adjustedPosition.left }}
       ref={menuRef}
     >
-      <div className="selection-actions">
-        <button
-          className={`action-button ${selectedAction === 'copy' ? 'selected' : ''}`}
-          onClick={() => handleActionSelect('copy')}
-        >
-          [copy]
-        </button>
-        <button
-          className={`action-button ${selectedAction === 'note' ? 'selected' : ''}`}
-          onClick={() => handleActionSelect('note')}
-        >
-          [note]
-        </button>
-        <button
-          className={`action-button ${selectedAction === 'quote' ? 'selected' : ''}`}
-          onClick={() => handleActionSelect('quote')}
-        >
-          [quote]
-        </button>
-      </div>
-      <div className="selection-controls">
-        <button className="confirm-button" onClick={handleConfirm} title="Apply">
-          ✓
-        </button>
-        <button className="cancel-button" onClick={handleCancel} title="Cancel">
-          ✕
-        </button>
-      </div>
+      {selectedAction === 'highlight' ? (
+        <HighlightColorPicker
+          selectedColor={selectedColor}
+          onColorSelect={handleColorSelect}
+          onConfirm={handleHighlightConfirm}
+          onCancel={handleCancel}
+          darkMode={darkMode}
+        />
+      ) : (
+        <>
+          <div className="selection-actions">
+            <button
+              className={`action-button ${selectedAction === 'highlight' ? 'selected' : ''}`}
+              onClick={() => handleActionSelect('highlight')}
+              title="Highlight text"
+            >
+              <span role="img" aria-label="highlight">
+                🖌️
+              </span>
+            </button>
+            <button
+              className={`action-button ${selectedAction === 'copy' ? 'selected' : ''}`}
+              onClick={() => handleActionSelect('copy')}
+              title="Copy text"
+            >
+              <span role="img" aria-label="copy">
+                📋
+              </span>
+            </button>
+            <button
+              className={`action-button ${selectedAction === 'note' ? 'selected' : ''}`}
+              onClick={() => handleActionSelect('note')}
+              title="Add note"
+            >
+              <span role="img" aria-label="note">
+                📝
+              </span>
+            </button>
+            <button
+              className={`action-button ${selectedAction === 'quote' ? 'selected' : ''}`}
+              onClick={() => handleActionSelect('quote')}
+              title="Save quote"
+            >
+              <span role="img" aria-label="quote">
+                💬
+              </span>
+            </button>
+          </div>
+          <div className="selection-controls">
+            <button className="confirm-button" onClick={handleConfirm} title="Apply">
+              ✓
+            </button>
+            <button className="cancel-button" onClick={handleCancel} title="Cancel">
+              ✕
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };

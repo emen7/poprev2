@@ -17,3 +17,5 @@ export { default as UBContentRendererExample } from './UBContentRendererExample'
 export { SelectionMenuExample } from './SelectionMenuExample';
 
 export { PullupExample } from './PullupExample';
+
+export { HighlightExample } from './HighlightExample';
