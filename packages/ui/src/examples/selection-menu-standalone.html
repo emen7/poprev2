@@ -193,27 +193,38 @@
             font-size: 14px;
         }
 
-        .note-text {
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #333;
+        .note-item,
+        .quote-item {
+            margin-bottom: 8px;
+            line-height: 1.5;
         }
 
-        .note-selection {
-            font-style: italic;
-            color: #666;
-        }
-
-        .quote-text {
-            font-style: italic;
-            color: #333;
-            margin-bottom: 5px;
-        }
-
+        .note-reference,
         .quote-reference {
-            font-size: 12px;
-            color: #666;
-            text-align: right;
+            color: #1890ff;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .note-editor {
+            margin-top: 8px;
+        }
+
+        .note-editor textarea {
+            width: 100%;
+            min-height: 60px;
+            padding: 8px;
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+            resize: vertical;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .note-editor textarea:focus {
+            outline: none;
+            border-color: #40a9ff;
+            box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
         }
     </style>
 </head>
@@ -398,40 +409,63 @@
                     console.error('Failed to copy text:', err);
                 });
             } else if (selectedAction === 'note') {
+                // Generate a reference for the note
+                const reference = `(1:1.${Math.floor(Math.random() * 10) + 1})`;
+
                 // Add note
                 const noteItem = document.createElement('li');
 
-                const noteText = document.createElement('div');
-                noteText.className = 'note-text';
-                noteText.textContent = `Note added at ${new Date().toLocaleTimeString()}`;
+                // Create note item with reference and selection
+                const noteItemDiv = document.createElement('div');
+                noteItemDiv.className = 'note-item';
 
-                const noteSelection = document.createElement('div');
-                noteSelection.className = 'note-selection';
-                noteSelection.textContent = `"${selectedText}"`;
+                const noteReference = document.createElement('span');
+                noteReference.className = 'note-reference';
+                noteReference.textContent = reference;
 
-                noteItem.appendChild(noteText);
-                noteItem.appendChild(noteSelection);
+                noteItemDiv.appendChild(noteReference);
+                noteItemDiv.appendChild(document.createTextNode(` "${selectedText}"`));
+
+                // Create note editor
+                const noteEditor = document.createElement('div');
+                noteEditor.className = 'note-editor';
+
+                const textarea = document.createElement('textarea');
+                textarea.placeholder = 'Add your note here...';
+
+                noteEditor.appendChild(textarea);
+
+                // Add elements to note item
+                noteItem.appendChild(noteItemDiv);
+                noteItem.appendChild(noteEditor);
+
+                // Add note to list
                 notesList.appendChild(noteItem);
 
                 // Show notes container
                 notesContainer.style.display = 'block';
             } else if (selectedAction === 'quote') {
-                // Generate a reference for the quote (in a real app, this would be the paper:section.paragraph reference)
-                const reference = `Paper 1:1.${Math.floor(Math.random() * 10) + 1}`;
+                // Generate a reference for the quote
+                const reference = `(1:1.${Math.floor(Math.random() * 10) + 1})`;
 
                 // Add quote
                 const quoteItem = document.createElement('li');
 
-                const quoteText = document.createElement('div');
-                quoteText.className = 'quote-text';
-                quoteText.textContent = `"${selectedText}"`;
+                // Create quote item with reference and text
+                const quoteItemDiv = document.createElement('div');
+                quoteItemDiv.className = 'quote-item';
 
-                const quoteReference = document.createElement('div');
+                const quoteReference = document.createElement('span');
                 quoteReference.className = 'quote-reference';
-                quoteReference.textContent = `Reference: ${reference}`;
+                quoteReference.textContent = reference;
 
-                quoteItem.appendChild(quoteText);
-                quoteItem.appendChild(quoteReference);
+                quoteItemDiv.appendChild(quoteReference);
+                quoteItemDiv.appendChild(document.createTextNode(` "${selectedText}"`));
+
+                // Add elements to quote item
+                quoteItem.appendChild(quoteItemDiv);
+
+                // Add quote to list
                 quotesList.appendChild(quoteItem);
 
                 // Show quotes container

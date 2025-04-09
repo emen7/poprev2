@@ -10,7 +10,7 @@ export const SelectionMenuExample: React.FC = () => {
   const contentRef = useRef<HTMLDivElement>(null);
 
   // State for notes
-  const [notes, setNotes] = useState<{ text: string; selection: string }[]>([]);
+  const [notes, setNotes] = useState<{ text: string; selection: string; reference: string }[]>([]);
 
   // State for quotes
   const [quotes, setQuotes] = useState<{ text: string; reference: string }[]>([]);
@@ -37,17 +37,16 @@ export const SelectionMenuExample: React.FC = () => {
 
   // Handle note action
   const handleNote = () => {
-    setNotes([
-      ...notes,
-      { text: `Note added at ${new Date().toLocaleTimeString()}`, selection: selectedText },
-    ]);
+    // Generate a reference for the note (in a real app, this would be the paper:section.paragraph reference)
+    const reference = `(1:1.${Math.floor(Math.random() * 10) + 1})`;
+    setNotes([...notes, { text: '', selection: selectedText, reference }]);
     hideMenu();
   };
 
   // Handle quote action
   const handleQuote = () => {
     // Generate a reference for the quote (in a real app, this would be the paper:section.paragraph reference)
-    const reference = `Paper 1:1.${Math.floor(Math.random() * 10) + 1}`;
+    const reference = `(1:1.${Math.floor(Math.random() * 10) + 1})`;
     setQuotes([...quotes, { text: selectedText, reference }]);
     hideMenu();
   };
@@ -108,8 +107,20 @@ export const SelectionMenuExample: React.FC = () => {
               <ul>
                 {notes.map((note, index) => (
                   <li key={index}>
-                    <div className="note-text">{note.text}</div>
-                    <div className="note-selection">"{note.selection}"</div>
+                    <div className="note-item">
+                      <span className="note-reference">{note.reference}</span> "{note.selection}"
+                    </div>
+                    <div className="note-editor">
+                      <textarea
+                        placeholder="Add your note here..."
+                        value={note.text}
+                        onChange={e => {
+                          const updatedNotes = [...notes];
+                          updatedNotes[index].text = e.target.value;
+                          setNotes(updatedNotes);
+                        }}
+                      />
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -122,8 +133,9 @@ export const SelectionMenuExample: React.FC = () => {
               <ul>
                 {quotes.map((quote, index) => (
                   <li key={index}>
-                    <div className="quote-text">"{quote.text}"</div>
-                    <div className="quote-reference">Reference: {quote.reference}</div>
+                    <div className="quote-item">
+                      <span className="quote-reference">{quote.reference}</span> "{quote.text}"
+                    </div>
                   </li>
                 ))}
               </ul>
