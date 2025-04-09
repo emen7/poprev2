@@ -1,0 +1,23 @@
+{
+  "name": "@ub-ecosystem/content-storage",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint src/**/*.ts",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@ub-ecosystem/data-models": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.4",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "@types/jest": "^29.5.1",
+    "eslint": "^8.40.0",
+    "fake-indexeddb": "^4.0.1"
+  }
+}
