@@ -14,4 +14,4 @@ export { default as ParagraphNumberingExample } from './ParagraphNumberingExampl
 
 export { default as UBContentRendererExample } from './UBContentRendererExample';
 
-export { default as SelectionMenuExample } from './SelectionMenuExample';
+export { SelectionMenuExample } from './SelectionMenuExample';

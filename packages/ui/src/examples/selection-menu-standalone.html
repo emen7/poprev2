@@ -203,6 +203,18 @@
             font-style: italic;
             color: #666;
         }
+
+        .quote-text {
+            font-style: italic;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .quote-reference {
+            font-size: 12px;
+            color: #666;
+            text-align: right;
+        }
     </style>
 </head>
 
@@ -404,9 +416,22 @@
                 // Show notes container
                 notesContainer.style.display = 'block';
             } else if (selectedAction === 'quote') {
+                // Generate a reference for the quote (in a real app, this would be the paper:section.paragraph reference)
+                const reference = `Paper 1:1.${Math.floor(Math.random() * 10) + 1}`;
+
                 // Add quote
                 const quoteItem = document.createElement('li');
-                quoteItem.textContent = `"${selectedText}"`;
+
+                const quoteText = document.createElement('div');
+                quoteText.className = 'quote-text';
+                quoteText.textContent = `"${selectedText}"`;
+
+                const quoteReference = document.createElement('div');
+                quoteReference.className = 'quote-reference';
+                quoteReference.textContent = `Reference: ${reference}`;
+
+                quoteItem.appendChild(quoteText);
+                quoteItem.appendChild(quoteReference);
                 quotesList.appendChild(quoteItem);
 
                 // Show quotes container

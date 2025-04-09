@@ -13,7 +13,7 @@ export const SelectionMenuExample: React.FC = () => {
   const [notes, setNotes] = useState<{ text: string; selection: string }[]>([]);
 
   // State for quotes
-  const [quotes, setQuotes] = useState<string[]>([]);
+  const [quotes, setQuotes] = useState<{ text: string; reference: string }[]>([]);
 
   // State for copy message
   const [copyMessage, setCopyMessage] = useState<string | null>(null);
@@ -46,7 +46,9 @@ export const SelectionMenuExample: React.FC = () => {
 
   // Handle quote action
   const handleQuote = () => {
-    setQuotes([...quotes, selectedText]);
+    // Generate a reference for the quote (in a real app, this would be the paper:section.paragraph reference)
+    const reference = `Paper 1:1.${Math.floor(Math.random() * 10) + 1}`;
+    setQuotes([...quotes, { text: selectedText, reference }]);
     hideMenu();
   };
 
@@ -119,7 +121,10 @@ export const SelectionMenuExample: React.FC = () => {
               <h3>Quotes</h3>
               <ul>
                 {quotes.map((quote, index) => (
-                  <li key={index}>"{quote}"</li>
+                  <li key={index}>
+                    <div className="quote-text">"{quote.text}"</div>
+                    <div className="quote-reference">Reference: {quote.reference}</div>
+                  </li>
                 ))}
               </ul>
             </div>
