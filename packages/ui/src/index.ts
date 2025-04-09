@@ -60,5 +60,20 @@ export { SelectionMenu, useSelectionMenu } from './selection';
 import * as SelectionTypes from './selection';
 export { SelectionTypes };
 
+// Pullup Components
+export {
+  Pullup,
+  PullupPanel,
+  PullupTabs,
+  PullupContent,
+  NotesTab,
+  QuotesTab,
+  SettingsTab,
+} from './pullup';
+
+// Re-export pullup types with namespace to avoid conflicts
+import * as PullupTypes from './pullup';
+export { PullupTypes };
+
 // Examples are excluded to avoid build issues
 // export * from './examples';

@@ -1,0 +1,11 @@
+/* Pullup Component Styles */
+
+.pullup {
+  /* This component is just a wrapper, so it doesn't need any specific styles */
+}
+
+.pullup-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

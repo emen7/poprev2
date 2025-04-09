@@ -1,0 +1,86 @@
+/* PullupTabs Component Styles */
+
+.pullup-tabs {
+  display: flex;
+  border-bottom: 1px solid #eaeaea;
+  background-color: #f9f9f9;
+}
+
+.pullup-tab {
+  flex: 1;
+  padding: 12px 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.pullup-tab:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.pullup-tab-active {
+  color: #1890ff;
+  font-weight: 500;
+}
+
+.pullup-tab-active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #1890ff;
+}
+
+.pullup-tab-icon {
+  font-size: 18px;
+}
+
+.pullup-tab-label {
+  font-size: 12px;
+}
+
+/* Media query for small screens */
+@media (max-width: 768px) {
+  .pullup-tab {
+    padding: 8px 4px;
+  }
+
+  .pullup-tab-icon {
+    font-size: 16px;
+  }
+
+  .pullup-tab-label {
+    font-size: 10px;
+  }
+}
+
+/* Media query for large screens */
+@media (min-width: 1024px) {
+  .pullup-tabs {
+    border-bottom-width: 2px;
+  }
+
+  .pullup-tab {
+    padding: 16px 12px;
+    font-size: 16px;
+  }
+
+  .pullup-tab-icon {
+    font-size: 20px;
+  }
+
+  .pullup-tab-label {
+    font-size: 14px;
+  }
+}

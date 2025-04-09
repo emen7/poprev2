@@ -15,3 +15,5 @@ export { default as ParagraphNumberingExample } from './ParagraphNumberingExampl
 export { default as UBContentRendererExample } from './UBContentRendererExample';
 
 export { SelectionMenuExample } from './SelectionMenuExample';
+
+export { PullupExample } from './PullupExample';

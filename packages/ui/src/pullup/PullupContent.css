@@ -1,0 +1,25 @@
+/* PullupContent Component Styles */
+
+.pullup-content {
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* Scrollbar styles */
+.pullup-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.pullup-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.pullup-content::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.pullup-content::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
