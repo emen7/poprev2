@@ -1,0 +1,99 @@
+/**
+ * SectionRenderer Component Styles
+ */
+
+/* Base section styles */
+.section {
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+/* Section title */
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1.5rem 0 1rem;
+  color: var(--section-title-color, #7fc8f5);
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--section-border-color, #333);
+}
+
+/* Section number */
+.section-number {
+  margin-right: 0.5rem;
+  color: var(--section-number-color, #7fc8f5);
+}
+
+/* Section content */
+.section-content {
+  margin-top: 1rem;
+}
+
+/* Highlighted section */
+.section-highlighted {
+  background-color: var(--section-highlight-bg, rgba(127, 200, 245, 0.05));
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  border-left: 3px solid var(--section-highlight-border, #7fc8f5);
+}
+
+/* Traditional formatting */
+.section-format-traditional .section-title {
+  font-family: Georgia, Times, 'Times New Roman', serif;
+  text-transform: uppercase;
+}
+
+.section-format-traditional .section-content {
+  font-family: Georgia, Times, 'Times New Roman', serif;
+}
+
+/* Modern formatting */
+.section-format-modern .section-title {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.section-format-modern .section-content {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Special section formatting */
+.section-special {
+  position: relative;
+}
+
+/* Special section types */
+.section-special-appendix {
+  background-color: var(--section-appendix-bg, rgba(127, 200, 245, 0.05));
+  padding: 1rem;
+  border-radius: 0.25rem;
+}
+
+.section-special-foreword .section-title {
+  text-align: center;
+}
+
+.section-special-introduction {
+  font-style: italic;
+}
+
+.section-special-introduction .section-title {
+  font-style: normal;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section {
+    margin-bottom: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+    margin: 1.25rem 0 0.75rem;
+  }
+
+  .section-highlighted {
+    padding: 0.35rem;
+  }
+}

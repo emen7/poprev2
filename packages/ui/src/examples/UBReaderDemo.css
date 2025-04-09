@@ -1,0 +1,248 @@
+/**
+ * UBReaderDemo Component Styles
+ */
+
+/* Book navigation */
+.book-navigation {
+  padding: 1rem;
+}
+
+.book-navigation h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+/* Section navigation */
+.section-navigation {
+  padding: 1rem;
+}
+
+.section-navigation h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+/* Footer content */
+.footer-content {
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+/* Notes panel */
+.notes-panel {
+  padding: 0.5rem;
+}
+
+.notes-panel h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.note-item {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background-color: var(--note-bg-color, #2a2a2a);
+  border-radius: 4px;
+  border-left: 3px solid var(--accent-color, #0088ff);
+}
+
+.note-content {
+  margin-bottom: 0.5rem;
+}
+
+.note-reference {
+  font-size: 0.8rem;
+  color: var(--text-muted-color, #888);
+  font-style: italic;
+}
+
+.add-note {
+  margin-top: 1rem;
+}
+
+.add-note textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--input-border-color, #444);
+  border-radius: 4px;
+  background-color: var(--input-bg-color, #222);
+  color: var(--input-text-color, #fff);
+  font-family: inherit;
+  font-size: 0.9rem;
+  resize: none;
+  margin-bottom: 0.5rem;
+}
+
+.add-note button {
+  padding: 0.5rem 1rem;
+  background-color: var(--accent-color, #0088ff);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Quotes panel */
+.quotes-panel {
+  padding: 0.5rem;
+}
+
+.quotes-panel h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.quote-item {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background-color: var(--note-bg-color, #2a2a2a);
+  border-radius: 4px;
+  border-left: 3px solid var(--accent-color, #0088ff);
+}
+
+.quote-content {
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+
+.quote-reference {
+  font-size: 0.8rem;
+  color: var(--text-muted-color, #888);
+}
+
+/* Settings panel */
+.settings-panel {
+  padding: 0.5rem;
+}
+
+.settings-panel h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.setting-group {
+  margin-bottom: 1rem;
+}
+
+.setting-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.setting-group span {
+  min-width: 80px;
+}
+
+.setting-group select {
+  padding: 0.5rem;
+  background-color: var(--input-bg-color, #222);
+  color: var(--input-text-color, #fff);
+  border: 1px solid var(--input-border-color, #444);
+  border-radius: 4px;
+}
+
+/* Sample content */
+.sample-content {
+  padding: 1rem;
+  line-height: 1.6;
+}
+
+.sample-content h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.sample-content h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.sample-content p {
+  margin-bottom: 1rem;
+}
+
+/* Scientific terms and tooltips */
+.scientific-term {
+  position: relative;
+  cursor: help;
+  border-bottom: 1px dotted var(--tooltip-border-color, #666);
+  color: var(--tooltip-term-color, #0088ff);
+  padding: 0 2px;
+}
+
+.scientific-tooltip {
+  position: absolute;
+  z-index: 1000;
+  max-width: 300px;
+  background-color: var(--tooltip-bg-color, #222);
+  color: var(--tooltip-text-color, #fff);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  padding: 12px;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  pointer-events: none;
+}
+
+.scientific-term:hover .scientific-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tooltip-title {
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: var(--tooltip-title-color, #0088ff);
+}
+
+.tooltip-simplified {
+  margin-top: 6px;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+.tooltip-context {
+  margin-top: 8px;
+  font-size: 0.9em;
+  opacity: 0.9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sample-content h1 {
+    font-size: 1.75rem;
+  }
+
+  .sample-content h2 {
+    font-size: 1.25rem;
+  }
+
+  .scientific-tooltip {
+    max-width: 250px;
+  }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .sample-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .sample-content h2 {
+    font-size: 1.1rem;
+  }
+
+  .scientific-tooltip {
+    max-width: 200px;
+  }
+}

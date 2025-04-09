@@ -1,0 +1,90 @@
+/**
+ * StickyHeadersContainer Component Styles
+ */
+
+.sticky-headers-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Paper title - always sticky at the very top */
+.sticky-paper-title {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--header-bg-color, #222);
+  color: var(--header-text-color, #fff);
+  border-bottom: 1px solid var(--border-color, #333);
+  padding: 12px 16px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Add shadow when scrolled */
+.sticky-paper-title.scrolled {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Section headers - sticky just below the paper title */
+.sticky-section-header {
+  position: sticky;
+  top: 56px; /* Height of paper title + any padding */
+  z-index: 9;
+  background-color: var(--content-bg-color, #1a1a1a);
+  color: var(--content-text-color, #e2e8f0);
+  border-bottom: 1px solid var(--border-color, #333);
+  padding: 8px 16px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+/* Actual section headers in the content */
+.section-header {
+  padding: 8px 16px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Hide the section headers container - we only use it for intersection observation */
+.section-headers {
+  display: contents;
+}
+
+/* Theme-specific styles */
+html[data-theme='dark'] .sticky-paper-title {
+  background-color: var(--dark-surface-1, #222);
+  color: var(--dark-text-primary, #fff);
+}
+
+html[data-theme='dark'] .sticky-section-header {
+  background-color: var(--dark-surface-2, #1a1a1a);
+  color: var(--dark-text-primary, #fff);
+}
+
+html[data-theme='light'] .sticky-paper-title {
+  background-color: var(--light-surface-1, #fff);
+  color: var(--light-text-primary, #333);
+}
+
+html[data-theme='light'] .sticky-section-header {
+  background-color: var(--light-surface-2, #f5f5f5);
+  color: var(--light-text-primary, #333);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sticky-paper-title {
+    padding: 10px 12px;
+    font-size: 1.1rem;
+  }
+
+  .sticky-section-header {
+    top: 48px; /* Adjusted for smaller paper title */
+    padding: 6px 12px;
+    font-size: 1rem;
+  }
+}

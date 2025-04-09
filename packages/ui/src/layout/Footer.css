@@ -1,0 +1,108 @@
+/**
+ * Footer Component Styles
+ */
+
+.reader-footer {
+  width: 100%;
+  background-color: var(--footer-bg-color, #222);
+  color: var(--footer-text-color, #fff);
+  z-index: 50;
+  min-height: var(--footer-height, 50px);
+}
+
+/* Fixed positioning */
+.reader-footer-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* Border at the top */
+.reader-footer-bordered {
+  border-top: 1px solid var(--border-color, #333);
+}
+
+/* Shadow effect */
+.reader-footer-shadow {
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Container for the footer content */
+.reader-footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--footer-height, 50px);
+  padding: 0.75rem 1rem;
+  max-width: var(--max-content-width, 1200px);
+  margin: 0 auto;
+}
+
+/* Left section */
+.reader-footer-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+}
+
+/* Center section */
+.reader-footer-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 2;
+  text-align: center;
+}
+
+/* Right section */
+.reader-footer-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  text-align: right;
+}
+
+/* Copyright text */
+.reader-footer-copyright {
+  font-size: 0.875rem;
+  color: var(--footer-secondary-text-color, #a0aec0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .reader-footer-container {
+    flex-direction: column;
+    padding: 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .reader-footer-left,
+  .reader-footer-center,
+  .reader-footer-right {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .reader-footer-left {
+    order: 2;
+  }
+
+  .reader-footer-center {
+    order: 1;
+  }
+
+  .reader-footer-right {
+    order: 3;
+  }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .reader-footer-container {
+    padding: 0.5rem;
+  }
+}

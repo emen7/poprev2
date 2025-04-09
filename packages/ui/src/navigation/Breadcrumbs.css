@@ -1,0 +1,94 @@
+/**
+ * Breadcrumbs Component Styles
+ */
+
+.breadcrumbs {
+  width: 100%;
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+}
+
+/* List container */
+.breadcrumbs-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+}
+
+/* Individual breadcrumb item */
+.breadcrumbs-item {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Link styling */
+.breadcrumbs-link {
+  color: var(--breadcrumb-link-color, #a0aec0);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.breadcrumbs-link:hover {
+  color: var(--breadcrumb-hover-color, #e2e8f0);
+  text-decoration: underline;
+}
+
+/* Current/active item */
+.breadcrumbs-item-current .breadcrumbs-link {
+  color: var(--breadcrumb-current-color, #7fc8f5);
+  font-weight: 500;
+  pointer-events: none;
+}
+
+/* Separator */
+.breadcrumbs-separator {
+  margin: 0 0.5rem;
+  color: var(--breadcrumb-separator-color, #4a5568);
+}
+
+/* Ellipsis for truncated breadcrumbs */
+.breadcrumbs-ellipsis {
+  color: var(--breadcrumb-ellipsis-color, #4a5568);
+  margin: 0 0.25rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .breadcrumbs {
+    font-size: 0.8125rem;
+  }
+
+  .breadcrumbs-item {
+    max-width: 150px;
+  }
+
+  .breadcrumbs-separator {
+    margin: 0 0.35rem;
+  }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .breadcrumbs-item {
+    max-width: 100px;
+  }
+
+  /* Hide all but the last two items on very small screens */
+  .breadcrumbs-item:not(:nth-last-child(-n + 3)) {
+    display: none;
+  }
+
+  /* Always show ellipsis on small screens if we're hiding items */
+  .breadcrumbs-item:nth-child(1) {
+    display: flex;
+  }
+}

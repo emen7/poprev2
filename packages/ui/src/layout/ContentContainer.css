@@ -1,0 +1,91 @@
+/**
+ * ContentContainer Component Styles
+ */
+
+.content-container {
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* Width variants */
+.content-width-narrow {
+  max-width: 650px;
+}
+
+.content-width-medium {
+  max-width: 760px; /* Optimal reading width */
+}
+
+.content-width-wide {
+  max-width: 1000px;
+}
+
+/* Centering */
+.content-centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Padding variants */
+.content-padding-none {
+  padding: 0;
+}
+
+.content-padding-small {
+  padding: 1rem;
+}
+
+.content-padding-normal {
+  padding: 1.5rem;
+}
+
+.content-padding-large {
+  padding: 2rem;
+}
+
+/* Virtualized content */
+.content-virtualized {
+  /* Specific styles for virtualized content will be applied dynamically */
+  /* This class serves as a hook for JavaScript to initialize virtualization */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .content-padding-normal {
+    padding: 1rem;
+  }
+
+  .content-padding-large {
+    padding: 1.5rem;
+  }
+
+  .content-width-narrow,
+  .content-width-medium,
+  .content-width-wide {
+    width: 100%;
+  }
+}
+
+/* Additional spacing for very large screens */
+@media (min-width: 1440px) {
+  .content-container {
+    padding: 0 40px;
+  }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .content-padding-small {
+    padding: 0.75rem;
+  }
+
+  .content-padding-normal {
+    padding: 0.75rem;
+  }
+
+  .content-padding-large {
+    padding: 1rem;
+  }
+}

@@ -1,0 +1,97 @@
+/**
+ * Header Component Styles
+ */
+
+.reader-header {
+  width: 100%;
+  background-color: var(--header-bg-color, #222);
+  color: var(--header-text-color, #fff);
+  z-index: 100;
+  height: var(--header-height, 60px);
+}
+
+/* Fixed positioning */
+.reader-header-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+/* Border at the bottom */
+.reader-header-bordered {
+  border-bottom: 1px solid var(--border-color, #333);
+}
+
+/* Shadow effect */
+.reader-header-shadow {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Container for the header content */
+.reader-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 1rem;
+  max-width: var(--max-content-width, 1200px);
+  margin: 0 auto;
+}
+
+/* Left section */
+.reader-header-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+}
+
+/* Center section */
+.reader-header-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 2;
+}
+
+/* Right section */
+.reader-header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+/* Transparent header when scrolled to top */
+.reader-header-transparent-on-top {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* This class will be toggled via JavaScript based on scroll position */
+.reader-header-transparent-on-top.at-top {
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .reader-header {
+    height: var(--header-height-mobile, 50px);
+  }
+
+  .reader-header-container {
+    padding: 0 0.75rem;
+  }
+
+  /* On mobile, we might want to prioritize the center content */
+  .reader-header-left,
+  .reader-header-right {
+    flex: 0 0 auto;
+  }
+
+  .reader-header-center {
+    flex: 1;
+  }
+}

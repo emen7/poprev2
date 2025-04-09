@@ -1,0 +1,169 @@
+/**
+ * FormatToggle Component Styles
+ */
+
+.format-toggle {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--settings-bg, #222);
+  border-radius: 0.25rem;
+  color: var(--settings-text-color, #e2e8f0);
+}
+
+/* Toggle header */
+.format-toggle-header {
+  margin-bottom: 1rem;
+}
+
+.format-toggle-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--settings-title-color, #fbd38d);
+}
+
+/* Toggle options container */
+.format-toggle-options {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .format-toggle-options {
+    flex-direction: row;
+  }
+}
+
+/* Format option */
+.format-option {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid var(--settings-border-color, #4a5568);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.format-option:hover {
+  background-color: var(--settings-hover-bg, rgba(255, 255, 255, 0.05));
+}
+
+.format-option-active {
+  background-color: var(--settings-active-bg, rgba(251, 211, 141, 0.1));
+  border-color: var(--settings-active-border, #fbd38d);
+}
+
+/* Option header */
+.format-option-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+/* Radio button */
+.format-option-radio {
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+/* Option label */
+.format-option-label {
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Option description */
+.format-option-description {
+  font-size: 0.875rem;
+  color: var(--settings-description-color, #a0aec0);
+  margin: 0.5rem 0;
+}
+
+/* Format preview */
+.format-preview {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: var(--settings-preview-bg, rgba(0, 0, 0, 0.2));
+  border-radius: 0.25rem;
+}
+
+/* Traditional format preview */
+.format-preview-traditional {
+  font-family: Georgia, Times, 'Times New Roman', serif;
+}
+
+.format-preview-traditional .format-preview-paragraph {
+  display: flex;
+}
+
+.format-preview-traditional .format-preview-number {
+  display: inline-block;
+  min-width: 1.5rem;
+  margin-right: 0.5rem;
+  color: var(--paragraph-number-color, #90f49d);
+  font-size: 0.75rem;
+  text-align: right;
+}
+
+.format-preview-traditional .format-preview-text {
+  flex: 1;
+}
+
+.format-preview-traditional em {
+  font-style: italic;
+  font-weight: normal;
+}
+
+/* Modern format preview */
+.format-preview-modern {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.format-preview-modern .format-preview-paragraph {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.format-preview-modern .format-preview-number {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--paragraph-number-color, #90f49d);
+  font-size: 0.75rem;
+}
+
+.format-preview-modern em {
+  font-style: italic;
+  font-weight: bold;
+}
+
+/* With description variant */
+.format-toggle-with-description .format-option {
+  padding: 1rem;
+}
+
+/* With preview variant */
+.format-toggle-with-preview .format-option {
+  padding: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .format-toggle {
+    padding: 0.75rem;
+  }
+
+  .format-option {
+    padding: 0.5rem;
+  }
+
+  .format-toggle-with-description .format-option,
+  .format-toggle-with-preview .format-option {
+    padding: 0.75rem;
+  }
+
+  .format-preview {
+    padding: 0.5rem;
+  }
+}

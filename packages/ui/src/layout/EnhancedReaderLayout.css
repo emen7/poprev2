@@ -1,0 +1,71 @@
+/**
+ * EnhancedReaderLayout Component Styles
+ */
+
+.enhanced-reader-layout {
+  /* Adjust padding to account for fixed header and footer */
+  padding-top: var(--header-height, 60px);
+  padding-bottom: var(--footer-height, 60px);
+}
+
+/* Adjust content area to account for sticky headers */
+.enhanced-reader-layout .reader-layout-content {
+  position: relative;
+}
+
+.enhanced-reader-layout .reader-layout-content-inner {
+  padding-top: calc(var(--paper-title-height, 56px) + var(--section-header-height, 40px));
+}
+
+/* Ensure proper spacing on mobile */
+@media (max-width: 768px) {
+  .enhanced-reader-layout {
+    padding-top: var(--header-height-mobile, 50px);
+    padding-bottom: var(--footer-height-mobile, 50px);
+  }
+
+  .enhanced-reader-layout .reader-layout-content-inner {
+    padding-top: calc(
+      var(--paper-title-height-mobile, 48px) + var(--section-header-height-mobile, 36px)
+    );
+  }
+}
+
+/* Adjust for desktop persistent navigation */
+@media (min-width: 1024px) {
+  .enhanced-reader-layout {
+    /* No need for top padding when header is persistent */
+    padding-top: 0;
+    /* Adjust content to account for header height */
+    --header-offset: var(--header-height, 60px);
+  }
+
+  .enhanced-reader-layout .reader-layout-body {
+    height: calc(100vh - var(--header-height, 60px) - var(--footer-height, 60px));
+  }
+
+  .enhanced-reader-layout .sticky-paper-title {
+    /* Adjust sticky position to account for persistent header */
+    top: var(--header-height, 60px);
+  }
+
+  .enhanced-reader-layout .sticky-section-header {
+    /* Adjust sticky position to account for persistent header and paper title */
+    top: calc(var(--header-height, 60px) + var(--paper-title-height, 56px));
+  }
+}
+
+/* Theme-specific styles */
+html[data-theme='dark'] .enhanced-reader-layout {
+  --header-bg-color: var(--dark-surface-1, #222);
+  --content-bg-color: var(--dark-surface-2, #1a1a1a);
+  --footer-bg-color: var(--dark-surface-1, #222);
+  --border-color: var(--dark-divider, #333);
+}
+
+html[data-theme='light'] .enhanced-reader-layout {
+  --header-bg-color: var(--light-surface-1, #fff);
+  --content-bg-color: var(--light-surface-2, #f5f5f5);
+  --footer-bg-color: var(--light-surface-1, #fff);
+  --border-color: var(--light-divider, #e0e0e0);
+}

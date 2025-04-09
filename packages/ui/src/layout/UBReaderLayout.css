@@ -1,0 +1,99 @@
+/**
+ * UBReaderLayout Component Styles
+ */
+
+.ub-reader-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+/* Main content area */
+.ub-reader-content {
+  flex: 1;
+  padding-top: var(--header-height, 60px); /* Account for fixed header */
+  overflow-y: auto;
+}
+
+/* Bottom panel toggle button */
+.bottom-panel-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--accent-color, #0088ff);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.bottom-panel-toggle:hover {
+  transform: translateY(-2px);
+  background-color: var(--accent-hover-color, #0099ff);
+}
+
+.bottom-panel-toggle:active {
+  transform: translateY(0);
+}
+
+.toggle-icon {
+  font-size: 18px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .ub-reader-content {
+    padding-top: var(--header-height-mobile, 50px);
+  }
+
+  .bottom-panel-toggle {
+    bottom: 15px;
+    right: 15px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .toggle-icon {
+    font-size: 16px;
+  }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .bottom-panel-toggle {
+    bottom: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .toggle-icon {
+    font-size: 14px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .ub-reader-layout {
+    display: block;
+    height: auto;
+  }
+
+  .ub-reader-content {
+    padding-top: 0;
+  }
+
+  .bottom-panel-toggle {
+    display: none;
+  }
+}

@@ -1,0 +1,129 @@
+/**
+ * ReaderLayout Component Styles
+ */
+
+.reader-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.reader-layout-header {
+  flex-shrink: 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--border-color, #333);
+  background-color: var(--header-bg-color, #222);
+  color: var(--header-text-color, #fff);
+}
+
+.reader-layout-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.reader-layout-sidebar {
+  width: var(--sidebar-width, 300px);
+  flex-shrink: 0;
+  overflow-y: auto;
+  border-right: 1px solid var(--border-color, #333);
+  background-color: var(--sidebar-bg-color, #222);
+  color: var(--sidebar-text-color, #fff);
+  transition: transform 0.3s ease;
+}
+
+.reader-layout-content {
+  flex: 1;
+  overflow-y: auto;
+  background-color: var(--content-bg-color, #1a1a1a);
+  color: var(--content-text-color, #e2e8f0);
+}
+
+.reader-layout-footer {
+  flex-shrink: 0;
+  border-top: 1px solid var(--border-color, #333);
+  background-color: var(--footer-bg-color, #222);
+  color: var(--footer-text-color, #fff);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .reader-layout-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 20;
+    transform: translateX(-100%);
+  }
+
+  .reader-layout-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .reader-layout-body {
+    position: relative;
+  }
+}
+
+/* Bottom panel toggle button */
+.bottom-panel-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--accent-color, #0088ff);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.bottom-panel-toggle:hover {
+  transform: translateY(-2px);
+  background-color: var(--accent-hover-color, #0099ff);
+}
+
+.bottom-panel-toggle:active {
+  transform: translateY(0);
+}
+
+.toggle-icon {
+  font-size: 18px;
+}
+
+/* Responsive adjustments for bottom panel toggle */
+@media (max-width: 768px) {
+  .bottom-panel-toggle {
+    bottom: 15px;
+    right: 15px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .toggle-icon {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bottom-panel-toggle {
+    bottom: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .toggle-icon {
+    font-size: 14px;
+  }
+}

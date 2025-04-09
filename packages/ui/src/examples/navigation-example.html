@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UB Reader - Navigation Example</title>
+    <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            background-color: #1a1a1a;
+            color: #e2e8f0;
+        }
+
+        /* Container for the React app */
+        #root {
+            min-height: 100vh;
+        }
+
+        /* NavigationExample styles */
+        .navigation-example {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #1a1a1a;
+            color: #e2e8f0;
+        }
+
+        /* Reader body layout */
+        .reader-body {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Sidebar with table of contents */
+        .reader-sidebar {
+            width: 250px;
+            background-color: #222;
+            border-right: 1px solid #333;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        /* Main content area */
+        .reader-main {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        /* Reader title in header */
+        .reader-title {
+            font-size: 1.25rem;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 500px;
+            color: #7fc8f5;
+        }
+
+        /* Reader controls in header */
+        .reader-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .reader-control-button {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .reader-control-button:hover {
+            background-color: #444;
+        }
+
+        /* Section info in footer */
+        .reader-section-info {
+            font-size: 0.875rem;
+            color: #a0aec0;
+        }
+
+        /* Header styles */
+        .reader-header {
+            background-color: #222;
+            color: #e2e8f0;
+            z-index: 100;
+        }
+
+        .reader-header-fixed {
+            position: sticky;
+            top: 0;
+        }
+
+        .reader-header-bordered {
+            border-bottom: 1px solid #333;
+        }
+
+        .reader-header-shadow {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .reader-header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .reader-header-left,
+        .reader-header-center,
+        .reader-header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .reader-header-left {
+            flex: 1;
+            justify-content: flex-start;
+        }
+
+        .reader-header-center {
+            flex: 2;
+            justify-content: center;
+        }
+
+        .reader-header-right {
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        /* Footer styles */
+        .reader-footer {
+            background-color: #222;
+            color: #e2e8f0;
+        }
+
+        .reader-footer-bordered {
+            border-top: 1px solid #333;
+        }
+
+        .reader-footer-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .reader-footer-left,
+        .reader-footer-center,
+        .reader-footer-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .reader-footer-left {
+            flex: 1;
+            justify-content: flex-start;
+        }
+
+        .reader-footer-center {
+            flex: 1;
+            justify-content: center;
+        }
+
+        .reader-footer-right {
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .reader-footer-copyright {
+            font-size: 0.75rem;
+            color: #a0aec0;
+        }
+
+        /* NavigationControls styles */
+        .navigation-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .navigation-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: 1px solid #4a5568;
+            color: #e2e8f0;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            height: 2rem;
+            min-width: 2rem;
+            padding: 0 0.5rem;
+        }
+
+        .navigation-button:hover:not(:disabled) {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: #7fc8f5;
+        }
+
+        .navigation-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .navigation-icon {
+            width: 0.75rem;
+            height: 0.75rem;
+            position: relative;
+        }
+
+        .navigation-prev-icon::before,
+        .navigation-next-icon::before {
+            content: '';
+            position: absolute;
+            width: 0.75rem;
+            height: 0.75rem;
+            border-style: solid;
+            border-width: 0 0 2px 2px;
+            display: inline-block;
+        }
+
+        .navigation-prev-icon::before {
+            transform: rotate(45deg);
+        }
+
+        .navigation-next-icon::before {
+            transform: rotate(225deg);
+        }
+
+        .navigation-label {
+            margin: 0 0.25rem;
+        }
+
+        /* TableOfContents styles */
+        .table-of-contents {
+            width: 100%;
+            overflow-y: auto;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc-item {
+            margin-bottom: 0.25rem;
+        }
+
+        .toc-item-row {
+            display: flex;
+            align-items: center;
+        }
+
+        .toc-link {
+            display: block;
+            padding: 0.25rem 0;
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .toc-link:hover {
+            color: #7fc8f5;
+        }
+
+        .toc-item-active>.toc-item-row>.toc-link {
+            color: #7fc8f5;
+            font-weight: 600;
+        }
+
+        /* Content styles */
+        .content-container {
+            background-color: #222;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        .content-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #7fc8f5;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 1.5rem 0 1rem;
+            color: #7fc8f5;
+            padding-top: 0.5rem;
+            border-top: 1px solid #333;
+        }
+
+        .paragraph {
+            margin-bottom: 1rem;
+            position: relative;
+            display: flex;
+        }
+
+        .paragraph-number {
+            color: rgba(200, 200, 200, 0.8);
+            font-size: 0.75rem;
+            position: absolute;
+            left: 0;
+            min-width: 2rem;
+            text-align: right;
+        }
+
+        .paragraph-text {
+            flex: 1;
+            margin-left: 2.5rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .reader-body {
+                flex-direction: column;
+            }
+
+            .reader-sidebar {
+                width: 100%;
+                max-height: 200px;
+                border-right: none;
+                border-bottom: 1px solid #333;
+            }
+
+            .reader-title {
+                font-size: 1rem;
+                max-width: 200px;
+            }
+        }
+    </style>
+    <!-- Include React and ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Include Babel for JSX transformation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // Simple navigation example
+        function NavigationExample() {
+            const [currentSectionIndex, setCurrentSectionIndex] = React.useState(0);
+            const [showNumbers, setShowNumbers] = React.useState(true);
+
+            // Sample sections
+            const sections = [
+                {
+                    id: 'section-1',
+                    title: 'Introduction',
+                    content: [
+                        'This is the first paragraph of the introduction.',
+                        'This is the second paragraph which includes a topic change.',
+                        'This paragraph demonstrates indentation.'
+                    ]
+                },
+                {
+                    id: 'section-2',
+                    title: 'Lists and Tables',
+                    content: [
+                        'Below is an example of a numbered list:',
+                        'First item in the list',
+                        'Second item in the list',
+                        'Third item in the list'
+                    ]
+                },
+                {
+                    id: 'section-3',
+                    title: 'Special Formatting',
+                    content: [
+                        'This section demonstrates special formatting options.',
+                        'This paragraph would be highlighted when selected.',
+                        'This is a bulleted list item.',
+                        'This is another bulleted list item.'
+                    ]
+                }
+            ];
+
+            const currentSection = sections[currentSectionIndex];
+            const hasPrevious = currentSectionIndex > 0;
+            const hasNext = currentSectionIndex < sections.length - 1;
+
+            // Navigation handlers
+            const handlePrevious = () => {
+                if (hasPrevious) {
+                    setCurrentSectionIndex(prev => prev - 1);
+                }
+            };
+
+            const handleNext = () => {
+                if (hasNext) {
+                    setCurrentSectionIndex(prev => prev + 1);
+                }
+            };
+
+            // Toggle paragraph numbering
+            const toggleNumbers = () => {
+                setShowNumbers(prev => !prev);
+            };
+
+            // Table of Contents
+            const TableOfContents = () => (
+                <nav className="table-of-contents">
+                    <ul className="toc-list">
+                        {sections.map((section, index) => (
+                            <li
+                                key={section.id}
+                                className={`toc-item ${index === currentSectionIndex ? 'toc-item-active' : ''}`}
+                            >
+                                <div className="toc-item-row">
+                                    <a
+                                        href="#"
+                                        className="toc-link"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setCurrentSectionIndex(index);
+                                        }}
+                                    >
+                                        {section.title}
+                                    </a>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            );
+
+            // Navigation Controls
+            const NavigationControls = ({ showLabels = false }) => (
+                <div className="navigation-controls">
+                    <button
+                        className="navigation-button navigation-prev"
+                        onClick={handlePrevious}
+                        disabled={!hasPrevious}
+                        title="Previous"
+                    >
+                        <span className="navigation-icon navigation-prev-icon"></span>
+                        {showLabels && <span className="navigation-label">Previous</span>}
+                    </button>
+
+                    <button
+                        className="navigation-button navigation-next"
+                        onClick={handleNext}
+                        disabled={!hasNext}
+                        title="Next"
+                    >
+                        {showLabels && <span className="navigation-label">Next</span>}
+                        <span className="navigation-icon navigation-next-icon"></span>
+                    </button>
+                </div>
+            );
+
+            return (
+                <div className="navigation-example">
+                    {/* Header */}
+                    <header className="reader-header reader-header-fixed reader-header-bordered reader-header-shadow">
+                        <div className="reader-header-container">
+                            <div className="reader-header-left">
+                                <NavigationControls />
+                            </div>
+
+                            <div className="reader-header-center">
+                                <h1 className="reader-title">Sample Document for Testing</h1>
+                            </div>
+
+                            <div className="reader-header-right">
+                                <div className="reader-controls">
+                                    <button onClick={toggleNumbers} className="reader-control-button">
+                                        {showNumbers ? 'Hide Numbers' : 'Show Numbers'}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* Main content */}
+                    <div className="reader-body">
+                        <aside className="reader-sidebar">
+                            <TableOfContents />
+                        </aside>
+
+                        <main className="reader-main">
+                            <div className="content-container">
+                                <h1 className="content-title">Sample Document for Testing</h1>
+
+                                <section className="section">
+                                    <h2 className="section-title">{currentSection.title}</h2>
+
+                                    {currentSection.content.map((paragraph, index) => (
+                                        <div key={index} className="paragraph">
+                                            {showNumbers && <span className="paragraph-number">{index + 1}</span>}
+                                            <div className="paragraph-text">{paragraph}</div>
+                                        </div>
+                                    ))}
+                                </section>
+                            </div>
+                        </main>
+                    </div>
+
+                    {/* Footer */}
+                    <footer className="reader-footer reader-footer-bordered">
+                        <div className="reader-footer-container">
+                            <div className="reader-footer-left">
+                                <div className="reader-section-info">
+                                    Section {currentSectionIndex + 1} of {sections.length}
+                                </div>
+                            </div>
+
+                            <div className="reader-footer-center">
+                                <div className="reader-footer-copyright">© 2025 UB Reader</div>
+                            </div>
+
+                            <div className="reader-footer-right">
+                                <NavigationControls showLabels={true} />
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        }
+
+        // Render the NavigationExample component
+        ReactDOM.createRoot(document.getElementById('root')).render(<NavigationExample />);
+    </script>
+</body>
+
+</html>

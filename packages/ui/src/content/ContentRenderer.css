@@ -1,0 +1,181 @@
+/**
+ * ContentRenderer Component Styles
+ */
+
+.content-renderer {
+  width: 100%;
+  line-height: 1.6;
+  color: var(--content-text-color, #e2e8f0);
+}
+
+/* Document title */
+.content-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--content-title-color, #7fc8f5);
+}
+
+/* Section styling */
+.content-section {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.content-section-highlighted {
+  background-color: var(--content-highlight-bg, rgba(127, 200, 245, 0.1));
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+}
+
+/* Section title */
+.content-section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1.5rem 0 1rem;
+  color: var(--content-section-title-color, #7fc8f5);
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--content-section-border, #333);
+}
+
+/* Traditional formatting */
+.content-format-traditional {
+  font-family: Georgia, Times, 'Times New Roman', serif;
+}
+
+.content-format-traditional em {
+  font-style: italic;
+  font-weight: normal;
+}
+
+.content-format-traditional strong {
+  font-weight: bold;
+}
+
+.content-format-traditional .paragraph {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.content-format-traditional .paragraph-number {
+  display: inline-block;
+  min-width: 2rem;
+  margin-right: 0.5rem;
+  color: var(--paragraph-number-color, #90f49d);
+  font-size: 0.75rem;
+  text-align: right;
+  user-select: none;
+}
+
+.content-format-traditional .paragraph-text {
+  flex: 1;
+}
+
+/* Modern formatting */
+.content-format-modern {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.content-format-modern em {
+  font-style: italic;
+  font-weight: bold;
+}
+
+.content-format-modern strong {
+  font-weight: bold;
+}
+
+.content-format-modern .paragraph {
+  position: relative;
+  margin-bottom: 1rem;
+  padding-left: 2.5rem;
+}
+
+.content-format-modern .paragraph-number {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--paragraph-number-color, #90f49d);
+  font-size: 0.75rem;
+  user-select: none;
+}
+
+/* Lists in modern format */
+.content-format-modern ul,
+.content-format-modern ol {
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.content-format-modern li {
+  margin-bottom: 0.5rem;
+}
+
+/* Tables in modern format */
+.content-format-modern table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.content-format-modern th,
+.content-format-modern td {
+  padding: 0.5rem;
+  border: 1px solid var(--content-table-border, #333);
+  text-align: left;
+}
+
+.content-format-modern th {
+  background-color: var(--content-table-header-bg, rgba(127, 200, 245, 0.1));
+  font-weight: 600;
+}
+
+/* Hide paragraph numbers when disabled */
+.content-renderer:not(.content-show-numbers) .paragraph-number {
+  display: none;
+}
+
+.content-renderer:not(.content-show-numbers) .content-format-modern .paragraph {
+  padding-left: 0;
+}
+
+/* Paragraph highlighting */
+.paragraph-highlighted {
+  background-color: var(--content-highlight-bg, rgba(127, 200, 245, 0.1));
+  border-radius: 0.25rem;
+}
+
+/* Topic change indicator in modern format */
+.content-format-modern .topic-change {
+  position: relative;
+  margin-top: 1.5rem;
+}
+
+.content-format-modern .topic-change::before {
+  content: '';
+  position: absolute;
+  top: -0.75rem;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--content-topic-change-color, rgba(127, 200, 245, 0.3));
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .content-title {
+    font-size: 1.5rem;
+  }
+
+  .content-section-title {
+    font-size: 1.1rem;
+  }
+
+  .content-format-traditional .paragraph-number {
+    min-width: 1.5rem;
+  }
+
+  .content-format-modern .paragraph {
+    padding-left: 2rem;
+  }
+}

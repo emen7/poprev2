@@ -1,0 +1,253 @@
+/**
+ * ScientificTooltip Component Styles
+ */
+
+.scientific-tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.scientific-term {
+  position: relative;
+  cursor: help;
+  border-bottom: 1px dotted var(--tooltip-border-color, #666);
+  color: var(--tooltip-term-color, inherit);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.scientific-term:hover,
+.scientific-term.active {
+  color: var(--tooltip-term-hover-color, #0088ff);
+  border-bottom-color: var(--tooltip-term-hover-color, #0088ff);
+}
+
+/* Term type styling */
+.term-type-abbreviation {
+  font-weight: 500;
+}
+
+.term-type-equation {
+  font-style: italic;
+}
+
+.term-type-term {
+  font-weight: 500;
+}
+
+/* Tooltip */
+.scientific-tooltip {
+  position: absolute;
+  z-index: 1000;
+  max-width: 300px;
+  min-width: 200px;
+  background-color: var(--tooltip-bg-color, #222);
+  color: var(--tooltip-text-color, #fff);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  padding: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+.scientific-tooltip.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Tooltip positions */
+.tooltip-position-top {
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(5px);
+}
+
+.tooltip-position-top.visible {
+  transform: translateX(-50%) translateY(0);
+}
+
+.tooltip-position-top::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--tooltip-bg-color, #222) transparent transparent transparent;
+}
+
+.tooltip-position-bottom {
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+.tooltip-position-bottom.visible {
+  transform: translateX(-50%) translateY(0);
+}
+
+.tooltip-position-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent var(--tooltip-bg-color, #222) transparent;
+}
+
+.tooltip-position-left {
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%) translateX(5px);
+}
+
+.tooltip-position-left.visible {
+  transform: translateY(-50%) translateX(0);
+}
+
+.tooltip-position-left::after {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--tooltip-bg-color, #222);
+}
+
+.tooltip-position-right {
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%) translateX(-5px);
+}
+
+.tooltip-position-right.visible {
+  transform: translateY(-50%) translateX(0);
+}
+
+.tooltip-position-right::after {
+  content: '';
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent var(--tooltip-bg-color, #222) transparent transparent;
+}
+
+/* Tooltip content */
+.tooltip-content {
+  padding: 12px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.tooltip-title {
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: var(--tooltip-title-color, #0088ff);
+  font-size: 1rem;
+}
+
+.tooltip-full-form {
+  margin-bottom: 8px;
+}
+
+.tooltip-simplified {
+  margin-top: 6px;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+.tooltip-context {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--tooltip-divider-color, #444);
+  font-size: 0.85rem;
+}
+
+.tooltip-related {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--tooltip-related-color, #ccc);
+}
+
+.related-label {
+  font-weight: bold;
+}
+
+.tooltip-source {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  font-style: italic;
+  text-align: right;
+  color: var(--tooltip-source-color, #999);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .scientific-tooltip {
+    max-width: 250px;
+  }
+
+  .tooltip-content {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+
+  .tooltip-title {
+    font-size: 0.95rem;
+  }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .scientific-tooltip {
+    max-width: 200px;
+    min-width: 150px;
+  }
+
+  .tooltip-content {
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+
+  .tooltip-title {
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+  }
+
+  .tooltip-context,
+  .tooltip-related,
+  .tooltip-source {
+    font-size: 0.75rem;
+  }
+}
+
+/* High contrast mode */
+@media (forced-colors: active) {
+  .scientific-term {
+    border-bottom: 1px dotted CanvasText;
+  }
+
+  .scientific-term:hover,
+  .scientific-term.active {
+    color: Highlight;
+    border-bottom-color: Highlight;
+  }
+
+  .scientific-tooltip {
+    border: 1px solid CanvasText;
+  }
+
+  .tooltip-title {
+    color: Highlight;
+  }
+}

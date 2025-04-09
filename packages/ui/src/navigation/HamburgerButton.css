@@ -1,0 +1,107 @@
+/**
+ * HamburgerButton Component Styles
+ */
+
+.hamburger-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.hamburger-button:focus {
+  outline: none;
+}
+
+.hamburger-button:focus-visible {
+  outline: 2px solid var(--focus-color, #0088ff);
+  outline-offset: 2px;
+}
+
+/* Hamburger lines */
+.hamburger-line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--hamburger-color, #fff);
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+/* Open state animation */
+.hamburger-button-open .hamburger-line-1 {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger-button-open .hamburger-line-2 {
+  opacity: 0;
+}
+
+.hamburger-button-open .hamburger-line-3 {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Size variants */
+.hamburger-button-small {
+  width: 18px;
+  height: 15px;
+}
+
+.hamburger-button-large {
+  width: 30px;
+  height: 24px;
+}
+
+.hamburger-button-large .hamburger-line {
+  height: 3px;
+}
+
+/* Color variants */
+.hamburger-button-primary .hamburger-line {
+  background-color: var(--hamburger-primary-color, #fff);
+}
+
+.hamburger-button-secondary .hamburger-line {
+  background-color: var(--hamburger-secondary-color, #0088ff);
+}
+
+.hamburger-button-tertiary .hamburger-line {
+  background-color: var(--hamburger-tertiary-color, #888);
+}
+
+/* Hover effects */
+.hamburger-button:hover .hamburger-line {
+  background-color: var(--hamburger-hover-color, #0088ff);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hamburger-button {
+    width: 22px;
+    height: 18px;
+  }
+
+  .hamburger-button-small {
+    width: 16px;
+    height: 14px;
+  }
+
+  .hamburger-button-large {
+    width: 26px;
+    height: 22px;
+  }
+}
+
+/* Accessibility - hide button when printing */
+@media print {
+  .hamburger-button {
+    display: none;
+  }
+}

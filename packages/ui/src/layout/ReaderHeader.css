@@ -1,0 +1,94 @@
+/**
+ * ReaderHeader Component Styles
+ */
+
+.reader-header-container {
+  /* Additional styles for the reader header container */
+}
+
+/* Navigation container (left side) */
+.reader-header-nav-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Title container (center) */
+.reader-header-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+}
+
+/* Title styling */
+.reader-header-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Book navigation button */
+.book-nav-button {
+  /* Primary color is already set in the component */
+}
+
+/* Section navigation button */
+.section-nav-button {
+  /* Secondary color is already set in the component */
+}
+
+/* Navigation panels */
+.book-navigation-panel {
+  /* Specific styles for the book navigation panel */
+  width: 300px;
+}
+
+.section-navigation-panel {
+  /* Specific styles for the section navigation panel */
+  width: 280px;
+}
+
+/* Sticky title behavior */
+.reader-header-title.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background-color: var(--header-bg-color, #222);
+  padding: 0.75rem 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .reader-header-title {
+    font-size: 1.1rem;
+  }
+
+  .reader-header-title-container {
+    gap: 0.5rem;
+  }
+
+  .book-navigation-panel,
+  .section-navigation-panel {
+    width: 85%;
+    max-width: 300px;
+  }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .reader-header-title {
+    font-size: 1rem;
+  }
+}

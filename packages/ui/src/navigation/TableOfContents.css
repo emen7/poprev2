@@ -1,0 +1,127 @@
+/**
+ * TableOfContents Component Styles
+ */
+
+.table-of-contents {
+  width: 100%;
+  overflow-y: auto;
+  font-size: 0.9rem;
+}
+
+/* Main list container */
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Item styling */
+.toc-item {
+  margin: 0;
+  padding: 0;
+}
+
+/* Item row (contains toggle button and link) */
+.toc-item-row {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0;
+}
+
+/* Indentation based on level */
+.toc-level-0 > .toc-item-row {
+  padding-left: 0.5rem;
+}
+
+.toc-level-1 > .toc-item-row {
+  padding-left: 1.5rem;
+}
+
+.toc-level-2 > .toc-item-row {
+  padding-left: 2.5rem;
+}
+
+.toc-level-3 > .toc-item-row {
+  padding-left: 3.5rem;
+}
+
+.toc-level-4 > .toc-item-row {
+  padding-left: 4.5rem;
+}
+
+/* Toggle button for collapsible sections */
+.toc-toggle {
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  margin-right: 0.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* Toggle icon (arrow) */
+.toc-toggle-icon {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid var(--toc-icon-color, #a0aec0);
+  border-bottom: 2px solid var(--toc-icon-color, #a0aec0);
+  transform: rotate(-45deg);
+  transition: transform 0.2s ease;
+}
+
+/* Expanded toggle icon */
+.toc-toggle-expanded .toc-toggle-icon {
+  transform: rotate(45deg);
+}
+
+/* Link styling */
+.toc-link {
+  color: var(--toc-link-color, #e2e8f0);
+  text-decoration: none;
+  padding: 0.25rem 0;
+  display: block;
+  flex-grow: 1;
+  transition: color 0.2s ease;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.toc-link:hover {
+  color: var(--toc-link-hover-color, #ffffff);
+}
+
+/* Active item styling */
+.toc-item-active > .toc-item-row > .toc-link {
+  color: var(--toc-active-color, #7fc8f5);
+  font-weight: 500;
+}
+
+/* Children list */
+.toc-children {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Animation for expanding/collapsing */
+.toc-children {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .table-of-contents {
+    font-size: 0.85rem;
+  }
+
+  .toc-item-row {
+    padding: 0.35rem 0;
+  }
+}
