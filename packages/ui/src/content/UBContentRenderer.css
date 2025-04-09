@@ -1,0 +1,77 @@
+/* UBContentRenderer Component Styles */
+
+.ub-content-renderer {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  font-family: var(--ub-content-font-family, 'Georgia', serif);
+  color: var(--ub-content-text-color, #333);
+  line-height: var(--ub-content-line-height, 1.6);
+}
+
+/* Loading state */
+.ub-content-renderer-loading {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ub-content-renderer-loading-indicator {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+/* Error state */
+.ub-content-renderer-error {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ub-content-renderer-error-message {
+  padding: 20px;
+  background-color: #fff0f0;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #c00;
+}
+
+.ub-content-renderer-error-message h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+/* Paper title */
+.ub-content-renderer-paper-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Section title */
+.ub-content-renderer-section-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 30px 0 15px;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .ub-content-renderer-paper-title {
+    font-size: 20px;
+  }
+
+  .ub-content-renderer-section-title {
+    font-size: 18px;
+  }
+}
