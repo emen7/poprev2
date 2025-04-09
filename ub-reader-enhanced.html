@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UB Reader - Paper 1</title>
+    <style>
+        :root {
+            --accent-color: #0088ff;
+            --accent-hover-color: #0099ff;
+            --header-bg-color: #222;
+            --header-text-color: #fff;
+            --footer-bg-color: #222;
+            --footer-text-color: #fff;
+            --content-bg-color: #1a1a1a;
+            --content-text-color: #e2e8f0;
+            --sidebar-bg-color: #222;
+            --sidebar-text-color: #fff;
+            --panel-bg-color: #222;
+            --panel-text-color: #fff;
+            --panel-header-bg-color: #333;
+            --panel-handle-color: #888;
+            --border-color: #333;
+            --heading-color: #fff;
+            --tooltip-border-color: #666;
+            --tooltip-term-color: #0088ff;
+            --tooltip-term-hover-color: #0099ff;
+            --tooltip-bg-color: #222;
+            --tooltip-text-color: #fff;
+            --tooltip-title-color: #0088ff;
+            --tooltip-divider-color: #444;
+            --tooltip-related-color: #ccc;
+            --tooltip-source-color: #999;
+            --input-border-color: #444;
+            --input-bg-color: #222;
+            --input-text-color: #fff;
+            --note-bg-color: #2a2a2a;
+            --text-muted-color: #888;
+            --danger-color: #ff3333;
+            --footer-link-color: #ccc;
+            --footer-link-hover-color: #fff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--content-bg-color);
+            color: var(--content-text-color);
+            line-height: 1.6;
+        }
+
+        /* Reader Layout */
+        .ub-reader-layout {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Top Bar */
+        .reader-top-bar {
+            width: 100%;
+            background-color: var(--header-bg-color);
+            color: var(--header-text-color);
+            z-index: 100;
+            height: 60px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Paper Bar */
+        .reader-paper-bar {
+            width: 100%;
+            background-color: var(--header-bg-color);
+            color: var(--header-text-color);
+            z-index: 99;
+            height: 40px;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .reader-paper-title {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Section Bar */
+        .reader-section-bar {
+            width: 100%;
+            background-color: var(--header-bg-color);
+            color: var(--header-text-color);
+            z-index: 98;
+            height: 40px;
+            position: fixed;
+            top: 100px;
+            left: 0;
+            right: 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .reader-section-title {
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .reader-section-title.visible {
+            opacity: 1;
+        }
+
+        .reader-top-bar-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            padding: 0 1rem;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .reader-top-bar-left,
+        .reader-top-bar-right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .reader-top-bar-center {
+            flex: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .reader-top-bar-title {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        /* Hamburger Buttons */
+        .hamburger-button {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            position: relative;
+        }
+
+        /* Book Navigation Button (larger) */
+        .book-nav-button {
+            width: 24px;
+            height: 20px;
+        }
+
+        /* Section Navigation Button (smaller) */
+        .section-nav-button {
+            width: 20px;
+            height: 16px;
+            margin-left: 1rem;
+        }
+
+        .hamburger-line {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .book-nav-button .hamburger-line {
+            background-color: var(--accent-color);
+        }
+
+        .section-nav-button .hamburger-line {
+            background-color: #fff;
+        }
+
+        /* Main Content */
+        .ub-reader-content {
+            flex: 1;
+            padding-top: 140px;
+            /* Account for all three headers */
+            padding-bottom: 50px;
+            /* Account for permanent footer */
+            overflow-y: auto;
+        }
+
+        .content-container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Multi-Purpose Panel */
+        .multi-purpose-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--panel-bg-color);
+            color: var(--panel-text-color);
+            height: 40px;
+            /* Collapsed height */
+            transition: height 0.3s ease;
+            border-top: 1px solid var(--border-color);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .multi-purpose-panel.open {
+            height: 300px;
+            /* Expanded height */
+        }
+
+        .multi-purpose-panel-resize-handle {
+            width: 100%;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--panel-header-bg-color);
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        /* Visual handle indicator */
+        .resize-handle-bar {
+            width: 40px;
+            height: 4px;
+            background-color: var(--panel-handle-color);
+            border-radius: 2px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .resize-handle-bar:before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 4px;
+            background-color: var(--panel-handle-color);
+            border-radius: 2px;
+            top: 8px;
+            left: 0;
+        }
+
+        /* Tab Navigation */
+        .tab-navigation {
+            display: flex;
+            background-color: var(--panel-header-bg-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tab-button {
+            padding: 0.75rem 1rem;
+            background: none;
+            border: none;
+            color: var(--panel-text-color);
+            cursor: pointer;
+            opacity: 0.7;
+        }
+
+        .tab-button.active {
+            opacity: 1;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .tab-content {
+            padding: 1rem;
+            height: calc(100% - 40px);
+            overflow-y: auto;
+        }
+
+        /* Scientific Terms */
+        .scientific-term {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dotted var(--tooltip-border-color);
+            color: var(--tooltip-term-color);
+            padding: 0 2px;
+        }
+
+        .scientific-tooltip {
+            position: absolute;
+            z-index: 1000;
+            width: 300px;
+            max-width: 90vw;
+            background-color: var(--tooltip-bg-color);
+            color: var(--tooltip-text-color);
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            padding: 12px;
+            top: 100%;
+            left: 0;
+            transform: translateX(0);
+            margin-top: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+            pointer-events: none;
+        }
+
+        .scientific-term:hover .scientific-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .tooltip-title {
+            font-weight: bold;
+            margin-bottom: 6px;
+            color: var(--tooltip-title-color);
+        }
+
+        /* Paper Content */
+        .paper-content {
+            padding: 1rem;
+        }
+
+        .paper-content h1 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .paper-content h2 {
+            font-size: 1.25rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .paper-content p {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        /* Paragraph numbering */
+        .paragraph-number {
+            position: absolute;
+            left: 0;
+            color: var(--text-muted-color);
+            font-size: 0.8rem;
+            top: 0.3rem;
+            width: 2rem;
+            text-align: right;
+        }
+
+        /* Hide paragraph numbers when disabled */
+        .hide-paragraph-numbers .paragraph-number {
+            display: none;
+        }
+
+        .hide-paragraph-numbers .paper-content p {
+            padding-left: 0;
+        }
+
+        /* Navigation Dropdowns */
+        .nav-dropdown {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            background-color: var(--sidebar-bg-color);
+            color: var(--sidebar-text-color);
+            z-index: 1000;
+            overflow-y: auto;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            max-height: 80vh;
+            border: 1px solid var(--border-color);
+            border-top: none;
+            opacity: 0;
+            visibility: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-dropdown-open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Navigation content area */
+        .nav-dropdown-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        /* Sticky part headers at bottom */
+        .nav-dropdown-parts {
+            border-top: 1px solid var(--border-color);
+            background-color: var(--sidebar-bg-color);
+        }
+
+        .part-toggle {
+            padding: 0.75rem 1rem;
+            background-color: var(--panel-header-bg-color);
+            color: var(--sidebar-text-color);
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .part-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .part-toggle.active {
+            color: var(--accent-color);
+        }
+
+        .part-toggle-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .part-toggle.expanded .part-toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Navigation Overlay */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .nav-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Notes Panel */
+        .notes-panel {
+            padding: 1rem;
+        }
+
+        /* Sort Tabs */
+        .sort-tab {
+            padding: 0.25rem 0.5rem;
+            background: none;
+            border: none;
+            color: var(--panel-text-color);
+            cursor: pointer;
+            opacity: 0.7;
+            border-bottom: 2px solid transparent;
+        }
+
+        .sort-tab.active {
+            opacity: 1;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .note-item {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background-color: var(--note-bg-color);
+            border-radius: 4px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .note-content {
+            margin-bottom: 0.5rem;
+        }
+
+        .note-reference {
+            font-size: 0.8rem;
+            color: var(--text-muted-color);
+            font-style: italic;
+        }
+
+        /* Paper navigation list */
+        .paper-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .paper-list li {
+            padding: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+
+        .paper-list li:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .paper-list li.active {
+            background-color: rgba(0, 136, 255, 0.1);
+            color: var(--accent-color);
+        }
+
+        /* Section navigation list */
+        .section-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .section-list li {
+            padding: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+
+        .section-list li:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .section-list li.active {
+            background-color: rgba(0, 136, 255, 0.1);
+            color: var(--accent-color);
+        }
+
+        /* Note indicator */
+        .note-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+
+        /* Demo Controls */
+        .demo-controls {
+            position: fixed;
+            top: 150px;
+            right: 10px;
+            background-color: var(--panel-bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 0.5rem;
+            z-index: 90;
+        }
+
+        .demo-controls button {
+            display: block;
+            width: 100%;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .demo-controls button:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Overlay -->
+    <div id="navOverlay" class="nav-overlay" onclick="closeAllPanels()"></div>
+
+    <div class="ub-reader-layout">
+        <!-- Top Bar -->
+        <header class="reader-top-bar">
+            <div class="reader-top-bar-container">
+                <div class="reader-top-bar-left">
+                    <div style="position: relative;">
+                        <button class="hamburger-button book-nav-button" onclick="toggleBookNav()">
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                        </button>
+                        <!-- Book Navigation Dropdown -->
+                        <div id="bookNavPanel" class="nav-dropdown">
+                            <div class="nav-dropdown-content">
+                                <h2>Papers</h2>
+                                <ul class="paper-list">
+                                    <li class="active">Paper 1: The Universal Father</li>
+                                    <li>Paper 2: The Nature of God</li>
+                                    <li>Paper 3: The Attributes of God</li>
+                                    <li>Paper 4: God's Relation to the Universe</li>
+                                    <li>Paper 5: God's Relation to the Individual</li>
+                                </ul>
+                            </div>
+                            <div class="nav-dropdown-parts">
+                                <button class="part-toggle active">
+                                    PART I: THE CENTRAL AND SUPERUNIVERSES
+                                    <span class="part-toggle-icon">▼</span>
+                                </button>
+                                <button class="part-toggle">
+                                    PART II: THE LOCAL UNIVERSE
+                                    <span class="part-toggle-icon">▼</span>
+                                </button>
+                                <button class="part-toggle">
+                                    PART III: THE HISTORY OF URANTIA
+                                    <span class="part-toggle-icon">▼</span>
+                                </button>
+                                <button class="part-toggle">
+                                    PART IV: THE LIFE AND TEACHINGS OF JESUS
+                                    <span class="part-toggle-icon">▼</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="position: relative;">
+                        <button class="hamburger-button section-nav-button" onclick="toggleSectionNav()">
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                        </button>
+                        <!-- Section Navigation Dropdown -->
+                        <div id="sectionNavPanel" class="nav-dropdown">
+                            <div class="nav-dropdown-content">
+                                <h2>Sections</h2>
+                                <ul class="section-list">
+                                    <li>Introduction</li>
+                                    <li>1. The Father's Name</li>
+                                    <li>2. The Reality of God</li>
+                                    <li>3. God is a Universal Spirit</li>
+                                    <li>4. The Mystery of God</li>
+                                    <li>5. Personality of the Universal Father</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reader-top-bar-center">
+                    <h1 class="reader-top-bar-title">Urantia Book</h1>
+                </div>
+                <div class="reader-top-bar-right">
+                    <!-- Right content -->
+                </div>
+            </div>
+        </header>
+
+        <!-- Paper Bar -->
+        <div class="reader-paper-bar">
+            <h2 class="reader-paper-title">PAPER 1: THE UNIVERSAL FATHER</h2>
+        </div>
+
+        <!-- Section Bar -->
+        <div class="reader-section-bar">
+            <h3 id="currentSectionTitle" class="reader-section-title"></h3>
+        </div>
+
+        <!-- Main Content -->
+        <main class="ub-reader-content">
+            <div class="content-container">
+                <div class="paper-content">
+                    <!-- Introduction (unlabeled) -->
+                    <p><span class="paragraph-number">0:0.1</span>THE Universal Father is the God of all creation, the
+                        First Source and Center of all things and beings. First think of God as a creator, then as a
+                        controller, and lastly as an infinite upholder. The truth about the Universal Father had begun
+                        to dawn upon mankind when the prophet said: "You, God, are alone; there is none beside you. You
+                        have created the heaven and the heaven of heavens, with all their hosts; you preserve and
+                        control them. By the Sons of God were the universes made. The Creator covers himself with light
+                        as with a garment and stretches out the heavens as a curtain." Only the concept of the Universal
+                        Father—one God in the place of many gods—enabled mortal man to comprehend the Father as divine
+                        creator and infinite controller.</p>
+
+                    <p><span class="paragraph-number">0:0.2</span>The myriads of planetary systems were all made to be
+                        eventually inhabited by many different types of intelligent creatures, beings who could know
+                        God, receive the divine affection, and love him in return. The universe of universes is the work
+                        of God and the dwelling place of his diverse creatures. "God created the heavens and formed the
+                        earth; he established the universe and created this world not in vain; he formed it to be
+                        inhabited."</p>
+
+                    <p><span class="paragraph-number">0:0.3</span>The enlightened worlds all recognize and worship the
+                        Universal Father, the eternal maker and infinite upholder of all creation. The will creatures of
+                        universe upon universe have embarked upon the long, long journey to the Paradise of the Father,
+                        the intriguing challenge of the adventure of attaining God. The transcendent goal of the
+                        children of time is to find the eternal God, to comprehend the divine nature, to recognize the
+                        Universal Father.</p>
+
+                    <!-- Section 1: THE FATHER'S NAME -->
+                    <h2 id="section1">1. THE FATHER'S NAME</h2>
+
+                    <p><span class="paragraph-number">1:1.1</span>OF ALL the names by which God the Father is known
+                        throughout the universes, those which designate him as the First Source and the Universe Center
+                        are most often encountered. The First Father is known by various names in different universes
+                        and in different sectors of the same universe. The names which the creature assigns to the
+                        Creator are much dependent on the creature's concept of the Creator. The First Source and
+                        Universe Center has never revealed himself by name, only by nature. If we believe that we are
+                        the children of this Creator, it is only natural that we should eventually call him Father. But
+                        this is the name of our own choosing, and it grows out of the recognition of our personal
+                        relationship with the First Source and Center.</p>
+
+                    <p><span class="paragraph-number">1:1.2</span>The Universal Father never imposes any form of
+                        arbitrary recognition, formal worship, or slavish service upon the intelligent will creatures of
+                        the universes. The evolutionary inhabitants of the worlds of time and space must of
+                        themselves—in their own hearts—recognize, love, and voluntarily worship him. The Creator refuses
+                        to coerce or compel the submission of the spiritual free wills of his material creatures. The
+                        affectionate dedication of the human will to the doing of the Father's will is man's choicest
+                        gift to God; in fact, such a consecration of creature will constitutes man's only possible gift
+                        of true value to the Paradise Father.</p>
+
+                    <!-- Section 2: THE REALITY OF GOD -->
+                    <h2 id="section2">2. THE REALITY OF GOD</h2>

@@ -1,0 +1,46 @@
+{
+  "name": "src",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
+    "build": "npm run build:search-index && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest",
+    "tina": "npx cross-env TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
+    "tina:build": "tinacms build && next build",
+    "tina:init": "node scripts/init-tina.js",
+    "build:search-index": "node scripts/build-search-index.js",
+    "index": "node scripts/run-indexer.js"
+  },
+  "dependencies": {
+    "@tinacms/cli": "^1.9.3",
+    "fuse.js": "^7.1.0",
+    "mammoth": "^1.9.0",
+    "next": "15.2.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "rehype-react": "^8.0.0",
+    "rehype-stringify": "^10.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.1",
+    "tinacms": "^2.7.3",
+    "unified": "^11.0.5"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20.17.27",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "cross-env": "^7.0.3",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.4",
+    "jest": "^29.7.0",
+    "tailwindcss": "^4",
+    "ts-jest": "^29.3.0",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,275 @@
+/**
+ * Document Reader Styles
+ */
+
+.document-reader {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.document-reader-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.document-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.document-subtitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+.document-metadata {
+  font-size: 0.9rem;
+  color: #666;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.document-author,
+.document-date,
+.document-categories,
+.document-tags {
+  margin-right: 1rem;
+}
+
+.document-toc {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.document-toc h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.document-toc ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-item {
+  margin-bottom: 0.5rem;
+}
+
+.toc-item a {
+  color: #0070f3;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.toc-item a:hover {
+  color: #0051a8;
+  text-decoration: underline;
+}
+
+.toc-item.active a {
+  font-weight: 600;
+  color: #0051a8;
+}
+
+.toc-level-1 {
+  font-weight: 600;
+}
+
+.toc-level-2 {
+  padding-left: 1rem;
+}
+
+.toc-level-3 {
+  padding-left: 2rem;
+}
+
+.toc-level-4 {
+  padding-left: 3rem;
+}
+
+.toc-level-5,
+.toc-level-6 {
+  padding-left: 4rem;
+}
+
+.document-content {
+  margin-top: 2rem;
+}
+
+.document-h1,
+.document-h2,
+.document-h3,
+.document-h4,
+.document-h5,
+.document-h6 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.document-h1 {
+  font-size: 2.25rem;
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 0.5rem;
+}
+
+.document-h2 {
+  font-size: 1.75rem;
+}
+
+.document-h3 {
+  font-size: 1.5rem;
+}
+
+.document-h4 {
+  font-size: 1.25rem;
+}
+
+.document-h5 {
+  font-size: 1.1rem;
+}
+
+.document-h6 {
+  font-size: 1rem;
+}
+
+.document-paragraph {
+  margin-bottom: 1.5rem;
+}
+
+.document-ordered-list,
+.document-unordered-list {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.document-list-item {
+  margin-bottom: 0.5rem;
+}
+
+.document-link {
+  color: #0070f3;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.document-link:hover {
+  color: #0051a8;
+  text-decoration: underline;
+}
+
+.document-image {
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem 0;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.document-blockquote {
+  border-left: 4px solid #0070f3;
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  color: #555;
+  font-style: italic;
+}
+
+.document-code-block {
+  background-color: #f6f8fa;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.document-inline-code {
+  background-color: #f6f8fa;
+  border-radius: 0.25rem;
+  padding: 0.2rem 0.4rem;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.9em;
+}
+
+.document-emphasis {
+  font-style: italic;
+}
+
+.document-strong {
+  font-weight: 700;
+}
+
+.document-hr {
+  border: 0;
+  height: 1px;
+  background-color: #eaeaea;
+  margin: 2rem 0;
+}
+
+.document-table-container {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.document-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.document-table-row:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.document-table-cell {
+  padding: 0.75rem;
+  border: 1px solid #eaeaea;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .document-title {
+    font-size: 2rem;
+  }
+
+  .document-subtitle {
+    font-size: 1.25rem;
+  }
+
+  .document-h1 {
+    font-size: 1.75rem;
+  }
+
+  .document-h2 {
+    font-size: 1.5rem;
+  }
+
+  .document-h3 {
+    font-size: 1.25rem;
+  }
+
+  .document-metadata {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .document-toc {
+    padding: 1rem;
+  }
+}

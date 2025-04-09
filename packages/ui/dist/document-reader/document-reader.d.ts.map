@@ -1,0 +1,1 @@
+{"version":3,"file":"document-reader.d.ts","sourceRoot":"","sources":["../../src/document-reader/document-reader.tsx"],"names":[],"mappings":"AAAA;;;;GAIG;AAKH,OAAO,EAAE,mBAAmB,EAAgB,MAAM,mCAAmC,CAAC;AACtF,OAAO,uBAAuB,CAAC;AAE/B,UAAU,mBAAmB;IAC3B,QAAQ,EAAE,mBAAmB,CAAC;CAC/B;AAED,wBAAgB,cAAc,CAAC,EAAE,QAAQ,EAAE,EAAE,mBAAmB,2CAoE/D"}

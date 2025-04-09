@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UB Reader Demo</title>
+    <style>
+        :root {
+            --accent-color: #0088ff;
+            --accent-hover-color: #0099ff;
+            --header-bg-color: #222;
+            --header-text-color: #fff;
+            --footer-bg-color: #222;
+            --footer-text-color: #fff;
+            --content-bg-color: #1a1a1a;
+            --content-text-color: #e2e8f0;
+            --sidebar-bg-color: #222;
+            --sidebar-text-color: #fff;
+            --panel-bg-color: #222;
+            --panel-text-color: #fff;
+            --panel-header-bg-color: #333;
+            --panel-handle-color: #666;
+            --border-color: #333;
+            --heading-color: #fff;
+            --tooltip-border-color: #666;
+            --tooltip-term-color: #0088ff;
+            --tooltip-term-hover-color: #0099ff;
+            --tooltip-bg-color: #222;
+            --tooltip-text-color: #fff;
+            --tooltip-title-color: #0088ff;
+            --tooltip-divider-color: #444;
+            --tooltip-related-color: #ccc;
+            --tooltip-source-color: #999;
+            --input-border-color: #444;
+            --input-bg-color: #222;
+            --input-text-color: #fff;
+            --note-bg-color: #2a2a2a;
+            --text-muted-color: #888;
+            --danger-color: #ff3333;
+            --footer-link-color: #ccc;
+            --footer-link-hover-color: #fff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--content-bg-color);
+            color: var(--content-text-color);
+            line-height: 1.6;
+        }
+
+        /* Reader Layout */
+        .ub-reader-layout {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Header */
+        .reader-header {
+            width: 100%;
+            background-color: var(--header-bg-color);
+            color: var(--header-text-color);
+            z-index: 100;
+            height: 60px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .reader-header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            padding: 0 1rem;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .reader-header-left,
+        .reader-header-right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .reader-header-center {
+            flex: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .reader-header-title {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        /* Hamburger Button */
+        .hamburger-button {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            position: relative;
+        }
+
+        .hamburger-line {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .book-nav-button .hamburger-line {
+            background-color: var(--accent-color);
+        }
+
+        .section-nav-button .hamburger-line {
+            background-color: #fff;
+        }
+
+        /* Main Content */
+        .ub-reader-content {
+            flex: 1;
+            padding-top: 60px;
+            padding-bottom: 50px;
+            /* Account for permanent footer */
+            overflow-y: auto;
+        }
+
+        .content-container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Multi-Purpose Panel */
+        .multi-purpose-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--panel-bg-color);
+            color: var(--panel-text-color);
+            height: 40px;
+            /* Collapsed height */
+            transition: height 0.3s ease;
+            border-top: 1px solid var(--border-color);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .multi-purpose-panel.open {
+            height: 300px;
+            /* Expanded height */
+        }
+
+        .multi-purpose-panel-resize-handle {
+            width: 100%;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--panel-header-bg-color);
+            padding: 0 1rem;
+        }
+
+        .resize-handle-bar {
+            width: 40px;
+            height: 4px;
+            background-color: var(--panel-handle-color);
+            border-radius: 2px;
+        }
+
+        /* Tab Navigation */
+        .tab-navigation {
+            display: flex;
+            background-color: var(--panel-header-bg-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tab-button {
+            padding: 0.75rem 1rem;
+            background: none;
+            border: none;
+            color: var(--panel-text-color);
+            cursor: pointer;
+            opacity: 0.7;
+        }
+
+        .tab-button.active {
+            opacity: 1;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .tab-content {
+            padding: 1rem;
+            height: calc(100% - 40px);
+            overflow-y: auto;
+        }
+
+        /* Scientific Terms */
+        .scientific-term {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dotted var(--tooltip-border-color);
+            color: var(--tooltip-term-color);
+            padding: 0 2px;
+        }
+
+        .scientific-tooltip {
+            position: absolute;
+            z-index: 1000;
+            width: 300px;
+            max-width: 90vw;
+            background-color: var(--tooltip-bg-color);
+            color: var(--tooltip-text-color);
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            padding: 12px;
+            top: 100%;
+            left: 0;
+            transform: translateX(0);
+            margin-top: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+            pointer-events: none;
+        }
+
+        .scientific-term:hover .scientific-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .tooltip-title {
+            font-weight: bold;
+            margin-bottom: 6px;
+            color: var(--tooltip-title-color);
+        }
+
+        /* Sample Content */
+        .sample-content {
+            padding: 1rem;
+        }
+
+        .sample-content h1 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .sample-content h2 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .sample-content p {
+            margin-bottom: 1rem;
+        }
+
+        /* Navigation Dropdowns */
+        .nav-dropdown {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            background-color: var(--sidebar-bg-color);
+            color: var(--sidebar-text-color);
+            z-index: 1000;
+            overflow-y: auto;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            max-height: 80vh;
+            border: 1px solid var(--border-color);
+            border-top: none;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .nav-dropdown-open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Navigation Overlay */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .nav-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Notes Panel */
+        .notes-panel {
+            padding: 1rem;
+        }
+
+        /* Sort Tabs */
+        .sort-tab {
+            padding: 0.25rem 0.5rem;
+            background: none;
+            border: none;
+            color: var(--panel-text-color);
+            cursor: pointer;
+            opacity: 0.7;
+            border-bottom: 2px solid transparent;
+        }
+
+        .sort-tab.active {
+            opacity: 1;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .note-item {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background-color: var(--note-bg-color);
+            border-radius: 4px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .note-content {
+            margin-bottom: 0.5rem;
+        }
+
+        .note-reference {
+            font-size: 0.8rem;
+            color: var(--text-muted-color);
+            font-style: italic;
+        }
+
+        /* Demo Controls */
+        .demo-controls {
+            position: fixed;
+            top: 70px;
+            right: 10px;
+            background-color: var(--panel-bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 0.5rem;
+            z-index: 90;
+        }
+
+        .demo-controls button {
+            display: block;
+            width: 100%;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .demo-controls button:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Overlay -->
+    <div id="navOverlay" class="nav-overlay" onclick="closeAllPanels()"></div>
+
+    <div class="ub-reader-layout">
+        <!-- Header -->
+        <header class="reader-header">
+            <div class="reader-header-container">
+                <div class="reader-header-left">
+                    <div style="position: relative;">
+                        <button class="hamburger-button book-nav-button" onclick="toggleBookNav()">
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                        </button>
+                        <!-- Book Navigation Dropdown -->
+                        <div id="bookNavPanel" class="nav-dropdown">
+                            <div style="padding: 1rem;">
+                                <h2>Book Navigation</h2>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="padding: 0.5rem; border-bottom: 1px solid #333; cursor: pointer;">Paper
+                                        1: Introduction
+                                    </li>
+                                    <li style="padding: 0.5rem; border-bottom: 1px solid #333; cursor: pointer;">Paper
+                                        2: Methodology
+                                    </li>
+                                    <li
+                                        style="padding: 0.5rem; border-bottom: 1px solid #333; cursor: pointer; background-color: rgba(0,136,255,0.1);">
+                                        Paper 3: Results</li>
+                                    <li style="padding: 0.5rem; border-bottom: 1px solid #333; cursor: pointer;">Paper
+                                        4: Discussion
+                                    </li>
+                                    <li style="padding: 0.5rem; border-bottom: 1px solid #333; cursor: pointer;">Paper
+                                        5: Conclusion
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="position: relative;">
+                        <button class="hamburger-button section-nav-button" onclick="toggleSectionNav()"
+                            style="margin-left: 1rem;">
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                        </button>
+                        <!-- Section Navigation Dropdown -->
+                        <div id="sectionNavPanel" class="nav-dropdown">
+                            <div style="padding: 1rem;">
+                                <h2>Section Navigation</h2>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="padding: 0.5rem; border-bottom: 1px solid #333; cursor: pointer;">
+                                        Introduction</li>
+                                    <li style="padding: 0.5rem; border-bottom: 1px solid #333; cursor: pointer;">
+                                        Background</li>
+                                    <li style="padding: 0.5rem; border-bottom: 1px solid #333; cursor: pointer;">Methods
+                                    </li>
+                                    <li
+                                        style="padding: 0.5rem; border-bottom: 1px solid #333; cursor: pointer; background-color: rgba(0,136,255,0.1);">
+                                        Results</li>
+                                    <li style="padding: 0.5rem; border-bottom: 1px solid #333; cursor: pointer;">
+                                        Discussion</li>
+                                    <li style="padding: 0.5rem; border-bottom: 1px solid #333; cursor: pointer;">
+                                        Conclusion</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reader-header-center">
+                    <h1 class="reader-header-title">UB Reader Demo</h1>
+                </div>
+                <div class="reader-header-right">
+                    <!-- Right content -->
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="ub-reader-content">
+            <div class="content-container">
+                <div class="sample-content">
+                    <h1>Understanding Quantum Physics</h1>
+
+                    <p>
+                        Modern physics is built upon two fundamental theories:
+                        <span class="scientific-term">
+                            Quantum Entanglement
+                            <div class="scientific-tooltip">
+                                <div class="tooltip-title">Quantum Entanglement</div>
+                                <div>A physical phenomenon that occurs when a group of particles interact in such a way
+                                    that the quantum state of each particle cannot be described independently of the
+                                    state of the others</div>
+                            </div>
+                        </span>
+                        and relativity. The famous equation
+                        <span class="scientific-term">
+                            E=mc²
+                            <div class="scientific-tooltip">
+                                <div class="tooltip-title">E=mc²</div>
+                                <div>Energy equals mass times the speed of light squared</div>
+                                <div style="font-style: italic; margin-top: 6px;">Energy and mass are equivalent and
+                                    convertible</div>
+                            </div>
+                        </span>
+                        from Einstein's theory of relativity demonstrates the relationship between energy and mass.
+                    </p>
+
+                    <p>
+                        In molecular biology,
+                        <span class="scientific-term">
+                            DNA
+                            <div class="scientific-tooltip">
+                                <div class="tooltip-title">DNA</div>
+                                <div>Deoxyribonucleic Acid</div>
+                                <div style="margin-top: 8px; font-size: 0.9em;">The molecule that carries genetic
+                                    information in all living organisms</div>
+                            </div>
+                        </span>
+                        and
+                        <span class="scientific-term">
+                            RNA
+                            <div class="scientific-tooltip">
+                                <div class="tooltip-title">RNA</div>
+                                <div>Ribonucleic Acid</div>
+                                <div style="margin-top: 8px; font-size: 0.9em;">A molecule similar to DNA that has
+                                    various roles in the coding, decoding, regulation, and expression of genes</div>
+                            </div>
+                        </span>
+                        are essential molecules for life. They carry the genetic information that determines the
+                        development and functioning of all living organisms.
+                    </p>
+
+                    <h2>Quantum Mechanics Principles</h2>
+
+                    <p>
+                        Quantum mechanics describes the behavior of matter and energy at the atomic and subatomic
+                        scales. It introduces concepts like superposition, where particles can exist in multiple states
+                        simultaneously until measured.
+                    </p>
+
+                    <p>
+                        Another key concept is
+                        <span class="scientific-term">
+                            Quantum Entanglement
+                            <div class="scientific-tooltip">
+                                <div class="tooltip-title">Quantum Entanglement</div>
+                                <div>A physical phenomenon that occurs when a group of particles interact in such a way
+                                    that the quantum state of each particle cannot be described independently of the
+                                    state of the others</div>
+                            </div>
+                        </span>,
+                        where particles become connected in such a way that the quantum state of each particle cannot be
+                        described independently of the others, regardless of the distance separating them.
+                    </p>
+
+                    <h2>Relativity and Energy</h2>
+
+                    <p>
+                        Einstein's special theory of relativity introduced the concept that energy and mass are
+                        equivalent, as expressed in the equation
+                        <span class="scientific-term">
+                            E=mc²
+                            <div class="scientific-tooltip">
+                                <div class="tooltip-title">E=mc²</div>
+                                <div>Energy equals mass times the speed of light squared</div>
+                                <div style="font-style: italic; margin-top: 6px;">Energy and mass are equivalent and
+                                    convertible</div>
+                            </div>
+                        </span>.
+                        This relationship has profound implications for our understanding of the universe and has led to
+                        developments in nuclear energy and weapons.
+                    </p>
+
+                    <h2>Molecular Biology</h2>
+
+                    <p>
+                        The discovery of the structure of
+                        <span class="scientific-term">
+                            DNA
+                            <div class="scientific-tooltip">
+                                <div class="tooltip-title">DNA</div>
+                                <div>Deoxyribonucleic Acid</div>
+                                <div style="margin-top: 8px; font-size: 0.9em;">The molecule that carries genetic
+                                    information in all living organisms</div>
+                            </div>
+                        </span>
+                        by Watson and Crick in 1953 revolutionized our understanding of genetics. The double helix
+                        structure allows for the storage and transmission of genetic information.
+                    </p>
+
+                    <p>
+                        <span class="scientific-term">
+                            RNA
+                            <div class="scientific-tooltip">
+                                <div class="tooltip-title">RNA</div>
+                                <div>Ribonucleic Acid</div>
+                                <div style="margin-top: 8px; font-size: 0.9em;">A molecule similar to DNA that has
+                                    various roles in the coding, decoding, regulation, and expression of genes</div>
+                            </div>
+                        </span>,
+                        while similar to DNA, plays different roles in the cell, including protein synthesis and gene
+                        regulation. In some viruses, RNA rather than DNA serves as the genetic material.
+                    </p>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Multi-Purpose Panel -->
+    <div id="multiPurposePanel" class="multi-purpose-panel">
+        <div class="multi-purpose-panel-resize-handle" onclick="toggleBottomPanel()">
+            <div class="tab-navigation" style="background: none; border: none; margin: 0;">
+                <button class="tab-button active" onclick="switchTab('notes')">Notes</button>
+                <button class="tab-button" onclick="switchTab('quotes')">Quotes</button>
+                <button class="tab-button" onclick="switchTab('settings')">Settings</button>
+            </div>
+            <div id="panelToggleIndicator">▲</div>
+        </div>
+        <div class="tab-content">
+            <div id="notesTab" class="notes-panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3 style="margin: 0;">Notes: Order by</h3>
+                    <div>
+                        <button class="sort-tab active" onclick="sortNotes('entry')">Entry</button>
+                        <button class="sort-tab" onclick="sortNotes('paper')">Paper</button>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1rem;">
+                    <textarea placeholder="Add a new note..."
+                        style="width: 100%; padding: 0.5rem; background-color: #333; color: #fff; border: 1px solid #444; border-radius: 4px; margin-bottom: 0.5rem;"></textarea>
+                    <button
+                        style="padding: 0.5rem 1rem; background-color: #0088ff; color: white; border: none; border-radius: 4px; cursor: pointer;">Add
+                        Note</button>
+                </div>
+
+                <div class="note-item">
+                    <p class="note-content">Need to follow up on this methodology.</p>
+                    <p class="note-reference">Paper 2: Methodology</p>
+                </div>
+                <div class="note-item">
+                    <p class="note-content">This is an important point to remember.</p>
+                    <p class="note-reference">Paper 3: Results</p>
+                </div>
+            </div>
+            <div id="quotesTab" class="notes-panel" style="display: none;">
+                <h3>Quotes</h3>
+                <div class="note-item">
+                    <p class="note-content">"The results indicate a significant correlation between variables A and
+                        B."</p>
+                    <p class="note-reference">Paper 3: Results</p>
+                </div>
+                <div class="note-item">
+                    <p class="note-content">"Further research is needed to confirm these findings."</p>
+                    <p class="note-reference">Paper 5: Conclusion</p>
+                </div>
+            </div>
+            <div id="settingsTab" class="notes-panel" style="display: none;">
+                <h3>Settings</h3>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="min-width: 80px;">Theme:</span>
+                        <select
+                            style="padding: 0.5rem; background-color: #222; color: #fff; border: 1px solid #444; border-radius: 4px;">
+                            <option value="dark">Dark</option>
+                            <option value="light">Light</option>
+                            <option value="sepia">Sepia</option>
+                        </select>
+                    </label>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="min-width: 80px;">Font Size:</span>
+                        <select
+                            style="padding: 0.5rem; background-color: #222; color: #fff; border: 1px solid #444; border-radius: 4px;">
+                            <option value="medium">Medium</option>
+                            <option value="small">Small</option>
+                            <option value="large">Large</option>
+                        </select>
+                    </label>
+                </div>
+                <div>
+                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                        <input type="checkbox"> Show line numbers
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Demo Controls -->
+    <div class="demo-controls">
+        <button onclick="toggleBookNav()">Toggle Book Nav</button>
+        <button onclick="toggleSectionNav()">Toggle Section Nav</button>
+    </div>
+    </div>
+
+    <script>
+        // State
+        let isBookNavOpen = false;
+        let isSectionNavOpen = false;
+        let isBottomPanelOpen = false;
+        let activeTab = 'notes';
+
+        // Toggle Book Navigation
+        function toggleBookNav() {
+            isBookNavOpen = !isBookNavOpen;
+
+            if (isBookNavOpen) {
+                document.getElementById('bookNavPanel').classList.add('nav-dropdown-open');
+                document.getElementById('navOverlay').classList.add('visible');
+
+                // Close other panels
+                if (isSectionNavOpen) {
+                    document.getElementById('sectionNavPanel').classList.remove('nav-dropdown-open');
+                    isSectionNavOpen = false;
+                }
+            } else {
+                document.getElementById('bookNavPanel').classList.remove('nav-dropdown-open');
+                if (!isSectionNavOpen) {
+                    document.getElementById('navOverlay').classList.remove('visible');
+                }
+            }
+        }
+
+        // Toggle Section Navigation
+        function toggleSectionNav() {
+            isSectionNavOpen = !isSectionNavOpen;
+
+            if (isSectionNavOpen) {
+                document.getElementById('sectionNavPanel').classList.add('nav-dropdown-open');
+                document.getElementById('navOverlay').classList.add('visible');
+
+                // Close other panels
+                if (isBookNavOpen) {
+                    document.getElementById('bookNavPanel').classList.remove('nav-dropdown-open');
+                    isBookNavOpen = false;
+                }
+            } else {
+                document.getElementById('sectionNavPanel').classList.remove('nav-dropdown-open');
+                if (!isBookNavOpen) {
+                    document.getElementById('navOverlay').classList.remove('visible');
+                }
+            }
+        }
+
+        // Toggle Bottom Panel
+        function toggleBottomPanel() {
+            isBottomPanelOpen = !isBottomPanelOpen;
+
+            if (isBottomPanelOpen) {
+                document.getElementById('multiPurposePanel').classList.add('open');
+                document.getElementById('panelToggleIndicator').textContent = '▼';
+            } else {
+                document.getElementById('multiPurposePanel').classList.remove('open');
+                document.getElementById('panelToggleIndicator').textContent = '▲';
+            }
+        }
+
+        // Switch Tab
+        function switchTab(tabName) {
+            // Prevent event bubbling to avoid toggling the panel
+            event.stopPropagation();
+
+            // If panel is not open, open it
+            if (!isBottomPanelOpen) {
+                toggleBottomPanel();
+            }
+
+            // Hide all tabs
+            document.getElementById('notesTab').style.display = 'none';
+            document.getElementById('quotesTab').style.display = 'none';
+            document.getElementById('settingsTab').style.display = 'none';
+
+            // Show the selected tab
+            document.getElementById(tabName + 'Tab').style.display = 'block';
+
+            // Update active tab
+            const tabs = document.querySelectorAll('.tab-button');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Find the clicked tab and make it active
+            const activeTab = Array.from(tabs).find(tab =>
+                tab.textContent.toLowerCase() === tabName
+            );
+
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
+        }
+
+        // Close All Panels
+        function closeAllPanels() {
+            // Close book nav
+            document.getElementById('bookNavPanel').classList.remove('nav-dropdown-open');
+            isBookNavOpen = false;
+
+            // Close section nav
+            document.getElementById('sectionNavPanel').classList.remove('nav-dropdown-open');
+            isSectionNavOpen = false;
+
+            // Hide overlay
+            document.getElementById('navOverlay').classList.remove('visible');
+        }
+    </script>
+</body>
+
+</html>

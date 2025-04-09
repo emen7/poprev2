@@ -1,0 +1,76 @@
+/**
+ * Enhanced Reader Example Styles
+ */
+
+.enhanced-reader-example {
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Override some Reader styles for the example */
+.enhanced-reader-example .reader-container {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* Make the header fixed */
+.enhanced-reader-example .reader-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--reader-background-color);
+  z-index: 50;
+  padding: 1rem;
+  margin: 0;
+  border-bottom: 1px solid var(--reader-border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+
+/* Adjust main content to account for fixed header */
+.enhanced-reader-example .reader-main {
+  margin-top: 72px;
+  padding: 1rem;
+}
+
+/* Style the header buttons */
+.enhanced-reader-example .reader-header-button {
+  margin: 0 0.25rem;
+}
+
+/* Style the title */
+.enhanced-reader-example .reader-title {
+  font-size: 1.5rem;
+  margin: 0;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Adjust navigation panel top position */
+.enhanced-reader-example .reader-navigation-menu {
+  top: 56px;
+}
+
+/* Adjust settings panel top position */
+.enhanced-reader-example .reader-settings-panel {
+  top: 56px;
+}
+
+/* Adjust overlay top position */
+.enhanced-reader-example .reader-overlay {
+  top: 56px;
+}
+
+/* Dark theme adjustments */
+.enhanced-reader-example .reader-container[data-theme="dark"] .reader-header {
+  border-bottom-color: var(--reader-border-color);
+}
