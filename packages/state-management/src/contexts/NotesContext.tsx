@@ -15,10 +15,6 @@ export const NotesContext = createContext<NotesContextType | undefined>(undefine
 interface NotesProviderProps {
   children: ReactNode;
   initialState?: Partial<NotesState>;
-  /**
-   * Whether to persist notes in localStorage
-   * @default true
-   */
   persistNotes?: boolean;
 }
 
@@ -33,61 +29,53 @@ export function NotesProvider({
   // Create reducer state and dispatch
   const [state, dispatch] = useReducer(notesReducer, mergedInitialState);
 
-  // Load notes from localStorage on initial render
+  // Load notes from localStorage on mount
   useEffect(() => {
-    if (!persistNotes || !state.documentId) return;
+    if (persistNotes && state.documentId) {
+      try {
+        // Load notes
+        const savedNotes = localStorage.getItem(`ub-notes-${state.documentId}`);
+        if (savedNotes) {
+          dispatch({
+            type: NotesActionType.LOAD_NOTES,
+            payload: { notes: JSON.parse(savedNotes) },
+          });
+        }
 
-    dispatch({ type: NotesActionType.SET_LOADING, payload: { isLoading: true } });
-
-    try {
-      // Load notes
-      const notesKey = `notes-${state.documentId}`;
-      const storedNotes = localStorage.getItem(notesKey);
-
-      if (storedNotes) {
-        const notes = JSON.parse(storedNotes) as Note[];
-        dispatch({ type: NotesActionType.LOAD_NOTES, payload: { notes } });
+        // Load quotes
+        const savedQuotes = localStorage.getItem(`ub-quotes-${state.documentId}`);
+        if (savedQuotes) {
+          dispatch({
+            type: NotesActionType.LOAD_QUOTES,
+            payload: { quotes: JSON.parse(savedQuotes) },
+          });
+        }
+      } catch (error) {
+        console.error('Error loading notes from localStorage:', error);
+        dispatch({
+          type: NotesActionType.SET_ERROR,
+          payload: { error: 'Failed to load notes from storage' },
+        });
       }
-
-      // Load quotes
-      const quotesKey = `quotes-${state.documentId}`;
-      const storedQuotes = localStorage.getItem(quotesKey);
-
-      if (storedQuotes) {
-        const quotes = JSON.parse(storedQuotes) as Quote[];
-        dispatch({ type: NotesActionType.LOAD_QUOTES, payload: { quotes } });
-      }
-
-      dispatch({ type: NotesActionType.SET_ERROR, payload: { error: null } });
-    } catch (error) {
-      console.error('Error loading notes from localStorage:', error);
-      dispatch({
-        type: NotesActionType.SET_ERROR,
-        payload: { error: 'Failed to load notes from storage' },
-      });
-    } finally {
-      dispatch({ type: NotesActionType.SET_LOADING, payload: { isLoading: false } });
     }
   }, [persistNotes, state.documentId]);
 
   // Save notes to localStorage when they change
   useEffect(() => {
-    if (!persistNotes || !state.documentId) return;
+    if (persistNotes && state.documentId) {
+      try {
+        // Save notes
+        localStorage.setItem(`ub-notes-${state.documentId}`, JSON.stringify(state.notes));
 
-    try {
-      // Save notes
-      const notesKey = `notes-${state.documentId}`;
-      localStorage.setItem(notesKey, JSON.stringify(state.notes));
-
-      // Save quotes
-      const quotesKey = `quotes-${state.documentId}`;
-      localStorage.setItem(quotesKey, JSON.stringify(state.quotes));
-    } catch (error) {
-      console.error('Error saving notes to localStorage:', error);
-      dispatch({
-        type: NotesActionType.SET_ERROR,
-        payload: { error: 'Failed to save notes to storage' },
-      });
+        // Save quotes
+        localStorage.setItem(`ub-quotes-${state.documentId}`, JSON.stringify(state.quotes));
+      } catch (error) {
+        console.error('Error saving notes to localStorage:', error);
+        dispatch({
+          type: NotesActionType.SET_ERROR,
+          payload: { error: 'Failed to save notes to storage' },
+        });
+      }
     }
   }, [persistNotes, state.documentId, state.notes, state.quotes]);
 

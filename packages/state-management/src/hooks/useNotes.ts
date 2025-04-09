@@ -3,7 +3,7 @@ import { NotesContext } from '../contexts/NotesContext';
 import { NotesActionType, Note, Quote } from '../types/notes.types';
 
 /**
- * Hook for accessing and manipulating notes and quotes
+ * Hook for accessing and manipulating notes state
  *
  * @returns Notes state and actions
  */
@@ -18,21 +18,11 @@ export function useNotes() {
 
   // Provide action creators for common operations
   const addNote = useCallback(
-    (note: Omit<Note, 'id' | 'createdAt' | 'updatedAt'>) => {
-      const now = new Date().toISOString();
-      const newNote: Note = {
-        id: `note-${Date.now()}`,
-        createdAt: now,
-        updatedAt: now,
-        ...note,
-      };
-
+    (note: Omit<Note, 'id' | 'createdAt' | 'updatedAt'> & Partial<Note>) => {
       dispatch({
         type: NotesActionType.ADD_NOTE,
-        payload: { note: newNote },
+        payload: { note: note as Note },
       });
-
-      return newNote;
     },
     [dispatch]
   );
@@ -58,20 +48,11 @@ export function useNotes() {
   );
 
   const addQuote = useCallback(
-    (quote: Omit<Quote, 'id' | 'createdAt'>) => {
-      const now = new Date().toISOString();
-      const newQuote: Quote = {
-        id: `quote-${Date.now()}`,
-        createdAt: now,
-        ...quote,
-      };
-
+    (quote: Omit<Quote, 'id' | 'createdAt'> & Partial<Quote>) => {
       dispatch({
         type: NotesActionType.ADD_QUOTE,
-        payload: { quote: newQuote },
+        payload: { quote: quote as Quote },
       });
-
-      return newQuote;
     },
     [dispatch]
   );
@@ -106,29 +87,21 @@ export function useNotes() {
     [dispatch]
   );
 
-  // Get sorted notes based on current sort order
-  const getSortedNotes = useCallback(() => {
-    if (state.sortOrder === 'entry') {
-      // Already sorted by entry (most recent first)
-      return state.notes;
-    } else {
-      // Sort by paper (paragraph ID)
-      return [...state.notes].sort((a, b) => {
-        // Extract paper and section numbers from paragraphId
-        const getOrderValue = (id: string) => {
-          const match = id.match(/^p(\d+)s(\d+)/);
-          if (match) {
-            const paper = parseInt(match[1], 10);
-            const section = parseInt(match[2], 10);
-            return paper * 1000 + section;
-          }
-          return 0;
-        };
+  // Get notes for a specific paragraph
+  const getNotesForParagraph = useCallback(
+    (paragraphId: string) => {
+      return state.notes.filter(note => note.paragraphId === paragraphId);
+    },
+    [state.notes]
+  );
 
-        return getOrderValue(a.paragraphId) - getOrderValue(b.paragraphId);
-      });
-    }
-  }, [state.notes, state.sortOrder]);
+  // Get quotes for a specific paragraph
+  const getQuotesForParagraph = useCallback(
+    (paragraphId: string) => {
+      return state.quotes.filter(quote => quote.paragraphId === paragraphId);
+    },
+    [state.quotes]
+  );
 
   return {
     // State properties
@@ -140,7 +113,8 @@ export function useNotes() {
     sortOrder: state.sortOrder,
 
     // Computed properties
-    sortedNotes: getSortedNotes(),
+    hasNotes: state.notes.length > 0,
+    hasQuotes: state.quotes.length > 0,
 
     // Actions
     addNote,
@@ -150,6 +124,10 @@ export function useNotes() {
     deleteQuote,
     setDocumentId,
     setSortOrder,
+
+    // Helper functions
+    getNotesForParagraph,
+    getQuotesForParagraph,
 
     // Raw dispatch for advanced usage
     dispatch,
