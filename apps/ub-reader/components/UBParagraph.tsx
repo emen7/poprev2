@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import { useUserPreferences } from '../contexts/UserPreferencesContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { ReferenceProcessor } from './references';
-import { useHighlight } from '@ub/highlighting';
+import { useHighlight } from '../components/HighlightProvider';
 
 interface UBParagraphProps {
   paragraph: {
@@ -87,9 +87,50 @@ export const UBParagraph: React.FC<UBParagraphProps> = ({
     // Prevent default link behavior
     event.preventDefault();
   };
+  // Handle text selection for highlighting
+  const handleMouseUp = () => {
+    if (typeof window === 'undefined' || !highlightManager) return;
+
+    const selection = window.getSelection();
+    if (!selection || selection.isCollapsed || !paragraphRef.current) return;
+
+    // Check if the selection is within this paragraph
+    const range = selection.getRangeAt(0);
+    const container = paragraphRef.current;
+
+    if (container.contains(range.commonAncestorContainer)) {
+      // Get the selected text
+      const selectedText = selection.toString().trim();
+
+      if (selectedText) {
+        // Show the highlight menu
+        const rect = range.getBoundingClientRect();
+        const top = rect.top + window.scrollY - 40; // Position above the selection
+        const left = rect.left + window.scrollX + rect.width / 2 - 75; // Center horizontally
+
+        // Call the highlightManager to show the menu
+        highlightManager.showSelectionMenu({
+          text: selectedText,
+          position: { top, left },
+          onHighlight: (color: string) => {
+            // Create a highlight with the selected color
+            highlightManager.createHighlight(selectedText, color, {
+              paperId: currentPaper.toString(),
+              paragraphId: paragraph.number.toString(),
+            });
+          },
+        });
+      }
+    }
+  };
 
   return (
-    <div className={paragraphClasses} id={`p-${paragraph.number}`} ref={paragraphRef}>
+    <div
+      className={paragraphClasses}
+      id={`p-${paragraph.number}`}
+      ref={paragraphRef}
+      onMouseUp={handleMouseUp}
+    >
       {showParagraphNumbers && <span className="ub-paragraph-number">{paragraph.number}</span>}
 
       {/* Use ReferenceProcessor to detect and link references */}

@@ -2,6 +2,33 @@
 
 import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
 
+// Define the selection menu position type
+interface Position {
+  top: number;
+  left: number;
+}
+
+// Define the selection menu options type
+interface SelectionMenuOptions {
+  text: string;
+  position: Position;
+  onHighlight: (color: string) => void;
+}
+
+// Define the highlight metadata type
+interface HighlightMetadata {
+  paperId: string;
+  paragraphId: string;
+  [key: string]: string;
+}
+
+// Define the highlight manager type
+interface HighlightManager {
+  showSelectionMenu: (options: SelectionMenuOptions) => void;
+  createHighlight: (text: string, color: string, metadata: HighlightMetadata) => void;
+  removeHighlight: (id: string) => void;
+}
+
 // Define the context type
 interface HighlightContextType {
   showHighlights: boolean;
@@ -9,6 +36,7 @@ interface HighlightContextType {
   highlightText: (text: string, color: string) => void;
   removeHighlight: (id: string) => void;
   highlights: Highlight[];
+  highlightManager: HighlightManager;
 }
 
 // Define the highlight type
@@ -26,6 +54,11 @@ const HighlightContext = createContext<HighlightContextType>({
   highlightText: () => {},
   removeHighlight: () => {},
   highlights: [],
+  highlightManager: {
+    showSelectionMenu: () => {},
+    createHighlight: () => {},
+    removeHighlight: () => {},
+  },
 });
 
 // Define the provider props
@@ -44,6 +77,12 @@ export const HighlightProvider: React.FC<HighlightProviderProps> = ({
   const [showHighlights, setShowHighlights] = useState<boolean>(true);
   const [highlights, setHighlights] = useState<Highlight[]>([]);
   const [darkMode, setDarkMode] = useState<boolean>(isDarkMode);
+  const [selectionMenuVisible, setSelectionMenuVisible] = useState<boolean>(false);
+  const [selectionMenuPosition, setSelectionMenuPosition] = useState<Position>({ top: 0, left: 0 });
+  const [selectedText, setSelectedText] = useState<string>('');
+  const [onHighlightCallback, setOnHighlightCallback] = useState<((color: string) => void) | null>(
+    null
+  );
 
   // Check for dark mode
   useEffect(() => {
@@ -111,6 +150,41 @@ export const HighlightProvider: React.FC<HighlightProviderProps> = ({
     }
   }, [containerSelector, showHighlights]);
 
+  // Create the highlight manager
+  const highlightManager: HighlightManager = {
+    showSelectionMenu: (options: SelectionMenuOptions) => {
+      setSelectedText(options.text);
+      setSelectionMenuPosition(options.position);
+      setOnHighlightCallback(() => options.onHighlight);
+      setSelectionMenuVisible(true);
+
+      // Hide the menu after 5 seconds if no action is taken
+      setTimeout(() => {
+        setSelectionMenuVisible(false);
+      }, 5000);
+    },
+
+    createHighlight: (text: string, color: string, metadata: HighlightMetadata) => {
+      // Create a new highlight
+      const newHighlight: Highlight = {
+        id: `highlight-${Date.now()}`,
+        text,
+        color,
+        createdAt: new Date(),
+      };
+
+      setHighlights([...highlights, newHighlight]);
+
+      // In a real implementation, we would apply the highlight to the DOM
+      // This is a simplified version
+      console.log(
+        `Created highlight: "${text}" with color ${color} in paper ${metadata.paperId}, paragraph ${metadata.paragraphId}`
+      );
+    },
+
+    removeHighlight: removeHighlight,
+  };
+
   return (
     <HighlightContext.Provider
       value={{
@@ -119,9 +193,58 @@ export const HighlightProvider: React.FC<HighlightProviderProps> = ({
         highlightText,
         removeHighlight,
         highlights,
+        highlightManager,
       }}
     >
       {children}
+
+      {/* Selection menu */}
+      {selectionMenuVisible && (
+        <div
+          className="ub-selection-menu"
+          style={{
+            position: 'absolute',
+            top: `${selectionMenuPosition.top}px`,
+            left: `${selectionMenuPosition.left}px`,
+          }}
+        >
+          <button
+            className="ub-action-button ub-color-yellow"
+            onClick={() => {
+              if (onHighlightCallback) onHighlightCallback('yellow');
+              setSelectionMenuVisible(false);
+            }}
+          >
+            <span style={{ backgroundColor: 'rgba(255, 245, 120, 0.6)', padding: '4px 8px' }}>
+              A
+            </span>
+          </button>
+
+          <button
+            className="ub-action-button ub-color-green"
+            onClick={() => {
+              if (onHighlightCallback) onHighlightCallback('green');
+              setSelectionMenuVisible(false);
+            }}
+          >
+            <span style={{ backgroundColor: 'rgba(152, 251, 152, 0.6)', padding: '4px 8px' }}>
+              A
+            </span>
+          </button>
+
+          <button
+            className="ub-action-button ub-color-blue"
+            onClick={() => {
+              if (onHighlightCallback) onHighlightCallback('blue');
+              setSelectionMenuVisible(false);
+            }}
+          >
+            <span style={{ backgroundColor: 'rgba(176, 196, 222, 0.6)', padding: '4px 8px' }}>
+              A
+            </span>
+          </button>
+        </div>
+      )}
     </HighlightContext.Provider>
   );
 };
