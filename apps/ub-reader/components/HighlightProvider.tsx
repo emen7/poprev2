@@ -22,6 +22,9 @@ interface HighlightMetadata {
   [key: string]: string;
 }
 
+// Local storage key for highlights
+const HIGHLIGHTS_STORAGE_KEY = 'ub-reader-highlights';
+
 // Define the highlight manager type
 interface HighlightManager {
   showSelectionMenu: (options: SelectionMenuOptions) => void;
@@ -45,6 +48,7 @@ interface Highlight {
   text: string;
   color: string;
   createdAt: Date;
+  metadata: HighlightMetadata;
 }
 
 // Create the context with a default value
@@ -115,24 +119,69 @@ export const HighlightProvider: React.FC<HighlightProviderProps> = ({
     }
   };
 
+  // Helper function to save highlights to localStorage
+  const saveHighlightsToStorage = (highlightsToSave: Highlight[]) => {
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem(HIGHLIGHTS_STORAGE_KEY, JSON.stringify(highlightsToSave));
+      } catch (error) {
+        console.error('Error saving highlights to localStorage:', error);
+      }
+    }
+  };
+
+  // Helper function to load highlights from localStorage
+  const loadHighlightsFromStorage = (): Highlight[] => {
+    if (typeof window !== 'undefined') {
+      try {
+        const storedHighlights = localStorage.getItem(HIGHLIGHTS_STORAGE_KEY);
+        if (storedHighlights) {
+          const parsedHighlights = JSON.parse(storedHighlights);
+          // Convert string dates back to Date objects
+          return parsedHighlights.map((h: any) => ({
+            ...h,
+            createdAt: new Date(h.createdAt),
+          }));
+        }
+      } catch (error) {
+        console.error('Error loading highlights from localStorage:', error);
+      }
+    }
+    return [];
+  };
+
+  // Load highlights from localStorage on component mount
+  useEffect(() => {
+    const storedHighlights = loadHighlightsFromStorage();
+    if (storedHighlights.length > 0) {
+      setHighlights(storedHighlights);
+    }
+  }, []);
+
   // Highlight text
-  const highlightText = (text: string, color: string) => {
+  const highlightText = (
+    text: string,
+    color: string,
+    metadata: HighlightMetadata = { paperId: '0', paragraphId: '0' }
+  ) => {
     const newHighlight: Highlight = {
       id: `highlight-${Date.now()}`,
       text,
       color,
       createdAt: new Date(),
+      metadata,
     };
 
-    setHighlights([...highlights, newHighlight]);
-
-    // In a real implementation, we would apply the highlight to the DOM
-    // This is a simplified version
+    const updatedHighlights = [...highlights, newHighlight];
+    setHighlights(updatedHighlights);
+    saveHighlightsToStorage(updatedHighlights);
   };
 
   // Remove highlight
   const removeHighlight = (id: string) => {
-    setHighlights(highlights.filter(highlight => highlight.id !== id));
+    const updatedHighlights = highlights.filter(highlight => highlight.id !== id);
+    setHighlights(updatedHighlights);
+    saveHighlightsToStorage(updatedHighlights);
 
     // In a real implementation, we would remove the highlight from the DOM
     // This is a simplified version
@@ -171,9 +220,12 @@ export const HighlightProvider: React.FC<HighlightProviderProps> = ({
         text,
         color,
         createdAt: new Date(),
+        metadata,
       };
 
-      setHighlights([...highlights, newHighlight]);
+      const updatedHighlights = [...highlights, newHighlight];
+      setHighlights(updatedHighlights);
+      saveHighlightsToStorage(updatedHighlights);
 
       // In a real implementation, we would apply the highlight to the DOM
       // This is a simplified version
