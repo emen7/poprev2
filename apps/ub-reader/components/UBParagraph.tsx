@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { useUserPreferences } from '../contexts/UserPreferencesContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { ReferenceProcessor } from './references';
+import { useHighlight } from '@ub/highlighting';
 
 interface UBParagraphProps {
   paragraph: {
@@ -27,6 +28,8 @@ export const UBParagraph: React.FC<UBParagraphProps> = ({
   currentPaper = 0,
 }) => {
   const { preferences } = useUserPreferences();
+  const paragraphRef = useRef<HTMLDivElement>(null);
+  const { highlightManager } = useHighlight();
 
   // Try to use the ThemeContext, but provide a fallback if it's not available
   let contentTheme = 'traditional';
@@ -86,7 +89,7 @@ export const UBParagraph: React.FC<UBParagraphProps> = ({
   };
 
   return (
-    <div className={paragraphClasses} id={`p-${paragraph.number}`}>
+    <div className={paragraphClasses} id={`p-${paragraph.number}`} ref={paragraphRef}>
       {showParagraphNumbers && <span className="ub-paragraph-number">{paragraph.number}</span>}
 
       {/* Use ReferenceProcessor to detect and link references */}

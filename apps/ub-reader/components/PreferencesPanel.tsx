@@ -2,12 +2,14 @@
 
 import React, { useState } from 'react';
 import { useUserPreferences } from '../contexts/UserPreferencesContext';
+import { useHighlight } from '@ub/highlighting';
 
 /**
  * Component for displaying and managing user preferences
  */
 export const PreferencesPanel: React.FC = () => {
   const { preferences, updatePreferences, resetPreferences } = useUserPreferences();
+  const { showHighlights, setShowHighlights } = useHighlight();
   const [isOpen, setIsOpen] = useState(false);
 
   const togglePanel = () => {
@@ -111,6 +113,18 @@ export const PreferencesPanel: React.FC = () => {
                     className="form-checkbox h-5 w-5 text-blue-600"
                   />
                   <span className="ml-2 text-gray-700">Show paragraph numbers</span>
+                </label>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <label className="flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={showHighlights}
+                    onChange={e => setShowHighlights(e.target.checked)}
+                    className="form-checkbox h-5 w-5 text-blue-600"
+                  />
+                  <span className="ml-2 text-gray-700">Show highlights</span>
                 </label>
               </div>
 

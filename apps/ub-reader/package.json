@@ -14,6 +14,7 @@
     "@ub-ecosystem/config": "*",
     "@ub-ecosystem/content-transformer": "*",
     "@ub-ecosystem/data-models": "*",
+    "@ub/highlighting": "*",
     "@ub-ecosystem/reference-parser": "*",
     "@ub-ecosystem/state-management": "*",
     "@ub-ecosystem/ui": "*",
