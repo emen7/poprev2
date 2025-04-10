@@ -45,6 +45,9 @@
         /* Controls */
         .controls {
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         .dark-mode-toggle {
@@ -70,215 +73,15 @@
         }
 
         /* Custom selection styles */
+        ::selection {
+            background-color: rgba(0, 0, 0, 0.2);
+            /* Transparent gray for light mode */
+        }
+
         body.dark-mode ::selection {
             background-color: rgba(0, 0, 0, 0.2);
             color: #00e5ff;
-            /* Bright cyan color as requested */
-        }
-
-        /* Selection menu */
-        .selection-menu {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 4px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 8px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            min-width: 150px;
-            animation: fadeIn 0.2s ease-in-out;
-            transition: background-color 0.3s;
-        }
-
-        body.dark-mode .selection-menu {
-            background-color: rgba(51, 51, 51, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(5px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .selection-actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        .action-button {
-            background: none;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .action-button:hover {
-            background-color: #f0f0f0;
-            border-color: #ccc;
-        }
-
-        .action-button.selected {
-            background-color: #e6f7ff;
-            border-color: #1890ff;
-            color: #1890ff;
-        }
-
-        body.dark-mode .action-button {
-            border-color: #444;
-            color: #ddd;
-        }
-
-        body.dark-mode .action-button:hover {
-            background-color: #444;
-            border-color: #555;
-        }
-
-        body.dark-mode .action-button.selected {
-            background-color: #096dd9;
-            border-color: #1890ff;
-            color: #fff;
-        }
-
-        .selection-controls {
-            display: flex;
-            justify-content: flex-end;
-            gap: 8px;
-        }
-
-        .confirm-button,
-        .cancel-button {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.2s ease;
-        }
-
-        .confirm-button {
-            background-color: #52c41a;
-            color: white;
-            border: none;
-        }
-
-        .confirm-button:hover {
-            background-color: #73d13d;
-        }
-
-        .cancel-button {
-            background-color: #f5f5f5;
-            color: #666;
-            border: 1px solid #ddd;
-        }
-
-        .cancel-button:hover {
-            background-color: #fafafa;
-            color: #333;
-        }
-
-        body.dark-mode .cancel-button {
-            background-color: #444;
-            color: #ddd;
-            border-color: #555;
-        }
-
-        body.dark-mode .cancel-button:hover {
-            background-color: #555;
-            color: #fff;
-        }
-
-        /* Color picker */
-        .highlight-color-picker {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .highlight-color-options {
-            display: flex;
-            gap: 8px;
-        }
-
-        .highlight-color-option {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            border: 1px solid #ddd;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .highlight-color-option:hover {
-            transform: scale(1.1);
-        }
-
-        .highlight-color-option.selected {
-            border: 2px solid #333;
-            transform: scale(1.1);
-        }
-
-        body.dark-mode .highlight-color-option.selected {
-            border-color: #fff;
-        }
-
-        /* Light mode colors (background highlights) */
-        .highlight-color-cyan {
-            background-color: rgba(0, 229, 255, 0.5);
-        }
-
-        .highlight-color-pink {
-            background-color: rgba(255, 105, 180, 0.5);
-        }
-
-        .highlight-color-orange {
-            background-color: rgba(255, 165, 0, 0.5);
-        }
-
-        .highlight-color-green {
-            background-color: rgba(50, 205, 50, 0.5);
-        }
-
-        .highlight-color-purple {
-            background-color: rgba(147, 112, 219, 0.5);
-        }
-
-        /* Dark mode colors (text colors) */
-        body.dark-mode .highlight-color-cyan {
-            background-color: #00e5ff;
-        }
-
-        body.dark-mode .highlight-color-pink {
-            background-color: #ff69b4;
-        }
-
-        body.dark-mode .highlight-color-orange {
-            background-color: #ffa500;
-        }
-
-        body.dark-mode .highlight-color-green {
-            background-color: #32cd32;
-        }
-
-        body.dark-mode .highlight-color-purple {
-            background-color: #9370db;
+            /* Bright cyan color for dark mode */
         }
 
         /* Instructions */
@@ -314,51 +117,165 @@
             color: #aaa;
         }
 
-        /* Highlighted text styles */
-        .highlight-cyan {
-            background-color: rgba(0, 229, 255, 0.5);
+        /* Color palette display */
+        .color-palette {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
         }
 
-        .highlight-pink {
-            background-color: rgba(255, 105, 180, 0.5);
+        .color-swatch {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
+            width: 80px;
         }
 
-        .highlight-orange {
-            background-color: rgba(255, 165, 0, 0.5);
+        .swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            position: relative;
         }
 
-        .highlight-green {
-            background-color: rgba(50, 205, 50, 0.5);
+        .swatch-name {
+            font-size: 12px;
+            text-align: center;
         }
 
-        .highlight-purple {
-            background-color: rgba(147, 112, 219, 0.5);
+        body.dark-mode .swatch {
+            border-color: #444;
         }
 
-        /* Dark mode highlighted text styles */
-        body.dark-mode .highlight-cyan {
-            background-color: transparent;
-            color: #00e5ff;
+        /* No highlight swatch */
+        .swatch.swatch-none {
+            background-color: white;
+            position: relative;
         }
 
-        body.dark-mode .highlight-pink {
-            background-color: transparent;
-            color: #ff69b4;
+        .swatch.swatch-none::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: red;
+            transform: rotate(45deg);
         }
 
-        body.dark-mode .highlight-orange {
-            background-color: transparent;
-            color: #ffa500;
+        .swatch.swatch-none::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: red;
+            transform: rotate(-45deg);
         }
 
-        body.dark-mode .highlight-green {
-            background-color: transparent;
-            color: #32cd32;
+        body.dark-mode .swatch.swatch-none {
+            background-color: #333;
         }
 
-        body.dark-mode .highlight-purple {
-            background-color: transparent;
-            color: #9370db;
+        /* Mode-specific color palettes */
+        .mode-palettes {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .palette-section {
+            border: 1px solid #eaeaea;
+            border-radius: 5px;
+            padding: 15px;
+            background-color: #fff;
+        }
+
+        body.dark-mode .palette-section {
+            background-color: #333;
+            border-color: #444;
+        }
+
+        .palette-section h4 {
+            margin-bottom: 10px;
+        }
+
+        /* Example text */
+        .example-text {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            font-size: 14px;
+        }
+
+        body.dark-mode .example-text {
+            background-color: #2a2a2a;
+        }
+
+        /* Toggle switch */
+        .highlight-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .highlight-toggle input[type="checkbox"] {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+            position: absolute;
+        }
+
+        .highlight-toggle label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 40px;
+            height: 20px;
+            background: #ddd;
+            display: block;
+            border-radius: 100px;
+            position: relative;
+        }
+
+        .highlight-toggle label:after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 16px;
+            height: 16px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+        }
+
+        .highlight-toggle input:checked+label {
+            background: #3498db;
+        }
+
+        .highlight-toggle input:checked+label:after {
+            left: calc(100% - 2px);
+            transform: translateX(-100%);
+        }
+
+        .highlight-toggle label:active:after {
+            width: 24px;
+        }
+
+        body.dark-mode .highlight-toggle label {
+            background: #555;
+        }
+
+        body.dark-mode .highlight-toggle input:checked+label {
+            background: #2980b9;
         }
     </style>
 </head>
@@ -374,6 +291,12 @@
                 <input id="darkModeToggle" type="checkbox">
                 Dark Mode
             </label>
+
+            <div class="highlight-toggle">
+                <input id="highlightToggle" type="checkbox" checked>
+                <label for="highlightToggle">Toggle</label>
+                Show Highlights
+            </div>
         </div>
 
         <div class="content" id="contentContainer">
@@ -404,351 +327,286 @@
                 <li>Select text in the content area above</li>
                 <li>Click the highlight icon (🖌️) in the menu</li>
                 <li>Choose a color from the color picker</li>
-                <li>Click the checkmark to apply the highlight</li>
+                <li>Use the "no highlight" option (crossed circle) to remove highlights</li>
+                <li>Toggle the "Show Highlights" switch to show or hide all highlights</li>
             </ol>
             <p>
                 In dark mode, highlighting changes the text color. In light mode, it adds a background highlight.
             </p>
             <p>
-                The default text selection color in dark mode is set to a bright cyan (#00e5ff).
+                The default text selection color is set to a transparent gray (rgba(0, 0, 0, 0.2)).
             </p>
+
+            <h3>Available Colors</h3>
+            <div class="color-palette" id="colorPalette">
+                <!-- Color swatches will be added here by JavaScript -->
+            </div>
+
+            <div class="mode-palettes">
+                <div class="palette-section">
+                    <h4>Light Mode Highlights (Background Colors)</h4>
+                    <div class="color-palette" id="lightModePalette">
+                        <!-- Light mode color swatches will be added here by JavaScript -->
+                    </div>
+                    <div class="example-text" id="lightModeExample">
+                        <!-- Example text will be added here by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="palette-section">
+                    <h4>Dark Mode Highlights (Text Colors)</h4>
+                    <div class="color-palette" id="darkModePalette">
+                        <!-- Dark mode color swatches will be added here by JavaScript -->
+                    </div>
+                    <div class="example-text" id="darkModeExample">
+                        <!-- Example text will be added here by JavaScript -->
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Include the highlight module -->
+    <script src="highlight-module.js"></script>
 
     <script>
         // DOM elements
         const contentContainer = document.getElementById('contentContainer');
         const darkModeToggle = document.getElementById('darkModeToggle');
+        const highlightToggle = document.getElementById('highlightToggle');
+        const colorPalette = document.getElementById('colorPalette');
+        const lightModePalette = document.getElementById('lightModePalette');
+        const darkModePalette = document.getElementById('darkModePalette');
+        const lightModeExample = document.getElementById('lightModeExample');
+        const darkModeExample = document.getElementById('darkModeExample');
 
-        // State
-        let selectionMenu = null;
-        let selectedText = '';
-        let selectedAction = null;
-        let selectedColor = 'cyan';
-        let showingColorPicker = false;
+        // Research-backed colors for highlighting with increased visibility
+        const colors = [
+            // No highlight option (for removing highlights)
+            {
+                name: 'none',
+                lightModeColor: 'transparent',
+                darkModeColor: 'inherit',
+                displayName: 'No Highlight'
+            },
+            // Primary: Yellow - Traditional highlighter color, high recognition
+            {
+                name: 'yellow',
+                lightModeColor: 'rgba(255, 245, 120, 0.6)', // More saturated yellow with 60% opacity
+                darkModeColor: '#FFDE21' // Yellow for dark mode
+            },
+            // Orange (formerly Coral) - Warm accent color
+            {
+                name: 'orange',
+                lightModeColor: 'rgba(255, 133, 89, 0.6)', // Coral with 60% opacity for light mode
+                darkModeColor: '#FF8559' // Coral for dark mode
+            },
+            // Soft Pink - Warm accent color
+            {
+                name: 'pink',
+                lightModeColor: 'rgba(255, 193, 204, 0.6)', // Soft pink with 60% opacity
+                darkModeColor: '#FFC1CC' // Soft pink for dark mode
+            },
+            // Pastel Red - Warm accent color
+            {
+                name: 'red',
+                lightModeColor: 'rgba(255, 116, 108, 0.6)', // Pastel red with 60% opacity
+                darkModeColor: '#FF746C' // Pastel red for dark mode
+            },
+            // Lavender - Cool complementary color
+            {
+                name: 'lavender',
+                lightModeColor: 'rgba(179, 156, 208, 0.6)', // Lavender with 60% opacity
+                darkModeColor: '#B39CD0' // Lavender for dark mode
+            },
+            // Light Steel Blue - Cool complementary color
+            {
+                name: 'blue',
+                lightModeColor: 'rgba(176, 196, 222, 0.6)', // Light steel blue with 60% opacity
+                darkModeColor: '#B0C4DE' // Light steel blue for dark mode
+            },
+            // DodgerBlue - Bright blue for dark mode
+            {
+                name: 'dodgerblue',
+                lightModeColor: 'rgba(30, 144, 255, 0.6)', // DodgerBlue with 60% opacity
+                darkModeColor: '#1E90FF', // DodgerBlue for dark mode
+                displayName: 'Dodger Blue'
+            },
+            // Pale Green - High contrast option
+            {
+                name: 'green',
+                lightModeColor: 'rgba(152, 251, 152, 0.6)', // Pale green with 60% opacity
+                darkModeColor: '#98FB98' // Pale green for dark mode
+            }
+        ];
 
-        // Dark mode
-        let isDarkMode = false;
+        // Check if dark mode is enabled
+        function isDarkMode() {
+            return document.body.classList.contains('dark-mode');
+        }
 
         // Toggle dark mode
         darkModeToggle.addEventListener('change', () => {
-            isDarkMode = darkModeToggle.checked;
-            document.body.classList.toggle('dark-mode', isDarkMode);
+            document.body.classList.toggle('dark-mode', darkModeToggle.checked);
+            console.log('Dark mode:', isDarkMode());
+            updateColorPalette();
+            updateExamples();
         });
 
-        // Create selection menu
-        function createSelectionMenu(position) {
-            // Remove existing menu if any
-            removeSelectionMenu();
+        // Toggle highlight visibility
+        highlightToggle.addEventListener('change', () => {
+            highlightManager.setShowHighlights(highlightToggle.checked);
+            console.log('Show highlights:', highlightToggle.checked);
+        });
 
-            // Create menu element
-            selectionMenu = document.createElement('div');
-            selectionMenu.className = 'selection-menu';
-            selectionMenu.style.top = `${position.top}px`;
-            selectionMenu.style.left = `${position.left}px`;
-
-            if (showingColorPicker) {
-                createColorPicker();
-            } else {
-                createActionButtons();
-            }
-
-            // Add menu to document
-            document.body.appendChild(selectionMenu);
-        }
-
-        // Create action buttons
-        function createActionButtons() {
-            // Create actions container
-            const actionsContainer = document.createElement('div');
-            actionsContainer.className = 'selection-actions';
-
-            // Create action buttons
-            const highlightButton = document.createElement('button');
-            highlightButton.className = `action-button ${selectedAction === 'highlight' ? 'selected' : ''}`;
-            highlightButton.innerHTML = '🖌️';
-            highlightButton.title = 'Highlight text';
-            highlightButton.addEventListener('click', () => {
-                selectedAction = 'highlight';
-                showingColorPicker = true;
-                createSelectionMenu({
-                    top: parseInt(selectionMenu.style.top),
-                    left: parseInt(selectionMenu.style.left)
-                });
-            });
-
-            const copyButton = document.createElement('button');
-            copyButton.className = `action-button ${selectedAction === 'copy' ? 'selected' : ''}`;
-            copyButton.innerHTML = '📋';
-            copyButton.title = 'Copy text';
-            copyButton.addEventListener('click', () => {
-                selectedAction = 'copy';
-                updateActionButtons();
-            });
-
-            const noteButton = document.createElement('button');
-            noteButton.className = `action-button ${selectedAction === 'note' ? 'selected' : ''}`;
-            noteButton.innerHTML = '📝';
-            noteButton.title = 'Add note';
-            noteButton.addEventListener('click', () => {
-                selectedAction = 'note';
-                updateActionButtons();
-            });
-
-            const quoteButton = document.createElement('button');
-            quoteButton.className = `action-button ${selectedAction === 'quote' ? 'selected' : ''}`;
-            quoteButton.innerHTML = '💬';
-            quoteButton.title = 'Save quote';
-            quoteButton.addEventListener('click', () => {
-                selectedAction = 'quote';
-                updateActionButtons();
-            });
-
-            // Add buttons to actions container
-            actionsContainer.appendChild(highlightButton);
-            actionsContainer.appendChild(copyButton);
-            actionsContainer.appendChild(noteButton);
-            actionsContainer.appendChild(quoteButton);
-
-            // Create controls container
-            const controlsContainer = document.createElement('div');
-            controlsContainer.className = 'selection-controls';
-
-            // Create confirm button
-            const confirmButton = document.createElement('button');
-            confirmButton.className = 'confirm-button';
-            confirmButton.textContent = '✓';
-            confirmButton.title = 'Apply';
-            confirmButton.addEventListener('click', handleConfirm);
-
-            // Create cancel button
-            const cancelButton = document.createElement('button');
-            cancelButton.className = 'cancel-button';
-            cancelButton.textContent = '✕';
-            cancelButton.title = 'Cancel';
-            cancelButton.addEventListener('click', removeSelectionMenu);
-
-            // Add buttons to controls container
-            controlsContainer.appendChild(confirmButton);
-            controlsContainer.appendChild(cancelButton);
-
-            // Add containers to menu
-            selectionMenu.appendChild(actionsContainer);
-            selectionMenu.appendChild(controlsContainer);
-
-            // Function to update action buttons
-            function updateActionButtons() {
-                // Reset all buttons
-                highlightButton.className = 'action-button';
-                copyButton.className = 'action-button';
-                noteButton.className = 'action-button';
-                quoteButton.className = 'action-button';
-
-                // Highlight selected button
-                if (selectedAction === 'highlight') {
-                    highlightButton.className = 'action-button selected';
-                } else if (selectedAction === 'copy') {
-                    copyButton.className = 'action-button selected';
-                } else if (selectedAction === 'note') {
-                    noteButton.className = 'action-button selected';
-                } else if (selectedAction === 'quote') {
-                    quoteButton.className = 'action-button selected';
-                }
-            }
-        }
-
-        // Create color picker
-        function createColorPicker() {
-            // Create color picker container
-            const colorPickerContainer = document.createElement('div');
-            colorPickerContainer.className = 'highlight-color-picker';
-
-            // Create color options container
-            const colorOptionsContainer = document.createElement('div');
-            colorOptionsContainer.className = 'highlight-color-options';
-
-            // Create color options - complementary colors with cyan (#00e5ff) as primary
-            const colors = ['cyan', 'pink', 'orange', 'green', 'purple'];
+        // Create color palette display
+        function createColorPalette() {
+            // Create the main color palette
             colors.forEach(color => {
-                const colorOption = document.createElement('div');
-                colorOption.className = `highlight-color-option highlight-color-${color} ${selectedColor === color ? 'selected' : ''}`;
-                colorOption.title = `${color} highlight`;
-                colorOption.addEventListener('click', () => {
-                    selectedColor = color;
-                    updateColorOptions();
-                });
-                colorOptionsContainer.appendChild(colorOption);
+                const swatch = document.createElement('div');
+                swatch.className = 'color-swatch';
+                swatch.dataset.colorName = color.name;
+
+                const swatchColor = document.createElement('div');
+                swatchColor.className = 'swatch';
+                if (color.name === 'none') {
+                    swatchColor.classList.add('swatch-none');
+                } else {
+                    swatchColor.style.backgroundColor = color.lightModeColor;
+                }
+
+                const swatchName = document.createElement('div');
+                swatchName.className = 'swatch-name';
+                swatchName.textContent = color.displayName || color.name;
+
+                swatch.appendChild(swatchColor);
+                swatch.appendChild(swatchName);
+                colorPalette.appendChild(swatch);
             });
 
-            // Create controls container
-            const controlsContainer = document.createElement('div');
-            controlsContainer.className = 'selection-controls';
+            // Create the light mode palette (skip the 'none' option)
+            colors.slice(1).forEach(color => {
+                const swatch = document.createElement('div');
+                swatch.className = 'color-swatch';
 
-            // Create confirm button
-            const confirmButton = document.createElement('button');
-            confirmButton.className = 'confirm-button';
-            confirmButton.textContent = '✓';
-            confirmButton.title = 'Apply highlight';
-            confirmButton.addEventListener('click', handleHighlightConfirm);
+                const swatchColor = document.createElement('div');
+                swatchColor.className = 'swatch';
+                swatchColor.style.backgroundColor = color.lightModeColor;
 
-            // Create cancel button
-            const cancelButton = document.createElement('button');
-            cancelButton.className = 'cancel-button';
-            cancelButton.textContent = '✕';
-            cancelButton.title = 'Cancel';
-            cancelButton.addEventListener('click', () => {
-                showingColorPicker = false;
-                createSelectionMenu({
-                    top: parseInt(selectionMenu.style.top),
-                    left: parseInt(selectionMenu.style.left)
-                });
+                const swatchName = document.createElement('div');
+                swatchName.className = 'swatch-name';
+                swatchName.textContent = color.displayName || color.name;
+
+                swatch.appendChild(swatchColor);
+                swatch.appendChild(swatchName);
+                lightModePalette.appendChild(swatch);
             });
 
-            // Add buttons to controls container
-            controlsContainer.appendChild(confirmButton);
-            controlsContainer.appendChild(cancelButton);
+            // Create the dark mode palette (skip the 'none' option)
+            colors.slice(1).forEach(color => {
+                const swatch = document.createElement('div');
+                swatch.className = 'color-swatch';
 
-            // Add containers to color picker
-            colorPickerContainer.appendChild(colorOptionsContainer);
-            colorPickerContainer.appendChild(controlsContainer);
+                const swatchColor = document.createElement('div');
+                swatchColor.className = 'swatch';
+                swatchColor.style.backgroundColor = color.darkModeColor;
 
-            // Add color picker to menu
-            selectionMenu.appendChild(colorPickerContainer);
+                const swatchName = document.createElement('div');
+                swatchName.className = 'swatch-name';
+                swatchName.textContent = color.displayName || color.name;
 
-            // Function to update color options
-            function updateColorOptions() {
-                const colorOptions = colorOptionsContainer.querySelectorAll('.highlight-color-option');
-                colorOptions.forEach(option => {
-                    option.classList.remove('selected');
-                    if (option.classList.contains(`highlight-color-${selectedColor}`)) {
-                        option.classList.add('selected');
-                    }
-                });
-            }
+                swatch.appendChild(swatchColor);
+                swatch.appendChild(swatchName);
+                darkModePalette.appendChild(swatch);
+            });
+
+            // Create example text
+            updateExamples();
         }
 
-        // Remove selection menu
-        function removeSelectionMenu() {
-            if (selectionMenu) {
-                document.body.removeChild(selectionMenu);
-                selectionMenu = null;
-                selectedAction = null;
-                showingColorPicker = false;
-            }
+        // Update example text
+        function updateExamples() {
+            // Light mode example
+            lightModeExample.innerHTML = 'This is an example of ';
+
+            // Get all colors except 'none' for light mode
+            const lightModeColors = colors.slice(1);
+
+            lightModeColors.forEach((color, index) => {
+                const span = document.createElement('span');
+                span.style.backgroundColor = color.lightModeColor;
+                span.textContent = color.displayName || color.name;
+
+                lightModeExample.appendChild(span);
+
+                // Add comma or "and" between colors
+                if (index < lightModeColors.length - 2) {
+                    lightModeExample.appendChild(document.createTextNode(', '));
+                } else if (index === lightModeColors.length - 2) {
+                    lightModeExample.appendChild(document.createTextNode(', and '));
+                }
+            });
+
+            lightModeExample.appendChild(document.createTextNode(' highlights in light mode.'));
+
+            // Dark mode example
+            darkModeExample.innerHTML = 'This is an example of ';
+
+            // Get all colors except 'none' for dark mode
+            const darkModeColors = colors.slice(1);
+
+            darkModeColors.forEach((color, index) => {
+                const span = document.createElement('span');
+                span.style.color = color.darkModeColor;
+                span.textContent = color.displayName || color.name;
+
+                darkModeExample.appendChild(span);
+
+                // Add comma or "and" between colors
+                if (index < darkModeColors.length - 2) {
+                    darkModeExample.appendChild(document.createTextNode(', '));
+                } else if (index === darkModeColors.length - 2) {
+                    darkModeExample.appendChild(document.createTextNode(', and '));
+                }
+            });
+
+            darkModeExample.appendChild(document.createTextNode(' highlights in dark mode.'));
         }
 
-        // Handle confirm button click
-        function handleConfirm() {
-            if (selectedAction === 'copy') {
-                // Copy selected text
-                navigator.clipboard.writeText(selectedText).then(() => {
-                    alert(`Copied: "${selectedText.substring(0, 30)}${selectedText.length > 30 ? '...' : ''}"`);
-                }).catch(err => {
-                    console.error('Failed to copy text:', err);
-                });
-            } else if (selectedAction === 'note') {
-                // Add note (in a real app, this would add a note)
-                alert(`Note added for: "${selectedText}"`);
-            } else if (selectedAction === 'quote') {
-                // Add quote (in a real app, this would save a quote)
-                alert(`Quote saved: "${selectedText}"`);
-            } else if (selectedAction === 'highlight') {
-                // Show color picker
-                showingColorPicker = true;
-                createSelectionMenu({
-                    top: parseInt(selectionMenu.style.top),
-                    left: parseInt(selectionMenu.style.left)
-                });
-                return;
-            }
+        // Update color palette based on mode
+        function updateColorPalette() {
+            const darkMode = isDarkMode();
 
-            // Remove selection menu
-            removeSelectionMenu();
+            // Update all color swatches in the main palette
+            document.querySelectorAll('#colorPalette .color-swatch').forEach(swatch => {
+                const colorName = swatch.dataset.colorName;
+                const color = colors.find(c => c.name === colorName);
+
+                if (!color) return;
+
+                // Update the swatch color
+                const swatchColor = swatch.querySelector('.swatch');
+                if (swatchColor && color.name !== 'none') {
+                    swatchColor.style.backgroundColor = darkMode ? color.darkModeColor : color.lightModeColor;
+                }
+            });
         }
 
-        // Handle highlight confirm
-        function handleHighlightConfirm() {
-            // Get the selected range
-            const selection = window.getSelection();
-            if (!selection || selection.isCollapsed) return;
-
-            const range = selection.getRangeAt(0);
-
-            // Create a span element for the highlight
-            const highlightSpan = document.createElement('span');
-            highlightSpan.className = `highlight-${selectedColor}`;
-
-            // Surround the selected text with the highlight span
-            range.surroundContents(highlightSpan);
-
-            // Collapse the selection
-            selection.removeAllRanges();
-
-            // Remove selection menu
-            removeSelectionMenu();
-        }
-
-        // Handle mouse up event
-        contentContainer.addEventListener('mouseup', (event) => {
-            // Ignore right-click
-            if (event.button === 2) return;
-
-            // Get selection
-            const selection = window.getSelection();
-            if (!selection || selection.isCollapsed) {
-                removeSelectionMenu();
-                return;
+        // Initialize the highlight manager
+        const highlightManager = new UBHighlight.HighlightManager({
+            container: contentContainer,
+            colors: colors,
+            isDarkMode: isDarkMode,
+            showHighlights: highlightToggle.checked,
+            onHighlight: (data) => {
+                console.log('Highlighted:', data);
+                // In a real app, you might save this to a database or local storage
             }
-
-            // Get selected text
-            selectedText = selection.toString().trim();
-            if (selectedText.length < 3) {
-                removeSelectionMenu();
-                return;
-            }
-
-            // Calculate menu position
-            const range = selection.getRangeAt(0);
-            const rect = range.getBoundingClientRect();
-
-            const position = {
-                top: rect.bottom + window.scrollY + 10,
-                left: rect.left + window.scrollX,
-            };
-
-            // Create selection menu
-            createSelectionMenu(position);
         });
 
-        // Handle context menu event (right-click)
-        contentContainer.addEventListener('contextmenu', (event) => {
-            // Get selection
-            const selection = window.getSelection();
-            if (!selection || selection.isCollapsed) return;
-
-            // Get selected text
-            selectedText = selection.toString().trim();
-            if (selectedText.length < 3) return;
-
-            // Prevent default context menu
-            event.preventDefault();
-
-            // Calculate menu position
-            const position = {
-                top: event.clientY + window.scrollY,
-                left: event.clientX + window.scrollX,
-            };
-
-            // Create selection menu
-            createSelectionMenu(position);
-        });
-
-        // Handle click outside
-        document.addEventListener('mousedown', (event) => {
-            if (selectionMenu && !selectionMenu.contains(event.target) && !contentContainer.contains(event.target)) {
-                removeSelectionMenu();
-            }
-        });
+        // Initialize the demo
+        createColorPalette();
+        updateColorPalette();
     </script>
 </body>
 
