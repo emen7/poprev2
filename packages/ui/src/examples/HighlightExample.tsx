@@ -146,9 +146,10 @@ export const HighlightExample: React.FC = () => {
               In dark mode, highlighting changes the text color to match the selected color. In
               light mode, it adds a background highlight.
             </p>
+            <p>The default text selection color in dark mode is set to a bright cyan (#00e5ff).</p>
             <p>
-              The default text selection color in dark mode is set to match Perplexity AI's
-              selection color.
+              The color palette includes complementary colors: cyan, pink, orange, green, and
+              purple.
             </p>
           </div>
         </div>

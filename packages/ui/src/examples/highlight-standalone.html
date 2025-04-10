@@ -71,9 +71,9 @@
 
         /* Custom selection styles */
         body.dark-mode ::selection {
-            background-color: rgba(0, 0, 0, 0.1);
-            color: #7c83ff;
-            /* Perplexity AI-like selection color */
+            background-color: rgba(0, 0, 0, 0.2);
+            color: #00e5ff;
+            /* Bright cyan color as requested */
         }
 
         /* Selection menu */
@@ -240,20 +240,20 @@
         }
 
         /* Light mode colors (background highlights) */
-        .highlight-color-yellow {
-            background-color: rgba(255, 255, 0, 0.5);
-        }
-
-        .highlight-color-green {
-            background-color: rgba(0, 255, 0, 0.5);
-        }
-
-        .highlight-color-blue {
-            background-color: rgba(0, 191, 255, 0.5);
+        .highlight-color-cyan {
+            background-color: rgba(0, 229, 255, 0.5);
         }
 
         .highlight-color-pink {
             background-color: rgba(255, 105, 180, 0.5);
+        }
+
+        .highlight-color-orange {
+            background-color: rgba(255, 165, 0, 0.5);
+        }
+
+        .highlight-color-green {
+            background-color: rgba(50, 205, 50, 0.5);
         }
 
         .highlight-color-purple {
@@ -261,20 +261,20 @@
         }
 
         /* Dark mode colors (text colors) */
-        body.dark-mode .highlight-color-yellow {
-            background-color: #ffff00;
-        }
-
-        body.dark-mode .highlight-color-green {
-            background-color: #00ff00;
-        }
-
-        body.dark-mode .highlight-color-blue {
-            background-color: #00bfff;
+        body.dark-mode .highlight-color-cyan {
+            background-color: #00e5ff;
         }
 
         body.dark-mode .highlight-color-pink {
             background-color: #ff69b4;
+        }
+
+        body.dark-mode .highlight-color-orange {
+            background-color: #ffa500;
+        }
+
+        body.dark-mode .highlight-color-green {
+            background-color: #32cd32;
         }
 
         body.dark-mode .highlight-color-purple {
@@ -315,20 +315,20 @@
         }
 
         /* Highlighted text styles */
-        .highlight-yellow {
-            background-color: rgba(255, 255, 0, 0.5);
-        }
-
-        .highlight-green {
-            background-color: rgba(0, 255, 0, 0.5);
-        }
-
-        .highlight-blue {
-            background-color: rgba(0, 191, 255, 0.5);
+        .highlight-cyan {
+            background-color: rgba(0, 229, 255, 0.5);
         }
 
         .highlight-pink {
             background-color: rgba(255, 105, 180, 0.5);
+        }
+
+        .highlight-orange {
+            background-color: rgba(255, 165, 0, 0.5);
+        }
+
+        .highlight-green {
+            background-color: rgba(50, 205, 50, 0.5);
         }
 
         .highlight-purple {
@@ -336,24 +336,24 @@
         }
 
         /* Dark mode highlighted text styles */
-        body.dark-mode .highlight-yellow {
+        body.dark-mode .highlight-cyan {
             background-color: transparent;
-            color: #ffff00;
-        }
-
-        body.dark-mode .highlight-green {
-            background-color: transparent;
-            color: #00ff00;
-        }
-
-        body.dark-mode .highlight-blue {
-            background-color: transparent;
-            color: #00bfff;
+            color: #00e5ff;
         }
 
         body.dark-mode .highlight-pink {
             background-color: transparent;
             color: #ff69b4;
+        }
+
+        body.dark-mode .highlight-orange {
+            background-color: transparent;
+            color: #ffa500;
+        }
+
+        body.dark-mode .highlight-green {
+            background-color: transparent;
+            color: #32cd32;
         }
 
         body.dark-mode .highlight-purple {
@@ -409,6 +409,9 @@
             <p>
                 In dark mode, highlighting changes the text color. In light mode, it adds a background highlight.
             </p>
+            <p>
+                The default text selection color in dark mode is set to a bright cyan (#00e5ff).
+            </p>
         </div>
     </div>
 
@@ -421,7 +424,7 @@
         let selectionMenu = null;
         let selectedText = '';
         let selectedAction = null;
-        let selectedColor = 'yellow';
+        let selectedColor = 'cyan';
         let showingColorPicker = false;
 
         // Dark mode
@@ -564,8 +567,8 @@
             const colorOptionsContainer = document.createElement('div');
             colorOptionsContainer.className = 'highlight-color-options';
 
-            // Create color options
-            const colors = ['yellow', 'green', 'blue', 'pink', 'purple'];
+            // Create color options - complementary colors with cyan (#00e5ff) as primary
+            const colors = ['cyan', 'pink', 'orange', 'green', 'purple'];
             colors.forEach(color => {
                 const colorOption = document.createElement('div');
                 colorOption.className = `highlight-color-option highlight-color-${color} ${selectedColor === color ? 'selected' : ''}`;

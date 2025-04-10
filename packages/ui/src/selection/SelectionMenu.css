@@ -126,6 +126,12 @@
   color: #fff;
 }
 
+/* Custom selection styles for dark mode */
+.selection-menu-dark ::selection {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #00e5ff; /* Bright cyan color as requested */
+}
+
 /* Media query for smaller screens */
 @media (max-width: 768px) {
   .selection-menu {

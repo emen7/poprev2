@@ -41,21 +41,21 @@
   border-color: #fff;
 }
 
-/* Color options */
-.highlight-color-yellow {
-  background-color: rgba(255, 255, 0, 0.5);
-}
-
-.highlight-color-green {
-  background-color: rgba(0, 255, 0, 0.5);
-}
-
-.highlight-color-blue {
-  background-color: rgba(0, 191, 255, 0.5);
+/* Color options - complementary colors with cyan (#00e5ff) as primary */
+.highlight-color-cyan {
+  background-color: rgba(0, 229, 255, 0.5);
 }
 
 .highlight-color-pink {
   background-color: rgba(255, 105, 180, 0.5);
+}
+
+.highlight-color-orange {
+  background-color: rgba(255, 165, 0, 0.5);
+}
+
+.highlight-color-green {
+  background-color: rgba(50, 205, 50, 0.5);
 }
 
 .highlight-color-purple {
@@ -63,20 +63,20 @@
 }
 
 /* Dark mode colors (text colors) */
-.highlight-color-picker-dark .highlight-color-yellow {
-  background-color: #ffff00;
-}
-
-.highlight-color-picker-dark .highlight-color-green {
-  background-color: #00ff00;
-}
-
-.highlight-color-picker-dark .highlight-color-blue {
-  background-color: #00bfff;
+.highlight-color-picker-dark .highlight-color-cyan {
+  background-color: #00e5ff;
 }
 
 .highlight-color-picker-dark .highlight-color-pink {
   background-color: #ff69b4;
+}
+
+.highlight-color-picker-dark .highlight-color-orange {
+  background-color: #ffa500;
+}
+
+.highlight-color-picker-dark .highlight-color-green {
+  background-color: #32cd32;
 }
 
 .highlight-color-picker-dark .highlight-color-purple {

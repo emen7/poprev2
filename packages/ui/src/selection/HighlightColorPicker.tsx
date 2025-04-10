@@ -1,7 +1,7 @@
 import React from 'react';
 import './HighlightColorPicker.css';
 
-export type HighlightColor = 'yellow' | 'green' | 'blue' | 'pink' | 'purple';
+export type HighlightColor = 'cyan' | 'pink' | 'orange' | 'green' | 'purple';
 
 export interface HighlightColorPickerProps {
   /**
@@ -41,15 +41,15 @@ export interface HighlightColorPickerProps {
  * A component for selecting a highlight color.
  */
 export const HighlightColorPicker: React.FC<HighlightColorPickerProps> = ({
-  selectedColor = 'yellow',
+  selectedColor = 'cyan',
   onColorSelect,
   onConfirm,
   onCancel,
   darkMode = false,
   className = '',
 }) => {
-  // Define available colors
-  const colors: HighlightColor[] = ['yellow', 'green', 'blue', 'pink', 'purple'];
+  // Define available colors - complementary colors with cyan (#00e5ff) as primary
+  const colors: HighlightColor[] = ['cyan', 'pink', 'orange', 'green', 'purple'];
 
   // Determine container classes
   const containerClasses = [

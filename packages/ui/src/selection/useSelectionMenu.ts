@@ -232,28 +232,28 @@ export function useSelectionMenu({
       styleElement.id = 'dark-mode-selection-styles';
       styleElement.textContent = `
         ::selection {
-          background-color: rgba(0, 0, 0, 0.1);
-          color: #7c83ff; /* Perplexity AI-like selection color */
+          background-color: rgba(0, 0, 0, 0.2);
+          color: #00e5ff; /* Bright cyan color as requested */
         }
         
-        .highlight-yellow {
+        .highlight-cyan {
           background-color: transparent;
-          color: #ffff00;
-        }
-        
-        .highlight-green {
-          background-color: transparent;
-          color: #00ff00;
-        }
-        
-        .highlight-blue {
-          background-color: transparent;
-          color: #00bfff;
+          color: #00e5ff;
         }
         
         .highlight-pink {
           background-color: transparent;
           color: #ff69b4;
+        }
+        
+        .highlight-orange {
+          background-color: transparent;
+          color: #ffa500;
+        }
+        
+        .highlight-green {
+          background-color: transparent;
+          color: #32cd32;
         }
         
         .highlight-purple {
@@ -275,23 +275,23 @@ export function useSelectionMenu({
       const styleElement = document.createElement('style');
       styleElement.id = 'light-mode-highlight-styles';
       styleElement.textContent = `
-        .highlight-yellow {
-          background-color: rgba(255, 255, 0, 0.5);
-          color: inherit;
-        }
-        
-        .highlight-green {
-          background-color: rgba(0, 255, 0, 0.5);
-          color: inherit;
-        }
-        
-        .highlight-blue {
-          background-color: rgba(0, 191, 255, 0.5);
+        .highlight-cyan {
+          background-color: rgba(0, 229, 255, 0.5);
           color: inherit;
         }
         
         .highlight-pink {
           background-color: rgba(255, 105, 180, 0.5);
+          color: inherit;
+        }
+        
+        .highlight-orange {
+          background-color: rgba(255, 165, 0, 0.5);
+          color: inherit;
+        }
+        
+        .highlight-green {
+          background-color: rgba(50, 205, 50, 0.5);
           color: inherit;
         }
         
