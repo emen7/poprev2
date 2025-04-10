@@ -276,7 +276,7 @@ body.dark-mode .ub-highlight-blue {
 }
 
 body.dark-mode .ub-highlight-dodgerblue {
-  color: #1e90ff;
+  color: #40a9ff; /* Brighter DodgerBlue for dark mode */
   background-color: inherit;
 }
 
