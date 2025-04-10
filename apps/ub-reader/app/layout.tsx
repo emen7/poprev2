@@ -1,10 +1,10 @@
 import React from 'react';
 import { UserPreferencesProvider } from '../contexts/UserPreferencesContext';
 import { ThemeProvider } from '../contexts/ThemeContext';
-import { HighlightProvider } from '@ub/highlighting';
+import { HighlightProvider } from '../components/HighlightProvider';
 import '../styles/globals.css';
 import '../styles/themes/index.css'; // Import theme styles
-import '@ub/highlighting/dist/styles/highlighting.css'; // Import highlighting styles
+import '../styles/highlighting/highlighting.css'; // Import highlighting styles
 import Script from 'next/script';
 
 export const metadata = {
@@ -24,10 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <UserPreferencesProvider>
           <ThemeProvider>
-            <HighlightProvider
-              containerSelector=".ub-paper"
-              isDarkMode={() => document.body.classList.contains('dark-mode')}
-            >
+            <HighlightProvider containerSelector=".ub-paper">
               <main className="min-h-screen">
                 {children}
                 {/* Removed PreferencesPanel to fix the blue hovering settings gear issue */}
