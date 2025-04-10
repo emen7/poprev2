@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { SelectionMenu, useSelectionMenu, HighlightColor } from '../selection';
 import './HighlightExample.css';
 
@@ -63,6 +63,19 @@ export const HighlightExample: React.FC = () => {
   const handleDarkModeToggle = () => {
     setDarkMode(!darkMode);
   };
+
+  // Apply dark mode class to body
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+
+    return () => {
+      document.body.classList.remove('dark-mode');
+    };
+  }, [darkMode]);
 
   return (
     <div className={`highlight-example ${darkMode ? 'dark-mode' : ''}`}>
@@ -130,8 +143,12 @@ export const HighlightExample: React.FC = () => {
               <li>Click the checkmark to apply the highlight</li>
             </ol>
             <p>
-              In dark mode, highlighting changes the text color. In light mode, it adds a background
-              highlight.
+              In dark mode, highlighting changes the text color to match the selected color. In
+              light mode, it adds a background highlight.
+            </p>
+            <p>
+              The default text selection color in dark mode is set to match Perplexity AI's
+              selection color.
             </p>
           </div>
         </div>

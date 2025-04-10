@@ -69,6 +69,13 @@
             border-color: #444;
         }
 
+        /* Custom selection styles */
+        body.dark-mode ::selection {
+            background-color: rgba(0, 0, 0, 0.1);
+            color: #7c83ff;
+            /* Perplexity AI-like selection color */
+        }
+
         /* Selection menu */
         .selection-menu {
             position: absolute;
@@ -232,6 +239,7 @@
             border-color: #fff;
         }
 
+        /* Light mode colors (background highlights) */
         .highlight-color-yellow {
             background-color: rgba(255, 255, 0, 0.5);
         }
@@ -250,6 +258,27 @@
 
         .highlight-color-purple {
             background-color: rgba(147, 112, 219, 0.5);
+        }
+
+        /* Dark mode colors (text colors) */
+        body.dark-mode .highlight-color-yellow {
+            background-color: #ffff00;
+        }
+
+        body.dark-mode .highlight-color-green {
+            background-color: #00ff00;
+        }
+
+        body.dark-mode .highlight-color-blue {
+            background-color: #00bfff;
+        }
+
+        body.dark-mode .highlight-color-pink {
+            background-color: #ff69b4;
+        }
+
+        body.dark-mode .highlight-color-purple {
+            background-color: #9370db;
         }
 
         /* Instructions */
@@ -283,6 +312,53 @@
 
         body.dark-mode .instructions p {
             color: #aaa;
+        }
+
+        /* Highlighted text styles */
+        .highlight-yellow {
+            background-color: rgba(255, 255, 0, 0.5);
+        }
+
+        .highlight-green {
+            background-color: rgba(0, 255, 0, 0.5);
+        }
+
+        .highlight-blue {
+            background-color: rgba(0, 191, 255, 0.5);
+        }
+
+        .highlight-pink {
+            background-color: rgba(255, 105, 180, 0.5);
+        }
+
+        .highlight-purple {
+            background-color: rgba(147, 112, 219, 0.5);
+        }
+
+        /* Dark mode highlighted text styles */
+        body.dark-mode .highlight-yellow {
+            background-color: transparent;
+            color: #ffff00;
+        }
+
+        body.dark-mode .highlight-green {
+            background-color: transparent;
+            color: #00ff00;
+        }
+
+        body.dark-mode .highlight-blue {
+            background-color: transparent;
+            color: #00bfff;
+        }
+
+        body.dark-mode .highlight-pink {
+            background-color: transparent;
+            color: #ff69b4;
+        }
+
+        body.dark-mode .highlight-purple {
+            background-color: transparent;
+            color: #9370db;
         }
     </style>
 </head>
@@ -597,15 +673,7 @@
 
             // Create a span element for the highlight
             const highlightSpan = document.createElement('span');
-
-            // Set the highlight color based on dark mode
-            if (isDarkMode) {
-                // In dark mode, change the text color
-                highlightSpan.style.color = getColorValue(selectedColor);
-            } else {
-                // In light mode, use background highlight
-                highlightSpan.style.backgroundColor = `rgba(${getColorRGB(selectedColor)}, 0.5)`;
-            }
+            highlightSpan.className = `highlight-${selectedColor}`;
 
             // Surround the selected text with the highlight span
             range.surroundContents(highlightSpan);
@@ -615,42 +683,6 @@
 
             // Remove selection menu
             removeSelectionMenu();
-        }
-
-        // Helper function to get color value
-        function getColorValue(color) {
-            switch (color) {
-                case 'yellow':
-                    return '#ffff00';
-                case 'green':
-                    return '#00ff00';
-                case 'blue':
-                    return '#00bfff';
-                case 'pink':
-                    return '#ff69b4';
-                case 'purple':
-                    return '#9370db';
-                default:
-                    return '#ffff00';
-            }
-        }
-
-        // Helper function to get RGB values for colors
-        function getColorRGB(color) {
-            switch (color) {
-                case 'yellow':
-                    return '255, 255, 0';
-                case 'green':
-                    return '0, 255, 0';
-                case 'blue':
-                    return '0, 191, 255';
-                case 'pink':
-                    return '255, 105, 180';
-                case 'purple':
-                    return '147, 112, 219';
-                default:
-                    return '255, 255, 0';
-            }
         }
 
         // Handle mouse up event

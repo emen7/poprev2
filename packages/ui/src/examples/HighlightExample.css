@@ -126,10 +126,69 @@
   font-size: 14px;
   color: #666;
   font-style: italic;
+  margin-bottom: 10px;
 }
 
 .highlight-example.dark-mode .instructions p {
   color: #aaa;
+}
+
+/* Custom selection styles for dark mode */
+.highlight-example.dark-mode ::selection {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #7c83ff; /* Perplexity AI-like selection color */
+}
+
+/* Highlight styles for light mode */
+.highlight-yellow {
+  background-color: rgba(255, 255, 0, 0.5);
+  color: inherit;
+}
+
+.highlight-green {
+  background-color: rgba(0, 255, 0, 0.5);
+  color: inherit;
+}
+
+.highlight-blue {
+  background-color: rgba(0, 191, 255, 0.5);
+  color: inherit;
+}
+
+.highlight-pink {
+  background-color: rgba(255, 105, 180, 0.5);
+  color: inherit;
+}
+
+.highlight-purple {
+  background-color: rgba(147, 112, 219, 0.5);
+  color: inherit;
+}
+
+/* Highlight styles for dark mode */
+.highlight-example.dark-mode .highlight-yellow {
+  background-color: transparent;
+  color: #ffff00;
+}
+
+.highlight-example.dark-mode .highlight-green {
+  background-color: transparent;
+  color: #00ff00;
+}
+
+.highlight-example.dark-mode .highlight-blue {
+  background-color: transparent;
+  color: #00bfff;
+}
+
+.highlight-example.dark-mode .highlight-pink {
+  background-color: transparent;
+  color: #ff69b4;
+}
+
+.highlight-example.dark-mode .highlight-purple {
+  background-color: transparent;
+  color: #9370db;
 }
 
 /* Responsive adjustments */

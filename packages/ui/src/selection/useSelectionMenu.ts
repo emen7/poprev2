@@ -153,52 +153,23 @@ export function useSelectionMenu({
   }, [selectedText]);
 
   // Highlight selected text
-  const highlightSelectedText = useCallback(
-    (color: HighlightColor) => {
-      const selection = window.getSelection();
-      if (!selection || selection.isCollapsed) return;
+  const highlightSelectedText = useCallback((color: HighlightColor) => {
+    const selection = window.getSelection();
+    if (!selection || selection.isCollapsed) return;
 
-      // Get the selected range
-      const range = selection.getRangeAt(0);
+    // Get the selected range
+    const range = selection.getRangeAt(0);
 
-      // Create a span element for the highlight
-      const highlightSpan = document.createElement('span');
+    // Create a span element for the highlight
+    const highlightSpan = document.createElement('span');
+    highlightSpan.className = `highlight-${color}`;
 
-      // Set the highlight color based on dark mode
-      if (darkMode) {
-        // In dark mode, change the text color
-        highlightSpan.style.color = color;
-      } else {
-        // In light mode, use background highlight
-        highlightSpan.style.backgroundColor = `rgba(${getColorRGB(color)}, 0.5)`;
-      }
+    // Surround the selected text with the highlight span
+    range.surroundContents(highlightSpan);
 
-      // Surround the selected text with the highlight span
-      range.surroundContents(highlightSpan);
-
-      // Collapse the selection
-      selection.removeAllRanges();
-    },
-    [darkMode]
-  );
-
-  // Helper function to get RGB values for colors
-  const getColorRGB = (color: HighlightColor): string => {
-    switch (color) {
-      case 'yellow':
-        return '255, 255, 0';
-      case 'green':
-        return '0, 255, 0';
-      case 'blue':
-        return '0, 191, 255';
-      case 'pink':
-        return '255, 105, 180';
-      case 'purple':
-        return '147, 112, 219';
-      default:
-        return '255, 255, 0';
-    }
-  };
+    // Collapse the selection
+    selection.removeAllRanges();
+  }, []);
 
   // Handle mouse up event
   const handleMouseUp = useCallback(
@@ -252,6 +223,94 @@ export function useSelectionMenu({
       element.removeEventListener('contextmenu', handleContextMenu);
     };
   }, [targetElement, handleMouseUp, handleContextMenu]);
+
+  // Add dark mode selection styles
+  useEffect(() => {
+    if (darkMode) {
+      // Add a style element for dark mode selection
+      const styleElement = document.createElement('style');
+      styleElement.id = 'dark-mode-selection-styles';
+      styleElement.textContent = `
+        ::selection {
+          background-color: rgba(0, 0, 0, 0.1);
+          color: #7c83ff; /* Perplexity AI-like selection color */
+        }
+        
+        .highlight-yellow {
+          background-color: transparent;
+          color: #ffff00;
+        }
+        
+        .highlight-green {
+          background-color: transparent;
+          color: #00ff00;
+        }
+        
+        .highlight-blue {
+          background-color: transparent;
+          color: #00bfff;
+        }
+        
+        .highlight-pink {
+          background-color: transparent;
+          color: #ff69b4;
+        }
+        
+        .highlight-purple {
+          background-color: transparent;
+          color: #9370db;
+        }
+      `;
+      document.head.appendChild(styleElement);
+
+      return () => {
+        // Remove the style element when component unmounts or dark mode changes
+        const existingStyle = document.getElementById('dark-mode-selection-styles');
+        if (existingStyle) {
+          document.head.removeChild(existingStyle);
+        }
+      };
+    } else {
+      // Add a style element for light mode highlights
+      const styleElement = document.createElement('style');
+      styleElement.id = 'light-mode-highlight-styles';
+      styleElement.textContent = `
+        .highlight-yellow {
+          background-color: rgba(255, 255, 0, 0.5);
+          color: inherit;
+        }
+        
+        .highlight-green {
+          background-color: rgba(0, 255, 0, 0.5);
+          color: inherit;
+        }
+        
+        .highlight-blue {
+          background-color: rgba(0, 191, 255, 0.5);
+          color: inherit;
+        }
+        
+        .highlight-pink {
+          background-color: rgba(255, 105, 180, 0.5);
+          color: inherit;
+        }
+        
+        .highlight-purple {
+          background-color: rgba(147, 112, 219, 0.5);
+          color: inherit;
+        }
+      `;
+      document.head.appendChild(styleElement);
+
+      return () => {
+        // Remove the style element when component unmounts or dark mode changes
+        const existingStyle = document.getElementById('light-mode-highlight-styles');
+        if (existingStyle) {
+          document.head.removeChild(existingStyle);
+        }
+      };
+    }
+  }, [darkMode]);
 
   return {
     isMenuVisible,
