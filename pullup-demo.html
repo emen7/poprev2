@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UB Reader Pullup Demo</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --bg-color: #1a1a1a;
+            --text-color: #fff;
+            --border-color: #333;
+            --handle-color: #666;
+            --tab-color: #aaa;
+            --tab-hover-color: #fff;
+            --tab-hover-bg-color: #333;
+            --tab-active-color: #7fc8f5;
+            --tab-active-bg-color: #1a1a1a;
+            --tab-active-indicator-color: #7fc8f5;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .header-title {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .content-container {
+            padding-bottom: 100px;
+        }
+
+        .paragraph {
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .paragraph-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        /* Pullup Panel Styles */
+        .pullup-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--bg-color);
+            border-top: 1px solid var(--border-color);
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 300px;
+            transform: translateY(300px);
+        }
+
+        .pullup-panel-open {
+            transform: translateY(0) !important;
+        }
+
+        .pullup-panel-handle {
+            width: 100%;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: ns-resize;
+            user-select: none;
+            padding: 4px 0;
+        }
+
+        .pullup-panel-handle-icon {
+            width: 40px;
+            height: 4px;
+            background-color: var(--handle-color);
+            border-radius: 4px;
+        }
+
+        .pullup-panel-close {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        /* Pullup Tabs Styles */
+        .pullup-tabs {
+            display: flex;
+            background-color: #222;
+            border-bottom: 1px solid var(--border-color);
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+        .pullup-tab {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 8px;
+            background: none;
+            border: none;
+            color: var(--tab-color);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            outline: none;
+        }
+
+        .pullup-tab:hover {
+            color: var(--tab-hover-color);
+            background-color: var(--tab-hover-bg-color);
+        }
+
+        .pullup-tab-active {
+            color: var(--tab-active-color);
+            background-color: var(--tab-active-bg-color);
+        }
+
+        .pullup-tab-active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--tab-active-indicator-color);
+        }
+
+        .pullup-tab-icon {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+
+        .pullup-tab-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Pullup Content Styles */
+        .pullup-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background-color: var(--bg-color);
+            padding: 16px;
+        }
+
+        /* Text Selection Menu Styles */
+        .text-selection-menu {
+            display: flex;
+            background-color: #333;
+            border: 1px solid #444;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 1100;
+            overflow: hidden;
+            position: absolute;
+        }
+
+        .menu-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 12px;
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 70px;
+        }
+
+        .menu-button:hover {
+            background-color: #444;
+        }
+
+        .menu-icon {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+
+        .menu-label {
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2000;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (min-width: 1025px) {
+            .pullup-panel-persistent {
+                width: 350px;
+                right: 0;
+                left: auto;
+                height: 100vh !important;
+            }
+
+            .pullup-panel-persistent .pullup-tabs {
+                flex-direction: column;
+            }
+
+            .pullup-inner {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="header">
+            <h1 class="header-title">UB Reader Pullup Demo</h1>
+            <button id="toggle-pullup"
+                style="padding: 8px 16px; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">Toggle
+                Pullup</button>
+        </header>
+
+        <div class="content-container">
+            <h2>PAPER 1. THE UNIVERSAL FATHER</h2>
+            <p><em>Presented by a Divine Counselor</em></p>
+
+            <div class="paragraph" data-paragraph-id="p0">
+                <span class="paragraph-number">0</span>
+                <div class="paragraph-text">This is paragraph 1 of section 1 in paper 1. In a real implementation, this
+                    would be the actual text from the Urantia Book. Try selecting this text to see the text selection
+                    menu.</div>
+            </div>
+
+            <h3>1. THE FATHER'S NAME</h3>
+
+            <div class="paragraph" data-paragraph-id="p1-1">
+                <span class="paragraph-number">1</span>
+                <div class="paragraph-text">This is paragraph 1 of section 1 in paper 1. In a real implementation, this
+                    would be the actual text from the Urantia Book. Try selecting this text to see the text selection
+                    menu.</div>
+            </div>
+
+            <div class="paragraph" data-paragraph-id="p1-2">
+                <span class="paragraph-number">2</span>
+                <div class="paragraph-text">This is paragraph 2 of section 1 in paper 1. In a real implementation, this
+                    would be the actual text from the Urantia Book. Try selecting this text to see the text selection
+                    menu.</div>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div class="toast">Text copied to clipboard!</div>
+
+        <!-- Text Selection Menu (initially hidden) -->
+        <div class="text-selection-menu" id="text-selection-menu" style="display: none;">
+            <button class="menu-button" id="add-note-button">
+                <span class="menu-icon">📝</span>
+                <span class="menu-label">Add Note</span>
+            </button>
+            <button class="menu-button" id="save-quote-button">
+                <span class="menu-icon">💬</span>
+                <span class="menu-label">Save Quote</span>
+            </button>
+            <button class="menu-button" id="copy-text-button">
+                <span class="menu-icon">📋</span>
+                <span class="menu-label">Copy</span>
+            </button>
+        </div>
+
+        <!-- Pullup Panel -->
+        <div class="pullup-panel" id="pullup-panel">
+            <div class="pullup-panel-handle" id="pullup-handle">
+                <div class="pullup-panel-handle-icon"></div>
+            </div>
+            <button class="pullup-panel-close" id="pullup-close">×</button>
+            <div class="pullup-inner">
+                <div class="pullup-tabs">
+                    <button class="pullup-tab pullup-tab-active" data-tab="notes">
+                        <span class="pullup-tab-icon">📝</span>
+                        <span class="pullup-tab-label">Notes</span>
+                    </button>
+                    <button class="pullup-tab" data-tab="quotes">
+                        <span class="pullup-tab-icon">💬</span>
+                        <span class="pullup-tab-label">Quotes</span>
+                    </button>
+                    <button class="pullup-tab" data-tab="settings">
+                        <span class="pullup-tab-icon">⚙️</span>
+                        <span class="pullup-tab-label">Settings</span>
+                    </button>
+                </div>
+                <div class="pullup-content" id="pullup-content">
+                    <div id="notes-content">
+                        <h3>Notes</h3>
+                        <p>Select text in the document and choose "Add Note" to create notes.</p>
+                        <div id="notes-list"></div>
+                    </div>
+                    <div id="quotes-content" style="display: none;">
+                        <h3>Quotes</h3>
+                        <p>Select text in the document and choose "Save Quote" to save quotes.</p>
+                        <div id="quotes-list"></div>
+                    </div>
+                    <div id="settings-content" style="display: none;">
+                        <h3>Settings</h3>
+                        <p>Adjust your reading preferences here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const pullupPanel = document.getElementById('pullup-panel');
+        const pullupHandle = document.getElementById('pullup-handle');
+        const pullupClose = document.getElementById('pullup-close');
+        const togglePullupButton = document.getElementById('toggle-pullup');
+        const pullupTabs = document.querySelectorAll('.pullup-tab');
+        const notesContent = document.getElementById('notes-content');
+        const quotesContent = document.getElementById('quotes-content');
+        const settingsContent = document.getElementById('settings-content');
+        const textSelectionMenu = document.getElementById('text-selection-menu');
+        const addNoteButton = document.getElementById('add-note-button');
+        const saveQuoteButton = document.getElementById('save-quote-button');
+        const copyTextButton = document.getElementById('copy-text-button');
+        const toast = document.querySelector('.toast');
+
+        // State
+        let isPullupOpen = false;
+        let activeTab = 'notes';
+        let selectedText = '';
+        let selectedParagraphId = '';
+        let selectedParagraphRef = '';
+
+        // Toggle pullup panel
+        function togglePullup() {
+            isPullupOpen = !isPullupOpen;
+            if (isPullupOpen) {
+                pullupPanel.classList.add('pullup-panel-open');
+            } else {
+                pullupPanel.classList.remove('pullup-panel-open');
+            }
+        }
+
+        // Set active tab
+        function setActiveTab(tab) {
+            activeTab = tab;
+            pullupTabs.forEach(tabEl => {
+                if (tabEl.dataset.tab === tab) {
+                    tabEl.classList.add('pullup-tab-active');
+                } else {
+                    tabEl.classList.remove('pullup-tab-active');
+                }
+            });
+
+            // Hide all tab content
+            notesContent.style.display = 'none';
+            quotesContent.style.display = 'none';
+            settingsContent.style.display = 'none';
+
+            // Show active tab content
+            if (tab === 'notes') {
+                notesContent.style.display = 'block';
+            } else if (tab === 'quotes') {
+                quotesContent.style.display = 'block';
+            } else if (tab === 'settings') {
+                settingsContent.style.display = 'block';
+            }
+        }
+
+        // Handle text selection
+        document.addEventListener('mouseup', function () {
+            const selection = window.getSelection();
+
+            if (selection && !selection.isCollapsed) {
+                // Get selected text
+                selectedText = selection.toString().trim();
+
+                if (selectedText) {
+                    // Find the paragraph element that contains the selection
+                    const range = selection.getRangeAt(0);
+                    const paragraphElement = range.commonAncestorContainer.closest('.paragraph');
+
+                    if (paragraphElement) {
+                        // Get paragraph ID and reference
+                        selectedParagraphId = paragraphElement.dataset.paragraphId || '';
+
+                        // Get paragraph number
+                        const numberElement = paragraphElement.querySelector('.paragraph-number');
+                        const number = numberElement ? numberElement.textContent || '' : '';
+
+                        // Create reference
+                        selectedParagraphRef = `(1:1.${number})`;
+
+                        // Calculate menu position
+                        const rect = range.getBoundingClientRect();
+                        textSelectionMenu.style.left = `${rect.left + rect.width / 2}px`;
+                        textSelectionMenu.style.top = `${rect.bottom + window.scrollY + 10}px`;
+                        textSelectionMenu.style.display = 'flex';
+                    }
+                }
+            }
+        });
+
+        // Hide text selection menu when clicking outside
+        document.addEventListener('mousedown', function (event) {
+            if (!textSelectionMenu.contains(event.target)) {
+                textSelectionMenu.style.display = 'none';
+            }
+        });
+
+        // Event Listeners
+        togglePullupButton.addEventListener('click', togglePullup);
+        pullupClose.addEventListener('click', togglePullup);
+
+        pullupTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                setActiveTab(tab.dataset.tab);
+            });
+        });
+
+        // Add note button
+        addNoteButton.addEventListener('click', function () {
+            const notesList = document.getElementById('notes-list');
+            const noteItem = document.createElement('div');
+            noteItem.style.backgroundColor = '#222';
+            noteItem.style.padding = '10px';
+            noteItem.style.borderRadius = '4px';
+            noteItem.style.marginBottom = '10px';
+
+            noteItem.innerHTML = `
+        <div style="color: #888; font-size: 0.8rem;">${selectedParagraphRef}</div>
+        <div style="font-style: italic; color: #aaa; margin: 5px 0;">"${selectedText}"</div>
+        <textarea style="width: 100%; background: #333; color: white; border: 1px solid #444; padding: 8px; margin-top: 5px;" placeholder="Add your note here..."></textarea>
+      `;
+
+            notesList.appendChild(noteItem);
+
+            // Open pullup with notes tab
+            isPullupOpen = true;
+            pullupPanel.classList.add('pullup-panel-open');
+            setActiveTab('notes');
+
+            // Hide text selection menu
+            textSelectionMenu.style.display = 'none';
+        });
+
+        // Save quote button
+        saveQuoteButton.addEventListener('click', function () {
+            const quotesList = document.getElementById('quotes-list');
+            const quoteItem = document.createElement('div');
+            quoteItem.style.backgroundColor = '#222';
+            quoteItem.style.padding = '10px';
+            quoteItem.style.borderRadius = '4px';
+            quoteItem.style.marginBottom = '10px';
+
+            quoteItem.innerHTML = `
+        <div style="color: #888; font-size: 0.8rem;">${selectedParagraphRef}</div>
+        <div style="font-style: italic; margin: 5px 0;">"${selectedText}"</div>
+      `;
+
+            quotesList.appendChild(quoteItem);
+
+            // Open pullup with quotes tab
+            isPullupOpen = true;
+            pullupPanel.classList.add('pullup-panel-open');
+            setActiveTab('quotes');
+
+            // Hide text selection menu
+            textSelectionMenu.style.display = 'none';
+        });
+
+        // Copy text button
+        copyTextButton.addEventListener('click', function () {
+            navigator.clipboard.writeText(selectedText).then(function () {
+                // Show toast
+                toast.classList.add('show');
+                setTimeout(function () {
+                    toast.classList.remove('show');
+                }, 2000);
+            });
+
+            // Hide text selection menu
+            textSelectionMenu.style.display = 'none';
+        });
+
+        // Make pullup panel draggable
+        let isDragging = false;
+        let startY = 0;
+        let startHeight = 0;
+
+        pullupHandle.addEventListener('mousedown', function (e) {
+            isDragging = true;
+            startY = e.clientY;
+            startHeight = parseInt(window.getComputedStyle(pullupPanel).height, 10);
+            document.body.style.userSelect = 'none';
+        });
+
+        document.addEventListener('mousemove', function (e) {
+            if (!isDragging) return;
+
+            const deltaY = startY - e.clientY;
+            const newHeight = startHeight + deltaY;
+
+            // Limit height between 100px and 80% of window height
+            const maxHeight = window.innerHeight * 0.8;
+            const limitedHeight = Math.max(100, Math.min(maxHeight, newHeight));
+
+            pullupPanel.style.height = limitedHeight + 'px';
+        });
+
+        document.addEventListener('mouseup', function () {
+            isDragging = false;
+            document.body.style.userSelect = '';
+        });
+
+        // Check for persistent mode on window resize
+        function checkPersistentMode() {
+            if (window.innerWidth >= 1025) {
+                pullupPanel.classList.add('pullup-panel-persistent');
+            } else {
+                pullupPanel.classList.remove('pullup-panel-persistent');
+            }
+        }
+
+        window.addEventListener('resize', checkPersistentMode);
+        checkPersistentMode(); // Check on load
+    </script>
+</body>
+
+</html>
