@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@ub-ecosystem/data-models": "workspace:*"
+    "@ub-ecosystem/data-models": "*"
   },
   "devDependencies": {
     "typescript": "^5.0.4",
