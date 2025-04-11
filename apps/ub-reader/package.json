@@ -10,14 +10,14 @@
     "clean": "rm -rf .next && rm -rf node_modules"
   },
   "dependencies": {
-    "@ub-ecosystem/audio-services": "*",
-    "@ub-ecosystem/config": "*",
-    "@ub-ecosystem/content-transformer": "*",
-    "@ub-ecosystem/data-models": "*",
-    "@ub/highlighting": "*",
-    "@ub-ecosystem/reference-parser": "*",
-    "@ub-ecosystem/state-management": "*",
-    "@ub-ecosystem/ui": "*",
+    "@ub-ecosystem/audio-services": "0.1.0",
+    "@ub-ecosystem/config": "0.1.0",
+    "@ub-ecosystem/content-transformer": "0.1.0",
+    "@ub-ecosystem/data-models": "0.1.0",
+    "@ub/highlighting": "0.1.0",
+    "@ub-ecosystem/reference-parser": "0.1.0",
+    "@ub-ecosystem/state-management": "0.1.0",
+    "@ub-ecosystem/ui": "0.1.0",
     "next": "^13.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
