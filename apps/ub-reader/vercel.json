@@ -1,6 +1,7 @@
 {
   "version": 2,
   "buildCommand": "cd ../.. && npm run build --workspace=apps/ub-reader",
+  "installCommand": "cd ../.. && npm install",
   "outputDirectory": ".next",
   "headers": [
     {
