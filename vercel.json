@@ -6,6 +6,8 @@
   "outputDirectory": null,
   "public": false,
   "github": {
-    "enabled": false
+    "enabled": true,
+    "silent": false,
+    "autoJobCancelation": true
   }
 }

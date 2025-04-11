@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
-  "installCommand": "npm install --no-workspaces --force",
+  "buildCommand": "npx turbo run build --filter=ub-reader...",
+  "installCommand": "npm install",
   "outputDirectory": ".next",
   "headers": [
     {
