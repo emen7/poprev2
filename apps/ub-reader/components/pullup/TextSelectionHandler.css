@@ -1,0 +1,73 @@
+/* TextSelectionHandler Styles */
+
+.text-selection-menu {
+  display: flex;
+  background-color: var(--menu-bg-color, #333);
+  border: 1px solid var(--menu-border-color, #444);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1100;
+  overflow: hidden;
+}
+
+.menu-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  color: var(--button-color, #fff);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 70px;
+}
+
+.menu-button:hover {
+  background-color: var(--button-hover-bg-color, #444);
+}
+
+.menu-icon {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.menu-label {
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.note-button:hover {
+  color: var(--note-color, #4caf50);
+}
+
+.quote-button:hover {
+  color: var(--quote-color, #7fc8f5);
+}
+
+.copy-button:hover {
+  color: var(--copy-color, #ff9800);
+}
+
+/* Dark theme variables */
+:root {
+  --menu-bg-color: #333;
+  --menu-border-color: #444;
+  --button-color: #fff;
+  --button-hover-bg-color: #444;
+  --note-color: #4caf50;
+  --quote-color: #7fc8f5;
+  --copy-color: #ff9800;
+}
+
+/* Light theme variables */
+.light-theme {
+  --menu-bg-color: #fff;
+  --menu-border-color: #ddd;
+  --button-color: #333;
+  --button-hover-bg-color: #f0f0f0;
+  --note-color: #2e7d32;
+  --quote-color: #0078d4;
+  --copy-color: #e65100;
+}

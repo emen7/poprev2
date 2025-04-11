@@ -1,0 +1,98 @@
+/* SettingsTab Styles */
+
+.settings-tab {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.settings-tab-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  color: var(--title-color, #fff);
+}
+
+.settings-section {
+  margin-bottom: 20px;
+}
+
+.settings-section-title {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+  color: var(--section-title-color, #ddd);
+}
+
+.settings-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.settings-option-button {
+  background-color: var(--button-bg-color, #333);
+  color: var(--button-color, #aaa);
+  border: 1px solid var(--button-border-color, #444);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.settings-option-button:hover {
+  background-color: var(--button-hover-bg-color, #444);
+  color: var(--button-hover-color, #fff);
+}
+
+.settings-option-button.active {
+  background-color: var(--button-active-bg-color, #555);
+  color: var(--button-active-color, #fff);
+  border-color: var(--button-active-border-color, #7fc8f5);
+}
+
+.settings-description {
+  font-size: 0.9rem;
+  color: var(--description-color, #888);
+  margin: 4px 0 8px 0;
+}
+
+/* Dark theme variables */
+:root {
+  --title-color: #fff;
+  --section-title-color: #ddd;
+  --button-bg-color: #333;
+  --button-color: #aaa;
+  --button-border-color: #444;
+  --button-hover-bg-color: #444;
+  --button-hover-color: #fff;
+  --button-active-bg-color: #555;
+  --button-active-color: #fff;
+  --button-active-border-color: #7fc8f5;
+  --description-color: #888;
+}
+
+/* Light theme variables */
+.light-theme {
+  --title-color: #333;
+  --section-title-color: #444;
+  --button-bg-color: #f0f0f0;
+  --button-color: #666;
+  --button-border-color: #ddd;
+  --button-hover-bg-color: #e0e0e0;
+  --button-hover-color: #333;
+  --button-active-bg-color: #d0d0d0;
+  --button-active-color: #333;
+  --button-active-border-color: #0078d4;
+  --description-color: #888;
+}
+
+/* Media query for persistent mode */
+@media (min-width: 1025px) {
+  .pullup-panel-persistent .settings-tab {
+    padding: 20px;
+  }
+}

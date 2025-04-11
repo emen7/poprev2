@@ -1,0 +1,19 @@
+/* Pullup Styles */
+
+.pullup {
+  position: relative;
+  z-index: 1000;
+}
+
+.pullup-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Media query for persistent mode */
+@media (min-width: 1025px) {
+  .pullup-panel-persistent .pullup-inner {
+    flex-direction: row;
+  }
+}

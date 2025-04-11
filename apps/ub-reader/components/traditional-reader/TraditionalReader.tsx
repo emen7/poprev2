@@ -16,6 +16,8 @@ import {
 } from '../../services/PaperDataService';
 import { addToHistory } from '../../services/HistoryService';
 import Breadcrumbs from '../navigation/Breadcrumbs';
+import { PullupProvider } from '../pullup';
+import { PullupContainer } from '../PullupContainer';
 import '../navigation/Breadcrumbs.css';
 import './TraditionalReader.css';
 
@@ -324,337 +326,346 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
   }
 
   return (
-    <div className="app-container">
-      {/* Header */}
-      <header className="header">
-        {/* Left Group - Navigation Buttons */}
-        <div className="header-left-group">
-          {/* Paper Navigation Button */}
-          <button
-            id="toggle-nav"
-            className="header-button"
-            onClick={handleNavigationToggle}
-            title="Papers"
-          >
-            <i className="fas fa-book"></i>
-          </button>
-
-          {/* Section Navigation Button */}
-          <div className="section-navigation-header" ref={sectionDropdownRef}>
+    <PullupProvider>
+      <div className="app-container">
+        {/* Header */}
+        <header className="header">
+          {/* Left Group - Navigation Buttons */}
+          <div className="header-left-group">
+            {/* Paper Navigation Button */}
             <button
-              className="header-button section-button"
-              onClick={handleSectionDropdownToggle}
-              title="Sections"
+              id="toggle-nav"
+              className="header-button"
+              onClick={handleNavigationToggle}
+              title="Papers"
             >
-              <i className="fas fa-list"></i>
+              <i className="fas fa-book"></i>
             </button>
-            <div className={`section-dropdown-content ${sectionDropdownOpen ? 'show' : ''}`}>
-              {paper?.sections.map(section => (
-                <a
-                  key={section.number}
-                  href={`#section${section.number}`}
-                  onClick={e => handleSectionClick(e, `section${section.number}`)}
-                >
-                  {section.number}. {section.title}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
 
-        {/* Center Group - Title and Prev/Next Buttons */}
-        <div className="header-center-group">
-          {/* Previous Button */}
-          <button
-            className={`header-button nav-prev-button ${
-              getPreviousPaper(paperId) === null ? 'disabled' : ''
-            }`}
-            onClick={handlePrevious}
-            title="Previous"
-            disabled={getPreviousPaper(paperId) === null}
-          >
-            <i className="fas fa-chevron-left"></i>
-          </button>
-
-          {/* Book Title */}
-          <div className="header-title-container">
-            <h1 className="header-title" onClick={handleTitleClick} style={{ cursor: 'pointer' }}>
-              The Urantia Book
-            </h1>
-            <div className="header-subtitle">
-              <Link href="/papers" className="header-subtitle-link">
-                View All Papers
-              </Link>
-            </div>
-          </div>
-
-          {/* Next Button */}
-          <button
-            className={`header-button nav-next-button ${
-              getNextPaper(paperId) === null ? 'disabled' : ''
-            }`}
-            onClick={handleNext}
-            title="Next"
-            disabled={getNextPaper(paperId) === null}
-          >
-            <i className="fas fa-chevron-right"></i>
-          </button>
-        </div>
-
-        {/* Settings Button - Now on the right */}
-        <button
-          id="toggle-settings"
-          className="header-button"
-          onClick={handleSettingsToggle}
-          title="Settings"
-        >
-          <i className="fas fa-cog"></i>
-        </button>
-      </header>
-
-      {/* Navigation Menu */}
-      <nav id="navigation-menu" className={`navigation-menu ${navigationOpen ? 'open' : ''}`}>
-        {/* Parts and Papers */}
-        {parts.map(part => (
-          <div
-            key={part.number}
-            className={
-              part.number === getPartForPaper(paperId) ? 'nav-fixed-top' : 'nav-fixed-bottom'
-            }
-          >
-            <button
-              className={`part-toggle ${
-                part.number === getPartForPaper(paperId) ? 'active expanded' : ''
-              }`}
-              data-part={`part${part.number}`}
-              onClick={() => handlePartToggle(part.number)}
-            >
-              PART {part.number}. {part.title}
-              <i className="fas fa-chevron-down"></i>
-            </button>
-            <div
-              className={`part-content ${
-                part.number === getPartForPaper(paperId) ? 'expanded' : ''
-              }`}
-              id={`part${part.number}-content`}
-            >
-              <ul className="nav-list">
-                {part.papers.map(paperItem => (
-                  <li key={paperItem.number}>
-                    <a
-                      href="#"
-                      className={paperItem.number === paperId ? 'active' : ''}
-                      onClick={e => {
-                        e.preventDefault();
-                        handlePaperClick(paperItem.number);
-                      }}
-                    >
-                      Paper {paperItem.number}: {paperItem.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        ))}
-      </nav>
-
-      {/* Settings Panel */}
-      <div id="settings-panel" className={`settings-panel ${settingsOpen ? 'open' : ''}`}>
-        <div className="settings-section">
-          <h3 className="settings-title">Display Settings</h3>
-          <div className="settings-option">
-            <h4 className="settings-option-title">Theme</h4>
-            <div className="settings-option-list">
-              <button className="settings-option-button active">Dark</button>
-              <button className="settings-option-button">Light</button>
-            </div>
-          </div>
-          <div className="settings-option">
-            <h4 className="settings-option-title">Content Formatting</h4>
-            <div className="settings-option-list">
+            {/* Section Navigation Button */}
+            <div className="section-navigation-header" ref={sectionDropdownRef}>
               <button
-                className={`settings-option-button ${contentTheme === 'modern' ? 'active' : ''}`}
-                onClick={() => handleThemeChange('modern')}
+                className="header-button section-button"
+                onClick={handleSectionDropdownToggle}
+                title="Sections"
               >
-                Modern
+                <i className="fas fa-list"></i>
               </button>
-              <button
-                className={`settings-option-button ${
-                  contentTheme === 'traditional' ? 'active' : ''
-                }`}
-                onClick={() => handleThemeChange('traditional')}
-              >
-                Traditional
-              </button>
-            </div>
-          </div>
-          <div className="settings-option">
-            <h4 className="settings-option-title">Font Size</h4>
-            <div className="settings-option-list">
-              <button className="settings-option-button">Small</button>
-              <button className="settings-option-button active">Medium</button>
-              <button className="settings-option-button">Large</button>
-              <button className="settings-option-button">X-Large</button>
-            </div>
-          </div>
-          <div className="settings-option">
-            <h4 className="settings-option-title">Font Style</h4>
-            <div className="settings-option-list">
-              <button className="settings-option-button">Sans-serif</button>
-              <button className="settings-option-button active">Serif</button>
-            </div>
-          </div>
-        </div>
-        <div className="settings-section">
-          <h3 className="settings-title">Reading Settings</h3>
-          <div className="settings-option">
-            <h4 className="settings-option-title">Line Spacing</h4>
-            <div className="settings-option-list">
-              <button className="settings-option-button">Compact</button>
-              <button className="settings-option-button active">Normal</button>
-              <button className="settings-option-button">Relaxed</button>
-            </div>
-          </div>
-          <div className="settings-option">
-            <h4 className="settings-option-title">Text Width</h4>
-            <div className="settings-option-list">
-              <button className="settings-option-button">Narrow</button>
-              <button className="settings-option-button active">Medium</button>
-              <button className="settings-option-button">Wide</button>
-            </div>
-          </div>
-        </div>
-        <div className="settings-section">
-          <h3 className="settings-title">Navigation</h3>
-          <div className="settings-option">
-            <h4 className="settings-option-title">Reading History</h4>
-            <div className="settings-option-description">
-              View your reading history and quickly access recently read papers.
-            </div>
-            <div className="mt-2">
-              <Link
-                href="/history"
-                className="settings-link"
-                onClick={() => setSettingsOpen(false)}
-              >
-                View Reading History <i className="fas fa-arrow-right ml-1"></i>
-              </Link>
-            </div>
-          </div>
-          <div className="settings-option">
-            <h4 className="settings-option-title">Contents</h4>
-            <div className="settings-option-description">
-              Browse the complete table of contents.
-            </div>
-            <div className="mt-2">
-              <Link
-                href="/contents"
-                className="settings-link"
-                onClick={() => setSettingsOpen(false)}
-              >
-                View Contents <i className="fas fa-arrow-right ml-1"></i>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Overlay */}
-      <div
-        id="overlay"
-        className={`overlay ${
-          navigationOpen || settingsOpen || sectionDropdownOpen ? 'active' : ''
-        }`}
-        onClick={handleOverlayClick}
-      ></div>
-
-      {/* Breadcrumbs Navigation */}
-      {paper && (
-        <Breadcrumbs
-          paperId={paperId}
-          paperTitle={paper.title}
-          sectionTitle={currentSection.section}
-        />
-      )}
-
-      {/* Content Container */}
-      <div className="content-container">
-        {/* Reading Area */}
-        <div className="reading-area" id="reading-area" ref={readingAreaRef}>
-          <div className={`content content-${contentTheme}`}>
-            {/* Sticky Headers */}
-            <div className="sticky-header">
-              <div className="sticky-part-title" id="sticky-part-title">
-                {currentSection.part}
-              </div>
-              <div className="sticky-paper-title" id="sticky-paper-title">
-                {currentSection.paper}
-              </div>
-            </div>
-
-            {/* Sticky Section Header - Only shown when a section is active */}
-            <div
-              className={`sticky-section-title ${activeSection ? 'active' : ''}`}
-              id="sticky-section-title"
-            >
-              {currentSection.section}
-            </div>
-
-            {/* Paper Introduction */}
-            {paper && (
-              <>
-                <div className="paper-introduction">
-                  <h2 className="paper-title">
-                    PAPER {paper.number}. {paper.title.toUpperCase()}
-                  </h2>
-                  {paper.author && (
-                    <div className="paper-author">
-                      <em>Presented by {paper.author}</em>
-                    </div>
-                  )}
-
-                  {/* Introduction paragraph (if available) */}
-                  {paper.sections[0]?.paragraphs[0] && (
-                    <div className="paragraph">
-                      <span className="paragraph-number">0</span>
-                      <div className="paragraph-text">{paper.sections[0].paragraphs[0].text}</div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Sections */}
-                {paper.sections.map(section => (
-                  <div
+              <div className={`section-dropdown-content ${sectionDropdownOpen ? 'show' : ''}`}>
+                {paper?.sections.map(section => (
+                  <a
                     key={section.number}
-                    className="section-content"
-                    id={`section${section.number}`}
+                    href={`#section${section.number}`}
+                    onClick={e => handleSectionClick(e, `section${section.number}`)}
                   >
-                    <h3 className="section-title">
-                      {section.number}. {section.title.toUpperCase()}
-                    </h3>
-
-                    {section.paragraphs.map(paragraph => (
-                      <div key={paragraph.number} className="paragraph">
-                        <span className="paragraph-number">{paragraph.number}</span>
-                        <div className="paragraph-text">{paragraph.text}</div>
-                      </div>
-                    ))}
-                  </div>
+                    {section.number}. {section.title}
+                  </a>
                 ))}
-              </>
-            )}
+              </div>
+            </div>
+          </div>
+
+          {/* Center Group - Title and Prev/Next Buttons */}
+          <div className="header-center-group">
+            {/* Previous Button */}
+            <button
+              className={`header-button nav-prev-button ${
+                getPreviousPaper(paperId) === null ? 'disabled' : ''
+              }`}
+              onClick={handlePrevious}
+              title="Previous"
+              disabled={getPreviousPaper(paperId) === null}
+            >
+              <i className="fas fa-chevron-left"></i>
+            </button>
+
+            {/* Book Title */}
+            <div className="header-title-container">
+              <h1 className="header-title" onClick={handleTitleClick} style={{ cursor: 'pointer' }}>
+                The Urantia Book
+              </h1>
+              <div className="header-subtitle">
+                <Link href="/papers" className="header-subtitle-link">
+                  View All Papers
+                </Link>
+              </div>
+            </div>
+
+            {/* Next Button */}
+            <button
+              className={`header-button nav-next-button ${
+                getNextPaper(paperId) === null ? 'disabled' : ''
+              }`}
+              onClick={handleNext}
+              title="Next"
+              disabled={getNextPaper(paperId) === null}
+            >
+              <i className="fas fa-chevron-right"></i>
+            </button>
+          </div>
+
+          {/* Settings Button - Now on the right */}
+          <button
+            id="toggle-settings"
+            className="header-button"
+            onClick={handleSettingsToggle}
+            title="Settings"
+          >
+            <i className="fas fa-cog"></i>
+          </button>
+        </header>
+
+        {/* Navigation Menu */}
+        <nav id="navigation-menu" className={`navigation-menu ${navigationOpen ? 'open' : ''}`}>
+          {/* Parts and Papers */}
+          {parts.map(part => (
+            <div
+              key={part.number}
+              className={
+                part.number === getPartForPaper(paperId) ? 'nav-fixed-top' : 'nav-fixed-bottom'
+              }
+            >
+              <button
+                className={`part-toggle ${
+                  part.number === getPartForPaper(paperId) ? 'active expanded' : ''
+                }`}
+                data-part={`part${part.number}`}
+                onClick={() => handlePartToggle(part.number)}
+              >
+                PART {part.number}. {part.title}
+                <i className="fas fa-chevron-down"></i>
+              </button>
+              <div
+                className={`part-content ${
+                  part.number === getPartForPaper(paperId) ? 'expanded' : ''
+                }`}
+                id={`part${part.number}-content`}
+              >
+                <ul className="nav-list">
+                  {part.papers.map(paperItem => (
+                    <li key={paperItem.number}>
+                      <a
+                        href="#"
+                        className={paperItem.number === paperId ? 'active' : ''}
+                        onClick={e => {
+                          e.preventDefault();
+                          handlePaperClick(paperItem.number);
+                        }}
+                      >
+                        Paper {paperItem.number}: {paperItem.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </nav>
+
+        {/* Settings Panel */}
+        <div id="settings-panel" className={`settings-panel ${settingsOpen ? 'open' : ''}`}>
+          <div className="settings-section">
+            <h3 className="settings-title">Display Settings</h3>
+            <div className="settings-option">
+              <h4 className="settings-option-title">Theme</h4>
+              <div className="settings-option-list">
+                <button className="settings-option-button active">Dark</button>
+                <button className="settings-option-button">Light</button>
+              </div>
+            </div>
+            <div className="settings-option">
+              <h4 className="settings-option-title">Content Formatting</h4>
+              <div className="settings-option-list">
+                <button
+                  className={`settings-option-button ${contentTheme === 'modern' ? 'active' : ''}`}
+                  onClick={() => handleThemeChange('modern')}
+                >
+                  Modern
+                </button>
+                <button
+                  className={`settings-option-button ${
+                    contentTheme === 'traditional' ? 'active' : ''
+                  }`}
+                  onClick={() => handleThemeChange('traditional')}
+                >
+                  Traditional
+                </button>
+              </div>
+            </div>
+            <div className="settings-option">
+              <h4 className="settings-option-title">Font Size</h4>
+              <div className="settings-option-list">
+                <button className="settings-option-button">Small</button>
+                <button className="settings-option-button active">Medium</button>
+                <button className="settings-option-button">Large</button>
+                <button className="settings-option-button">X-Large</button>
+              </div>
+            </div>
+            <div className="settings-option">
+              <h4 className="settings-option-title">Font Style</h4>
+              <div className="settings-option-list">
+                <button className="settings-option-button">Sans-serif</button>
+                <button className="settings-option-button active">Serif</button>
+              </div>
+            </div>
+          </div>
+          <div className="settings-section">
+            <h3 className="settings-title">Reading Settings</h3>
+            <div className="settings-option">
+              <h4 className="settings-option-title">Line Spacing</h4>
+              <div className="settings-option-list">
+                <button className="settings-option-button">Compact</button>
+                <button className="settings-option-button active">Normal</button>
+                <button className="settings-option-button">Relaxed</button>
+              </div>
+            </div>
+            <div className="settings-option">
+              <h4 className="settings-option-title">Text Width</h4>
+              <div className="settings-option-list">
+                <button className="settings-option-button">Narrow</button>
+                <button className="settings-option-button active">Medium</button>
+                <button className="settings-option-button">Wide</button>
+              </div>
+            </div>
+          </div>
+          <div className="settings-section">
+            <h3 className="settings-title">Navigation</h3>
+            <div className="settings-option">
+              <h4 className="settings-option-title">Reading History</h4>
+              <div className="settings-option-description">
+                View your reading history and quickly access recently read papers.
+              </div>
+              <div className="mt-2">
+                <Link
+                  href="/history"
+                  className="settings-link"
+                  onClick={() => setSettingsOpen(false)}
+                >
+                  View Reading History <i className="fas fa-arrow-right ml-1"></i>
+                </Link>
+              </div>
+            </div>
+            <div className="settings-option">
+              <h4 className="settings-option-title">Contents</h4>
+              <div className="settings-option-description">
+                Browse the complete table of contents.
+              </div>
+              <div className="mt-2">
+                <Link
+                  href="/contents"
+                  className="settings-link"
+                  onClick={() => setSettingsOpen(false)}
+                >
+                  View Contents <i className="fas fa-arrow-right ml-1"></i>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* Overlay */}
+        <div
+          id="overlay"
+          className={`overlay ${
+            navigationOpen || settingsOpen || sectionDropdownOpen ? 'active' : ''
+          }`}
+          onClick={handleOverlayClick}
+        ></div>
+
+        {/* Breadcrumbs Navigation */}
+        {paper && (
+          <Breadcrumbs
+            paperId={paperId}
+            paperTitle={paper.title}
+            sectionTitle={currentSection.section}
+          />
+        )}
+
+        {/* Content Container */}
+        <div className="content-container">
+          {/* Reading Area */}
+          <div className="reading-area" id="reading-area" ref={readingAreaRef}>
+            <div className={`content content-${contentTheme}`}>
+              {/* Sticky Headers */}
+              <div className="sticky-header">
+                <div className="sticky-part-title" id="sticky-part-title">
+                  {currentSection.part}
+                </div>
+                <div className="sticky-paper-title" id="sticky-paper-title">
+                  {currentSection.paper}
+                </div>
+              </div>
+
+              {/* Sticky Section Header - Only shown when a section is active */}
+              <div
+                className={`sticky-section-title ${activeSection ? 'active' : ''}`}
+                id="sticky-section-title"
+              >
+                {currentSection.section}
+              </div>
+
+              {/* Paper Introduction */}
+              {paper && (
+                <>
+                  <div className="paper-introduction">
+                    <h2 className="paper-title">
+                      PAPER {paper.number}. {paper.title.toUpperCase()}
+                    </h2>
+                    {paper.author && (
+                      <div className="paper-author">
+                        <em>Presented by {paper.author}</em>
+                      </div>
+                    )}
+
+                    {/* Introduction paragraph (if available) */}
+                    {paper.sections[0]?.paragraphs[0] && (
+                      <div className="paragraph" data-paragraph-id="p0">
+                        <span className="paragraph-number">0</span>
+                        <div className="paragraph-text">{paper.sections[0].paragraphs[0].text}</div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Sections */}
+                  {paper.sections.map(section => (
+                    <div
+                      key={section.number}
+                      className="section-content"
+                      id={`section${section.number}`}
+                    >
+                      <h3 className="section-title">
+                        {section.number}. {section.title.toUpperCase()}
+                      </h3>
+
+                      {section.paragraphs.map(paragraph => (
+                        <div
+                          key={paragraph.number}
+                          className="paragraph"
+                          data-paragraph-id={`p${section.number}-${paragraph.number}`}
+                        >
+                          <span className="paragraph-number">{paragraph.number}</span>
+                          <div className="paragraph-text">{paragraph.text}</div>
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Copy Button */}
+        <button className="copy-button" title="Copy selected text" onClick={handleCopyClick}>
+          <i className="fas fa-copy"></i>
+        </button>
+
+        {/* Toast Notification */}
+        <div className="toast">Text copied to clipboard!</div>
+
+        {/* Pullup Container */}
+        <PullupContainer />
       </div>
-
-      {/* Copy Button */}
-      <button className="copy-button" title="Copy selected text" onClick={handleCopyClick}>
-        <i className="fas fa-copy"></i>
-      </button>
-
-      {/* Toast Notification */}
-      <div className="toast">Text copied to clipboard!</div>
-    </div>
+    </PullupProvider>
   );
 }

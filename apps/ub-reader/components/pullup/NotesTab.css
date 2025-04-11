@@ -1,0 +1,211 @@
+/* NotesTab Styles */
+
+.notes-tab {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.notes-tab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.notes-tab-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--title-color, #fff);
+}
+
+.notes-tab-sort {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.notes-tab-sort label {
+  color: var(--label-color, #aaa);
+}
+
+.notes-tab-sort-select {
+  background-color: var(--select-bg-color, #333);
+  color: var(--select-color, #fff);
+  border: 1px solid var(--select-border-color, #444);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.notes-tab-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  color: var(--empty-color, #888);
+  padding: 32px;
+}
+
+.notes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.note-item {
+  background-color: var(--note-bg-color, #222);
+  border: 1px solid var(--note-border-color, #333);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note-reference {
+  font-weight: 600;
+  color: var(--reference-color, #7fc8f5);
+  font-size: 0.9rem;
+}
+
+.note-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.note-action-button {
+  background: none;
+  border: none;
+  color: var(--action-color, #aaa);
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.note-action-button:hover {
+  background-color: var(--action-hover-bg-color, #333);
+  color: var(--action-hover-color, #fff);
+}
+
+.note-edit-button:hover {
+  color: var(--edit-color, #7fc8f5);
+}
+
+.note-delete-button:hover {
+  color: var(--delete-color, #ff6b6b);
+}
+
+.note-save-button {
+  color: var(--save-color, #4caf50);
+}
+
+.note-cancel-button {
+  color: var(--cancel-color, #ff6b6b);
+}
+
+.note-selected-text {
+  font-style: italic;
+  color: var(--selected-text-color, #bbb);
+  font-size: 0.9rem;
+  border-left: 3px solid var(--selected-text-border-color, #555);
+  padding-left: 8px;
+  margin: 8px 0;
+}
+
+.note-content {
+  color: var(--content-color, #ddd);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.note-edit-textarea {
+  width: 100%;
+  min-height: 100px;
+  background-color: var(--textarea-bg-color, #333);
+  color: var(--textarea-color, #fff);
+  border: 1px solid var(--textarea-border-color, #444);
+  border-radius: 4px;
+  padding: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.note-date {
+  font-size: 0.8rem;
+  color: var(--date-color, #888);
+  text-align: right;
+  margin-top: 8px;
+}
+
+/* Dark theme variables */
+:root {
+  --title-color: #fff;
+  --label-color: #aaa;
+  --select-bg-color: #333;
+  --select-color: #fff;
+  --select-border-color: #444;
+  --empty-color: #888;
+  --note-bg-color: #222;
+  --note-border-color: #333;
+  --reference-color: #7fc8f5;
+  --action-color: #aaa;
+  --action-hover-bg-color: #333;
+  --action-hover-color: #fff;
+  --edit-color: #7fc8f5;
+  --delete-color: #ff6b6b;
+  --save-color: #4caf50;
+  --cancel-color: #ff6b6b;
+  --selected-text-color: #bbb;
+  --selected-text-border-color: #555;
+  --content-color: #ddd;
+  --textarea-bg-color: #333;
+  --textarea-color: #fff;
+  --textarea-border-color: #444;
+  --date-color: #888;
+}
+
+/* Light theme variables */
+.light-theme {
+  --title-color: #333;
+  --label-color: #666;
+  --select-bg-color: #f0f0f0;
+  --select-color: #333;
+  --select-border-color: #ddd;
+  --empty-color: #888;
+  --note-bg-color: #f5f5f5;
+  --note-border-color: #ddd;
+  --reference-color: #0078d4;
+  --action-color: #666;
+  --action-hover-bg-color: #e0e0e0;
+  --action-hover-color: #333;
+  --edit-color: #0078d4;
+  --delete-color: #d83b01;
+  --save-color: #107c10;
+  --cancel-color: #d83b01;
+  --selected-text-color: #666;
+  --selected-text-border-color: #ccc;
+  --content-color: #333;
+  --textarea-bg-color: #fff;
+  --textarea-color: #333;
+  --textarea-border-color: #ddd;
+  --date-color: #888;
+}
