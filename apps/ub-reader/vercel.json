@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "buildCommand": "cd ../.. && npm run build --workspace=apps/ub-reader",
+  "outputDirectory": ".next",
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, no-cache, must-revalidate, proxy-revalidate"
+        }
+      ]
+    }
+  ],
+  "trailingSlash": false
+}

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "buildCommand": null,
+  "devCommand": null,
+  "installCommand": null,
+  "outputDirectory": null,
+  "public": false,
+  "github": {
+    "enabled": false
+  }
+}
