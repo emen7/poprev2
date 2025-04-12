@@ -126,8 +126,6 @@ export const UBEnhancedParagraph: React.FC<UBEnhancedParagraphProps> = ({
         return '0.9rem';
       case 'large':
         return '1.1rem';
-      case 'x-large':
-        return '1.25rem';
       case 'medium':
       default:
         return '1rem';

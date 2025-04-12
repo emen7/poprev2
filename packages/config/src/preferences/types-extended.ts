@@ -5,8 +5,9 @@ import { UserPreferences } from './types';
 
 /**
  * Extended user preferences structure
+ * Note: We're not extending the UserPreferences interface directly to avoid type conflicts
  */
-export interface ExtendedUserPreferences extends UserPreferences {
+export interface ExtendedUserPreferences {
   reader: {
     showParagraphNumbers: boolean;
     showNoteIndicators: boolean;
@@ -17,7 +18,7 @@ export interface ExtendedUserPreferences extends UserPreferences {
       pitch: number;
     };
     theme: 'light' | 'dark' | 'system';
-    fontSize: 'small' | 'medium' | 'large' | 'x-large';
+    fontSize: 'small' | 'medium' | 'large'; // Keep compatible with original UserPreferences
     lineHeight: 'compact' | 'normal' | 'relaxed';
     contentFormat: 'modern' | 'traditional';
   };

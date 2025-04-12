@@ -24,7 +24,7 @@ export function EnhancedSettingsPanel({
   const { preferences, updatePreferences } = useExtendedUserPreferences();
 
   // Handle font size change
-  const handleFontSizeChange = (fontSize: 'small' | 'medium' | 'large' | 'x-large') => {
+  const handleFontSizeChange = (fontSize: 'small' | 'medium' | 'large') => {
     updatePreferences({
       reader: {
         ...preferences.reader,
@@ -164,13 +164,6 @@ export function EnhancedSettingsPanel({
               aria-pressed={preferences.reader.fontSize === 'large'}
             >
               Large
-            </button>
-            <button
-              className={`er-settings-option-button ${preferences.reader.fontSize === 'x-large' ? 'er-active' : ''}`}
-              onClick={() => handleFontSizeChange('x-large')}
-              aria-pressed={preferences.reader.fontSize === 'x-large'}
-            >
-              X-Large
             </button>
           </div>
         </div>
