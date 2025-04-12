@@ -19,7 +19,7 @@ export default function HomePage() {
             temporarily archived during deployment optimization.
           </p>
           <p className="commit-message">
-            Latest update: "Fix unused variables and remove console logs in UB components"
+            Latest update: "Fix React Hook dependency arrays and unused variables"
           </p>
         </section>
       </main>
