@@ -19,7 +19,7 @@ export default function HomePage() {
             temporarily archived during deployment optimization.
           </p>
           <p className="commit-message">
-            Latest update: "Fix more ESLint issues: remove unused imports and variables"
+            Latest update: "Fix unused variables and remove console logs in UB components"
           </p>
         </section>
       </main>
