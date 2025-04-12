@@ -10,14 +10,17 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "lint": "turbo run lint",
+    "lint:css": "stylelint \"**/*.css\" --fix",
     "test": "turbo run test",
     "clean": "turbo run clean"
   },
   "devDependencies": {
-    "turbo": "^1.10.0",
-    "typescript": "^5.0.4",
     "eslint": "^8.40.0",
-    "prettier": "^2.8.8"
+    "prettier": "^2.8.8",
+    "stylelint": "^16.18.0",
+    "stylelint-config-standard": "^38.0.0",
+    "turbo": "^1.10.0",
+    "typescript": "^5.0.4"
   },
   "engines": {
     "node": ">=16.0.0"
