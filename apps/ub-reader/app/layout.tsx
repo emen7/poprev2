@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { HighlightProvider } from '../components/HighlightProvider';
 import { ThemeProvider } from '../contexts/ThemeContext';
-import { UserPreferencesProvider } from '../contexts/UserPreferencesContext';
+import { ExtendedUserPreferencesProvider } from '../contexts/ExtendedUserPreferencesContext';
+import { EnhancedHighlightProvider } from '../components/EnhancedHighlightProvider';
 
 import '../styles/globals.css';
+import '../styles/global.css'; // Import our new global CSS
 import '../styles/themes/index.css'; // Import theme styles
 import '../styles/highlighting/highlighting.css'; // Import highlighting styles
 
@@ -23,16 +24,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <UserPreferencesProvider>
-          <ThemeProvider>
-            <HighlightProvider containerSelector=".ub-paper">
-              <main className="min-h-screen">
-                {children}
-                {/* Removed PreferencesPanel to fix the blue hovering settings gear issue */}
-              </main>
-            </HighlightProvider>
-          </ThemeProvider>
-        </UserPreferencesProvider>
+        {/* We're not using the providers here because each page will use its own providers */}
+        {/* This allows us to have different configurations for different pages */}
+        <main className="min-h-screen">{children}</main>
       </body>
     </html>
   );

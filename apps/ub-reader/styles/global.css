@@ -1,0 +1,329 @@
+/* Global CSS Variables and Styles */
+
+:root {
+  /* Light Theme Colors */
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --heading-color: #222222;
+  --border-color: #dddddd;
+  --link-color: #0070f3;
+  --link-hover-color: #0051a8;
+
+  /* Header */
+  --header-background: #f8f8f8;
+  --title-color: #333333;
+
+  /* Buttons */
+  --button-color: #333333;
+  --button-hover-background: rgba(0, 0, 0, 0.05);
+  --button-active-background: #007bff;
+  --button-active-color: #ffffff;
+
+  /* Panels */
+  --panel-background: #ffffff;
+  --panel-header-background: #f5f5f5;
+
+  /* Navigation */
+  --nav-background: #ffffff;
+  --nav-text-color: #333333;
+  --nav-active-background: rgba(0, 123, 255, 0.1);
+  --nav-active-border: #007bff;
+
+  /* Pullup */
+  --pullup-background: #ffffff;
+  --pullup-border: #dddddd;
+  --tab-color: #666666;
+  --tab-active-color: #007bff;
+  --tab-active-text-color: #007bff;
+
+  /* Paragraph */
+  --paragraph-number-color: #666666;
+  --note-indicator-color: #3498db;
+
+  /* Highlights */
+  --highlight-yellow: rgba(255, 245, 120, 0.6);
+  --highlight-green: rgba(152, 251, 152, 0.6);
+  --highlight-blue: rgba(176, 196, 222, 0.6);
+
+  /* Settings */
+  --settings-background: #ffffff;
+  --settings-border: #dddddd;
+  --settings-text: #333333;
+  --settings-button-background: #f5f5f5;
+  --settings-button-border: #dddddd;
+  --settings-button-active-background: #007bff;
+  --settings-button-active-border: #0069d9;
+  --settings-button-active-color: #ffffff;
+
+  /* Notes & Quotes */
+  --item-border-color: #dddddd;
+  --item-header-background: #f5f5f5;
+  --item-footer-background: #f9f9f9;
+  --delete-button-color: #999999;
+  --delete-button-hover-color: #666666;
+  --empty-state-color: #999999;
+  --footer-text-color: #999999;
+}
+
+/* Dark Theme */
+.dark-theme {
+  /* Dark Theme Colors */
+  --background-color-dark: #121212;
+  --text-color-dark: #eeeeee;
+  --heading-color-dark: #dddddd;
+  --border-color-dark: #333333;
+  --link-color-dark: #3498db;
+  --link-hover-color-dark: #2980b9;
+
+  /* Header */
+  --header-background-dark: #1e1e1e;
+  --title-color-dark: #eeeeee;
+
+  /* Buttons */
+  --button-color-dark: #eeeeee;
+  --button-hover-background-dark: rgba(255, 255, 255, 0.1);
+  --button-active-background-dark: #3498db;
+  --button-active-color-dark: #ffffff;
+
+  /* Panels */
+  --panel-background-dark: #222222;
+  --panel-header-background-dark: #2a2a2a;
+
+  /* Navigation */
+  --nav-background-dark: #222222;
+  --nav-text-color-dark: #dddddd;
+  --nav-active-background-dark: rgba(52, 152, 219, 0.2);
+  --nav-active-border-dark: #3498db;
+
+  /* Pullup */
+  --pullup-background-dark: #222222;
+  --pullup-border-dark: #333333;
+  --tab-color-dark: #aaaaaa;
+  --tab-active-color-dark: #3498db;
+  --tab-active-text-color-dark: #3498db;
+
+  /* Paragraph */
+  --paragraph-number-color-dark: #999999;
+  --note-indicator-color-dark: #5dade2;
+
+  /* Highlights */
+  --highlight-yellow-dark: rgba(255, 245, 120, 0.4);
+  --highlight-green-dark: rgba(152, 251, 152, 0.4);
+  --highlight-blue-dark: rgba(176, 196, 222, 0.4);
+
+  /* Settings */
+  --settings-background-dark: #222222;
+  --settings-border-dark: #333333;
+  --settings-text-dark: #eeeeee;
+  --settings-button-background-dark: #333333;
+  --settings-button-border-dark: #555555;
+  --settings-button-active-background-dark: #3498db;
+  --settings-button-active-border-dark: #2980b9;
+  --settings-button-active-color-dark: #ffffff;
+
+  /* Notes & Quotes */
+  --item-border-color-dark: #444444;
+  --item-header-background-dark: #333333;
+  --item-footer-background-dark: #2a2a2a;
+  --delete-button-color-dark: #aaaaaa;
+  --delete-button-hover-color-dark: #cccccc;
+  --empty-state-color-dark: #888888;
+  --footer-text-color-dark: #888888;
+
+  /* Apply dark theme variables to light theme variables */
+  --background-color: var(--background-color-dark);
+  --text-color: var(--text-color-dark);
+  --heading-color: var(--heading-color-dark);
+  --border-color: var(--border-color-dark);
+  --link-color: var(--link-color-dark);
+  --link-hover-color: var(--link-hover-color-dark);
+
+  --header-background: var(--header-background-dark);
+  --title-color: var(--title-color-dark);
+
+  --button-color: var(--button-color-dark);
+  --button-hover-background: var(--button-hover-background-dark);
+  --button-active-background: var(--button-active-background-dark);
+  --button-active-color: var(--button-active-color-dark);
+
+  --panel-background: var(--panel-background-dark);
+  --panel-header-background: var(--panel-header-background-dark);
+
+  --nav-background: var(--nav-background-dark);
+  --nav-text-color: var(--nav-text-color-dark);
+  --nav-active-background: var(--nav-active-background-dark);
+  --nav-active-border: var(--nav-active-border-dark);
+
+  --pullup-background: var(--pullup-background-dark);
+  --pullup-border: var(--pullup-border-dark);
+  --tab-color: var(--tab-color-dark);
+  --tab-active-color: var(--tab-active-color-dark);
+  --tab-active-text-color: var(--tab-active-text-color-dark);
+
+  --paragraph-number-color: var(--paragraph-number-color-dark);
+  --note-indicator-color: var(--note-indicator-color-dark);
+
+  --highlight-yellow: var(--highlight-yellow-dark);
+  --highlight-green: var(--highlight-green-dark);
+  --highlight-blue: var(--highlight-blue-dark);
+
+  --settings-background: var(--settings-background-dark);
+  --settings-border: var(--settings-border-dark);
+  --settings-text: var(--settings-text-dark);
+  --settings-button-background: var(--settings-button-background-dark);
+  --settings-button-border: var(--settings-button-border-dark);
+  --settings-button-active-background: var(--settings-button-active-background-dark);
+  --settings-button-active-border: var(--settings-button-active-border-dark);
+  --settings-button-active-color: var(--settings-button-active-color-dark);
+
+  --item-border-color: var(--item-border-color-dark);
+  --item-header-background: var(--item-header-background-dark);
+  --item-footer-background: var(--item-footer-background-dark);
+  --delete-button-color: var(--delete-button-color-dark);
+  --delete-button-hover-color: var(--delete-button-hover-color-dark);
+  --empty-state-color: var(--empty-state-color-dark);
+  --footer-text-color: var(--footer-text-color-dark);
+}
+
+/* Global Styles */
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading-color);
+  margin-top: 0;
+}
+
+/* Highlight Styles */
+.ub-highlight-yellow {
+  background-color: var(--highlight-yellow);
+}
+
+.ub-highlight-green {
+  background-color: var(--highlight-green);
+}
+
+.ub-highlight-blue {
+  background-color: var(--highlight-blue);
+}
+
+/* Hide highlights when disabled */
+.ub-highlights-hidden .ub-highlight-yellow,
+.ub-highlights-hidden .ub-highlight-green,
+.ub-highlights-hidden .ub-highlight-blue {
+  background-color: transparent !important;
+}
+
+/* Text formatting styles */
+.ub-emphasis {
+  font-style: italic;
+}
+
+.ub-strong-emphasis {
+  font-style: italic;
+  font-weight: bold;
+}
+
+.ub-all-caps {
+  font-variant: small-caps;
+}
+
+.ub-strong-all-caps {
+  font-variant: small-caps;
+  font-weight: bold;
+}
+
+/* Traditional theme specific styles */
+.traditional-theme {
+  font-family: Georgia, serif;
+}
+
+.traditional-theme .ub-paragraph-text {
+  text-indent: 1.5em;
+}
+
+/* Modern theme specific styles */
+.modern-theme {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
+}
+
+.modern-theme .ub-paragraph-text {
+  text-indent: 0;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .ub-reader-content {
+    padding: 0.75rem;
+  }
+
+  .reader-title {
+    font-size: 1rem;
+  }
+
+  .nav-panel {
+    width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ub-reader-content {
+    padding: 0.5rem;
+  }
+
+  .reader-nav-button,
+  .reader-action-button {
+    padding: 0.25rem;
+  }
+
+  .nav-panel {
+    width: 250px;
+  }
+}
