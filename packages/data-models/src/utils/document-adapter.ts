@@ -1,12 +1,12 @@
 /**
  * Document Adapter
- * 
+ *
  * This file provides utilities for adapting between the existing TransformedDocument
  * and our new Document model.
  */
 
 import { Document, DocumentMetadata, Section, Paragraph } from '../models';
-import { TransformedDocument, DocumentNode } from '../../document-transformer/types';
+import { TransformedDocument, DocumentNode } from '@ub-ecosystem/content-transformer';
 
 /**
  * Adapter for converting between TransformedDocument and Document
@@ -14,20 +14,20 @@ import { TransformedDocument, DocumentNode } from '../../document-transformer/ty
 export class DocumentAdapter {
   /**
    * Convert a TransformedDocument to our Document model
-   * 
+   *
    * @param transformedDocument The transformed document to convert
    * @returns A Document object
    */
   public static fromTransformedDocument(transformedDocument: TransformedDocument): Document {
     // Extract metadata
     const metadata = this.convertMetadata(transformedDocument.metadata);
-    
+
     // Generate a unique ID for the document
     const id = `doc-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
-    
+
     // Extract sections from the content
     const sections = this.extractSections(transformedDocument.content);
-    
+
     return {
       id,
       title: metadata.title || 'Untitled Document',
@@ -35,13 +35,13 @@ export class DocumentAdapter {
       sections,
       relationships: [],
       metadata,
-      content: transformedDocument.content
+      content: transformedDocument.content,
     };
   }
 
   /**
    * Convert our Document model to a TransformedDocument
-   * 
+   *
    * @param document The document to convert
    * @returns A TransformedDocument object
    */
@@ -52,24 +52,24 @@ export class DocumentAdapter {
         content: document.content,
         metadata: document.metadata,
         html: undefined,
-        text: undefined
+        text: undefined,
       };
     }
-    
+
     // Otherwise, construct a new content structure
     const content = this.constructContent(document);
-    
+
     return {
       content,
       metadata: document.metadata,
       html: undefined,
-      text: undefined
+      text: undefined,
     };
   }
 
   /**
    * Convert metadata from TransformedDocument to our DocumentMetadata
-   * 
+   *
    * @param metadata The metadata to convert
    * @returns DocumentMetadata
    */
@@ -82,41 +82,44 @@ export class DocumentAdapter {
       categories: metadata.categories,
       tags: metadata.tags,
       relatedContent: metadata.relatedContent,
-      ...metadata
+      ...metadata,
     };
   }
 
   /**
    * Extract sections from the content
-   * 
+   *
    * @param content The content to extract sections from
    * @returns Array of sections
    */
   private static extractSections(content: any): Section[] {
     const sections: Section[] = [];
     let currentSection: Section | null = null;
-    
+
     // Function to process nodes recursively
     const processNode = (node: DocumentNode, depth = 0) => {
       // If it's a heading, create a new section
       if (node.type === 'heading') {
         const headingNode = node as any;
         const headingText = this.getNodeText(node);
-        const sectionId = `section-${headingText.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')}`;
-        
+        const sectionId = `section-${headingText
+          .toLowerCase()
+          .replace(/\s+/g, '-')
+          .replace(/[^\w-]/g, '')}`;
+
         // Create a new section
         const newSection: Section = {
           id: sectionId,
           title: headingText,
           paragraphs: [],
-          subsections: []
+          subsections: [],
         };
-        
+
         // If it's a top-level heading (h1 or h2), add it to the main sections array
         if (headingNode.depth <= 2) {
           sections.push(newSection);
           currentSection = newSection;
-        } 
+        }
         // Otherwise, add it as a subsection of the current section
         else if (currentSection) {
           currentSection.subsections = currentSection.subsections || [];
@@ -127,13 +130,13 @@ export class DocumentAdapter {
       else if (node.type === 'paragraph') {
         const paragraphText = this.getNodeText(node);
         const paragraphId = `paragraph-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
-        
+
         const paragraph: Paragraph = {
           id: paragraphId,
           content: paragraphText,
-          references: []
+          references: [],
         };
-        
+
         // If we have a current section, add the paragraph to it
         if (currentSection) {
           currentSection.paragraphs.push(paragraph);
@@ -144,14 +147,14 @@ export class DocumentAdapter {
             id: 'section-default',
             title: 'Default Section',
             paragraphs: [paragraph],
-            subsections: []
+            subsections: [],
           };
-          
+
           sections.push(defaultSection);
           currentSection = defaultSection;
         }
       }
-      
+
       // Process children recursively
       if (node.children && node.children.length > 0) {
         for (const child of node.children) {
@@ -159,20 +162,20 @@ export class DocumentAdapter {
         }
       }
     };
-    
+
     // Process all nodes in the content
     if (content.children && content.children.length > 0) {
       for (const child of content.children) {
         processNode(child);
       }
     }
-    
+
     return sections;
   }
 
   /**
    * Construct content from a Document
-   * 
+   *
    * @param document The document to construct content from
    * @returns A RootNode
    */
@@ -180,9 +183,9 @@ export class DocumentAdapter {
     // Create a root node
     const rootNode: any = {
       type: 'root',
-      children: []
+      children: [],
     };
-    
+
     // Function to add a section to the content
     const addSection = (section: Section, depth = 1) => {
       // Add a heading for the section
@@ -192,13 +195,13 @@ export class DocumentAdapter {
         children: [
           {
             type: 'text',
-            value: section.title
-          }
-        ]
+            value: section.title,
+          },
+        ],
       };
-      
+
       rootNode.children.push(headingNode);
-      
+
       // Add paragraphs
       for (const paragraph of section.paragraphs) {
         const paragraphNode: any = {
@@ -206,14 +209,14 @@ export class DocumentAdapter {
           children: [
             {
               type: 'text',
-              value: paragraph.content
-            }
-          ]
+              value: paragraph.content,
+            },
+          ],
         };
-        
+
         rootNode.children.push(paragraphNode);
       }
-      
+
       // Add subsections recursively
       if (section.subsections && section.subsections.length > 0) {
         for (const subsection of section.subsections) {
@@ -221,18 +224,18 @@ export class DocumentAdapter {
         }
       }
     };
-    
+
     // Add all sections
     for (const section of document.sections) {
       addSection(section);
     }
-    
+
     return rootNode;
   }
 
   /**
    * Get the text content of a node
-   * 
+   *
    * @param node The node to extract text from
    * @returns The text content of the node
    */
@@ -240,11 +243,11 @@ export class DocumentAdapter {
     if (node.type === 'text' && node.value) {
       return node.value;
     }
-    
+
     if (node.children && node.children.length > 0) {
       return node.children.map(this.getNodeText.bind(this)).join('');
     }
-    
+
     return '';
   }
 }
