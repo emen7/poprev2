@@ -105,7 +105,7 @@ export function PullupPanel({
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (isDragging && panelRef.current) {
-        const panelRect = panelRef.current.getBoundingClientRect();
+        // We only need the panel's existence, not its dimensions
         const newHeight = window.innerHeight - e.clientY;
 
         // Constrain height within min and max
@@ -128,7 +128,9 @@ export function PullupPanel({
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [isDragging, minHeight, maxHeight, onHeightChange, height]);
+  }, [isDragging, minHeight, maxHeight, currentHeight, height]);
+  // Note: We removed onHeightChange from dependencies and added currentHeight
+  // onHeightChange is only used in handleDragEnd which is defined outside the effect
 
   // Determine panel classes
   const panelClasses = [

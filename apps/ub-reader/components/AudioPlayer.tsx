@@ -7,7 +7,9 @@
 
 'use client';
 
-import {} from /* generateAudio, TTSProvider */ '@ub-ecosystem/audio-services';
+// Import from audio-services package - currently not using any imports
+// but keeping the import for future use
+import {} from '@ub-ecosystem/audio-services';
 import React, { useState, useRef, useEffect } from 'react';
 
 interface AudioPlayerProps {
@@ -76,6 +78,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
   // Update isPlaying state when audio ends
   useEffect(() => {
+    // Store the current audio element reference to avoid stale closures
     const audioElement = audioRef.current;
 
     const handleEnded = () => {
@@ -86,12 +89,15 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       audioElement.addEventListener('ended', handleEnded);
     }
 
+    // Cleanup function to remove event listeners
     return () => {
       if (audioElement) {
         audioElement.removeEventListener('ended', handleEnded);
       }
     };
-  }, []); // Empty dependency array as we only want this to run once on mount
+    // We capture audioElement in the closure above, so we don't need audioRef in dependencies
+    // setIsPlaying is stable across renders (provided by React)
+  }, []);
 
   return (
     <div className="audio-player border rounded-lg p-4 my-4 bg-gray-50">
