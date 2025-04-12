@@ -18,6 +18,9 @@ export default function HomePage() {
             This is the home page for the UB Reader application. The example pages have been
             temporarily archived during deployment optimization.
           </p>
+          <p className="commit-message">
+            Latest update: "Fix ESLint issues: remove unused variables and fix JSX issues"
+          </p>
         </section>
       </main>
     </div>

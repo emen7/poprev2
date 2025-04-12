@@ -41,3 +41,12 @@
   line-height: 1.6;
   color: #555;
 }
+
+.commit-message {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f0f8ff;
+  border-left: 4px solid #4682b4;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
