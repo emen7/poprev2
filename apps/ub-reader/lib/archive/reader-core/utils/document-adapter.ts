@@ -5,7 +5,7 @@
  * and our new Document model.
  */
 
-import { TransformedDocument, DocumentNode } from '../../document-transformer/types';
+import { TransformedDocument, DocumentNode } from '../../../document-transformer/types';
 import { Document, DocumentMetadata, Section, Paragraph } from '../models';
 
 /**
