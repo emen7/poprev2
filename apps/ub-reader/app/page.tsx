@@ -19,8 +19,7 @@ export default function HomePage() {
             temporarily archived during deployment optimization.
           </p>
           <p className="commit-message">
-            Latest update: "Add code quality tools: VSCode settings, pre-commit hooks, and
-            documentation"
+            Latest update: &quot;Add husky and lint-staged dependencies&quot;
           </p>
         </section>
       </main>
