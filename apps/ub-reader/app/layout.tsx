@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { ThemeProvider } from '../contexts/ThemeContext';
-import { ExtendedUserPreferencesProvider } from '../contexts/ExtendedUserPreferencesContext';
-import { EnhancedHighlightProvider } from '../components/EnhancedHighlightProvider';
+import { UserPreferencesProvider } from '../contexts/UserPreferencesContext';
+import { HighlightProvider } from '../components/HighlightProvider';
 
 import '../styles/globals.css';
 import '../styles/global.css'; // Import our new global CSS
@@ -24,9 +24,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        {/* We're not using the providers here because each page will use its own providers */}
-        {/* This allows us to have different configurations for different pages */}
-        <main className="min-h-screen">{children}</main>
+        {/* Restore the original providers for backward compatibility */}
+        <UserPreferencesProvider>
+          <ThemeProvider>
+            <HighlightProvider containerSelector=".ub-paper">
+              <main className="min-h-screen">{children}</main>
+            </HighlightProvider>
+          </ThemeProvider>
+        </UserPreferencesProvider>
       </body>
     </html>
   );
