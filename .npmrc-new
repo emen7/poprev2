@@ -1,0 +1,4 @@
+# Skip building native modules that aren't compatible with Vercel's environment
+node-linker=hoisted
+public-hoist-pattern[]=*better-sqlite3*
+ignore-scripts=true
