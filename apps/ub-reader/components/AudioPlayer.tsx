@@ -7,7 +7,7 @@
 
 'use client';
 
-import { generateAudio, TTSProvider } from '@ub-ecosystem/audio-services';
+import {} from /* generateAudio, TTSProvider */ '@ub-ecosystem/audio-services';
 import React, { useState, useRef, useEffect } from 'react';
 
 interface AudioPlayerProps {
@@ -91,7 +91,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
         audioElement.removeEventListener('ended', handleEnded);
       }
     };
-  }, [audioRef.current]);
+  }, []); // Empty dependency array as we only want this to run once on mount
 
   return (
     <div className="audio-player border rounded-lg p-4 my-4 bg-gray-50">

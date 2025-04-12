@@ -12,7 +12,7 @@ export default function SimpleExamplePage() {
   return (
     <div className="simple-example">
       <h1>Simple Example</h1>
-      <p>This is a simple example page that doesn't rely on the complex Reader component.</p>
+      <p>This is a simple example page that doesn&apos;t rely on the complex Reader component.</p>
 
       <div className="example-container">
         <div className="example-header">
@@ -35,7 +35,7 @@ export default function SimpleExamplePage() {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .simple-example {
           padding: 2rem;
           font-family:

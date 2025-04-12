@@ -80,19 +80,19 @@ export const HighlightProvider: React.FC<HighlightProviderProps> = ({
 }) => {
   const [showHighlights, setShowHighlights] = useState<boolean>(true);
   const [highlights, setHighlights] = useState<Highlight[]>([]);
-  const [darkMode, setDarkMode] = useState<boolean>(isDarkMode);
+  // Using isDarkMode prop directly instead of maintaining separate state
   const [selectionMenuVisible, setSelectionMenuVisible] = useState<boolean>(false);
   const [selectionMenuPosition, setSelectionMenuPosition] = useState<Position>({ top: 0, left: 0 });
-  const [selectedText, setSelectedText] = useState<string>('');
+  // We don't need to track selectedText as it's only used in the showSelectionMenu method
   const [onHighlightCallback, setOnHighlightCallback] = useState<((color: string) => void) | null>(
     null
   );
 
-  // Check for dark mode
+  // We'll keep the dark mode detection logic but use the isDarkMode prop directly
   useEffect(() => {
+    // No need to update state since we're using the prop directly
     const checkDarkMode = () => {
-      const isDark = document.body.classList.contains('dark-mode');
-      setDarkMode(isDark);
+      // This could be used for other side effects if needed
     };
 
     checkDarkMode();
@@ -202,7 +202,7 @@ export const HighlightProvider: React.FC<HighlightProviderProps> = ({
   // Create the highlight manager
   const highlightManager: HighlightManager = {
     showSelectionMenu: (options: SelectionMenuOptions) => {
-      setSelectedText(options.text);
+      // No need to store the text in state
       setSelectionMenuPosition(options.position);
       setOnHighlightCallback(() => options.onHighlight);
       setSelectionMenuVisible(true);

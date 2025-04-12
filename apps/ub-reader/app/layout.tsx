@@ -7,7 +7,6 @@ import { UserPreferencesProvider } from '../contexts/UserPreferencesContext';
 import '../styles/globals.css';
 import '../styles/themes/index.css'; // Import theme styles
 import '../styles/highlighting/highlighting.css'; // Import highlighting styles
-import Script from 'next/script';
 
 export const metadata = {
   title: 'UB Reader',

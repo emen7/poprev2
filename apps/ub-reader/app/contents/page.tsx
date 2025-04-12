@@ -95,7 +95,7 @@ export default function ContentsPage() {
  * Helper function to create vertical columns for sections
  * This ensures sections are listed in a vertical sequence (1,2,3,4 in first column, 5,6,7,8 in second, etc.)
  */
-function createSectionColumns(sections: { number: number; title: string }[], paperNumber: number) {
+function createSectionColumns(sections: { number: number; title: string }[]) {
   // Determine number of columns based on section count
   let columnCount = 1;
   if (sections.length > 6) columnCount = 2;
@@ -150,7 +150,7 @@ function StandardContentsView({ contentsData }: { contentsData: PartInfo[] }) {
                 {/* Vertical section list for better numerical readability */}
                 <div className="flex flex-wrap">
                   {/* Create columns based on section count */}
-                  {createSectionColumns(paper.sections, paper.number).map((column, colIndex) => (
+                  {createSectionColumns(paper.sections).map((column, colIndex) => (
                     <div key={colIndex} className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 mb-4">
                       <ul className="space-y-1 pr-2">
                         {column.map(section => (
