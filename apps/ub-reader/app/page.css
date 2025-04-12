@@ -5,17 +5,53 @@
   font-family: Arial, sans-serif;
 }
 
+/* Light theme (default) */
+:root {
+  --bg-color: #ffffff;
+  --header-bg: #f8f8f8;
+  --header-border: #e0e0e0;
+  --text-color: #333333;
+  --secondary-text: #555555;
+  --card-bg: #ffffff;
+  --card-shadow: rgba(0, 0, 0, 0.1);
+  --commit-bg: #f0f8ff;
+  --commit-border: #4682b4;
+}
+
+/* Dark theme */
+.dark-theme {
+  --bg-color: #121212;
+  --header-bg: #1e1e1e;
+  --header-border: #333333;
+  --text-color: #f0f0f0;
+  --secondary-text: #cccccc;
+  --card-bg: #2a2a2a;
+  --card-shadow: rgba(0, 0, 0, 0.3);
+  --commit-bg: #1a2733;
+  --commit-border: #3291ff;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
 .header {
-  background-color: #f8f8f8;
+  background-color: var(--header-bg);
   padding: 20px;
-  text-align: center;
-  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--header-border);
 }
 
 .header h1 {
   margin: 0;
   font-size: 2rem;
-  color: #333;
+  color: var(--text-color);
 }
 
 .main-content {
@@ -26,27 +62,42 @@
 }
 
 .welcome-section {
-  background-color: #fff;
+  background-color: var(--card-bg);
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+  box-shadow: 0 2px 4px var(--card-shadow);
 }
 
 .welcome-section h2 {
   margin-top: 0;
-  color: #333;
+  color: var(--text-color);
+}
+
+.welcome-section h3 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  color: var(--text-color);
 }
 
 .welcome-section p {
   line-height: 1.6;
-  color: #555;
+  color: var(--secondary-text);
 }
 
 .commit-message {
   margin-top: 20px;
   padding: 10px;
-  background-color: #f0f8ff;
-  border-left: 4px solid #4682b4;
+  background-color: var(--commit-bg);
+  border-left: 4px solid var(--commit-border);
   font-family: monospace;
   font-size: 0.9rem;
+  color: var(--secondary-text);
+}
+
+.theme-toggle-button {
+  margin-left: 16px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }

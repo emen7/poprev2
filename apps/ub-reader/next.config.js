@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+
 const nextConfig = {
   reactStrictMode: true,
   // Disable ESLint and TypeScript type checking during build to avoid errors
@@ -16,6 +21,8 @@ const nextConfig = {
     '@ub-ecosystem/config',
     '@ub-ecosystem/audio-services',
     '@ub-ecosystem/state-management',
+    '@ub-ecosystem/core',
+    '@ub-ecosystem/theme-system',
     '@ub/highlighting',
   ],
   // Ensure we can access the content directory
@@ -27,5 +34,4 @@ const nextConfig = {
     return [];
   },
 };
-
-module.exports = nextConfig;
+module.exports = withBundleAnalyzer(nextConfig);

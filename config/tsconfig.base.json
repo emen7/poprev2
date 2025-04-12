@@ -20,6 +20,8 @@
       "@ub-ecosystem/content-transformer": ["packages/content-transformer/src"],
       "@ub-ecosystem/reference-parser": ["packages/reference-parser/src"],
       "@ub-ecosystem/data-models": ["packages/data-models/src"],
+      "@ub-ecosystem/core": ["packages/core/src"],
+      "@ub-ecosystem/theme-system": ["packages/theme-system/src"],
       "@ub/highlighting": ["packages/highlighting/src"]
     }
   },
