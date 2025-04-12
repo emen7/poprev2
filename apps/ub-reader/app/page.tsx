@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * UB Reader Home Page
  */
