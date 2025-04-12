@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc && (if not exist dist\\styles mkdir dist\\styles) && copy src\\styles\\highlighting.css dist\\styles\\",
+    "build": "tsc && mkdir -p dist/styles && cp src/styles/highlighting.css dist/styles/",
     "dev": "tsc --watch",
     "clean": "rm -rf dist",
     "lint": "eslint src --ext .ts,.tsx",
