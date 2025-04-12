@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
 import { useNavigation } from '@ub-ecosystem/state-management';
-import { HamburgerButton } from './HamburgerButton';
+import React, { useEffect } from 'react';
+
 import { BookNavigationPanel } from './BookNavigationPanel';
-import { SectionNavigationPanel } from './SectionNavigationPanel';
 import styles from './DualHamburgerNavigation.module.css';
+import { HamburgerButton } from './HamburgerButton';
+import { SectionNavigationPanel } from './SectionNavigationPanel';
 
 export interface DualHamburgerNavigationProps {
   /**

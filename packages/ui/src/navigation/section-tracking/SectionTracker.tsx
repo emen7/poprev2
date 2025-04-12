@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useRef } from 'react';
 import { useNavigation } from '@ub-ecosystem/state-management';
-import { useIntersectionObserver } from './useIntersectionObserver';
+import React, { useCallback, useEffect, useRef } from 'react';
+
 import styles from './SectionTracker.module.css';
+import { useIntersectionObserver } from './useIntersectionObserver';
 
 export interface SectionTrackerProps {
   /**

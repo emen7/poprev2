@@ -20,7 +20,7 @@ This package requires the following dependencies:
 ### Parsing HTML Tables
 
 ```typescript
-import { parseHtmlTable } from "@ub-ecosystem/table-transformer";
+import { parseHtmlTable } from '@ub-ecosystem/table-transformer';
 
 // HTML table string
 const htmlTable = `
@@ -46,7 +46,7 @@ const htmlTable = `
 `;
 
 // Parse the HTML table into a structured Table object
-const table = parseHtmlTable(htmlTable, "example-table");
+const table = parseHtmlTable(htmlTable, 'example-table');
 
 console.log(table);
 ```
@@ -54,11 +54,11 @@ console.log(table);
 ### Converting Tables to Grid Layouts
 
 ```typescript
-import { parseHtmlTable, tableToGrid } from "@ub-ecosystem/table-transformer";
-import { Table } from "@ub-ecosystem/data-models";
+import { parseHtmlTable, tableToGrid } from '@ub-ecosystem/table-transformer';
+import { Table } from '@ub-ecosystem/data-models';
 
 // Parse an HTML table
-const table = parseHtmlTable(htmlTable, "example-table");
+const table = parseHtmlTable(htmlTable, 'example-table');
 
 // Convert the table to a grid layout
 const grid = tableToGrid(table);

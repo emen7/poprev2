@@ -53,8 +53,8 @@
 }
 
 .control-group button.active {
-  background-color: var(--button-active-bg-color, #0066cc);
-  border-color: var(--button-active-border-color, #0077ee);
+  background-color: var(--button-active-bg-color, #06c);
+  border-color: var(--button-active-border-color, #07e);
 }
 
 /* Reader content area */
@@ -75,21 +75,21 @@
   --button-text-color: #fff;
   --button-border-color: #444;
   --button-hover-bg-color: #444;
-  --button-active-bg-color: #0066cc;
-  --button-active-border-color: #0077ee;
+  --button-active-bg-color: #06c;
+  --button-active-border-color: #07e;
   --content-text-color: #e2e8f0;
   --content-title-color: #7fc8f5;
   --content-section-title-color: #7fc8f5;
   --content-section-border: #333;
-  --content-highlight-bg: rgba(127, 200, 245, 0.1);
+  --content-highlight-bg: rgb(127 200 245 / 10%);
   --paragraph-number-color: #90f49d;
   --content-table-border: #333;
-  --content-table-header-bg: rgba(127, 200, 245, 0.1);
-  --content-topic-change-color: rgba(127, 200, 245, 0.3);
+  --content-table-header-bg: rgb(127 200 245 / 10%);
+  --content-topic-change-color: rgb(127 200 245 / 30%);
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .basic-reader-example {
     flex-direction: column;
   }

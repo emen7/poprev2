@@ -1,6 +1,6 @@
 /**
  * Document Model
- * 
+ *
  * This file defines the interfaces for the document model used by the Reader component.
  * It provides a hierarchical structure for documents, sections, paragraphs, and references.
  */
@@ -192,7 +192,7 @@ export interface DocumentMetadata {
 export interface TransformedDocumentAdapter {
   /**
    * Convert a TransformedDocument to our Document model
-   * 
+   *
    * @param transformedDocument The transformed document to convert
    * @returns A Document object
    */
@@ -200,7 +200,7 @@ export interface TransformedDocumentAdapter {
 
   /**
    * Convert our Document model to a TransformedDocument
-   * 
+   *
    * @param document The document to convert
    * @returns A TransformedDocument object
    */

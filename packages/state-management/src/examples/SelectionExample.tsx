@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useSelection } from '../hooks/useSelection';
+
 import { useNotes } from '../hooks/useNotes';
 import { usePullup } from '../hooks/usePullup';
+import { useSelection } from '../hooks/useSelection';
 import { TextSelection } from '../types/selection.types';
 
 // CSS styles

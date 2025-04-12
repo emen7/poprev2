@@ -1,8 +1,9 @@
 import React from 'react';
+
+import { Note } from './NotesTab';
+import { PullupContent } from './PullupContent';
 import { PullupPanel } from './PullupPanel';
 import { PullupTabs, PullupTab } from './PullupTabs';
-import { PullupContent } from './PullupContent';
-import { Note } from './NotesTab';
 import { Quote } from './QuotesTab';
 import { ReaderSettings } from './SettingsTab';
 import './Pullup.css';

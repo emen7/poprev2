@@ -2,12 +2,7 @@
   {
     "globalId": "3:61.-.-",
     "htmlText": null,
-    "labels": [
-      "Paleontology",
-      "Biology",
-      "Science",
-      "History"
-    ],
+    "labels": ["Paleontology", "Biology", "Science", "History"],
     "language": "eng",
     "objectID": "3:61.-.-",
     "paperId": "61",

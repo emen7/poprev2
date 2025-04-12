@@ -1,6 +1,6 @@
 /**
  * Extension System
- * 
+ *
  * This file defines the interfaces for the Reader extension system.
  * It provides a plugin architecture for adding specialized features to the Reader.
  */
@@ -34,7 +34,7 @@ export interface ReaderExtension {
 
   /**
    * Initialize the extension
-   * 
+   *
    * @param config Extension configuration
    */
   initialize(config: any): void;
@@ -84,9 +84,12 @@ export interface ExtensionComponents {
   /**
    * Additional UI components
    */
-  [key: string]: React.ComponentType<any> | undefined | {
-    [key: string]: React.ComponentType<any>;
-  };
+  [key: string]:
+    | React.ComponentType<any>
+    | undefined
+    | {
+        [key: string]: React.ComponentType<any>;
+      };
 }
 
 /**
@@ -210,21 +213,21 @@ export interface NodeRendererProps {
 export interface ExtensionRegistry {
   /**
    * Register an extension
-   * 
+   *
    * @param extension The extension to register
    */
   register(extension: ReaderExtension): void;
 
   /**
    * Unregister an extension
-   * 
+   *
    * @param extensionId The ID of the extension to unregister
    */
   unregister(extensionId: string): void;
 
   /**
    * Get an extension by ID
-   * 
+   *
    * @param extensionId The ID of the extension to get
    */
   getExtension(extensionId: string): ReaderExtension | undefined;
@@ -236,7 +239,7 @@ export interface ExtensionRegistry {
 
   /**
    * Get all components of a specific type from all extensions
-   * 
+   *
    * @param componentType The type of component to get
    */
   getComponentsByType(componentType: string): Record<string, React.ComponentType<any>>;

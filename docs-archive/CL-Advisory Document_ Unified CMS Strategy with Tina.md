@@ -16,7 +16,6 @@ A unified CMS approach provides significant advantages for ecosystems with multi
 - **Enhanced Collaboration**: Enable teams to work across publications when needed while maintaining clear role-based permissions[^8]
 - **Reduced Technical Debt**: Minimize divergent implementations across publications, supporting the technical debt management strategy[^1]
 
-
 ## Technical Implementation Recommendations
 
 ### 1. Tina CMS + Vercel Architecture
@@ -46,7 +45,6 @@ ub-ecosystem/
     └── ubcatechism/    # Catechism content
 ```
 
-
 ### 2. Unified Dashboard Implementation
 
 Create a custom administrative dashboard that provides:
@@ -58,7 +56,6 @@ Create a custom administrative dashboard that provides:
 - **Publishing Workflows**: Customizable approval processes
 - **Analytics Integration**: Unified view of performance metrics
 
-
 ### 3. Content Modeling Strategy
 
 Implement a structured content approach with:
@@ -67,7 +64,6 @@ Implement a structured content approach with:
 - **Publication-Specific Types**: Specialized for each publication (e.g., scientific citations)
 - **Reusable Components**: Content blocks that can be shared across publications
 - **Reference System**: Maintain the reference parsing capabilities across content types[^1]
-
 
 ## Governance and Workflow Considerations
 
@@ -80,7 +76,6 @@ Implement a comprehensive permission system that:
 - **Defines Granular Permissions**: Control access to specific content types and actions
 - **Manages Approval Workflows**: Customize approval chains by publication and content type[^8]
 
-
 ### 2. Content Workflow Management
 
 Establish flexible workflows that:
@@ -89,7 +84,6 @@ Establish flexible workflows that:
 - **Enable Content Scheduling**: Schedule content for future publication
 - **Support Draft Management**: Maintain multiple versions of content
 - **Include Archive Capabilities**: Properly manage outdated content
-
 
 ## Implementation Phases
 
@@ -100,14 +94,12 @@ Establish flexible workflows that:
 - Create basic dashboard functionality
 - Establish user roles and permissions system
 
-
 ### Phase 2: Publication Expansion (Months 4-6)
 
 - Extend the system to include the Scientific Reader
 - Add publication-specific content models and customizations
 - Enhance the dashboard with publication switching capabilities
 - Implement shared asset management
-
 
 ### Phase 3: Complete Integration (Months 7-9)
 
@@ -116,14 +108,12 @@ Establish flexible workflows that:
 - Add analytics and reporting capabilities
 - Develop content syndication between publications
 
-
 ### Phase 4: Optimization (Months 10-12)
 
 - Refine user experience based on feedback
 - Implement performance optimizations
 - Develop advanced search capabilities across publications
 - Add personalization features for content editors
-
 
 ## Case Studies from Successful Implementations
 
@@ -143,7 +133,6 @@ Measure the success of the unified CMS implementation using these key metrics:
 - **User Adoption**: CMS user satisfaction ratings
 - **Technical Performance**: Page load times and system reliability
 - **Cost Efficiency**: Reduction in development and maintenance costs
-
 
 ## Conclusion
 
@@ -228,4 +217,3 @@ The phased implementation approach ensures that the transition is manageable and
 [^37]: https://www.medicaid.gov/medicaid/data-and-systems/downloads/smc-certification-guidance.pdf
 
 [^38]: https://agilitycms.com/blog/11-features-to-look-for-in-a-content-management-system
-

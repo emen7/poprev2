@@ -8,6 +8,6 @@ import './NavigationExample.css';
  * - Prev/next navigation
  * - Footer with navigation information
  */
-export declare function NavigationExample(): import("react/jsx-runtime").JSX.Element;
+export declare function NavigationExample(): import('react/jsx-runtime').JSX.Element;
 export default NavigationExample;
 //# sourceMappingURL=NavigationExample.d.ts.map

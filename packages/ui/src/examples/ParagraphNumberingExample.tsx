@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { ParagraphContainer } from '../content/ParagraphContainer';
 import { Paragraph } from '../content/ParagraphRenderer';
 import './ParagraphNumberingExample.css';

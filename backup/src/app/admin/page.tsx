@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
 import React, { useEffect } from 'react';
 import { TinaCMSProvider } from '../../components/tina-provider';
 
 /**
  * Admin Page
- * 
+ *
  * This page serves as the entry point for the TinaCMS admin interface.
  * It redirects to the TinaCMS admin UI which is built at /admin/index.html.
  */

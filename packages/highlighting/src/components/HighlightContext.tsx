@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
+
+import { HighlightManager } from '../HighlightManager';
 import {
   HighlightContextValue,
   HighlightData,
   HighlightProviderProps,
   HighlightStorage,
 } from '../types';
-import { HighlightManager } from '../HighlightManager';
 
 // Create the context with undefined as the default value
 const HighlightContext = createContext<HighlightContextValue | undefined>(undefined);

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
 import { AppStateProvider, useNavigation } from '@ub-ecosystem/state-management';
-import { ContentContainer } from '../layout/ContentContainer';
+import React, { useState, useEffect } from 'react';
+
 import { ContentRenderer } from '../content/ContentRenderer';
 import { mockDocument } from '../content/mockDocument';
+import { ContentContainer } from '../layout/ContentContainer';
 import './BasicReaderExample.css';
 
 /**

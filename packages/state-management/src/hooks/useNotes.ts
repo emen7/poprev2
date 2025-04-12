@@ -1,4 +1,5 @@
 import { useContext, useCallback } from 'react';
+
 import { NotesContext } from '../contexts/NotesContext';
 import { NotesActionType, Note, Quote } from '../types/notes.types';
 

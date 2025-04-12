@@ -5,10 +5,10 @@
  */
 
 /* Import base theme styles */
-@import './base.css';
+@import url('./base.css');
 
 /* Import Modern theme styles */
-@import './modern.css';
+@import url('./modern.css');
 
 /* Import Traditional theme styles */
-@import './traditional.css';
+@import url('./traditional.css');

@@ -18,14 +18,14 @@ When designing reader interfaces for different screen sizes, it's best to adapt 
 - Reveal them through gestures or taps
 - Auto-hide after period of inactivity
 
-
 ## Implementation Considerations
 
 You can implement this responsive behavior using media queries:
 
 ```css
 /* Mobile-first approach with hiding behavior */
-.top-bar, .bottom-sheet {
+.top-bar,
+.bottom-sheet {
   position: fixed;
   transition: transform 0.3s ease;
 }
@@ -44,18 +44,18 @@ You can implement this responsive behavior using media queries:
     padding-top: 60px; /* Height of top bar */
     padding-bottom: 80px; /* Height of bottom sheet */
   }
-  
-  .top-bar.hidden, .bottom-sheet.hidden {
+
+  .top-bar.hidden,
+  .bottom-sheet.hidden {
     transform: translateY(0); /* Override the hiding transform */
   }
-  
+
   /* Optional: Reposition bottom sheet as a fixed footer */
   .bottom-sheet {
     height: 60px; /* Smaller height when persistent */
   }
 }
 ```
-
 
 ## Maintaining Hierarchy with Sticky Headers
 
@@ -65,7 +65,6 @@ The sticky section headers can work in harmony with persistent navigation:
 - On large screens, it sits directly below the persistent top navigation bar
 - Section titles stick below the paper title as users scroll
 - These sticky behaviors remain consistent across screen sizes
-
 
 ## Best Practice Recommendations
 
@@ -79,4 +78,3 @@ This adaptive approach gives you the best of both worlds—maximizing reading sp
 <div>⁂</div>
 
 [^1]: https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/6754629/2587b298-464c-4cec-afa3-68d4070076ea/REDIT-Cline-Recursive.md
-

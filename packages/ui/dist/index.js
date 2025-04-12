@@ -7,7 +7,14 @@
 // Layout Components
 export { ThreeRowHeader, HeaderRow, DynamicSectionTitle } from './layout';
 // Navigation Components
-export { DualHamburgerNavigation, HamburgerButton, BookNavigationPanel, SectionNavigationPanel, SectionTracker, useIntersectionObserver, } from './navigation';
+export {
+  DualHamburgerNavigation,
+  HamburgerButton,
+  BookNavigationPanel,
+  SectionNavigationPanel,
+  SectionTracker,
+  useIntersectionObserver,
+} from './navigation';
 // Content Components
 export { ContentRenderer, ParagraphRenderer, SectionRenderer } from './content';
 // Re-export content types with namespace to avoid conflicts
@@ -18,7 +25,12 @@ export { FormatToggle } from './settings';
 // Hooks
 export { useFormatting } from './hooks';
 // Scientific Content Components
-export { ScientificTooltip, ScientificContentProcessor, ScientificContentProvider, useScientificContent, } from './scientific';
+export {
+  ScientificTooltip,
+  ScientificContentProcessor,
+  ScientificContentProvider,
+  useScientificContent,
+} from './scientific';
 // Re-export scientific types with namespace to avoid conflicts
 import * as ScientificTypes from './scientific';
 export { ScientificTypes };

@@ -1,8 +1,10 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { DocumentReader } from '../document-reader';
 import { TransformedDocument, transformContent } from '@ub-ecosystem/content-transformer';
+import React, { useEffect, useState } from 'react';
+
+import { DocumentReader } from '../document-reader';
+
 import { useTina } from './tina-provider';
 // Note: This is a temporary solution until the proper import path is established
 // The fetchDocument function is defined inline to avoid import issues

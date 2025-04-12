@@ -71,6 +71,6 @@
 }
 
 /* Dark theme adjustments */
-.enhanced-reader-example .reader-container[data-theme="dark"] .reader-header {
+.enhanced-reader-example .reader-container[data-theme='dark'] .reader-header {
   border-bottom-color: var(--reader-border-color);
 }

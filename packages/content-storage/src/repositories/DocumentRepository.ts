@@ -4,8 +4,9 @@
  * This module provides a repository implementation for documents.
  */
 
-import { BaseRepository, BaseRepositoryOptions } from './BaseRepository';
 import { StorageService } from '../interfaces';
+
+import { BaseRepository, BaseRepositoryOptions } from './BaseRepository';
 
 // Import types from local type definitions until the data-models package is built
 interface DocumentModel {

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+
 import { EnhancedReaderLayout } from '../layout';
-import { TableOfContents } from '../navigation';
-import { NavigationControls } from '../navigation';
+import { TableOfContents, NavigationControls } from '../navigation';
+
 import './EnhancedReaderDemo.css';
 
 /**

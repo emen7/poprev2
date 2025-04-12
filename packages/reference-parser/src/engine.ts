@@ -6,6 +6,7 @@
  */
 
 import Fuse from 'fuse.js';
+
 import type { SearchableDocument } from './indexer';
 
 /**

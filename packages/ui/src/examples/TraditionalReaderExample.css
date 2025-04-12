@@ -29,7 +29,7 @@
 }
 
 .header-subtitle-link:hover {
-  color: #ffffff;
+  color: #fff;
   text-decoration: underline;
 }
 
@@ -40,7 +40,9 @@
   padding: 0.5rem;
   cursor: pointer;
   border-radius: 0.25rem;
-  transition: color 0.2s, background-color 0.2s;
+  transition:
+    color 0.2s,
+    background-color 0.2s;
   width: 40px;
   height: 40px;
   display: flex;
@@ -49,8 +51,8 @@
 }
 
 .header-button:hover {
-  color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  background-color: rgb(255 255 255 / 10%);
 }
 
 /* Sidebar styles */
@@ -117,7 +119,7 @@ i.fas.fa-cog::before {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .header-title {
     font-size: 1.25rem;
   }

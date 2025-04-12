@@ -9,7 +9,10 @@ import { PhoneticFormat } from '../types';
  * @param format The format to use for phonetic markup (ssml or narakeet)
  * @returns The tagged content
  */
-export declare function tagContentWithPronunciation(content: string, format?: PhoneticFormat): string;
+export declare function tagContentWithPronunciation(
+  content: string,
+  format?: PhoneticFormat
+): string;
 /**
  * Tag content with pronunciation markup for specific terms
  *
@@ -21,7 +24,11 @@ export declare function tagContentWithPronunciation(content: string, format?: Ph
  * @param format The format to use for phonetic markup
  * @returns The tagged content
  */
-export declare function tagSpecificTerms(content: string, terms: string[], format?: PhoneticFormat): string;
+export declare function tagSpecificTerms(
+  content: string,
+  terms: string[],
+  format?: PhoneticFormat
+): string;
 /**
  * Extract Urantia terms from content
  *

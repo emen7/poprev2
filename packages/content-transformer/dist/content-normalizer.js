@@ -11,12 +11,12 @@
  * @returns A promise that resolves to the normalized content
  */
 export async function normalizeContent(content) {
-    // Extract the root node
-    const rootNode = content.content;
-    // Apply normalization rules
-    const normalizedRoot = normalizeNode(rootNode);
-    // Return the normalized content
-    return Object.assign(Object.assign({}, content), { content: normalizedRoot });
+  // Extract the root node
+  const rootNode = content.content;
+  // Apply normalization rules
+  const normalizedRoot = normalizeNode(rootNode);
+  // Return the normalized content
+  return Object.assign(Object.assign({}, content), { content: normalizedRoot });
 }
 /**
  * Normalize a document node and its children
@@ -25,49 +25,49 @@ export async function normalizeContent(content) {
  * @returns The normalized node
  */
 function normalizeNode(node) {
-    // Create a copy of the node to avoid mutating the original
-    const normalizedNode = Object.assign({}, node);
-    // Apply normalization rules based on node type
-    switch (node.type) {
-        case 'heading':
-            // Ensure heading depth is between 1 and 6
-            if (normalizedNode.depth && (normalizedNode.depth < 1 || normalizedNode.depth > 6)) {
-                normalizedNode.depth = Math.max(1, Math.min(6, normalizedNode.depth));
-            }
-            break;
-        case 'list':
-            // Ensure ordered lists have a start value
-            if (normalizedNode.ordered && normalizedNode.start === undefined) {
-                normalizedNode.start = 1;
-            }
-            break;
-        case 'link':
-            // Ensure links have a valid URL
-            if (!normalizedNode.url) {
-                normalizedNode.url = '#';
-            }
-            break;
-        case 'image':
-            // Ensure images have alt text
-            if (!normalizedNode.alt) {
-                normalizedNode.alt = normalizedNode.title || 'Image';
-            }
-            break;
-        case 'table':
-            // Ensure tables have alignment information
-            if (!normalizedNode.align && normalizedNode.children && normalizedNode.children.length > 0) {
-                const firstRow = normalizedNode.children[0];
-                if (firstRow.type === 'tableRow' && firstRow.children) {
-                    normalizedNode.align = Array(firstRow.children.length).fill('left');
-                }
-            }
-            break;
-    }
-    // Normalize children recursively
-    if (normalizedNode.children && Array.isArray(normalizedNode.children)) {
-        normalizedNode.children = normalizedNode.children.map(normalizeNode);
-    }
-    return normalizedNode;
+  // Create a copy of the node to avoid mutating the original
+  const normalizedNode = Object.assign({}, node);
+  // Apply normalization rules based on node type
+  switch (node.type) {
+    case 'heading':
+      // Ensure heading depth is between 1 and 6
+      if (normalizedNode.depth && (normalizedNode.depth < 1 || normalizedNode.depth > 6)) {
+        normalizedNode.depth = Math.max(1, Math.min(6, normalizedNode.depth));
+      }
+      break;
+    case 'list':
+      // Ensure ordered lists have a start value
+      if (normalizedNode.ordered && normalizedNode.start === undefined) {
+        normalizedNode.start = 1;
+      }
+      break;
+    case 'link':
+      // Ensure links have a valid URL
+      if (!normalizedNode.url) {
+        normalizedNode.url = '#';
+      }
+      break;
+    case 'image':
+      // Ensure images have alt text
+      if (!normalizedNode.alt) {
+        normalizedNode.alt = normalizedNode.title || 'Image';
+      }
+      break;
+    case 'table':
+      // Ensure tables have alignment information
+      if (!normalizedNode.align && normalizedNode.children && normalizedNode.children.length > 0) {
+        const firstRow = normalizedNode.children[0];
+        if (firstRow.type === 'tableRow' && firstRow.children) {
+          normalizedNode.align = Array(firstRow.children.length).fill('left');
+        }
+      }
+      break;
+  }
+  // Normalize children recursively
+  if (normalizedNode.children && Array.isArray(normalizedNode.children)) {
+    normalizedNode.children = normalizedNode.children.map(normalizeNode);
+  }
+  return normalizedNode;
 }
 /**
  * Standardize heading hierarchy
@@ -79,25 +79,27 @@ function normalizeNode(node) {
  * @returns The root node with standardized heading hierarchy
  */
 export function standardizeHeadingHierarchy(rootNode) {
-    // Create a copy of the root node
-    const normalizedRoot = Object.assign(Object.assign({}, rootNode), { children: [...(rootNode.children || [])] });
-    // Track the current heading level
-    let currentLevel = 1;
-    // Process each node
-    const children = normalizedRoot.children || [];
-    for (let i = 0; i < children.length; i++) {
-        const node = children[i];
-        if (node.type === 'heading') {
-            const headingNode = node;
-            // Ensure heading levels don't skip (e.g., h1 -> h3)
-            if (headingNode.depth > currentLevel + 1) {
-                headingNode.depth = currentLevel + 1;
-            }
-            // Update current level
-            currentLevel = headingNode.depth;
-        }
+  // Create a copy of the root node
+  const normalizedRoot = Object.assign(Object.assign({}, rootNode), {
+    children: [...(rootNode.children || [])],
+  });
+  // Track the current heading level
+  let currentLevel = 1;
+  // Process each node
+  const children = normalizedRoot.children || [];
+  for (let i = 0; i < children.length; i++) {
+    const node = children[i];
+    if (node.type === 'heading') {
+      const headingNode = node;
+      // Ensure heading levels don't skip (e.g., h1 -> h3)
+      if (headingNode.depth > currentLevel + 1) {
+        headingNode.depth = currentLevel + 1;
+      }
+      // Update current level
+      currentLevel = headingNode.depth;
     }
-    return normalizedRoot;
+  }
+  return normalizedRoot;
 }
 /**
  * Normalize link formats
@@ -108,37 +110,36 @@ export function standardizeHeadingHierarchy(rootNode) {
  * @returns The root node with normalized links
  */
 export function normalizeLinks(rootNode) {
-    // Create a copy of the root node
-    const normalizedRoot = Object.assign({}, rootNode);
-    // Function to process nodes recursively
-    function processNode(node) {
-        // Create a copy of the node
-        const processedNode = Object.assign({}, node);
-        // Normalize link if this is a link node
-        if (processedNode.type === 'link') {
-            const linkNode = processedNode;
-            // Ensure URL has a protocol
-            if (linkNode.url && !linkNode.url.match(/^[a-zA-Z]+:\/\//)) {
-                // If it's a relative path or just a domain
-                if (linkNode.url.startsWith('/') || !linkNode.url.includes('/')) {
-                    linkNode.url = `https://${linkNode.url.replace(/^\//, '')}`;
-                }
-                else {
-                    linkNode.url = `https://${linkNode.url}`;
-                }
-            }
+  // Create a copy of the root node
+  const normalizedRoot = Object.assign({}, rootNode);
+  // Function to process nodes recursively
+  function processNode(node) {
+    // Create a copy of the node
+    const processedNode = Object.assign({}, node);
+    // Normalize link if this is a link node
+    if (processedNode.type === 'link') {
+      const linkNode = processedNode;
+      // Ensure URL has a protocol
+      if (linkNode.url && !linkNode.url.match(/^[a-zA-Z]+:\/\//)) {
+        // If it's a relative path or just a domain
+        if (linkNode.url.startsWith('/') || !linkNode.url.includes('/')) {
+          linkNode.url = `https://${linkNode.url.replace(/^\//, '')}`;
+        } else {
+          linkNode.url = `https://${linkNode.url}`;
         }
-        // Process children recursively
-        if (processedNode.children && Array.isArray(processedNode.children)) {
-            processedNode.children = processedNode.children.map(processNode);
-        }
-        return processedNode;
+      }
     }
-    // Process all children
-    if (normalizedRoot.children && Array.isArray(normalizedRoot.children)) {
-        normalizedRoot.children = normalizedRoot.children.map(processNode);
+    // Process children recursively
+    if (processedNode.children && Array.isArray(processedNode.children)) {
+      processedNode.children = processedNode.children.map(processNode);
     }
-    return normalizedRoot;
+    return processedNode;
+  }
+  // Process all children
+  if (normalizedRoot.children && Array.isArray(normalizedRoot.children)) {
+    normalizedRoot.children = normalizedRoot.children.map(processNode);
+  }
+  return normalizedRoot;
 }
 /**
  * Normalize image references
@@ -149,37 +150,41 @@ export function normalizeLinks(rootNode) {
  * @returns The root node with normalized image references
  */
 export function normalizeImages(rootNode) {
-    // Create a copy of the root node
-    const normalizedRoot = Object.assign({}, rootNode);
-    // Function to process nodes recursively
-    function processNode(node) {
-        // Create a copy of the node
-        const processedNode = Object.assign({}, node);
-        // Normalize image if this is an image node
-        if (processedNode.type === 'image') {
-            const imageNode = processedNode;
-            // Ensure URL has a protocol
-            if (imageNode.url && !imageNode.url.match(/^[a-zA-Z]+:\/\//) && !imageNode.url.startsWith('data:')) {
-                // If it's a relative path, leave it as is
-                if (!imageNode.url.startsWith('/')) {
-                    imageNode.url = `/${imageNode.url}`;
-                }
-            }
-            // Ensure alt text
-            if (!imageNode.alt) {
-                imageNode.alt = imageNode.title || 'Image';
-            }
+  // Create a copy of the root node
+  const normalizedRoot = Object.assign({}, rootNode);
+  // Function to process nodes recursively
+  function processNode(node) {
+    // Create a copy of the node
+    const processedNode = Object.assign({}, node);
+    // Normalize image if this is an image node
+    if (processedNode.type === 'image') {
+      const imageNode = processedNode;
+      // Ensure URL has a protocol
+      if (
+        imageNode.url &&
+        !imageNode.url.match(/^[a-zA-Z]+:\/\//) &&
+        !imageNode.url.startsWith('data:')
+      ) {
+        // If it's a relative path, leave it as is
+        if (!imageNode.url.startsWith('/')) {
+          imageNode.url = `/${imageNode.url}`;
         }
-        // Process children recursively
-        if (processedNode.children && Array.isArray(processedNode.children)) {
-            processedNode.children = processedNode.children.map(processNode);
-        }
-        return processedNode;
+      }
+      // Ensure alt text
+      if (!imageNode.alt) {
+        imageNode.alt = imageNode.title || 'Image';
+      }
     }
-    // Process all children
-    if (normalizedRoot.children && Array.isArray(normalizedRoot.children)) {
-        normalizedRoot.children = normalizedRoot.children.map(processNode);
+    // Process children recursively
+    if (processedNode.children && Array.isArray(processedNode.children)) {
+      processedNode.children = processedNode.children.map(processNode);
     }
-    return normalizedRoot;
+    return processedNode;
+  }
+  // Process all children
+  if (normalizedRoot.children && Array.isArray(normalizedRoot.children)) {
+    normalizedRoot.children = normalizedRoot.children.map(processNode);
+  }
+  return normalizedRoot;
 }
 //# sourceMappingURL=content-normalizer.js.map

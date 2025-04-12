@@ -7,207 +7,207 @@
  * Base document model interface
  */
 export interface DocumentModel {
-    /**
-     * Unique identifier for the document
-     */
-    id: string;
-    /**
-     * Type of document
-     */
-    type: 'paper' | 'foreword' | 'appendix' | 'chapter';
-    /**
-     * ID of the publication this document belongs to
-     */
-    publicationId: string;
-    /**
-     * Document number (e.g., paper number)
-     */
-    number: number;
-    /**
-     * Document title
-     */
-    title: string;
-    /**
-     * Document author (if applicable)
-     */
-    author?: string;
-    /**
-     * Document sections
-     */
-    sections: SectionModel[];
-    /**
-     * Additional metadata
-     */
-    metadata: DocumentMetadata;
+  /**
+   * Unique identifier for the document
+   */
+  id: string;
+  /**
+   * Type of document
+   */
+  type: 'paper' | 'foreword' | 'appendix' | 'chapter';
+  /**
+   * ID of the publication this document belongs to
+   */
+  publicationId: string;
+  /**
+   * Document number (e.g., paper number)
+   */
+  number: number;
+  /**
+   * Document title
+   */
+  title: string;
+  /**
+   * Document author (if applicable)
+   */
+  author?: string;
+  /**
+   * Document sections
+   */
+  sections: SectionModel[];
+  /**
+   * Additional metadata
+   */
+  metadata: DocumentMetadata;
 }
 /**
  * Document metadata
  */
 export interface DocumentMetadata {
-    /**
-     * Part number (if applicable)
-     */
-    part?: number;
-    /**
-     * Part title (if applicable)
-     */
-    partTitle?: string;
-    /**
-     * Date the document was created
-     */
-    dateCreated?: string;
-    /**
-     * Date the document was last modified
-     */
-    lastModified?: string;
-    /**
-     * Document version
-     */
-    version?: string;
-    /**
-     * Any additional metadata
-     */
-    [key: string]: any;
+  /**
+   * Part number (if applicable)
+   */
+  part?: number;
+  /**
+   * Part title (if applicable)
+   */
+  partTitle?: string;
+  /**
+   * Date the document was created
+   */
+  dateCreated?: string;
+  /**
+   * Date the document was last modified
+   */
+  lastModified?: string;
+  /**
+   * Document version
+   */
+  version?: string;
+  /**
+   * Any additional metadata
+   */
+  [key: string]: any;
 }
 /**
  * Section model interface
  */
 export interface SectionModel {
+  /**
+   * Unique identifier for the section
+   */
+  id: string;
+  /**
+   * ID of the document this section belongs to
+   */
+  documentId: string;
+  /**
+   * Section number
+   */
+  number: number | string;
+  /**
+   * Section title
+   */
+  title: string;
+  /**
+   * Section paragraphs
+   */
+  paragraphs: ParagraphModel[];
+  /**
+   * Additional metadata
+   */
+  metadata?: {
     /**
-     * Unique identifier for the section
+     * Whether this section has special formatting
      */
-    id: string;
+    hasSpecialFormatting?: boolean;
     /**
-     * ID of the document this section belongs to
+     * Type of special formatting
      */
-    documentId: string;
+    specialFormattingType?: string;
     /**
-     * Section number
+     * Any additional metadata
      */
-    number: number | string;
-    /**
-     * Section title
-     */
-    title: string;
-    /**
-     * Section paragraphs
-     */
-    paragraphs: ParagraphModel[];
-    /**
-     * Additional metadata
-     */
-    metadata?: {
-        /**
-         * Whether this section has special formatting
-         */
-        hasSpecialFormatting?: boolean;
-        /**
-         * Type of special formatting
-         */
-        specialFormattingType?: string;
-        /**
-         * Any additional metadata
-         */
-        [key: string]: any;
-    };
+    [key: string]: any;
+  };
 }
 /**
  * Paragraph model interface
  */
 export interface ParagraphModel {
+  /**
+   * Unique identifier for the paragraph
+   */
+  id: string;
+  /**
+   * ID of the document this paragraph belongs to
+   */
+  documentId: string;
+  /**
+   * ID of the section this paragraph belongs to
+   */
+  sectionId: string;
+  /**
+   * Paragraph number
+   */
+  number: number | string;
+  /**
+   * Paragraph text content
+   */
+  text: string;
+  /**
+   * Formatting information
+   */
+  format?: {
     /**
-     * Unique identifier for the paragraph
+     * Whether this paragraph is indented
      */
-    id: string;
+    isIndented?: boolean;
     /**
-     * ID of the document this paragraph belongs to
+     * Whether this paragraph is part of a list
      */
-    documentId: string;
+    isList?: boolean;
     /**
-     * ID of the section this paragraph belongs to
+     * Type of list if this paragraph is part of a list
      */
-    sectionId: string;
+    listType?: 'numbered' | 'bulleted';
     /**
-     * Paragraph number
+     * Whether this paragraph is part of a table
      */
-    number: number | string;
+    isTable?: boolean;
     /**
-     * Paragraph text content
+     * Whether this paragraph has special formatting
      */
-    text: string;
+    hasSpecialFormatting?: boolean;
     /**
-     * Formatting information
+     * Type of special formatting
      */
-    format?: {
-        /**
-         * Whether this paragraph is indented
-         */
-        isIndented?: boolean;
-        /**
-         * Whether this paragraph is part of a list
-         */
-        isList?: boolean;
-        /**
-         * Type of list if this paragraph is part of a list
-         */
-        listType?: 'numbered' | 'bulleted';
-        /**
-         * Whether this paragraph is part of a table
-         */
-        isTable?: boolean;
-        /**
-         * Whether this paragraph has special formatting
-         */
-        hasSpecialFormatting?: boolean;
-        /**
-         * Type of special formatting
-         */
-        specialFormattingType?: string;
-    };
-    /**
-     * References found in this paragraph
-     */
-    references?: ReferenceModel[];
+    specialFormattingType?: string;
+  };
+  /**
+   * References found in this paragraph
+   */
+  references?: ReferenceModel[];
 }
 /**
  * Reference model interface
  */
 export interface ReferenceModel {
-    /**
-     * Unique identifier for the reference
-     */
-    id: string;
-    /**
-     * Reference text as it appears in the content
-     */
-    text: string;
-    /**
-     * Type of reference
-     */
-    type: 'paper' | 'section' | 'paragraph' | 'external';
-    /**
-     * Target document ID
-     */
-    targetDocumentId?: string;
-    /**
-     * Target section ID
-     */
-    targetSectionId?: string;
-    /**
-     * Target paragraph ID
-     */
-    targetParagraphId?: string;
-    /**
-     * External URL (for external references)
-     */
-    externalUrl?: string;
-    /**
-     * Start position in the paragraph text
-     */
-    startPosition: number;
-    /**
-     * End position in the paragraph text
-     */
-    endPosition: number;
+  /**
+   * Unique identifier for the reference
+   */
+  id: string;
+  /**
+   * Reference text as it appears in the content
+   */
+  text: string;
+  /**
+   * Type of reference
+   */
+  type: 'paper' | 'section' | 'paragraph' | 'external';
+  /**
+   * Target document ID
+   */
+  targetDocumentId?: string;
+  /**
+   * Target section ID
+   */
+  targetSectionId?: string;
+  /**
+   * Target paragraph ID
+   */
+  targetParagraphId?: string;
+  /**
+   * External URL (for external references)
+   */
+  externalUrl?: string;
+  /**
+   * Start position in the paragraph text
+   */
+  startPosition: number;
+  /**
+   * End position in the paragraph text
+   */
+  endPosition: number;
 }
 //# sourceMappingURL=DocumentModel.d.ts.map

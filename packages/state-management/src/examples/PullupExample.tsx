@@ -1,6 +1,7 @@
 import React from 'react';
-import { usePullup } from '../hooks/usePullup';
+
 import { useNotes } from '../hooks/useNotes';
+import { usePullup } from '../hooks/usePullup';
 
 /**
  * Example component demonstrating the use of the usePullup hook

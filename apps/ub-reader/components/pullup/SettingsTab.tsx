@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+
 import { ReaderSettings } from './types';
 import './SettingsTab.css';
 

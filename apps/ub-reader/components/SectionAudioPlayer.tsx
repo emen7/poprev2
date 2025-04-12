@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+
 import AudioPlayer from './AudioPlayer';
 
 interface SectionAudioPlayerProps {
@@ -27,26 +28,21 @@ export default function SectionAudioPlayer({ paper, section }: SectionAudioPlaye
   // Extract all text content from the section
   const extractContent = () => {
     let content = `Paper ${paper.number}: ${paper.title}. `;
-    
+
     if (paper.author) {
       content += `Presented by: ${paper.author}. `;
     }
-    
+
     content += `Section ${section.number}: ${section.title}. `;
-    
+
     section.paragraphs.forEach(paragraph => {
       content += `${paragraph.text} `;
     });
-    
+
     return content;
   };
-  
+
   const content = extractContent();
-  
-  return (
-    <AudioPlayer 
-      content={content}
-      title={`Listen to Section ${section.number}`}
-    />
-  );
+
+  return <AudioPlayer content={content} title={`Listen to Section ${section.number}`} />;
 }

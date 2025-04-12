@@ -44,9 +44,5 @@ export function ReaderSettingsProvider({ children }: ReaderSettingsProviderProps
     toggleParagraphNumbers,
   };
 
-  return (
-    <ReaderSettingsContext.Provider value={value}>
-      {children}
-    </ReaderSettingsContext.Provider>
-  );
+  return <ReaderSettingsContext.Provider value={value}>{children}</ReaderSettingsContext.Provider>;
 }

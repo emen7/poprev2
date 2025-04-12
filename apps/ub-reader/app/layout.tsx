@@ -1,7 +1,9 @@
 import React from 'react';
-import { UserPreferencesProvider } from '../contexts/UserPreferencesContext';
-import { ThemeProvider } from '../contexts/ThemeContext';
+
 import { HighlightProvider } from '../components/HighlightProvider';
+import { ThemeProvider } from '../contexts/ThemeContext';
+import { UserPreferencesProvider } from '../contexts/UserPreferencesContext';
+
 import '../styles/globals.css';
 import '../styles/themes/index.css'; // Import theme styles
 import '../styles/highlighting/highlighting.css'; // Import highlighting styles

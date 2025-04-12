@@ -50,26 +50,26 @@ Define these schema types in TinaCMS:
    // Base schema that all document types inherit from
    const baseDocumentSchema = {
      title: {
-       type: "string",
-       label: "Title",
+       type: 'string',
+       label: 'Title',
        required: true,
      },
      author: {
-       type: "string",
-       label: "Author",
+       type: 'string',
+       label: 'Author',
      },
      date: {
-       type: "datetime",
-       label: "Publication Date",
+       type: 'datetime',
+       label: 'Publication Date',
      },
      categories: {
-       type: "string",
-       label: "Categories",
+       type: 'string',
+       label: 'Categories',
        list: true,
      },
      tags: {
-       type: "string",
-       label: "Tags",
+       type: 'string',
+       label: 'Tags',
        list: true,
      },
    };
@@ -82,65 +82,65 @@ Define these schema types in TinaCMS:
    const scientificDocumentSchema = {
      ...baseDocumentSchema,
      abstract: {
-       type: "rich-text",
-       label: "Abstract",
+       type: 'rich-text',
+       label: 'Abstract',
      },
      citations: {
-       type: "object",
-       label: "Citations",
+       type: 'object',
+       label: 'Citations',
        list: true,
        fields: [
          {
-           name: "citationKey",
-           label: "Citation Key",
-           type: "string",
+           name: 'citationKey',
+           label: 'Citation Key',
+           type: 'string',
          },
          {
-           name: "authors",
-           label: "Authors",
-           type: "string",
+           name: 'authors',
+           label: 'Authors',
+           type: 'string',
          },
          {
-           name: "title",
-           label: "Title",
-           type: "string",
+           name: 'title',
+           label: 'Title',
+           type: 'string',
          },
          {
-           name: "journal",
-           label: "Journal/Source",
-           type: "string",
+           name: 'journal',
+           label: 'Journal/Source',
+           type: 'string',
          },
          {
-           name: "year",
-           label: "Year",
-           type: "number",
+           name: 'year',
+           label: 'Year',
+           type: 'number',
          },
          {
-           name: "doi",
-           label: "DOI",
-           type: "string",
+           name: 'doi',
+           label: 'DOI',
+           type: 'string',
          },
        ],
      },
      figures: {
-       type: "object",
-       label: "Figures",
+       type: 'object',
+       label: 'Figures',
        list: true,
        fields: [
          {
-           name: "caption",
-           label: "Caption",
-           type: "string",
+           name: 'caption',
+           label: 'Caption',
+           type: 'string',
          },
          {
-           name: "image",
-           label: "Image",
-           type: "image",
+           name: 'image',
+           label: 'Image',
+           type: 'image',
          },
          {
-           name: "altText",
-           label: "Alt Text",
-           type: "string",
+           name: 'altText',
+           label: 'Alt Text',
+           type: 'string',
          },
        ],
      },
@@ -154,24 +154,24 @@ Define these schema types in TinaCMS:
    const perplexityDocumentSchema = {
      ...baseDocumentSchema,
      question: {
-       type: "string",
-       label: "Original Question",
+       type: 'string',
+       label: 'Original Question',
        required: true,
      },
      responses: {
-       type: "object",
-       label: "Responses",
+       type: 'object',
+       label: 'Responses',
        list: true,
        fields: [
          {
-           name: "responseText",
-           label: "Response Text",
-           type: "rich-text",
+           name: 'responseText',
+           label: 'Response Text',
+           type: 'rich-text',
          },
          {
-           name: "sources",
-           label: "Sources",
-           type: "string",
+           name: 'sources',
+           label: 'Sources',
+           type: 'string',
            list: true,
          },
        ],
@@ -185,39 +185,31 @@ Define these schema types in TinaCMS:
    const lectionaryDocumentSchema = {
      ...baseDocumentSchema,
      scriptureReferences: {
-       type: "object",
-       label: "Scripture References",
+       type: 'object',
+       label: 'Scripture References',
        list: true,
        fields: [
          {
-           name: "book",
-           label: "Book",
-           type: "string",
+           name: 'book',
+           label: 'Book',
+           type: 'string',
          },
          {
-           name: "chapter",
-           label: "Chapter",
-           type: "number",
+           name: 'chapter',
+           label: 'Chapter',
+           type: 'number',
          },
          {
-           name: "verses",
-           label: "Verses",
-           type: "string",
+           name: 'verses',
+           label: 'Verses',
+           type: 'string',
          },
        ],
      },
      liturgicalSeason: {
-       type: "string",
-       label: "Liturgical Season",
-       options: [
-         "Advent",
-         "Christmas",
-         "Epiphany",
-         "Lent",
-         "Easter",
-         "Pentecost",
-         "Ordinary Time",
-       ],
+       type: 'string',
+       label: 'Liturgical Season',
+       options: ['Advent', 'Christmas', 'Epiphany', 'Lent', 'Easter', 'Pentecost', 'Ordinary Time'],
      },
    };
    ```
@@ -326,16 +318,16 @@ Create a configuration registry that allows for purpose-specific overrides:
 // Base configuration
 const baseConfig = {
   typography: {
-    headingFont: "system-ui, sans-serif",
-    bodyFont: "system-ui, sans-serif",
-    baseSize: "16px",
+    headingFont: 'system-ui, sans-serif',
+    bodyFont: 'system-ui, sans-serif',
+    baseSize: '16px',
     scale: 1.2,
   },
   colors: {
-    primary: "#0070f3",
-    secondary: "#6c757d",
-    background: "#ffffff",
-    text: "#333333",
+    primary: '#0070f3',
+    secondary: '#6c757d',
+    background: '#ffffff',
+    text: '#333333',
   },
   components: {
     // Default component mappings
@@ -353,13 +345,13 @@ const scientificConfig = {
   ...baseConfig,
   typography: {
     ...baseConfig.typography,
-    headingFont: "Georgia, serif",
+    headingFont: 'Georgia, serif',
   },
   components: {
     // Scientific-specific component mappings
-    citation: "ScientificCitation",
-    figure: "ScientificFigure",
-    equation: "MathEquation",
+    citation: 'ScientificCitation',
+    figure: 'ScientificFigure',
+    equation: 'MathEquation',
   },
   navigation: {
     // Scientific-specific navigation
@@ -369,7 +361,7 @@ const scientificConfig = {
   metadata: {
     // Scientific-specific metadata display
     showAbstract: true,
-    citationStyle: "APA",
+    citationStyle: 'APA',
   },
 };
 

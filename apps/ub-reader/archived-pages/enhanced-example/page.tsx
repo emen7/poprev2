@@ -7,6 +7,7 @@
 'use client';
 
 import React from 'react';
+
 import { EnhancedReader } from '../../components/archive/enhanced-reader';
 
 /**
@@ -26,8 +27,8 @@ export default function EnhancedExamplePage() {
 
       <ul>
         <li>
-          <strong>Navigation Panel</strong> - Click the hamburger menu (☰) in the top-left corner to
-          open the navigation panel.
+          <strong>Navigation Panel</strong> - Click the hamburger menu (☰) in the top-left corner
+          to open the navigation panel.
         </li>
         <li>
           <strong>Settings Panel</strong> - Click the gear icon (⚙️) in the top-right corner to open

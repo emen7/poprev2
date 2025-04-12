@@ -1,6 +1,6 @@
 /**
  * Reader Header Component
- * 
+ *
  * This component displays the document header with title, subtitle, and metadata.
  */
 
@@ -34,11 +34,13 @@ export interface ReaderHeaderProps {
  */
 export function ReaderHeader({ document, config, className = '' }: ReaderHeaderProps) {
   // Get extension components
-  const extensionHeaderComponents = config.extensions.map(extensionId => {
-    // This would be implemented to get custom header components from extensions
-    // For now, we'll return null
-    return null;
-  }).filter(Boolean);
+  const extensionHeaderComponents = config.extensions
+    .map(extensionId => {
+      // This would be implemented to get custom header components from extensions
+      // For now, we'll return null
+      return null;
+    })
+    .filter(Boolean);
 
   // If there's an extension header component, use it
   if (extensionHeaderComponents.length > 0) {
@@ -67,32 +69,27 @@ export function ReaderHeader({ document, config, className = '' }: ReaderHeaderP
       <div className="reader-metadata">
         {document.metadata.author && (
           <div className="reader-author">
-            By: {Array.isArray(document.metadata.author) 
-              ? document.metadata.author.join(', ') 
+            By:{' '}
+            {Array.isArray(document.metadata.author)
+              ? document.metadata.author.join(', ')
               : document.metadata.author}
           </div>
         )}
-        {document.metadata.date && (
-          <div className="reader-date">{document.metadata.date}</div>
-        )}
+        {document.metadata.date && <div className="reader-date">{document.metadata.date}</div>}
         {document.metadata.categories && document.metadata.categories.length > 0 && (
           <div className="reader-categories">
             Categories: {document.metadata.categories.join(', ')}
           </div>
         )}
         {document.metadata.tags && document.metadata.tags.length > 0 && (
-          <div className="reader-tags">
-            Tags: {document.metadata.tags.join(', ')}
-          </div>
+          <div className="reader-tags">Tags: {document.metadata.tags.join(', ')}</div>
         )}
       </div>
 
       {/* Linkback */}
       {config.navigation.linkbackUrl && (
         <div className="reader-linkback">
-          <a href={config.navigation.linkbackUrl}>
-            {config.navigation.linkbackText || 'Back'}
-          </a>
+          <a href={config.navigation.linkbackUrl}>{config.navigation.linkbackText || 'Back'}</a>
         </div>
       )}
     </div>

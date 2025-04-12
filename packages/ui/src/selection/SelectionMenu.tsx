@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+
 import { HighlightColorPicker, HighlightColor } from './HighlightColorPicker';
 import './SelectionMenu.css';
 

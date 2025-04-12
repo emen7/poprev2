@@ -29,12 +29,12 @@ npm install @ub-ecosystem/[package-name]
 ### Component/Function Name
 
 ```typescript
-import { ComponentName } from "@ub-ecosystem/[package-name]";
+import { ComponentName } from '@ub-ecosystem/[package-name]';
 
 // Usage example
 const result = ComponentName({
-  prop1: "value1",
-  prop2: "value2",
+  prop1: 'value1',
+  prop2: 'value2',
 });
 ```
 
@@ -64,7 +64,7 @@ function Example() {
 ### Utility Function
 
 ```typescript
-import { utilityFunction } from "@ub-ecosystem/[package-name]";
+import { utilityFunction } from '@ub-ecosystem/[package-name]';
 
 // Usage example
 const result = utilityFunction(param1, param2);
@@ -86,9 +86,9 @@ const result = utilityFunction(param1, param2);
 #### Example
 
 ```typescript
-import { utilityFunction } from "@ub-ecosystem/[package-name]";
+import { utilityFunction } from '@ub-ecosystem/[package-name]';
 
-const result = utilityFunction("example", 42);
+const result = utilityFunction('example', 42);
 console.log(result);
 ```
 

@@ -7,7 +7,8 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    project: './tsconfig.json',
+    // Remove project option to avoid parsing errors with non-TypeScript files
+    // project: './tsconfig.json',
   },
   env: {
     browser: true,

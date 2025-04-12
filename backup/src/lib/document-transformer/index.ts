@@ -1,6 +1,6 @@
 /**
  * Document Transformer
- * 
+ *
  * This module serves as the main entry point for the document transformation system.
  * It orchestrates the process of transforming various document formats into a standardized
  * internal representation that can be used throughout the application.
@@ -16,7 +16,7 @@ import { DocumentType, TransformedDocument } from './types';
 
 /**
  * Transform a document from its original format to the standardized internal representation
- * 
+ *
  * @param content The content of the document to transform
  * @param type The type of the document (markdown, docx, perplexity)
  * @param options Optional configuration for the transformation process
@@ -29,7 +29,7 @@ export async function transformDocument(
 ): Promise<TransformedDocument> {
   // Step 1: Parse the document based on its type
   let parsedContent;
-  
+
   switch (type) {
     case 'markdown':
       parsedContent = await transformMarkdown(content as string);
@@ -43,16 +43,16 @@ export async function transformDocument(
     default:
       throw new Error(`Unsupported document type: ${type}`);
   }
-  
+
   // Step 2: Normalize the content structure
   const normalizedContent = await normalizeContent(parsedContent);
-  
+
   // Step 3: Enrich with metadata
   const enrichedContent = await enrichMetadata(normalizedContent, options);
-  
+
   // Step 4: Validate the content
   const validatedContent = await validateContent(enrichedContent);
-  
+
   return validatedContent;
 }
 

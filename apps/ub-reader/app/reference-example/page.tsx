@@ -1,5 +1,6 @@
-import React from 'react';
 import Link from 'next/link';
+import React from 'react';
+
 import ReferenceExampleClient from './client';
 
 export default function ReferenceExamplePage() {

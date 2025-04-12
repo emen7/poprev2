@@ -153,7 +153,7 @@
 }
 
 /* Modern Theme Responsive Adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .content-modern {
     --content-list-indent: 1rem;
     --content-list-number-width: 1.5rem;

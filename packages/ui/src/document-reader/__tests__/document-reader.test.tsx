@@ -1,7 +1,8 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { DocumentReader } from '../document-reader';
 import { TransformedDocument } from '@ub-ecosystem/content-transformer';
+import React from 'react';
+
+import { DocumentReader } from '../document-reader';
 
 // Mock the TransformedDocument
 const mockDocument: TransformedDocument = {

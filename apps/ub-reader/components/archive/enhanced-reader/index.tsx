@@ -1,6 +1,6 @@
 /**
  * Enhanced Reader Components
- * 
+ *
  * This file exports all components for the Enhanced Reader.
  */
 

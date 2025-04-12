@@ -2,12 +2,7 @@
   {
     "globalId": "3:75.-.-",
     "htmlText": null,
-    "labels": [
-      "Theology",
-      "Ethics",
-      "History",
-      "Anthropology"
-    ],
+    "labels": ["Theology", "Ethics", "History", "Anthropology"],
     "language": "eng",
     "objectID": "3:75.-.-",
     "paperId": "75",

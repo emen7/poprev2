@@ -146,11 +146,11 @@ This structure eliminates the nested `src` directory by moving the `content` dir
 // To:
 const filePath = path.join(
   process.cwd(),
-  "src",
-  "content",
-  "raw",
-  "scientific",
-  "markdown",
+  'src',
+  'content',
+  'raw',
+  'scientific',
+  'markdown',
   filename
 );
 ```

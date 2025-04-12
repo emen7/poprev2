@@ -9,9 +9,9 @@
  * the improved-demo.html design.
  */
 
-import React from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import React from 'react';
 
 // Use dynamic import with SSR disabled for the Reader example
 // This is necessary because the Reader component uses browser APIs

@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
 import { AppStateProvider } from '@ub-ecosystem/state-management';
+import React from 'react';
 
 /**
  * Example page demonstrating the use of the state management package

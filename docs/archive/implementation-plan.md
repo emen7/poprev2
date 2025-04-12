@@ -229,10 +229,7 @@ function renderTable(
 
 ```typescript
 // Pronunciation processing pipeline
-async function processTTS(
-  content: string,
-  options: TTSOptions
-): Promise<AudioResult> {
+async function processTTS(content: string, options: TTSOptions): Promise<AudioResult> {
   // 1. Identify and tag Urantia terms
   const taggedContent = tagContentWithPronunciation(content, options.format);
 
@@ -267,10 +264,7 @@ async function processContent(content: RawContent): Promise<ProcessedContent> {
 
   // 4. Generate TTS if requested
   if (content.generateAudio) {
-    const audioResult = await processTTS(
-      transformedContent.textContent,
-      content.ttsOptions
-    );
+    const audioResult = await processTTS(transformedContent.textContent, content.ttsOptions);
     transformedContent.audioUrl = audioResult.url;
   }
 
@@ -293,32 +287,29 @@ interface PronunciationEntry {
 // Example based on the official guide
 const urantiaPronunciations: PronunciationEntry[] = [
   {
-    term: "Andovontia",
-    ipa: "an-do-VON-sha",
-    category: "Personality",
-    pageReference: "302",
+    term: 'Andovontia',
+    ipa: 'an-do-VON-sha',
+    category: 'Personality',
+    pageReference: '302',
   },
   {
-    term: "Divinington",
-    ipa: "di-VIN-ing-ton",
-    category: "Sacred Sphere",
-    pageReference: "144",
+    term: 'Divinington',
+    ipa: 'di-VIN-ing-ton',
+    category: 'Sacred Sphere',
+    pageReference: '144',
   },
   // Additional entries from the official PDF
 ];
 
 // Automatic tagging function
-function tagContentWithPronunciation(
-  content: string,
-  format: "ssml" | "narakeet"
-): string {
+function tagContentWithPronunciation(content: string, format: 'ssml' | 'narakeet'): string {
   // For each term in our pronunciation dictionary
   return urantiaPronunciations.reduce((taggedContent, entry) => {
     // Create regex to find the term (with word boundaries)
-    const termRegex = new RegExp(`\\b${entry.term}\\b`, "gi");
+    const termRegex = new RegExp(`\\b${entry.term}\\b`, 'gi');
 
     // Format depends on the target system
-    if (format === "ssml") {
+    if (format === 'ssml') {
       // For standard SSML (AWS, Google, etc.)
       return taggedContent.replace(
         termRegex,
@@ -346,7 +337,7 @@ interface TTSProvider {
   getAvailableVoices(): Promise<Voice[]>;
   supportsSSML(): boolean;
   supportsCustomPronunciation(): boolean;
-  getRequiredFormat(): "markdown" | "ssml" | "plain" | "docx";
+  getRequiredFormat(): 'markdown' | 'ssml' | 'plain' | 'docx';
 }
 
 // Implementation for each provider

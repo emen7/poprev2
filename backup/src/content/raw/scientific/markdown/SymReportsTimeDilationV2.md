@@ -1,6 +1,6 @@
 <img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" class="logo" width="120"/>
 
-# 
+#
 
 ---
 
@@ -46,4 +46,3 @@ This integrated perspective provides a potential reconciliation between ancient 
 <div style="text-align: center">⁂</div>
 
 [^1]: https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/6754629/4afc9b70-f387-4f8b-b1e5-184631c87d88/SymReportsTimeDilation.md
-

@@ -19,7 +19,7 @@
 }
 
 /* Media query for persistent mode */
-@media (min-width: 1025px) {
+@media (width >= 1025px) {
   .pullup-panel-persistent .pullup-content {
     flex-direction: row;
   }

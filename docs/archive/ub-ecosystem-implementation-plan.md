@@ -151,7 +151,7 @@ graph TD
 interface Document {
   id: string;
   title: string;
-  type: "main" | "satellite";
+  type: 'main' | 'satellite';
   sections: Section[];
   relationships: Relationship[];
   metadata: DocumentMetadata;
@@ -172,14 +172,14 @@ interface Paragraph {
 
 interface Reference {
   id: string;
-  type: "direct" | "conceptual" | "supporting";
+  type: 'direct' | 'conceptual' | 'supporting';
   targetDocumentId: string;
   targetParagraphId: string;
   context?: string;
 }
 
 interface Relationship {
-  type: "supports" | "extends" | "critiques";
+  type: 'supports' | 'extends' | 'critiques';
   targetDocumentId: string;
   description: string;
 }

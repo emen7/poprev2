@@ -1,16 +1,18 @@
-import { createClient } from "tinacms";
-import { queries } from "./__generated__/types";
+import { createClient } from 'tinacms';
+import { queries } from './__generated__/types';
 
 /**
  * TinaCMS Client
- * 
+ *
  * This client connects to the TinaCMS backend and provides methods for fetching content.
  * It's used by the TinaCMSProvider to make the client available throughout the application.
  */
 
 // Initialize the TinaCMS client with the generated queries
 export const client = createClient({
-  url: process.env.NEXT_PUBLIC_TINA_GRAPHQL_URL || "https://content.tinajs.io/content/c9d9f9f9-9c9c-9c9c-9c9c-9c9c9c9c9c9c/github/main",
+  url:
+    process.env.NEXT_PUBLIC_TINA_GRAPHQL_URL ||
+    'https://content.tinajs.io/content/c9d9f9f9-9c9c-9c9c-9c9c-9c9c9c9c9c9c/github/main',
   token: process.env.TINA_TOKEN,
   queries,
   // Enable local mode for development without requiring a token
@@ -20,7 +22,7 @@ export const client = createClient({
 
 /**
  * Fetch a document by its relative path and collection name
- * 
+ *
  * @param relativePath The relative path to the document
  * @param collection The collection name (post, scientific, lectionary, ubgems, ubcatechism)
  * @returns The document data and query variables
@@ -70,7 +72,7 @@ export async function fetchDocument(relativePath: string, collection: string) {
 
 /**
  * Fetch a list of documents from a collection
- * 
+ *
  * @param collection The collection name (post, scientific, lectionary, ubgems, ubcatechism)
  * @returns The list of documents
  */

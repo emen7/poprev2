@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
 import { AppStateProvider, useNavigation } from '@ub-ecosystem/state-management';
 import { ThreeRowHeader, SectionTracker, DualHamburgerNavigation } from '@ub-ecosystem/ui';
+import React from 'react';
 
 /**
  * Navigation Example Page Content
@@ -407,7 +407,9 @@ function NavigationExampleContent() {
           height: 3px;
           background-color: #333;
           border-radius: 2px;
-          transition: transform 0.3s ease, opacity 0.3s ease;
+          transition:
+            transform 0.3s ease,
+            opacity 0.3s ease;
         }
 
         .hamburger-button.open .bar:nth-child(1) {
@@ -513,7 +515,9 @@ function NavigationExampleContent() {
           z-index: 999;
           opacity: 0;
           visibility: hidden;
-          transition: opacity 0.3s ease, visibility 0.3s ease;
+          transition:
+            opacity 0.3s ease,
+            visibility 0.3s ease;
         }
 
         .overlay.visible {

@@ -81,9 +81,7 @@ export default function Home() {
       </div>
 
       <footer className="mt-16 pt-8 border-t border-gray-200 text-center text-gray-600">
-        <p>
-          &copy; {new Date().getFullYear()} PopRev2 Platform
-        </p>
+        <p>&copy; {new Date().getFullYear()} PopRev2 Platform</p>
         <p className="mt-2">
           <Link href="/test" className="text-blue-500 hover:underline mr-4">
             Test Page

@@ -25,7 +25,7 @@
 
 /* Shadow effect */
 .reader-header-shadow {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
 }
 
 /* Container for the header content */
@@ -65,7 +65,9 @@
 
 /* Transparent header when scrolled to top */
 .reader-header-transparent-on-top {
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 /* This class will be toggled via JavaScript based on scroll position */
@@ -76,7 +78,7 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .reader-header {
     height: var(--header-height-mobile, 50px);
   }

@@ -7,6 +7,6 @@ import './ReaderDemo.css';
  * - Multi-purpose pull-up panel
  * - Scientific content tooltips
  */
-export declare function ReaderDemo(): import("react/jsx-runtime").JSX.Element;
+export declare function ReaderDemo(): import('react/jsx-runtime').JSX.Element;
 export default ReaderDemo;
 //# sourceMappingURL=ReaderDemo.d.ts.map

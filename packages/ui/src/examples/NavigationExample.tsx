@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
 import { AppStateProvider, useNavigation } from '@ub-ecosystem/state-management';
-import { ContentContainer } from '../layout/ContentContainer';
+import React, { useState, useEffect } from 'react';
+
 import { ContentRenderer } from '../content/ContentRenderer';
-import { Header } from '../layout/header';
+import { mockDocument } from '../content/mockDocument';
+import { ContentContainer } from '../layout/ContentContainer';
 import { Footer } from '../layout/Footer';
+import { Header } from '../layout/header';
 import { NavigationControls } from '../navigation/NavigationControls';
 import { TableOfContents, TOCItem } from '../navigation/TableOfContents';
-import { mockDocument } from '../content/mockDocument';
 import './NavigationExample.css';
 
 /**

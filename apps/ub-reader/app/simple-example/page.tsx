@@ -1,6 +1,6 @@
 /**
  * Simple Example Page
- * 
+ *
  * This page demonstrates a simple example without relying on the complex Reader component.
  */
 
@@ -13,7 +13,7 @@ export default function SimpleExamplePage() {
     <div className="simple-example">
       <h1>Simple Example</h1>
       <p>This is a simple example page that doesn't rely on the complex Reader component.</p>
-      
+
       <div className="example-container">
         <div className="example-header">
           <button className="example-button">
@@ -24,7 +24,7 @@ export default function SimpleExamplePage() {
             <span>⚙️</span> Settings
           </button>
         </div>
-        
+
         <div className="example-content">
           <p>This example demonstrates the basic structure of the enhanced Reader component:</p>
           <ul>
@@ -34,20 +34,23 @@ export default function SimpleExamplePage() {
           </ul>
         </div>
       </div>
-      
+
       <style jsx>{`
         .simple-example {
           padding: 2rem;
-          font-family: system-ui, -apple-system, sans-serif;
+          font-family:
+            system-ui,
+            -apple-system,
+            sans-serif;
         }
-        
+
         .example-container {
           border: 1px solid #ccc;
           border-radius: 8px;
           overflow: hidden;
           margin-top: 2rem;
         }
-        
+
         .example-header {
           display: flex;
           justify-content: space-between;
@@ -56,7 +59,7 @@ export default function SimpleExamplePage() {
           background-color: #f0f0f0;
           border-bottom: 1px solid #ccc;
         }
-        
+
         .example-button {
           background: none;
           border: none;
@@ -67,11 +70,11 @@ export default function SimpleExamplePage() {
           align-items: center;
           gap: 0.5rem;
         }
-        
+
         .example-button:hover {
           background-color: rgba(0, 0, 0, 0.05);
         }
-        
+
         .example-content {
           padding: 1rem;
         }

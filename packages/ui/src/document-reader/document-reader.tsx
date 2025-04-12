@@ -6,8 +6,8 @@
 
 'use client';
 
-import React, { useState } from 'react';
 import { TransformedDocument, DocumentNode } from '@ub-ecosystem/content-transformer';
+import React, { useState } from 'react';
 import './document-reader.css';
 
 interface DocumentReaderProps {

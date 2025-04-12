@@ -11,7 +11,7 @@
   z-index: 1000;
   overflow-y: auto;
   transition: transform 0.3s ease;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px rgb(0 0 0 / 30%);
 }
 
 /* Position variants */
@@ -42,11 +42,8 @@
 /* Overlay */
 .side-panel-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  background-color: rgb(0 0 0 / 50%);
   z-index: 999;
   backdrop-filter: blur(2px);
 }
@@ -61,7 +58,7 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .side-panel {
     width: 85% !important; /* Override inline width for mobile */
     max-width: 300px;

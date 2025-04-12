@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { SectionRenderer, Section } from './SectionRenderer';
+
 import { Paragraph } from './ParagraphRenderer';
+import { SectionRenderer, Section } from './SectionRenderer';
 import './ContentRenderer.css';
 
 export interface DocumentContent {

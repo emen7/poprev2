@@ -28,7 +28,7 @@ packages/
 **packages/i18n/src/types.ts**
 
 ```typescript
-export type SupportedLanguage = "en" | "es" | "fr" | "pt" | "ru";
+export type SupportedLanguage = 'en' | 'es' | 'fr' | 'pt' | 'ru';
 
 export interface TranslationResource {
   [key: string]: string | TranslationResource;
@@ -38,44 +38,44 @@ export interface LanguageMetadata {
   code: SupportedLanguage;
   name: string;
   nativeName: string;
-  direction: "ltr" | "rtl";
+  direction: 'ltr' | 'rtl';
   available: boolean;
 }
 
 export const languages: Record<SupportedLanguage, LanguageMetadata> = {
   en: {
-    code: "en",
-    name: "English",
-    nativeName: "English",
-    direction: "ltr",
+    code: 'en',
+    name: 'English',
+    nativeName: 'English',
+    direction: 'ltr',
     available: true,
   },
   es: {
-    code: "es",
-    name: "Spanish",
-    nativeName: "Español",
-    direction: "ltr",
+    code: 'es',
+    name: 'Spanish',
+    nativeName: 'Español',
+    direction: 'ltr',
     available: true,
   },
   fr: {
-    code: "fr",
-    name: "French",
-    nativeName: "Français",
-    direction: "ltr",
+    code: 'fr',
+    name: 'French',
+    nativeName: 'Français',
+    direction: 'ltr',
     available: true,
   },
   pt: {
-    code: "pt",
-    name: "Portuguese",
-    nativeName: "Português",
-    direction: "ltr",
+    code: 'pt',
+    name: 'Portuguese',
+    nativeName: 'Português',
+    direction: 'ltr',
     available: false, // To be added later
   },
   ru: {
-    code: "ru",
-    name: "Russian",
-    nativeName: "Русский",
-    direction: "ltr",
+    code: 'ru',
+    name: 'Russian',
+    nativeName: 'Русский',
+    direction: 'ltr',
     available: false, // To be added later
   },
 };
@@ -86,9 +86,9 @@ export const languages: Record<SupportedLanguage, LanguageMetadata> = {
 **packages/ui/src/language/LanguageSelector.tsx**
 
 ```tsx
-import React from "react";
-import { useRouter } from "next/router";
-import { languages, SupportedLanguage } from "@ub-ecosystem/i18n";
+import React from 'react';
+import { useRouter } from 'next/router';
+import { languages, SupportedLanguage } from '@ub-ecosystem/i18n';
 
 interface LanguageSelectorProps {
   currentLanguage: SupportedLanguage;
@@ -99,20 +99,18 @@ interface LanguageSelectorProps {
 export function LanguageSelector({
   currentLanguage,
   onLanguageChange,
-  className = "",
+  className = '',
 }: LanguageSelectorProps) {
-  const availableLanguages = Object.values(languages).filter(
-    (lang) => lang.available
-  );
+  const availableLanguages = Object.values(languages).filter(lang => lang.available);
 
   return (
     <div className={`ub-language-selector ${className}`}>
       <select
         value={currentLanguage}
-        onChange={(e) => onLanguageChange(e.target.value as SupportedLanguage)}
+        onChange={e => onLanguageChange(e.target.value as SupportedLanguage)}
         aria-label="Select language"
       >
-        {availableLanguages.map((lang) => (
+        {availableLanguages.map(lang => (
           <option key={lang.code} value={lang.code}>
             {lang.nativeName}
           </option>
@@ -138,13 +136,13 @@ https://reader.masteruniverse.org/fr/paper/1
 ```typescript
 export function getLocalizedUrl(
   domain: AppDomain,
-  language: SupportedLanguage = "en",
-  path: string = "/",
-  isProduction = process.env.NODE_ENV === "production"
+  language: SupportedLanguage = 'en',
+  path: string = '/',
+  isProduction = process.env.NODE_ENV === 'production'
 ): string {
   const baseUrl = getDomainUrl(domain, isProduction);
-  const langPath = language === "en" ? "" : `/${language}`;
-  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  const langPath = language === 'en' ? '' : `/${language}`;
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
 
   return `${baseUrl}${langPath}${normalizedPath}`;
 }
@@ -184,8 +182,8 @@ export interface AudioMapping {
 **packages/ui/src/audio/AudioPlayer.tsx**
 
 ```tsx
-import React, { useState, useRef, useEffect } from "react";
-import { AudioResource } from "@ub-ecosystem/data-models";
+import React, { useState, useRef, useEffect } from 'react';
+import { AudioResource } from '@ub-ecosystem/data-models';
 
 interface AudioPlayerProps {
   audio: AudioResource;
@@ -198,7 +196,7 @@ export function AudioPlayer({
   audio,
   autoPlay = false,
   onEnded,
-  className = "",
+  className = '',
 }: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -264,7 +262,7 @@ export function AudioPlayer({
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
   return (
@@ -274,18 +272,16 @@ export function AudioPlayer({
         src={audio.url}
         onTimeUpdate={handleTimeUpdate}
         onEnded={handleEnded}
-        onDurationChange={() =>
-          audioRef.current && setDuration(audioRef.current.duration)
-        }
+        onDurationChange={() => audioRef.current && setDuration(audioRef.current.duration)}
       />
 
       <div className="ub-audio-controls">
         <button
           className="ub-audio-play-button"
           onClick={isPlaying ? pause : play}
-          aria-label={isPlaying ? "Pause" : "Play"}
+          aria-label={isPlaying ? 'Pause' : 'Play'}
         >
-          {isPlaying ? "⏸️" : "▶️"}
+          {isPlaying ? '⏸️' : '▶️'}
         </button>
 
         <div className="ub-audio-progress">
@@ -316,7 +312,7 @@ export function AudioPlayer({
 **packages/ui/src/audio/TextToSpeech.tsx**
 
 ```tsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 interface TextToSpeechProps {
   text: string;
@@ -328,20 +324,19 @@ interface TextToSpeechProps {
 
 export function TextToSpeech({
   text,
-  language = "en-US",
+  language = 'en-US',
   rate = 1,
   pitch = 1,
-  className = "",
+  className = '',
 }: TextToSpeechProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isSpeechSupported, setIsSpeechSupported] = useState(false);
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
-  const [selectedVoice, setSelectedVoice] =
-    useState<SpeechSynthesisVoice | null>(null);
+  const [selectedVoice, setSelectedVoice] = useState<SpeechSynthesisVoice | null>(null);
 
   // Check if speech synthesis is supported
   useEffect(() => {
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       setIsSpeechSupported(true);
 
       // Get available voices
@@ -350,8 +345,8 @@ export function TextToSpeech({
         setVoices(availableVoices);
 
         // Select default voice for the language
-        const defaultVoice = availableVoices.find((voice) =>
-          voice.lang.startsWith(language.split("-")[0])
+        const defaultVoice = availableVoices.find(voice =>
+          voice.lang.startsWith(language.split('-')[0])
         );
         if (defaultVoice) {
           setSelectedVoice(defaultVoice);
@@ -400,7 +395,7 @@ export function TextToSpeech({
 
   const handleVoiceChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const voiceURI = e.target.value;
-    const voice = voices.find((v) => v.voiceURI === voiceURI) || null;
+    const voice = voices.find(v => v.voiceURI === voiceURI) || null;
     setSelectedVoice(voice);
   };
 
@@ -418,19 +413,19 @@ export function TextToSpeech({
         <button
           className="ub-tts-button"
           onClick={isPlaying ? stop : speak}
-          aria-label={isPlaying ? "Stop speaking" : "Start speaking"}
+          aria-label={isPlaying ? 'Stop speaking' : 'Start speaking'}
         >
-          {isPlaying ? "🔇 Stop" : "🔊 Listen"}
+          {isPlaying ? '🔇 Stop' : '🔊 Listen'}
         </button>
 
         {voices.length > 0 && (
           <select
-            value={selectedVoice?.voiceURI || ""}
+            value={selectedVoice?.voiceURI || ''}
             onChange={handleVoiceChange}
             className="ub-tts-voice-select"
             aria-label="Select voice"
           >
-            {voices.map((voice) => (
+            {voices.map(voice => (
               <option key={voice.voiceURI} value={voice.voiceURI}>
                 {voice.name} ({voice.lang})
               </option>
@@ -532,10 +527,10 @@ content/
 **packages/ui/src/reader/PaperSection.tsx** (example integration)
 
 ```tsx
-import React, { useState } from "react";
-import { Section, AudioResource } from "@ub-ecosystem/data-models";
-import { AudioPlayer } from "../audio/AudioPlayer";
-import { TextToSpeech } from "../audio/TextToSpeech";
+import React, { useState } from 'react';
+import { Section, AudioResource } from '@ub-ecosystem/data-models';
+import { AudioPlayer } from '../audio/AudioPlayer';
+import { TextToSpeech } from '../audio/TextToSpeech';
 
 interface PaperSectionProps {
   section: Section;
@@ -548,9 +543,9 @@ export function PaperSection({
   section,
   audioResource,
   language,
-  className = "",
+  className = '',
 }: PaperSectionProps) {
-  const [audioMode, setAudioMode] = useState<"none" | "mp3" | "tts">("none");
+  const [audioMode, setAudioMode] = useState<'none' | 'mp3' | 'tts'>('none');
 
   return (
     <div className={`ub-paper-section ${className}`}>
@@ -561,47 +556,36 @@ export function PaperSection({
       <div className="ub-section-audio-controls">
         {audioResource && (
           <button
-            className={`ub-audio-mode-button ${
-              audioMode === "mp3" ? "active" : ""
-            }`}
-            onClick={() => setAudioMode(audioMode === "mp3" ? "none" : "mp3")}
+            className={`ub-audio-mode-button ${audioMode === 'mp3' ? 'active' : ''}`}
+            onClick={() => setAudioMode(audioMode === 'mp3' ? 'none' : 'mp3')}
           >
             🎧 MP3 Audio
           </button>
         )}
 
         <button
-          className={`ub-audio-mode-button ${
-            audioMode === "tts" ? "active" : ""
-          }`}
-          onClick={() => setAudioMode(audioMode === "tts" ? "none" : "tts")}
+          className={`ub-audio-mode-button ${audioMode === 'tts' ? 'active' : ''}`}
+          onClick={() => setAudioMode(audioMode === 'tts' ? 'none' : 'tts')}
         >
           🔊 Text-to-Speech
         </button>
       </div>
 
-      {audioMode === "mp3" && audioResource && (
-        <AudioPlayer
-          audio={audioResource}
-          className="ub-section-audio-player"
-        />
+      {audioMode === 'mp3' && audioResource && (
+        <AudioPlayer audio={audioResource} className="ub-section-audio-player" />
       )}
 
-      {audioMode === "tts" && (
+      {audioMode === 'tts' && (
         <TextToSpeech
-          text={section.paragraphs.map((p) => p.text).join(" ")}
+          text={section.paragraphs.map(p => p.text).join(' ')}
           language={language}
           className="ub-section-tts"
         />
       )}
 
       <div className="ub-section-paragraphs">
-        {section.paragraphs.map((paragraph) => (
-          <div
-            key={paragraph.id}
-            className="ub-paragraph"
-            id={`p-${paragraph.number}`}
-          >
+        {section.paragraphs.map(paragraph => (
+          <div key={paragraph.id} className="ub-paragraph" id={`p-${paragraph.number}`}>
             <span className="ub-paragraph-number">{paragraph.number}</span>
             <span className="ub-paragraph-text">{paragraph.text}</span>
           </div>

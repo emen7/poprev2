@@ -25,21 +25,23 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background-color: var(--accent-color, #0088ff);
+  background-color: var(--accent-color, #08f);
   color: white;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 5px rgb(0 0 0 / 30%);
   z-index: 100;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .bottom-panel-toggle:hover {
   transform: translateY(-2px);
-  background-color: var(--accent-hover-color, #0099ff);
+  background-color: var(--accent-hover-color, #09f);
 }
 
 .bottom-panel-toggle:active {
@@ -51,7 +53,7 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .ub-reader-content {
     padding-top: var(--header-height-mobile, 50px);
   }
@@ -69,7 +71,7 @@
 }
 
 /* Small screens */
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .bottom-panel-toggle {
     bottom: 10px;
     right: 10px;

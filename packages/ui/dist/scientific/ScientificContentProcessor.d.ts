@@ -8,35 +8,35 @@ import { TooltipDataRecord } from '../types/TooltipData';
  * Options for processing scientific content
  */
 export interface ProcessingOptions {
-    /**
-     * Whether to process abbreviations
-     * @default true
-     */
-    processAbbreviations?: boolean;
-    /**
-     * Whether to process equations
-     * @default true
-     */
-    processEquations?: boolean;
-    /**
-     * Whether to process technical terms
-     * @default true
-     */
-    processTerms?: boolean;
-    /**
-     * Custom class name to add to the wrapped terms
-     */
-    customClass?: string;
-    /**
-     * Whether to make tooltips interactive (show on hover/click)
-     * @default true
-     */
-    interactive?: boolean;
-    /**
-     * Tooltip position
-     * @default 'auto'
-     */
-    position?: 'top' | 'bottom' | 'left' | 'right' | 'auto';
+  /**
+   * Whether to process abbreviations
+   * @default true
+   */
+  processAbbreviations?: boolean;
+  /**
+   * Whether to process equations
+   * @default true
+   */
+  processEquations?: boolean;
+  /**
+   * Whether to process technical terms
+   * @default true
+   */
+  processTerms?: boolean;
+  /**
+   * Custom class name to add to the wrapped terms
+   */
+  customClass?: string;
+  /**
+   * Whether to make tooltips interactive (show on hover/click)
+   * @default true
+   */
+  interactive?: boolean;
+  /**
+   * Tooltip position
+   * @default 'auto'
+   */
+  position?: 'top' | 'bottom' | 'left' | 'right' | 'auto';
 }
 /**
  * Process scientific content to wrap terms with tooltip markup
@@ -46,7 +46,11 @@ export interface ProcessingOptions {
  * @param options Processing options
  * @returns The processed content with tooltip markup
  */
-export declare function processScientificContent(content: string, tooltipData: TooltipDataRecord, options?: ProcessingOptions): string;
+export declare function processScientificContent(
+  content: string,
+  tooltipData: TooltipDataRecord,
+  options?: ProcessingOptions
+): string;
 /**
  * Initialize tooltips in the DOM
  *
@@ -57,8 +61,8 @@ export declare function processScientificContent(content: string, tooltipData: T
  */
 export declare function initializeTooltips(container?: HTMLElement): void;
 declare const _default: {
-    processScientificContent: typeof processScientificContent;
-    initializeTooltips: typeof initializeTooltips;
+  processScientificContent: typeof processScientificContent;
+  initializeTooltips: typeof initializeTooltips;
 };
 export default _default;
 //# sourceMappingURL=ScientificContentProcessor.d.ts.map

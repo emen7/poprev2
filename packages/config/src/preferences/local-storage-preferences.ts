@@ -1,5 +1,5 @@
-import { PreferencesStorage, UserPreferences } from './types';
 import { defaultPreferences } from './default-preferences';
+import { PreferencesStorage, UserPreferences } from './types';
 
 const STORAGE_KEY = 'ub-ecosystem-preferences';
 

@@ -41,7 +41,6 @@ The primary implementation uses CSS `position: sticky` combined with JavaScript 
 }
 ```
 
-
 ### JavaScript Enhancement
 
 CSS `position: sticky` alone won't handle the replacement behavior. For that, we need JavaScript with Intersection Observer:
@@ -56,24 +55,24 @@ const observer = new IntersectionObserver((entries) =&gt; {
     // Determine if this section header should be visible
     const sectionHeader = entry.target;
     const sectionId = sectionHeader.getAttribute('data-section-id');
-    
+
     if (entry.isIntersecting) {
       // This section is entering the viewport
-      if (currentStickySection &amp;&amp; 
+      if (currentStickySection &amp;&amp;
           parseInt(currentStickySection) &lt; parseInt(sectionId)) {
         // Hide previous sticky section if this one has a higher number
         document.querySelector(`.sticky-clone[data-section-id="${currentStickySection}"]`)?.remove();
-        
+
         // Clone this section header to make it sticky
         const clone = sectionHeader.cloneNode(true);
         clone.classList.add('sticky-clone');
         document.querySelector('.sticky-container').appendChild(clone);
-        
+
         currentStickySection = sectionId;
       }
     }
   });
-}, { 
+}, {
   threshold: 0,
   rootMargin: '-56px 0px 0px 0px' // Adjust based on paper title height
 });
@@ -84,35 +83,33 @@ document.querySelectorAll('.section-header').forEach(section =&gt; {
 });
 ```
 
-
 ## Integration with Our Theme System
 
 This implementation integrates perfectly with our dark/light mode system:
 
 ```css
 /* Dark mode sticky headers */
-html[data-theme="dark"] .paper-title {
+html[data-theme='dark'] .paper-title {
   background: var(--dark-surface-1);
   color: var(--dark-text-primary);
 }
 
-html[data-theme="dark"] .section-header {
+html[data-theme='dark'] .section-header {
   background: var(--dark-surface-2);
   color: var(--dark-text-primary);
 }
 
 /* Light mode sticky headers */
-html[data-theme="light"] .paper-title {
+html[data-theme='light'] .paper-title {
   background: var(--light-surface-1);
   color: var(--light-text-primary);
 }
 
-html[data-theme="light"] .section-header {
+html[data-theme='light'] .section-header {
   background: var(--light-surface-2);
   color: var(--light-text-primary);
 }
 ```
-
 
 ## Edge Cases and Optimizations
 
@@ -138,4 +135,3 @@ These technical approaches should be implemented according to Roo Code's archite
 <div>⁂</div>
 
 [^1]: https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/6754629/2587b298-464c-4cec-afa3-68d4070076ea/REDIT-Cline-Recursive.md
-

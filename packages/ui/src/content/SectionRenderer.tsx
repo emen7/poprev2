@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+
 import { ParagraphRenderer, Paragraph } from './ParagraphRenderer';
 import './SectionRenderer.css';
 

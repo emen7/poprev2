@@ -1,6 +1,18 @@
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { jsx as _jsx, jsxs as _jsxs } from 'react/jsx-runtime';
 import { useState } from 'react';
-import { ReaderLayout, ContentContainer, SidePanel, Header, Footer, TableOfContents, Breadcrumbs, NavigationControls, ContentRenderer, FormatToggle, useFormatting, } from '../';
+import {
+  ReaderLayout,
+  ContentContainer,
+  SidePanel,
+  Header,
+  Footer,
+  TableOfContents,
+  Breadcrumbs,
+  NavigationControls,
+  ContentRenderer,
+  FormatToggle,
+  useFormatting,
+} from '../';
 import './TraditionalReaderExample.css';
 /**
  * TraditionalReaderExample
@@ -9,20 +21,20 @@ import './TraditionalReaderExample.css';
  * to create a traditional reader interface.
  */
 export function TraditionalReaderExample() {
-    // State for the reader
-    const { formatType, setFormatType } = useFormatting();
-    const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [settingsOpen, setSettingsOpen] = useState(false);
-    const [currentSectionId, setCurrentSectionId] = useState('section1');
-    // Mock data for the example
-    const mockDocument = {
-        id: 'paper1',
-        title: 'Paper 1: The Universal Father',
-        sections: [
-            {
-                id: 'section1',
-                title: "The Father's Name",
-                content: `
+  // State for the reader
+  const { formatType, setFormatType } = useFormatting();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [currentSectionId, setCurrentSectionId] = useState('section1');
+  // Mock data for the example
+  const mockDocument = {
+    id: 'paper1',
+    title: 'Paper 1: The Universal Father',
+    sections: [
+      {
+        id: 'section1',
+        title: "The Father's Name",
+        content: `
           <div class="paragraph">
             <span class="paragraph-number">1</span>
             <div class="paragraph-text">
@@ -44,11 +56,11 @@ export function TraditionalReaderExample() {
             </div>
           </div>
         `,
-            },
-            {
-                id: 'section2',
-                title: 'The Reality of God',
-                content: `
+      },
+      {
+        id: 'section2',
+        title: 'The Reality of God',
+        content: `
           <div class="paragraph">
             <span class="paragraph-number">1</span>
             <div class="paragraph-text">
@@ -68,53 +80,138 @@ export function TraditionalReaderExample() {
             </div>
           </div>
         `,
-            },
+      },
+    ],
+  };
+  const mockTOC = [
+    {
+      id: 'paper1',
+      title: 'Paper 1: The Universal Father',
+      level: 0,
+      children: [
+        {
+          id: 'section1',
+          title: "The Father's Name",
+          level: 1,
+        },
+        {
+          id: 'section2',
+          title: 'The Reality of God',
+          level: 1,
+        },
+      ],
+    },
+  ];
+  const mockBreadcrumbs = [
+    { id: 'home', title: 'Home', url: '/' },
+    { id: 'papers', title: 'Papers', url: '/papers' },
+    { id: 'paper1', title: 'Paper 1', url: '/paper/1' },
+    {
+      id: currentSectionId,
+      title: currentSectionId === 'section1' ? "The Father's Name" : 'The Reality of God',
+      isCurrent: true,
+    },
+  ];
+  // Event handlers
+  const handleSectionChange = sectionId => {
+    setCurrentSectionId(sectionId);
+  };
+  const handleMenuToggle = () => {
+    setSidebarOpen(!sidebarOpen);
+    if (settingsOpen) setSettingsOpen(false);
+  };
+  const handleSettingsToggle = () => {
+    setSettingsOpen(!settingsOpen);
+    if (sidebarOpen) setSidebarOpen(false);
+  };
+  return _jsxs(ReaderLayout, {
+    headerContent: _jsx(Header, {
+      leftContent: _jsx('button', {
+        className: 'header-button',
+        onClick: handleMenuToggle,
+        children: _jsx('i', { className: 'fas fa-book' }),
+      }),
+      centerContent: _jsxs('div', {
+        className: 'header-title-container',
+        children: [
+          _jsx('h1', { className: 'header-title', children: 'The Urantia Book' }),
+          _jsx('div', {
+            className: 'header-subtitle',
+            children: _jsx('a', {
+              href: '/papers',
+              className: 'header-subtitle-link',
+              children: 'View All Papers',
+            }),
+          }),
         ],
-    };
-    const mockTOC = [
-        {
-            id: 'paper1',
-            title: 'Paper 1: The Universal Father',
-            level: 0,
-            children: [
-                {
-                    id: 'section1',
-                    title: "The Father's Name",
-                    level: 1,
-                },
-                {
-                    id: 'section2',
-                    title: 'The Reality of God',
-                    level: 1,
-                },
-            ],
-        },
-    ];
-    const mockBreadcrumbs = [
-        { id: 'home', title: 'Home', url: '/' },
-        { id: 'papers', title: 'Papers', url: '/papers' },
-        { id: 'paper1', title: 'Paper 1', url: '/paper/1' },
-        {
-            id: currentSectionId,
-            title: currentSectionId === 'section1' ? "The Father's Name" : 'The Reality of God',
-            isCurrent: true,
-        },
-    ];
-    // Event handlers
-    const handleSectionChange = (sectionId) => {
-        setCurrentSectionId(sectionId);
-    };
-    const handleMenuToggle = () => {
-        setSidebarOpen(!sidebarOpen);
-        if (settingsOpen)
-            setSettingsOpen(false);
-    };
-    const handleSettingsToggle = () => {
-        setSettingsOpen(!settingsOpen);
-        if (sidebarOpen)
-            setSidebarOpen(false);
-    };
-    return (_jsxs(ReaderLayout, { headerContent: _jsx(Header, { leftContent: _jsx("button", { className: "header-button", onClick: handleMenuToggle, children: _jsx("i", { className: "fas fa-book" }) }), centerContent: _jsxs("div", { className: "header-title-container", children: [_jsx("h1", { className: "header-title", children: "The Urantia Book" }), _jsx("div", { className: "header-subtitle", children: _jsx("a", { href: "/papers", className: "header-subtitle-link", children: "View All Papers" }) })] }), rightContent: _jsx("button", { className: "header-button", onClick: handleSettingsToggle, children: _jsx("i", { className: "fas fa-cog" }) }) }), showSidePanel: sidebarOpen, sidePanelContent: _jsxs("div", { className: "sidebar-content", children: [_jsx("h2", { className: "sidebar-title", children: "Table of Contents" }), _jsx(TableOfContents, { items: mockTOC, currentItemId: currentSectionId, onItemSelect: handleSectionChange, collapsible: true, autoExpandCurrent: true })] }), footerContent: _jsx(Footer, { centerContent: _jsx(NavigationControls, { prevEnabled: true, nextEnabled: true, onPrevious: () => console.log('Previous'), onNext: () => console.log('Next'), showLabels: true }) }), children: [_jsx(SidePanel, { isOpen: settingsOpen, onClose: () => setSettingsOpen(false), position: "right", children: _jsxs("div", { className: "settings-panel", children: [_jsx("h2", { className: "settings-title", children: "Settings" }), _jsx(FormatToggle, { currentFormat: formatType, onChange: setFormatType, showDescription: true, showPreview: true })] }) }), _jsxs("div", { className: "reader-main", children: [_jsx(Breadcrumbs, { items: mockBreadcrumbs }), _jsx(ContentContainer, { width: "medium", centered: true, padding: "normal", children: _jsx(ContentRenderer, { content: mockDocument, formatType: formatType, showParagraphNumbers: true, highlightedSections: [], onSectionVisible: sectionId => console.log(`Section visible: ${sectionId}`) }) })] })] }));
+      }),
+      rightContent: _jsx('button', {
+        className: 'header-button',
+        onClick: handleSettingsToggle,
+        children: _jsx('i', { className: 'fas fa-cog' }),
+      }),
+    }),
+    showSidePanel: sidebarOpen,
+    sidePanelContent: _jsxs('div', {
+      className: 'sidebar-content',
+      children: [
+        _jsx('h2', { className: 'sidebar-title', children: 'Table of Contents' }),
+        _jsx(TableOfContents, {
+          items: mockTOC,
+          currentItemId: currentSectionId,
+          onItemSelect: handleSectionChange,
+          collapsible: true,
+          autoExpandCurrent: true,
+        }),
+      ],
+    }),
+    footerContent: _jsx(Footer, {
+      centerContent: _jsx(NavigationControls, {
+        prevEnabled: true,
+        nextEnabled: true,
+        onPrevious: () => console.log('Previous'),
+        onNext: () => console.log('Next'),
+        showLabels: true,
+      }),
+    }),
+    children: [
+      _jsx(SidePanel, {
+        isOpen: settingsOpen,
+        onClose: () => setSettingsOpen(false),
+        position: 'right',
+        children: _jsxs('div', {
+          className: 'settings-panel',
+          children: [
+            _jsx('h2', { className: 'settings-title', children: 'Settings' }),
+            _jsx(FormatToggle, {
+              currentFormat: formatType,
+              onChange: setFormatType,
+              showDescription: true,
+              showPreview: true,
+            }),
+          ],
+        }),
+      }),
+      _jsxs('div', {
+        className: 'reader-main',
+        children: [
+          _jsx(Breadcrumbs, { items: mockBreadcrumbs }),
+          _jsx(ContentContainer, {
+            width: 'medium',
+            centered: true,
+            padding: 'normal',
+            children: _jsx(ContentRenderer, {
+              content: mockDocument,
+              formatType: formatType,
+              showParagraphNumbers: true,
+              highlightedSections: [],
+              onSectionVisible: sectionId => console.log(`Section visible: ${sectionId}`),
+            }),
+          }),
+        ],
+      }),
+    ],
+  });
 }
 export default TraditionalReaderExample;
 //# sourceMappingURL=TraditionalReaderExample.js.map

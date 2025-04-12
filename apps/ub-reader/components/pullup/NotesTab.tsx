@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+
 import { Note } from './types';
 import './NotesTab.css';
 

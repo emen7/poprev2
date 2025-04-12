@@ -1,11 +1,12 @@
 'use client';
 
 import React from 'react';
+
 import { ThemeEnabledReader } from '../../components/ThemeEnabledReader';
-import { UBParagraph } from '../../components/UBParagraph';
 import { UBNumberedList } from '../../components/UBNumberedList';
-import { UBTable } from '../../components/UBTable';
+import { UBParagraph } from '../../components/UBParagraph';
 import { UBSectionDivider } from '../../components/UBSectionDivider';
+import { UBTable } from '../../components/UBTable';
 
 /**
  * Theme Example Page

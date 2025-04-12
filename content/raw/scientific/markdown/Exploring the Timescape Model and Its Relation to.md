@@ -1,12 +1,12 @@
 <img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" class="logo" width="120"/>
 
-# 
+#
 
 ---
 
 # Exploring the Timescape Model and Its Relation to Urantia Book Cosmology: Implications for the Distance to Andromeda
 
-The study of cosmological models provides a rich framework for understanding the universe's structure and dynamics. This report explores the intersection of two cosmological perspectives: the Timescape model, which challenges the homogeneity assumptions of standard cosmology, and the Paradise-centric cosmology revealed in *The Urantia Book* (UB). A key point of interest is reconciling the UB's claim that light from Andromeda left its stars "almost one million years ago" with current scientific estimates placing Andromeda at approximately 2.5 million light-years away. This discrepancy invites deeper exploration into how time dilation effects, such as those described in the Timescape model, might influence perceived distances and align with UB's descriptions of semi-quiet zones in space.
+The study of cosmological models provides a rich framework for understanding the universe's structure and dynamics. This report explores the intersection of two cosmological perspectives: the Timescape model, which challenges the homogeneity assumptions of standard cosmology, and the Paradise-centric cosmology revealed in _The Urantia Book_ (UB). A key point of interest is reconciling the UB's claim that light from Andromeda left its stars "almost one million years ago" with current scientific estimates placing Andromeda at approximately 2.5 million light-years away. This discrepancy invites deeper exploration into how time dilation effects, such as those described in the Timescape model, might influence perceived distances and align with UB's descriptions of semi-quiet zones in space.
 
 This report investigates how gravitational time dilation and spatial resistance to motion—concepts central to both Timescape cosmology and UB's revealed universe—could impact our understanding of cosmic distances. The analysis integrates observational data, theoretical frameworks, and computational modeling to propose a coherent explanation for the apparent difference in Andromeda's distance estimates. The findings suggest that incorporating UB's semi-quiet zones into a Timescape-like framework could yield significant insights into cosmic structure and the nature of light propagation across vast distances.
 
@@ -406,4 +406,3 @@ Further exploration is needed to validate these findings through observational d
 [^159]: https://phys.libretexts.org/Courses/University_of_California_Davis/Physics_156:_A_Cosmology_Workbook/01:_Workbook/1.16:_Parallax_Cepheid_Variables_Supernovae_and_Distance_Measurement
 
 [^160]: https://www.astronomy.ohio-state.edu/ryden.1/ast162_8/notes33.html
-

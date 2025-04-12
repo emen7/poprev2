@@ -77,15 +77,15 @@
 
 /* Custom theme variables for the example */
 .paragraph-numbering-example {
-  --paragraph-number-color: rgba(100, 100, 200, 0.8);
-  --paragraph-highlight-bg: rgba(100, 200, 255, 0.1);
-  --paragraph-topic-change-color: rgba(100, 150, 200, 0.3);
+  --paragraph-number-color: rgb(100 100 200 / 80%);
+  --paragraph-highlight-bg: rgb(100 200 255 / 10%);
+  --paragraph-topic-change-color: rgb(100 150 200 / 30%);
   --paragraph-table-border: #ccc;
-  --paragraph-table-header-bg: rgba(100, 150, 200, 0.1);
+  --paragraph-table-header-bg: rgb(100 150 200 / 10%);
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .paragraph-numbering-example {
     padding: 15px;
   }

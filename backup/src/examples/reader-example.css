@@ -10,7 +10,7 @@
 
 /* Scientific extension specific styles */
 .scientific-citation {
-  background-color: rgba(74, 109, 167, 0.1);
+  background-color: rgb(74 109 167 / 10%);
   border-radius: 4px;
   padding: 0 4px;
   color: #4a6da7;
@@ -26,7 +26,7 @@
   max-width: 100%;
   border: 1px solid #eaeaea;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
 }
 
 .scientific-figure-caption {

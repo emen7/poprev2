@@ -21,7 +21,7 @@
   height: 40px;
   border-radius: 50%;
   background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,7 +44,7 @@
 }
 
 /* Media query for smaller screens */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .paragraph-container-vertical-numbering {
     padding-left: 40px; /* Smaller space for the numbering column on mobile */
   }
@@ -63,7 +63,7 @@
 }
 
 /* Media query for very small screens */
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .paragraph-container-vertical-numbering {
     padding-left: 30px; /* Even smaller space for the numbering column on very small screens */
   }

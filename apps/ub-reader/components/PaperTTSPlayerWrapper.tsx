@@ -1,8 +1,10 @@
 'use client';
 
 import React from 'react';
-import PaperTTSPlayer from './PaperTTSPlayer';
+
 import { ReaderSettingsProvider } from '../contexts/ReaderSettingsContext';
+
+import PaperTTSPlayer from './PaperTTSPlayer';
 
 interface PaperTTSPlayerWrapperProps {
   paper: {
@@ -24,13 +26,13 @@ interface PaperTTSPlayerWrapperProps {
 /**
  * Wrapper component that provides the ReaderSettingsProvider context for PaperTTSPlayer
  */
-export default function PaperTTSPlayerWrapper({ paper, currentSectionNumber }: PaperTTSPlayerWrapperProps) {
+export default function PaperTTSPlayerWrapper({
+  paper,
+  currentSectionNumber,
+}: PaperTTSPlayerWrapperProps) {
   return (
     <ReaderSettingsProvider>
-      <PaperTTSPlayer 
-        paper={paper} 
-        currentSectionNumber={currentSectionNumber} 
-      />
+      <PaperTTSPlayer paper={paper} currentSectionNumber={currentSectionNumber} />
     </ReaderSettingsProvider>
   );
 }

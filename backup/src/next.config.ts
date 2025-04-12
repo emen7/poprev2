@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   // Disable ESLint during build to avoid deployment errors
@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
   typescript: {
     // Only run type checking on local development, not during builds
     ignoreBuildErrors: true,
-  }
+  },
 };
 
 export default nextConfig;

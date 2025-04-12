@@ -23,7 +23,6 @@ The following suggestions are offered for implementing highlights and notes func
 - Add subtle margin indicators where highlights or notes exist for easy navigation while scrolling
 - Ensure highlighted text maintains excellent readability by testing color combinations against all theme backgrounds[^3]
 
-
 ## Notes Functionality
 
 **Creation Interface**
@@ -54,7 +53,6 @@ The following suggestions are offered for implementing highlights and notes func
 - Display a subtle icon near highlighted text that contains attached notes
 - Consider different visual treatments for highlights with and without notes
 
-
 ## Organization and Management
 
 **Centralized Notes View**
@@ -74,7 +72,6 @@ The following suggestions are offered for implementing highlights and notes func
 - Enable full-text search across all notes and highlighted content
 - Support filtering by paper, section, date, color, and tags
 - Display search results with adequate context showing sentences before and after matches
-
 
 ## User Experience Considerations
 
@@ -171,4 +168,3 @@ This plan aims to create a robust, user-friendly annotation system that supports
 [^35]: https://www.userinterviews.com/blog/research-notetaking-templates-methods
 
 [^36]: https://www.reddit.com/r/Nuxt/comments/q9f5ho/i_made_noted_a_realtime_notetaking_app_with/
-

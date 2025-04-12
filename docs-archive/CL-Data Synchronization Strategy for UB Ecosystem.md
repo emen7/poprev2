@@ -14,7 +14,6 @@ The annotation system in the UB Ecosystem requires robust synchronization capabi
 - **Performance optimization**: Synchronization should be efficient and minimize data transfer[^4]
 - **Publication-specific adaptability**: Synchronization should work across all reader applications in the ecosystem[^1]
 
-
 ## Technical Architecture
 
 ### Hybrid Synchronization Model
@@ -35,7 +34,6 @@ We recommend implementing a hybrid synchronization model combining client-server
 - Event-sourcing pattern for tracking changes
 - Conflict resolution services
 
-
 ### Synchronization Flow
 
 ```mermaid
@@ -44,7 +42,7 @@ sequenceDiagram
     participant Device A
     participant Server
     participant Device B
-    
+
     User-&gt;&gt;Device A: Create annotation
     Device A-&gt;&gt;Device A: Store locally with timestamp
     Device A-&gt;&gt;Server: Send change (online)
@@ -53,7 +51,6 @@ sequenceDiagram
     Device B-&gt;&gt;Device B: Update local store
     Note over Device A,Device B: If offline, queue changes
 ```
-
 
 ## Data Model for Synchronization
 
@@ -64,12 +61,11 @@ Each annotation record should include:
 - **Content reference**: Publication, section, and paragraph identifiers
 - **Annotation data**: Type, content, color, etc.
 - **Metadata**:
-    - Created timestamp
-    - Modified timestamp
-    - Device identifier
-    - Sync status (synced, pending, conflict)
-    - Version number
-
+  - Created timestamp
+  - Modified timestamp
+  - Device identifier
+  - Sync status (synced, pending, conflict)
+  - Version number
 
 ## Synchronization Methods
 
@@ -81,7 +77,6 @@ Implement CDC to track changes to annotations in real-time[^8]:
 - Events include the complete state of the modified annotation
 - Events are stored locally and queued for synchronization
 
-
 ### 2. Timestamp-Based Synchronization
 
 Use "Last Modified" timestamp approach for efficient delta syncing[^5]:
@@ -90,7 +85,6 @@ Use "Last Modified" timestamp approach for efficient delta syncing[^5]:
 - During synchronization, only annotations modified after this timestamp are transferred
 - Server maintains the authoritative timestamp for conflict resolution
 
-
 ### 3. Event-Driven Architecture
 
 Implement an event-driven architecture for real-time updates[^8]:
@@ -98,7 +92,6 @@ Implement an event-driven architecture for real-time updates[^8]:
 - WebSocket connections for active sessions
 - Push notifications for device alerting when offline
 - Message queue for reliable event delivery
-
 
 ## Conflict Resolution Strategy
 
@@ -141,13 +134,11 @@ We recommend implementing this synchronization strategy in phases:
 - Basic sync on app start/stop
 - Last-writer-wins conflict resolution
 
-
 ### Phase 2: Real-time Updates
 
 - WebSocket implementation for active sessions
 - Push notification integration
 - Improved conflict detection
-
 
 ### Phase 3: Advanced Features
 
@@ -156,13 +147,11 @@ We recommend implementing this synchronization strategy in phases:
 - Bandwidth optimization
 - Cross-publication annotation support
 
-
 ### Phase 4: Performance Optimization
 
 - Sync analytics and monitoring
 - Adaptive synchronization strategies
 - Advanced caching techniques
-
 
 ## Technical Stack Recommendations
 
@@ -251,4 +240,3 @@ This synchronization strategy aligns with the broader UB Ecosystem architecture 
 [^36]: https://www.youtube.com/watch?v=U4VwdkWU2GU
 
 [^37]: https://www.theverge.com/23942597/notes-text-evernote-onenote-keep-apps
-

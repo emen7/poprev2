@@ -5,8 +5,9 @@
  * and our new Document model.
  */
 
-import { Document, DocumentMetadata, Section, Paragraph } from '../models';
 import { TransformedDocument, DocumentNode } from '@ub-ecosystem/content-transformer';
+
+import { Document, DocumentMetadata, Section, Paragraph } from '../models';
 
 /**
  * Adapter for converting between TransformedDocument and Document

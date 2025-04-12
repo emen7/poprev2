@@ -34,7 +34,6 @@ Key features:
 - Syncs with your editor cursor position
 - Supports debugging directly in the preview
 
-
 ### Preview on Web Server
 
 This extension allows you to preview your web application on multiple browsers simultaneously, which can be useful for cross-browser testing.
@@ -47,6 +46,7 @@ While not a VS Code extension itself, you can integrate Browser Sync with VS Cod
 
 1. Install Browser Sync globally: `npm install -g browser-sync`
 2. Add a task in VS Code's tasks.json:
+
 ```json
 {
   "version": "2.0.0",
@@ -84,7 +84,6 @@ Key features:
 - HTTPS support out of the box
 - Custom routing capabilities
 - Mobile device access via local network
-
 
 ### Vite
 
@@ -190,4 +189,3 @@ These solutions should provide reliable alternatives to Live Server and enable y
 [^35]: https://playwright.dev/docs/getting-started-vscode
 
 [^36]: https://www.reddit.com/r/vscode/comments/13jbmkz/mobile_solutions/
-

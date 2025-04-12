@@ -6,20 +6,20 @@ function checkPage(port, path) {
     port: port,
     path: path,
     method: 'GET',
-    timeout: 5000 // 5 second timeout
+    timeout: 5000, // 5 second timeout
   };
 
   console.log(`Checking http://localhost:${port}${path}`);
 
-  const req = http.request(options, (res) => {
+  const req = http.request(options, res => {
     console.log(`Port ${port}, Path ${path} - Status Code: ${res.statusCode}`);
-    
+
     let data = '';
-    
-    res.on('data', (chunk) => {
+
+    res.on('data', chunk => {
       data += chunk;
     });
-    
+
     res.on('end', () => {
       if (res.statusCode === 200) {
         console.log(`Port ${port}, Path ${path} - Page is accessible!`);
@@ -29,7 +29,7 @@ function checkPage(port, path) {
     });
   });
 
-  req.on('error', (error) => {
+  req.on('error', error => {
     console.error(`Port ${port}, Path ${path} - Error: ${error.message}`);
   });
 

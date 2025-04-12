@@ -20,12 +20,10 @@ npm install @ub-ecosystem/audio-services
 ### Basic TTS Generation
 
 ```typescript
-import { generateAudio } from "@ub-ecosystem/audio-services";
+import { generateAudio } from '@ub-ecosystem/audio-services';
 
 // Generate audio with default provider (Narakeet)
-const result = await generateAudio(
-  "This is a test of the Urantia Book audio system."
-);
+const result = await generateAudio('This is a test of the Urantia Book audio system.');
 
 console.log(`Audio URL: ${result.url}`);
 ```
@@ -33,12 +31,12 @@ console.log(`Audio URL: ${result.url}`);
 ### Using the Pronunciation Dictionary
 
 ```typescript
-import { tagContentWithPronunciation } from "@ub-ecosystem/audio-services";
+import { tagContentWithPronunciation } from '@ub-ecosystem/audio-services';
 
 // Tag Urantia terms with phonetic markup
 const taggedContent = tagContentWithPronunciation(
-  "Andovontia is a tertiary Universe Circuit Supervisor stationed in our local universe.",
-  "ssml"
+  'Andovontia is a tertiary Universe Circuit Supervisor stationed in our local universe.',
+  'ssml'
 );
 
 console.log(taggedContent);
@@ -48,13 +46,12 @@ console.log(taggedContent);
 ### Using Different TTS Providers
 
 ```typescript
-import { generateAudio, TTSProvider } from "@ub-ecosystem/audio-services";
+import { generateAudio, TTSProvider } from '@ub-ecosystem/audio-services';
 
 // Generate audio with AWS Polly
-const result = await generateAudio(
-  "This is a test of the Urantia Book audio system.",
-  { provider: TTSProvider.AWS_POLLY }
-);
+const result = await generateAudio('This is a test of the Urantia Book audio system.', {
+  provider: TTSProvider.AWS_POLLY,
+});
 
 console.log(`Audio URL: ${result.url}`);
 ```

@@ -9,10 +9,7 @@ export async function GET(request: NextRequest) {
     const contentPath = searchParams.get('path');
 
     if (!contentPath) {
-      return NextResponse.json(
-        { error: 'Path parameter is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Path parameter is required' }, { status: 400 });
     }
 
     // Construct the full path to the content file
@@ -20,10 +17,7 @@ export async function GET(request: NextRequest) {
 
     // Check if the file exists
     if (!fs.existsSync(filePath)) {
-      return NextResponse.json(
-        { error: `File not found: ${contentPath}` },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: `File not found: ${contentPath}` }, { status: 404 });
     }
 
     // Read the file content
@@ -37,9 +31,6 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error reading content file:', error);
-    return NextResponse.json(
-      { error: 'Failed to read content file' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to read content file' }, { status: 500 });
   }
 }

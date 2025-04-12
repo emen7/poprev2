@@ -160,7 +160,7 @@
 }
 
 /* Traditional Theme Responsive Adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .content-traditional {
     --content-paragraph-indent: 1.5rem;
   }

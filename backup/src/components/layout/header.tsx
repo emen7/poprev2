@@ -28,13 +28,13 @@ export function Header({ className = '' }: HeaderProps) {
         <Link href="/" className="text-xl font-bold">
           PopRev2
         </Link>
-        
+
         <div className="hidden md:block">
           <Suspense fallback={<div className="w-64 h-10 bg-gray-100 rounded animate-pulse"></div>}>
             <SearchBar />
           </Suspense>
         </div>
-        
+
         <nav className="flex items-center space-x-4">
           <Link href="/" className="text-gray-600 hover:text-gray-900">
             Home
@@ -45,7 +45,7 @@ export function Header({ className = '' }: HeaderProps) {
           <Link href="/admin" className="text-gray-600 hover:text-gray-900">
             Admin
           </Link>
-          
+
           {/* Mobile search icon */}
           <Link href="/search" className="md:hidden">
             <svg

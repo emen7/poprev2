@@ -2,12 +2,7 @@
   {
     "globalId": "3:63.-.-",
     "htmlText": null,
-    "labels": [
-      "Anthropology",
-      "Sociology",
-      "Science",
-      "History"
-    ],
+    "labels": ["Anthropology", "Sociology", "Science", "History"],
     "language": "eng",
     "objectID": "3:63.-.-",
     "paperId": "63",

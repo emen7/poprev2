@@ -1,8 +1,9 @@
 import React, { ReactNode } from 'react';
+
 import { NavigationProvider } from '../contexts/NavigationContext';
+import { NotesProvider } from '../contexts/NotesContext';
 import { PullupProvider } from '../contexts/PullupContext';
 import { SelectionProvider } from '../contexts/SelectionContext';
-import { NotesProvider } from '../contexts/NotesContext';
 
 interface AppStateProviderProps {
   /**

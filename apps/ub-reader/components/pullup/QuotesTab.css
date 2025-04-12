@@ -134,7 +134,7 @@
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%) translateY(100px);
-  background-color: var(--toast-bg-color, rgba(0, 0, 0, 0.8));
+  background-color: var(--toast-bg-color, rgb(0 0 0 / 80%));
   color: var(--toast-color, #fff);
   padding: 10px 20px;
   border-radius: 4px;
@@ -168,7 +168,7 @@
   --content-color: #ddd;
   --quote-border-left-color: #555;
   --date-color: #888;
-  --toast-bg-color: rgba(0, 0, 0, 0.8);
+  --toast-bg-color: rgb(0 0 0 / 80%);
   --toast-color: #fff;
 }
 
@@ -191,6 +191,6 @@
   --content-color: #333;
   --quote-border-left-color: #ccc;
   --date-color: #888;
-  --toast-bg-color: rgba(255, 255, 255, 0.9);
+  --toast-bg-color: rgb(255 255 255 / 90%);
   --toast-color: #333;
 }

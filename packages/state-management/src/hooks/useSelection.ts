@@ -1,4 +1,5 @@
 import { useContext, useCallback } from 'react';
+
 import { SelectionContext } from '../contexts/SelectionContext';
 import { SelectionActionType, TextSelection } from '../types/selection.types';
 

@@ -98,14 +98,14 @@ Follow these steps when developing a package:
 
      ```typescript
      // Export types
-     export * from "./types";
+     export * from './types';
 
      // Export main functions
-     export { functionA } from "./module-a";
-     export { functionB, functionC } from "./module-b";
+     export { functionA } from './module-a';
+     export { functionB, functionC } from './module-b';
 
      // Export components (for UI packages)
-     export { ComponentA } from "./components/component-a";
+     export { ComponentA } from './components/component-a';
      ```
 
 4. **Write Tests**:
@@ -133,7 +133,7 @@ To use a package within the monorepo:
 
 2. **Import and Use**:
    ```typescript
-   import { functionA, ComponentA } from "@ub-ecosystem/[package-name]";
+   import { functionA, ComponentA } from '@ub-ecosystem/[package-name]';
    ```
 
 ## Package-Specific Guidelines
@@ -251,17 +251,17 @@ Write unit tests for each function and component:
 
 ```typescript
 // Example test for a transformer function
-describe("transformMarkdown", () => {
-  it("should transform valid markdown", async () => {
-    const markdown = "# Title\n\nContent";
+describe('transformMarkdown', () => {
+  it('should transform valid markdown', async () => {
+    const markdown = '# Title\n\nContent';
     const result = await transformMarkdown(markdown);
-    expect(result.content.type).toBe("root");
-    expect(result.content.children[0].type).toBe("heading");
+    expect(result.content.type).toBe('root');
+    expect(result.content.children[0].type).toBe('heading');
     // More assertions...
   });
 
-  it("should handle empty input", async () => {
-    const result = await transformMarkdown("");
+  it('should handle empty input', async () => {
+    const result = await transformMarkdown('');
     expect(result.content.children).toHaveLength(0);
   });
 
@@ -275,10 +275,10 @@ Write integration tests that verify packages work together:
 
 ```typescript
 // Example integration test
-describe("Content transformation and reference parsing", () => {
-  it("should transform content and parse references", async () => {
-    const markdown = "# Title\n\nSee [UB 1:1]";
-    const transformed = await transformContent(markdown, "markdown");
+describe('Content transformation and reference parsing', () => {
+  it('should transform content and parse references', async () => {
+    const markdown = '# Title\n\nSee [UB 1:1]';
+    const transformed = await transformContent(markdown, 'markdown');
     const references = parseReferences(transformed.text);
     expect(references).toHaveLength(1);
     expect(references[0].paper).toBe(1);

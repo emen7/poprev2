@@ -1,6 +1,6 @@
 /**
  * Reader Example
- * 
+ *
  * This file demonstrates how to use the Reader component.
  */
 
@@ -27,14 +27,16 @@ const exampleDocument: Document = {
       paragraphs: [
         {
           id: 'paragraph-1',
-          content: 'This is an example document that demonstrates the Reader component. It shows how to structure content and how the Reader renders it.',
-          references: []
+          content:
+            'This is an example document that demonstrates the Reader component. It shows how to structure content and how the Reader renders it.',
+          references: [],
         },
         {
           id: 'paragraph-2',
-          content: 'The Reader component is designed to be extensible and configurable, allowing for specialized features for different types of content.',
-          references: []
-        }
+          content:
+            'The Reader component is designed to be extensible and configurable, allowing for specialized features for different types of content.',
+          references: [],
+        },
       ],
       subsections: [
         {
@@ -43,12 +45,13 @@ const exampleDocument: Document = {
           paragraphs: [
             {
               id: 'paragraph-3',
-              content: 'The purpose of this example is to show how the Reader component can be used to display structured content with proper formatting and navigation.',
-              references: []
-            }
-          ]
-        }
-      ]
+              content:
+                'The purpose of this example is to show how the Reader component can be used to display structured content with proper formatting and navigation.',
+              references: [],
+            },
+          ],
+        },
+      ],
     },
     {
       id: 'section-2',
@@ -57,8 +60,8 @@ const exampleDocument: Document = {
         {
           id: 'paragraph-4',
           content: 'The Reader component includes several features:',
-          references: []
-        }
+          references: [],
+        },
       ],
       subsections: [
         {
@@ -67,10 +70,11 @@ const exampleDocument: Document = {
           paragraphs: [
             {
               id: 'paragraph-5',
-              content: 'The Reader includes a table of contents for easy navigation through the document.',
-              references: []
-            }
-          ]
+              content:
+                'The Reader includes a table of contents for easy navigation through the document.',
+              references: [],
+            },
+          ],
         },
         {
           id: 'section-2-2',
@@ -78,17 +82,18 @@ const exampleDocument: Document = {
           paragraphs: [
             {
               id: 'paragraph-6',
-              content: 'The Reader can be themed with custom colors and fonts through the configuration.',
+              content:
+                'The Reader can be themed with custom colors and fonts through the configuration.',
               references: [
                 {
                   id: 'ref-1',
                   type: 'supporting',
                   targetDocumentId: 'doc-2',
-                  targetParagraphId: 'para-5'
-                }
-              ]
-            }
-          ]
+                  targetParagraphId: 'para-5',
+                },
+              ],
+            },
+          ],
         },
         {
           id: 'section-2-3',
@@ -96,12 +101,13 @@ const exampleDocument: Document = {
           paragraphs: [
             {
               id: 'paragraph-7',
-              content: 'The Reader can be extended with plugins that provide specialized features for different types of content.',
-              references: []
-            }
-          ]
-        }
-      ]
+              content:
+                'The Reader can be extended with plugins that provide specialized features for different types of content.',
+              references: [],
+            },
+          ],
+        },
+      ],
     },
     {
       id: 'section-3',
@@ -109,18 +115,19 @@ const exampleDocument: Document = {
       paragraphs: [
         {
           id: 'paragraph-8',
-          content: 'This example demonstrates the basic functionality of the Reader component. In a real application, you would use the document transformation system to convert content from various formats into the standardized document model.',
-          references: []
-        }
-      ]
-    }
+          content:
+            'This example demonstrates the basic functionality of the Reader component. In a real application, you would use the document transformation system to convert content from various formats into the standardized document model.',
+          references: [],
+        },
+      ],
+    },
   ],
   relationships: [
     {
       type: 'supports',
       targetDocumentId: 'doc-2',
-      description: 'This document supports the concepts described in Document 2.'
-    }
+      description: 'This document supports the concepts described in Document 2.',
+    },
   ],
   metadata: {
     title: 'Example Document',
@@ -128,8 +135,8 @@ const exampleDocument: Document = {
     author: 'Reader Team',
     date: '2025-04-01',
     categories: ['Documentation', 'Example'],
-    tags: ['reader', 'component', 'example']
-  }
+    tags: ['reader', 'component', 'example'],
+  },
 };
 
 /**
@@ -139,7 +146,7 @@ const exampleConfig: Partial<ReaderConfig> = {
   branding: {
     primaryColor: '#4a6da7',
     secondaryColor: '#6c757d',
-    appName: 'Scientific Reader Example'
+    appName: 'Scientific Reader Example',
   },
   navigation: {
     showTableOfContents: true,
@@ -149,7 +156,7 @@ const exampleConfig: Partial<ReaderConfig> = {
     showSearch: true,
     showSettings: true,
     linkbackUrl: '/',
-    linkbackText: 'Back to Examples'
+    linkbackText: 'Back to Examples',
   },
   extensions: ['scientific-extension'],
   extensionConfig: {
@@ -157,9 +164,9 @@ const exampleConfig: Partial<ReaderConfig> = {
       // Scientific extension specific configuration
       citationStyle: 'APA',
       enableMathJax: true,
-      enableCharts: true
-    }
-  }
+      enableCharts: true,
+    },
+  },
 };
 
 /**
@@ -171,20 +178,17 @@ export default function ReaderExample() {
     // Create and register the scientific extension
     const scientificExtension = createScientificExtension();
     globalExtensionRegistry.register(scientificExtension);
-    
+
     // Clean up on unmount
     return () => {
       globalExtensionRegistry.unregister(scientificExtension.id);
     };
   }, []);
-  
+
   return (
     <div className="reader-example">
       <ReaderWrapper>
-        <Reader
-          document={exampleDocument}
-          config={exampleConfig}
-        />
+        <Reader document={exampleDocument} config={exampleConfig} />
       </ReaderWrapper>
     </div>
   );

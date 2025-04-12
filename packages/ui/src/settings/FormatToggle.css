@@ -29,7 +29,7 @@
   flex-direction: column;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .format-toggle-options {
     flex-direction: row;
   }
@@ -46,11 +46,11 @@
 }
 
 .format-option:hover {
-  background-color: var(--settings-hover-bg, rgba(255, 255, 255, 0.05));
+  background-color: var(--settings-hover-bg, rgb(255 255 255 / 5%));
 }
 
 .format-option-active {
-  background-color: var(--settings-active-bg, rgba(251, 211, 141, 0.1));
+  background-color: var(--settings-active-bg, rgb(251 211 141 / 10%));
   border-color: var(--settings-active-border, #fbd38d);
 }
 
@@ -84,7 +84,7 @@
 .format-preview {
   margin-top: 1rem;
   padding: 0.75rem;
-  background-color: var(--settings-preview-bg, rgba(0, 0, 0, 0.2));
+  background-color: var(--settings-preview-bg, rgb(0 0 0 / 20%));
   border-radius: 0.25rem;
 }
 
@@ -117,7 +117,13 @@
 
 /* Modern format preview */
 .format-preview-modern {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
 }
 
 .format-preview-modern .format-preview-paragraph {
@@ -149,7 +155,7 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .format-toggle {
     padding: 0.75rem;
   }

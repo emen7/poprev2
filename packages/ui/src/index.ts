@@ -43,6 +43,7 @@ export {
 } from './scientific';
 
 // Re-export scientific types with namespace to avoid conflicts
+import * as PanelTypes from './panels';
 import * as ScientificTypes from './scientific';
 export { ScientificTypes };
 
@@ -50,7 +51,6 @@ export { ScientificTypes };
 export { NotesPanel } from './panels';
 
 // Re-export panel types with namespace to avoid conflicts
-import * as PanelTypes from './panels';
 export { PanelTypes };
 
 // Selection Components and Hooks

@@ -56,24 +56,20 @@ export const ReaderNavigation: React.FC<ReaderNavigationProps> = ({
       </button>
 
       {/* Navigation panel */}
-      <nav className={`reader-navigation-menu ${isOpen ? "open" : ""}`}>
+      <nav className={`reader-navigation-menu ${isOpen ? 'open' : ''}`}>
         {/* Active part container */}
         <div className="reader-nav-fixed-top">{/* Render active part */}</div>
 
         {/* Scrollable papers container */}
-        <div className="reader-nav-scrollable">
-          {/* Render papers of active part */}
-        </div>
+        <div className="reader-nav-scrollable">{/* Render papers of active part */}</div>
 
         {/* Inactive parts container */}
-        <div className="reader-nav-fixed-bottom">
-          {/* Render inactive parts */}
-        </div>
+        <div className="reader-nav-fixed-bottom">{/* Render inactive parts */}</div>
       </nav>
 
       {/* Overlay */}
       <div
-        className={`reader-overlay ${isOpen ? "active" : ""}`}
+        className={`reader-overlay ${isOpen ? 'active' : ''}`}
         onClick={() => setIsOpen(false)}
       ></div>
     </>
@@ -92,10 +88,7 @@ export interface ReaderSettingsProps {
   onConfigChange: (newConfig: Partial<ReaderConfig>) => void;
 }
 
-export const ReaderSettings: React.FC<ReaderSettingsProps> = ({
-  config,
-  onConfigChange,
-}) => {
+export const ReaderSettings: React.FC<ReaderSettingsProps> = ({ config, onConfigChange }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // Toggle settings panel
@@ -130,7 +123,7 @@ export const ReaderSettings: React.FC<ReaderSettingsProps> = ({
       </button>
 
       {/* Settings panel */}
-      <div className={`reader-settings-panel ${isOpen ? "open" : ""}`}>
+      <div className={`reader-settings-panel ${isOpen ? 'open' : ''}`}>
         {/* Display settings */}
         <div className="reader-settings-section">
           <h3 className="reader-settings-title">Display Settings</h3>
@@ -141,17 +134,17 @@ export const ReaderSettings: React.FC<ReaderSettingsProps> = ({
             <div className="reader-settings-option-list">
               <button
                 className={`reader-settings-option-button ${
-                  config.theme === "dark" ? "active" : ""
+                  config.theme === 'dark' ? 'active' : ''
                 }`}
-                onClick={() => updateSetting("theme", "mode", "dark")}
+                onClick={() => updateSetting('theme', 'mode', 'dark')}
               >
                 Dark
               </button>
               <button
                 className={`reader-settings-option-button ${
-                  config.theme === "light" ? "active" : ""
+                  config.theme === 'light' ? 'active' : ''
                 }`}
-                onClick={() => updateSetting("theme", "mode", "light")}
+                onClick={() => updateSetting('theme', 'mode', 'light')}
               >
                 Light
               </button>
@@ -162,13 +155,13 @@ export const ReaderSettings: React.FC<ReaderSettingsProps> = ({
           <div className="reader-settings-option">
             <h4 className="reader-settings-option-title">Font Size</h4>
             <div className="reader-settings-option-list">
-              {["small", "medium", "large", "x-large"].map((size) => (
+              {['small', 'medium', 'large', 'x-large'].map(size => (
                 <button
                   key={size}
                   className={`reader-settings-option-button ${
-                    config.typography.fontSize === size ? "active" : ""
+                    config.typography.fontSize === size ? 'active' : ''
                   }`}
-                  onClick={() => updateSetting("typography", "fontSize", size)}
+                  onClick={() => updateSetting('typography', 'fontSize', size)}
                 >
                   {size.charAt(0).toUpperCase() + size.slice(1)}
                 </button>
@@ -181,18 +174,16 @@ export const ReaderSettings: React.FC<ReaderSettingsProps> = ({
         </div>
 
         {/* Extension-specific settings */}
-        {config.extensions?.map((extensionId) => {
+        {config.extensions?.map(extensionId => {
           const extension = globalExtensionRegistry.getExtension(extensionId);
           if (extension && extension.getSettingsComponent) {
             const ExtensionSettings = extension.getSettingsComponent();
             return (
               <div key={extensionId} className="reader-settings-section">
-                <h3 className="reader-settings-title">
-                  {extension.name} Settings
-                </h3>
+                <h3 className="reader-settings-title">{extension.name} Settings</h3>
                 <ExtensionSettings
                   config={config.extensionConfig?.[extensionId] || {}}
-                  onConfigChange={(newConfig) => {
+                  onConfigChange={newConfig => {
                     onConfigChange({
                       ...config,
                       extensionConfig: {
@@ -218,10 +209,7 @@ export const ReaderSettings: React.FC<ReaderSettingsProps> = ({
 Update the main `Reader` component to integrate these enhanced components:
 
 ```tsx
-export const Reader: React.FC<ReaderProps> = ({
-  document,
-  config: userConfig,
-}) => {
+export const Reader: React.FC<ReaderProps> = ({ document, config: userConfig }) => {
   // Merge user config with default config
   const config = createConfig(userConfig);
 
@@ -252,18 +240,11 @@ export const Reader: React.FC<ReaderProps> = ({
           onSectionSelect={handleSectionSelect}
           config={readerConfig}
         />
-        <ReaderSettings
-          config={readerConfig}
-          onConfigChange={handleConfigChange}
-        />
+        <ReaderSettings config={readerConfig} onConfigChange={handleConfigChange} />
       </ReaderHeader>
 
       <div className="reader-main">
-        <ReaderContent
-          document={document}
-          activeSection={activeSection}
-          config={readerConfig}
-        />
+        <ReaderContent document={document} activeSection={activeSection} config={readerConfig} />
       </div>
     </div>
   );
@@ -321,15 +302,13 @@ const ScientificExtensionSettings: React.FC<ExtensionSettingsProps> = ({
       <div className="reader-settings-option">
         <h4 className="reader-settings-option-title">Citation Style</h4>
         <div className="reader-settings-option-list">
-          {["APA", "MLA", "Chicago", "Harvard"].map((style) => (
+          {['APA', 'MLA', 'Chicago', 'Harvard'].map(style => (
             <button
               key={style}
               className={`reader-settings-option-button ${
-                config.citationStyle === style ? "active" : ""
+                config.citationStyle === style ? 'active' : ''
               }`}
-              onClick={() =>
-                onConfigChange({ ...config, citationStyle: style })
-              }
+              onClick={() => onConfigChange({ ...config, citationStyle: style })}
             >
               {style}
             </button>
@@ -342,17 +321,13 @@ const ScientificExtensionSettings: React.FC<ExtensionSettingsProps> = ({
         <h4 className="reader-settings-option-title">Math Rendering</h4>
         <div className="reader-settings-option-list">
           <button
-            className={`reader-settings-option-button ${
-              config.enableMathJax ? "active" : ""
-            }`}
+            className={`reader-settings-option-button ${config.enableMathJax ? 'active' : ''}`}
             onClick={() => onConfigChange({ ...config, enableMathJax: true })}
           >
             Enabled
           </button>
           <button
-            className={`reader-settings-option-button ${
-              !config.enableMathJax ? "active" : ""
-            }`}
+            className={`reader-settings-option-button ${!config.enableMathJax ? 'active' : ''}`}
             onClick={() => onConfigChange({ ...config, enableMathJax: false })}
           >
             Disabled
@@ -466,20 +441,20 @@ export interface ReaderConfig {
 }
 
 export interface ThemeConfig {
-  mode: "light" | "dark";
+  mode: 'light' | 'dark';
   primaryColor: string;
   secondaryColor: string;
 }
 
 export interface TypographyConfig {
   fontFamily: string;
-  fontSize: "small" | "medium" | "large" | "x-large";
-  fontStyle: "sans-serif" | "serif";
-  lineSpacing: "compact" | "normal" | "relaxed";
+  fontSize: 'small' | 'medium' | 'large' | 'x-large';
+  fontStyle: 'sans-serif' | 'serif';
+  lineSpacing: 'compact' | 'normal' | 'relaxed';
 }
 
 export interface LayoutConfig {
-  textWidth: "narrow" | "medium" | "wide";
+  textWidth: 'narrow' | 'medium' | 'wide';
   showParagraphNumbers: boolean;
 }
 ```

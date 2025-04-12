@@ -1,6 +1,6 @@
 /**
  * Content Validator
- * 
+ *
  * This module handles the validation and sanitization of transformed content.
  * It ensures that the content meets our requirements and is safe for display.
  */
@@ -9,32 +9,32 @@ import { DocumentNode, RootNode, TransformedDocument } from './types';
 
 /**
  * Validate and sanitize the transformed content
- * 
+ *
  * @param content The content to validate
  * @returns A promise that resolves to the validated content
  */
 export async function validateContent(content: any): Promise<TransformedDocument> {
   // Validate the content structure
   validateContentStructure(content.content);
-  
+
   // Sanitize the content to remove any potentially harmful elements
   const sanitizedContent = sanitizeContent(content.content);
-  
+
   // Validate metadata
   const validatedMetadata = validateMetadata(content.metadata);
-  
+
   // Return the validated content
   return {
     content: sanitizedContent,
     metadata: validatedMetadata,
     html: content.html,
-    text: content.text
+    text: content.text,
   };
 }
 
 /**
  * Validate the content structure
- * 
+ *
  * @param rootNode The root node of the document
  * @throws Error if the content structure is invalid
  */
@@ -43,12 +43,12 @@ function validateContentStructure(rootNode: RootNode): void {
   if (!rootNode || rootNode.type !== 'root') {
     throw new Error('Invalid content structure: Root node is missing or has incorrect type');
   }
-  
+
   // Ensure the root node has children
   if (!rootNode.children || !Array.isArray(rootNode.children)) {
     throw new Error('Invalid content structure: Root node has no children');
   }
-  
+
   // Validate each child node recursively
   for (const child of rootNode.children) {
     validateNode(child);
@@ -57,7 +57,7 @@ function validateContentStructure(rootNode: RootNode): void {
 
 /**
  * Validate a single node
- * 
+ *
  * @param node The node to validate
  * @throws Error if the node is invalid
  */
@@ -66,7 +66,7 @@ function validateNode(node: DocumentNode): void {
   if (!node.type) {
     throw new Error('Invalid node: Missing type');
   }
-  
+
   // Validate specific node types
   switch (node.type) {
     case 'heading':
@@ -74,20 +74,20 @@ function validateNode(node: DocumentNode): void {
         throw new Error('Invalid heading node: Depth must be between 1 and 6');
       }
       break;
-      
+
     case 'link':
       if (!node.url) {
         throw new Error('Invalid link node: Missing URL');
       }
       break;
-      
+
     case 'image':
       if (!node.url) {
         throw new Error('Invalid image node: Missing URL');
       }
       break;
   }
-  
+
   // Validate children recursively
   if (node.children && Array.isArray(node.children)) {
     for (const child of node.children) {
@@ -98,32 +98,32 @@ function validateNode(node: DocumentNode): void {
 
 /**
  * Sanitize the content to remove any potentially harmful elements
- * 
+ *
  * @param rootNode The root node of the document
  * @returns The sanitized root node
  */
 function sanitizeContent(rootNode: RootNode): RootNode {
   // Create a copy of the root node
   const sanitizedRoot: RootNode = { ...rootNode, children: [] };
-  
+
   // Sanitize each child node
   if (rootNode.children && Array.isArray(rootNode.children)) {
     sanitizedRoot.children = rootNode.children.map(sanitizeNode);
   }
-  
+
   return sanitizedRoot;
 }
 
 /**
  * Sanitize a single node
- * 
+ *
  * @param node The node to sanitize
  * @returns The sanitized node
  */
 function sanitizeNode(node: DocumentNode): DocumentNode {
   // Create a copy of the node
   const sanitizedNode: DocumentNode = { ...node };
-  
+
   // Sanitize specific node types
   switch (node.type) {
     case 'text':
@@ -132,14 +132,14 @@ function sanitizeNode(node: DocumentNode): DocumentNode {
         sanitizedNode.value = sanitizeText(sanitizedNode.value);
       }
       break;
-      
+
     case 'link':
       // Sanitize link URLs
       if (sanitizedNode.url) {
         sanitizedNode.url = sanitizeUrl(sanitizedNode.url);
       }
       break;
-      
+
     case 'image':
       // Sanitize image URLs
       if (sanitizedNode.url) {
@@ -147,18 +147,18 @@ function sanitizeNode(node: DocumentNode): DocumentNode {
       }
       break;
   }
-  
+
   // Sanitize children recursively
   if (sanitizedNode.children && Array.isArray(sanitizedNode.children)) {
     sanitizedNode.children = sanitizedNode.children.map(sanitizeNode);
   }
-  
+
   return sanitizedNode;
 }
 
 /**
  * Sanitize text content
- * 
+ *
  * @param text The text to sanitize
  * @returns The sanitized text
  */
@@ -172,7 +172,7 @@ function sanitizeText(text: string): string {
 
 /**
  * Sanitize a URL
- * 
+ *
  * @param url The URL to sanitize
  * @returns The sanitized URL
  */
@@ -181,25 +181,25 @@ function sanitizeUrl(url: string): string {
   if (url.match(/^(javascript|data):/i)) {
     return '#';
   }
-  
+
   return url;
 }
 
 /**
  * Validate metadata
- * 
+ *
  * @param metadata The metadata to validate
  * @returns The validated metadata
  */
 function validateMetadata(metadata: any): any {
   // Create a copy of the metadata
   const validatedMetadata = { ...metadata };
-  
+
   // Ensure title is a string
   if (validatedMetadata.title && typeof validatedMetadata.title !== 'string') {
     validatedMetadata.title = String(validatedMetadata.title);
   }
-  
+
   // Ensure author is a string or array of strings
   if (validatedMetadata.author) {
     if (Array.isArray(validatedMetadata.author)) {
@@ -210,7 +210,7 @@ function validateMetadata(metadata: any): any {
       validatedMetadata.author = String(validatedMetadata.author);
     }
   }
-  
+
   // Ensure date is a valid date string
   if (validatedMetadata.date) {
     try {
@@ -224,7 +224,7 @@ function validateMetadata(metadata: any): any {
       delete validatedMetadata.date;
     }
   }
-  
+
   // Ensure categories is an array of strings
   if (validatedMetadata.categories) {
     if (!Array.isArray(validatedMetadata.categories)) {
@@ -235,7 +235,7 @@ function validateMetadata(metadata: any): any {
       );
     }
   }
-  
+
   // Ensure tags is an array of strings
   if (validatedMetadata.tags) {
     if (!Array.isArray(validatedMetadata.tags)) {
@@ -246,6 +246,6 @@ function validateMetadata(metadata: any): any {
       );
     }
   }
-  
+
   return validatedMetadata;
 }

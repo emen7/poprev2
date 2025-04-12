@@ -5,7 +5,7 @@
 .breadcrumbs {
   padding: 0.5rem 1rem;
   background-color: #1e1e1e;
-  border-bottom: 1px solid #333333;
+  border-bottom: 1px solid #333;
   font-size: 0.85rem;
 }
 
@@ -30,13 +30,13 @@
 }
 
 .breadcrumbs-link:hover {
-  color: #ffffff;
+  color: #fff;
   text-decoration: underline;
 }
 
 .breadcrumbs-separator {
   margin: 0 0.5rem;
-  color: #666666;
+  color: #666;
 }
 
 .breadcrumbs-current {
@@ -52,7 +52,7 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 640px) {
+@media (width <= 640px) {
   .breadcrumbs {
     padding: 0.3rem 0.5rem;
     font-size: 0.75rem;

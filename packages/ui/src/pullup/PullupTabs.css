@@ -51,7 +51,7 @@
 }
 
 /* Media query for small screens */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .pullup-tabs {
     padding-left: 8px;
   }
@@ -71,7 +71,7 @@
 }
 
 /* Media query for large screens */
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
   .pullup-tabs {
     border-bottom-width: 2px;
   }

@@ -1,6 +1,6 @@
 /**
  * Scientific Document API Route
- * 
+ *
  * This API route handles requests for scientific documents by ID.
  */
 
@@ -28,54 +28,45 @@ interface ScientificDocument {
 
 /**
  * GET handler for document API
- * 
+ *
  * @param request Next.js request
  * @param params Route parameters
  * @returns Next.js response
  */
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     const id = params.id;
     const format = request.nextUrl.searchParams.get('format') || 'html';
-    
+
     // Retrieve document
     const document = await getScientificDocumentById(id);
-    
+
     if (!document) {
-      return NextResponse.json(
-        { error: 'Document not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Document not found' }, { status: 404 });
     }
-    
+
     // Transform content based on requested format
     const content = transformScientificContent(document.content, document.contentType, format);
-    
+
     return NextResponse.json({
       document: {
         id: document.id,
         title: document.title,
         content,
         metadata: document.metadata,
-        lastUpdated: document.lastUpdated
-      }
+        lastUpdated: document.lastUpdated,
+      },
     });
   } catch (error) {
     console.error('Error retrieving document:', error);
-    
-    return NextResponse.json(
-      { error: 'Failed to retrieve document' },
-      { status: 500 }
-    );
+
+    return NextResponse.json({ error: 'Failed to retrieve document' }, { status: 500 });
   }
 }
 
 /**
  * Get a scientific document by ID
- * 
+ *
  * @param id Document ID
  * @returns Document or null if not found
  */
@@ -83,27 +74,27 @@ async function getScientificDocumentById(id: string): Promise<ScientificDocument
   try {
     // Decode the ID to get the file path
     const filePath = decodeDocumentId(id);
-    
+
     // Check if file exists
     if (!fs.existsSync(filePath)) {
       return null;
     }
-    
+
     // Determine content type from file extension
     const contentType = getContentTypeFromPath(filePath);
-    
+
     // Read file content
     const content = fs.readFileSync(filePath, 'utf-8');
-    
+
     // Extract metadata and content based on content type
     const { metadata, processedContent } = extractMetadataAndContent(content, contentType);
-    
+
     // Create excerpt
     const excerpt = createExcerpt(processedContent);
-    
+
     // Get last updated timestamp
     const stats = fs.statSync(filePath);
-    
+
     return {
       id,
       title: metadata.title || getFilenameFromPath(filePath),
@@ -112,7 +103,7 @@ async function getScientificDocumentById(id: string): Promise<ScientificDocument
       path: filePath,
       excerpt,
       metadata,
-      lastUpdated: stats.mtime.toISOString()
+      lastUpdated: stats.mtime.toISOString(),
     };
   } catch (error) {
     console.error('Error getting document by ID:', error);
@@ -122,7 +113,7 @@ async function getScientificDocumentById(id: string): Promise<ScientificDocument
 
 /**
  * Decode a document ID to get the file path
- * 
+ *
  * @param id Document ID
  * @returns File path
  */
@@ -139,13 +130,13 @@ function decodeDocumentId(id: string): string {
 
 /**
  * Get content type from file path
- * 
+ *
  * @param filePath File path
  * @returns Content type
  */
 function getContentTypeFromPath(filePath: string): 'markdown' | 'docx' | 'html' {
   const extension = path.extname(filePath).toLowerCase();
-  
+
   switch (extension) {
     case '.md':
     case '.markdown':
@@ -163,7 +154,7 @@ function getContentTypeFromPath(filePath: string): 'markdown' | 'docx' | 'html' 
 
 /**
  * Extract metadata and content from a file
- * 
+ *
  * @param content File content
  * @param contentType Content type
  * @returns Metadata and processed content
@@ -190,55 +181,55 @@ function extractMetadataAndContent(
 
 /**
  * Extract metadata from markdown content
- * 
+ *
  * @param content Markdown content
  * @returns Metadata and processed content
  */
 function extractMetadataFromMarkdown(content: string): { metadata: any; processedContent: string } {
   // Check for frontmatter
   const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
-  
+
   if (frontmatterMatch) {
     const frontmatter = frontmatterMatch[1];
     const processedContent = content.replace(/^---\n[\s\S]*?\n---\n/, '');
-    
+
     // Parse frontmatter
     const metadata: any = {};
-    
+
     frontmatter.split('\n').forEach(line => {
       const match = line.match(/^(\w+):\s*(.*)/);
-      
+
       if (match) {
         const [, key, value] = match;
         metadata[key] = value;
       }
     });
-    
+
     return { metadata, processedContent };
   }
-  
+
   // If no frontmatter, try to extract title from first heading
   const headingMatch = content.match(/^#+\s+(.*?)$/m);
-  
+
   if (headingMatch) {
     const title = headingMatch[1].trim();
     return { metadata: { title }, processedContent: content };
   }
-  
+
   // If no heading, return empty metadata and the original content
   return { metadata: {}, processedContent: content };
 }
 
 /**
  * Get filename from path
- * 
+ *
  * @param filePath File path
  * @returns Filename without extension
  */
 function getFilenameFromPath(filePath: string): string {
   const basename = path.basename(filePath);
   const filename = basename.replace(/\.[^/.]+$/, ''); // Remove extension
-  
+
   // Convert kebab-case to title case
   return filename
     .split('-')
@@ -248,7 +239,7 @@ function getFilenameFromPath(filePath: string): string {
 
 /**
  * Create an excerpt from content
- * 
+ *
  * @param content Content
  * @param maxLength Maximum length of excerpt
  * @returns Excerpt
@@ -265,25 +256,25 @@ function createExcerpt(content: string, maxLength: number = 200): string {
     .replace(/`(.*?)`/g, '$1') // Remove inline code
     .replace(/\n+/g, ' ') // Replace newlines with spaces
     .trim();
-  
+
   // Truncate to maxLength
   if (plainText.length <= maxLength) {
     return plainText;
   }
-  
+
   // Find the last space before maxLength
   const lastSpace = plainText.lastIndexOf(' ', maxLength);
-  
+
   if (lastSpace === -1) {
     return plainText.substring(0, maxLength) + '...';
   }
-  
+
   return plainText.substring(0, lastSpace) + '...';
 }
 
 /**
  * Transform scientific content to the requested format
- * 
+ *
  * @param content Content
  * @param contentType Content type
  * @param format Requested format

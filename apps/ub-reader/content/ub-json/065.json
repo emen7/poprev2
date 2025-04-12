@@ -2,12 +2,7 @@
   {
     "globalId": "3:65.-.-",
     "htmlText": null,
-    "labels": [
-      "Theology",
-      "Science",
-      "Philosophy",
-      "History"
-    ],
+    "labels": ["Theology", "Science", "Philosophy", "History"],
     "language": "eng",
     "objectID": "3:65.-.-",
     "paperId": "65",

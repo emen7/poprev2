@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import ReaderLayout from '../layout/ReaderLayout';
+
 import { Header, Footer } from '../layout';
+import ReaderLayout from '../layout/ReaderLayout';
 import NotesPanel from '../panels/NotesPanel';
 import { ScientificContentProvider } from '../scientific/ScientificContentContext';
-import { exampleTooltipData } from '../types/TooltipData';
 import ScientificTooltip from '../scientific/ScientificTooltip';
+import { exampleTooltipData } from '../types/TooltipData';
 import './ReaderDemo.css';
 
 /**

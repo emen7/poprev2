@@ -1,12 +1,12 @@
 export interface DynamicSectionTitleProps {
-    /**
-     * The title to display
-     */
-    title: string;
-    /**
-     * Additional CSS class name
-     */
-    className?: string;
+  /**
+   * The title to display
+   */
+  title: string;
+  /**
+   * Additional CSS class name
+   */
+  className?: string;
 }
 /**
  * DynamicSectionTitle Component
@@ -14,6 +14,9 @@ export interface DynamicSectionTitleProps {
  * A component that displays the current section title with a fade-in animation
  * when the title changes.
  */
-export declare function DynamicSectionTitle({ title, className }: DynamicSectionTitleProps): import("react/jsx-runtime").JSX.Element;
+export declare function DynamicSectionTitle({
+  title,
+  className,
+}: DynamicSectionTitleProps): import('react/jsx-runtime').JSX.Element;
 export default DynamicSectionTitle;
 //# sourceMappingURL=DynamicSectionTitle.d.ts.map

@@ -90,7 +90,7 @@ Create a domain configuration file to manage the multi-domain setup:
 **packages/config/src/domains.ts**
 
 ```typescript
-export type AppDomain = "reader" | "almanac" | "publications" | "lectionary";
+export type AppDomain = 'reader' | 'almanac' | 'publications' | 'lectionary';
 
 export interface DomainConfig {
   subdomain: string;
@@ -101,34 +101,34 @@ export interface DomainConfig {
 
 export const domains: Record<AppDomain, DomainConfig> = {
   reader: {
-    subdomain: "reader",
+    subdomain: 'reader',
     port: 3001,
-    title: "UB Reader",
-    description: "Read The Urantia Book online",
+    title: 'UB Reader',
+    description: 'Read The Urantia Book online',
   },
   almanac: {
-    subdomain: "almanac",
+    subdomain: 'almanac',
     port: 3002,
-    title: "Master Universe Almanac",
-    description: "Explore the cosmology and personalities of the Urantia Book",
+    title: 'Master Universe Almanac',
+    description: 'Explore the cosmology and personalities of the Urantia Book',
   },
   publications: {
-    subdomain: "publications",
+    subdomain: 'publications',
     port: 3000,
-    title: "UB Publications",
-    description: "Publications and articles related to The Urantia Book",
+    title: 'UB Publications',
+    description: 'Publications and articles related to The Urantia Book',
   },
   lectionary: {
-    subdomain: "lectionary",
+    subdomain: 'lectionary',
     port: 3003,
-    title: "UB Lectionary",
-    description: "Lectionary readings from The Urantia Book",
+    title: 'UB Lectionary',
+    description: 'Lectionary readings from The Urantia Book',
   },
 };
 
 export function getDomainUrl(
   domain: AppDomain,
-  isProduction = process.env.NODE_ENV === "production"
+  isProduction = process.env.NODE_ENV === 'production'
 ): string {
   const config = domains[domain];
 
@@ -198,37 +198,33 @@ Create a parser to extract data from HTML tables:
 **packages/table-transformer/src/parser/html-table-parser.ts**
 
 ```typescript
-import * as cheerio from "cheerio";
-import { Table, TableRow, TableCell } from "@ub-ecosystem/data-models";
+import * as cheerio from 'cheerio';
+import { Table, TableRow, TableCell } from '@ub-ecosystem/data-models';
 
 export function parseHtmlTable(html: string, id: string): Table {
   const $ = cheerio.load(html);
-  const tableElement = $("table");
+  const tableElement = $('table');
 
   // Extract caption/title
-  const caption = tableElement.find("caption").text().trim();
+  const caption = tableElement.find('caption').text().trim();
 
   // Extract rows
   const rows: TableRow[] = [];
 
   // Process thead if exists
-  tableElement.find("thead tr").each((i, rowEl) => {
+  tableElement.find('thead tr').each((i, rowEl) => {
     const cells: TableCell[] = [];
 
     $(rowEl)
-      .find("th, td")
+      .find('th, td')
       .each((j, cellEl) => {
         const $cell = $(cellEl);
         cells.push({
           content: $cell.text().trim(),
           htmlContent: $cell.html() || undefined,
-          rowspan: $cell.attr("rowspan")
-            ? parseInt($cell.attr("rowspan") || "1", 10)
-            : undefined,
-          colspan: $cell.attr("colspan")
-            ? parseInt($cell.attr("colspan") || "1", 10)
-            : undefined,
-          isHeader: cellEl.name === "th",
+          rowspan: $cell.attr('rowspan') ? parseInt($cell.attr('rowspan') || '1', 10) : undefined,
+          colspan: $cell.attr('colspan') ? parseInt($cell.attr('colspan') || '1', 10) : undefined,
+          isHeader: cellEl.name === 'th',
         });
       });
 
@@ -239,23 +235,19 @@ export function parseHtmlTable(html: string, id: string): Table {
   });
 
   // Process tbody
-  tableElement.find("tbody tr").each((i, rowEl) => {
+  tableElement.find('tbody tr').each((i, rowEl) => {
     const cells: TableCell[] = [];
 
     $(rowEl)
-      .find("th, td")
+      .find('th, td')
       .each((j, cellEl) => {
         const $cell = $(cellEl);
         cells.push({
           content: $cell.text().trim(),
           htmlContent: $cell.html() || undefined,
-          rowspan: $cell.attr("rowspan")
-            ? parseInt($cell.attr("rowspan") || "1", 10)
-            : undefined,
-          colspan: $cell.attr("colspan")
-            ? parseInt($cell.attr("colspan") || "1", 10)
-            : undefined,
-          isHeader: cellEl.name === "th",
+          rowspan: $cell.attr('rowspan') ? parseInt($cell.attr('rowspan') || '1', 10) : undefined,
+          colspan: $cell.attr('colspan') ? parseInt($cell.attr('colspan') || '1', 10) : undefined,
+          isHeader: cellEl.name === 'th',
         });
       });
 
@@ -267,29 +259,25 @@ export function parseHtmlTable(html: string, id: string): Table {
 
   // If no thead/tbody structure, process rows directly
   if (rows.length === 0) {
-    tableElement.find("tr").each((i, rowEl) => {
+    tableElement.find('tr').each((i, rowEl) => {
       const cells: TableCell[] = [];
 
       $(rowEl)
-        .find("th, td")
+        .find('th, td')
         .each((j, cellEl) => {
           const $cell = $(cellEl);
           cells.push({
             content: $cell.text().trim(),
             htmlContent: $cell.html() || undefined,
-            rowspan: $cell.attr("rowspan")
-              ? parseInt($cell.attr("rowspan") || "1", 10)
-              : undefined,
-            colspan: $cell.attr("colspan")
-              ? parseInt($cell.attr("colspan") || "1", 10)
-              : undefined,
-            isHeader: cellEl.name === "th",
+            rowspan: $cell.attr('rowspan') ? parseInt($cell.attr('rowspan') || '1', 10) : undefined,
+            colspan: $cell.attr('colspan') ? parseInt($cell.attr('colspan') || '1', 10) : undefined,
+            isHeader: cellEl.name === 'th',
           });
         });
 
       rows.push({
         cells,
-        isHeader: i === 0 && $(rowEl).find("th").length > 0,
+        isHeader: i === 0 && $(rowEl).find('th').length > 0,
       });
     });
   }
@@ -309,7 +297,7 @@ Create a utility to convert tables to grid layouts when appropriate:
 **packages/table-transformer/src/converter/table-to-grid.ts**
 
 ```typescript
-import { Table, Grid, GridItem } from "@ub-ecosystem/data-models";
+import { Table, Grid, GridItem } from '@ub-ecosystem/data-models';
 
 export function tableToGrid(table: Table): Grid {
   const items: GridItem[] = [];
@@ -317,7 +305,7 @@ export function tableToGrid(table: Table): Grid {
 
   // Determine grid dimensions
   const rows = table.rows.length;
-  const columns = Math.max(...table.rows.map((row) => row.cells.length));
+  const columns = Math.max(...table.rows.map(row => row.cells.length));
 
   // Create grid areas for simple mapping
   for (let i = 0; i < rows; i++) {
@@ -395,8 +383,8 @@ Create an accessible table component:
 **packages/ui/src/tables/DataTable.tsx**
 
 ```tsx
-import React from "react";
-import { Table } from "@ub-ecosystem/data-models";
+import React from 'react';
+import { Table } from '@ub-ecosystem/data-models';
 
 interface DataTableProps {
   table: Table;
@@ -404,24 +392,16 @@ interface DataTableProps {
   responsive?: boolean;
 }
 
-export function DataTable({
-  table,
-  className = "",
-  responsive = true,
-}: DataTableProps) {
+export function DataTable({ table, className = '', responsive = true }: DataTableProps) {
   return (
-    <div
-      className={`ub-table-container ${
-        responsive ? "ub-table-responsive" : ""
-      } ${className}`}
-    >
+    <div className={`ub-table-container ${responsive ? 'ub-table-responsive' : ''} ${className}`}>
       {table.caption && <div className="ub-table-caption">{table.caption}</div>}
 
       <table className="ub-data-table">
-        {table.rows.some((row) => row.isHeader) && (
+        {table.rows.some(row => row.isHeader) && (
           <thead>
             {table.rows
-              .filter((row) => row.isHeader)
+              .filter(row => row.isHeader)
               .map((row, rowIndex) => (
                 <tr key={`header-row-${rowIndex}`}>
                   {row.cells.map((cell, cellIndex) => (
@@ -429,14 +409,10 @@ export function DataTable({
                       key={`header-cell-${rowIndex}-${cellIndex}`}
                       rowSpan={cell.rowspan}
                       colSpan={cell.colspan}
-                      scope={
-                        cell.rowspan && cell.rowspan > 1 ? "rowgroup" : "col"
-                      }
+                      scope={cell.rowspan && cell.rowspan > 1 ? 'rowgroup' : 'col'}
                     >
                       {cell.htmlContent ? (
-                        <div
-                          dangerouslySetInnerHTML={{ __html: cell.htmlContent }}
-                        />
+                        <div dangerouslySetInnerHTML={{ __html: cell.htmlContent }} />
                       ) : (
                         cell.content
                       )}
@@ -449,7 +425,7 @@ export function DataTable({
 
         <tbody>
           {table.rows
-            .filter((row) => !row.isHeader)
+            .filter(row => !row.isHeader)
             .map((row, rowIndex) => (
               <tr key={`row-${rowIndex}`}>
                 {row.cells.map((cell, cellIndex) =>
@@ -461,9 +437,7 @@ export function DataTable({
                       scope="row"
                     >
                       {cell.htmlContent ? (
-                        <div
-                          dangerouslySetInnerHTML={{ __html: cell.htmlContent }}
-                        />
+                        <div dangerouslySetInnerHTML={{ __html: cell.htmlContent }} />
                       ) : (
                         cell.content
                       )}
@@ -475,9 +449,7 @@ export function DataTable({
                       colSpan={cell.colspan}
                     >
                       {cell.htmlContent ? (
-                        <div
-                          dangerouslySetInnerHTML={{ __html: cell.htmlContent }}
-                        />
+                        <div dangerouslySetInnerHTML={{ __html: cell.htmlContent }} />
                       ) : (
                         cell.content
                       )}
@@ -500,25 +472,25 @@ Create a grid layout component for content that's visually tabular but semantica
 **packages/ui/src/tables/GridLayout.tsx**
 
 ```tsx
-import React from "react";
-import { Grid } from "@ub-ecosystem/data-models";
+import React from 'react';
+import { Grid } from '@ub-ecosystem/data-models';
 
 interface GridLayoutProps {
   grid: Grid;
   className?: string;
 }
 
-export function GridLayout({ grid, className = "" }: GridLayoutProps) {
+export function GridLayout({ grid, className = '' }: GridLayoutProps) {
   // Generate CSS grid template
   const gridTemplateAreas = grid.areas
-    ? grid.areas.map((row) => `"${row.join(" ")}"`).join(" ")
+    ? grid.areas.map(row => `"${row.join(' ')}"`).join(' ')
     : undefined;
 
   const gridTemplateColumns = `repeat(${grid.columns}, 1fr)`;
   const gridTemplateRows = `repeat(${grid.rows}, auto)`;
 
   const gridStyle: React.CSSProperties = {
-    display: "grid",
+    display: 'grid',
     gridTemplateColumns,
     gridTemplateRows,
     ...(gridTemplateAreas ? { gridTemplateAreas } : {}),
@@ -528,17 +500,11 @@ export function GridLayout({ grid, className = "" }: GridLayoutProps) {
     <div className={`ub-grid-container ${className}`}>
       {grid.title && <div className="ub-grid-title">{grid.title}</div>}
 
-      {grid.description && (
-        <div className="ub-grid-description">{grid.description}</div>
-      )}
+      {grid.description && <div className="ub-grid-description">{grid.description}</div>}
 
       <div className="ub-grid-layout" style={gridStyle}>
-        {grid.items.map((item) => (
-          <div
-            key={item.id}
-            className="ub-grid-item"
-            style={{ gridArea: item.gridArea }}
-          >
+        {grid.items.map(item => (
+          <div key={item.id} className="ub-grid-item" style={{ gridArea: item.gridArea }}>
             {item.htmlContent ? (
               <div dangerouslySetInnerHTML={{ __html: item.htmlContent }} />
             ) : (
@@ -559,10 +525,10 @@ Create a card component for displaying tables:
 **packages/ui/src/cards/TableCard.tsx**
 
 ```tsx
-import React from "react";
-import { Table, Grid } from "@ub-ecosystem/data-models";
-import { DataTable } from "../tables/DataTable";
-import { GridLayout } from "../tables/GridLayout";
+import React from 'react';
+import { Table, Grid } from '@ub-ecosystem/data-models';
+import { DataTable } from '../tables/DataTable';
+import { GridLayout } from '../tables/GridLayout';
 
 interface TableCardProps {
   title: string;
@@ -576,19 +542,17 @@ export function TableCard({
   title,
   description,
   data,
-  className = "",
+  className = '',
   useGrid = false,
 }: TableCardProps) {
   // Determine if we're dealing with a Table or Grid
-  const isTable = "rows" in data;
+  const isTable = 'rows' in data;
 
   return (
     <div className={`ub-card ub-table-card ${className}`}>
       <div className="ub-card-header">
         <h3 className="ub-card-title">{title}</h3>
-        {description && (
-          <div className="ub-card-description">{description}</div>
-        )}
+        {description && <div className="ub-card-description">{description}</div>}
       </div>
 
       <div className="ub-card-content">
@@ -623,7 +587,7 @@ function tableToGrid(table: Table): Grid {
         gridArea: `area-${i}-${j}`,
       }))
     ),
-    columns: Math.max(...table.rows.map((row) => row.cells.length)),
+    columns: Math.max(...table.rows.map(row => row.cells.length)),
     rows: table.rows.length,
   };
 }
@@ -638,23 +602,19 @@ Set up the basic Next.js app structure:
 **apps/almanac/app/layout.tsx**
 
 ```tsx
-import React from "react";
-import { Inter } from "next/font/google";
-import Link from "next/link";
-import { getDomainUrl } from "@ub-ecosystem/config";
+import React from 'react';
+import { Inter } from 'next/font/google';
+import Link from 'next/link';
+import { getDomainUrl } from '@ub-ecosystem/config';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: "Master Universe Almanac",
-  description: "Explore the cosmology and personalities of the Urantia Book",
+  title: 'Master Universe Almanac',
+  description: 'Explore the cosmology and personalities of the Urantia Book',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -685,10 +645,10 @@ export default function RootLayout({
               <nav className="ub-ecosystem-nav">
                 <ul>
                   <li>
-                    <a href={getDomainUrl("reader")}>UB Reader</a>
+                    <a href={getDomainUrl('reader')}>UB Reader</a>
                   </li>
                   <li>
-                    <a href={getDomainUrl("publications")}>Publications</a>
+                    <a href={getDomainUrl('publications')}>Publications</a>
                   </li>
                 </ul>
               </nav>
@@ -718,8 +678,8 @@ Create the home page for the almanac:
 **apps/almanac/app/page.tsx**
 
 ```tsx
-import React from "react";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
 
 export default function HomePage() {
   return (
@@ -737,10 +697,7 @@ export default function HomePage() {
             <h2 className="ub-card-title">Cosmology</h2>
           </div>
           <div className="ub-card-content">
-            <p>
-              Explore the structure of the universes, from Paradise to the outer
-              space levels.
-            </p>
+            <p>Explore the structure of the universes, from Paradise to the outer space levels.</p>
           </div>
           <div className="ub-card-footer">
             <Link href="/cosmology" className="ub-button">
@@ -754,10 +711,7 @@ export default function HomePage() {
             <h2 className="ub-card-title">Personalities</h2>
           </div>
           <div className="ub-card-content">
-            <p>
-              Learn about the diverse personalities that inhabit the grand
-              universe.
-            </p>
+            <p>Learn about the diverse personalities that inhabit the grand universe.</p>
           </div>
           <div className="ub-card-footer">
             <Link href="/personalities" className="ub-button">
@@ -771,9 +725,7 @@ export default function HomePage() {
             <h2 className="ub-card-title">Lists</h2>
           </div>
           <div className="ub-card-content">
-            <p>
-              Browse comprehensive lists of concepts, beings, and locations.
-            </p>
+            <p>Browse comprehensive lists of concepts, beings, and locations.</p>
           </div>
           <div className="ub-card-footer">
             <Link href="/lists" className="ub-button">
@@ -787,9 +739,7 @@ export default function HomePage() {
             <h2 className="ub-card-title">Charts</h2>
           </div>
           <div className="ub-card-content">
-            <p>
-              Visualize relationships and hierarchies through detailed charts.
-            </p>
+            <p>Visualize relationships and hierarchies through detailed charts.</p>
           </div>
           <div className="ub-card-footer">
             <Link href="/charts" className="ub-button">

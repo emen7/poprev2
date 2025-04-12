@@ -72,7 +72,7 @@ The TinaCMS integration works with the existing document transformation system:
 ### Example Usage
 
 ```tsx
-import { TinaDocumentLoader } from "../components/tina-document-loader";
+import { TinaDocumentLoader } from '../components/tina-document-loader';
 
 export default function MyPage() {
   return (

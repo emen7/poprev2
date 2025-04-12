@@ -35,14 +35,12 @@ I recommend a hybrid approach combining client-side and server-side capabilities
 - **Component-Based UI**: Create a composable search bar component (inspired by Spotlight search) that's consistent across all apps[^6]
 - **Selective Loading**: Only load search indices for the content the user is currently accessing[^5]
 
-
 ### 2. For Server-Side Implementation (for larger datasets):
 
 - **Microservice Architecture**: Create a dedicated search service that each publication can query[^4][^7]
 - **Consolidated Index**: Maintain a central index that contains metadata from all publications[^7]
 - **User Context Awareness**: Filter search results based on user permissions and preferences[^8]
 - **Result Aggregation**: Combine results from different content types with appropriate ranking[^7]
-
 
 ## Implementation Recommendations for Roo Architect
 
@@ -59,10 +57,10 @@ I recommend a hybrid approach combining client-side and server-side capabilities
 ```
 
 3. **Build content-specific search adapters**:
-    - UB adapter that understands paper/section/paragraph references
-    - Scientific adapter that handles academic content structure
-    - Lectionary adapter that recognizes liturgical organization
-    - Catechism adapter for Q\&A format[^1]
+   - UB adapter that understands paper/section/paragraph references
+   - Scientific adapter that handles academic content structure
+   - Lectionary adapter that recognizes liturgical organization
+   - Catechism adapter for Q\&A format[^1]
 4. **Leverage the reference-parser package**: Integrate with your existing reference parsing capabilities to ensure search results properly handle UB references[^1]
 5. **Use selective indexing and builds**: Only rebuild search indices for content that has changed, following monorepo best practices[^5][^8]
 6. **Consider an agent-based approach**: For more complex search needs, implement specialized search agents for different content types that understand domain-specific semantics[^9]
@@ -120,4 +118,3 @@ This approach will provide a consistent search experience across all your reader
 [^20]: https://stackoverflow.com/questions/57979550/what-is-a-correct-approach-to-a-javascript-monorepo
 
 [^21]: https://dev.to/reyronald/improving-an-app-s-search-performance-by-1-000-1nah
-

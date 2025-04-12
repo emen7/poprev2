@@ -2,11 +2,7 @@
   {
     "globalId": "3:99.-.-",
     "htmlText": null,
-    "labels": [
-      "Sociology",
-      "Theology",
-      "Ethics"
-    ],
+    "labels": ["Sociology", "Theology", "Ethics"],
     "language": "eng",
     "objectID": "3:99.-.-",
     "paperId": "99",

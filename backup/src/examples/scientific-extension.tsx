@@ -1,21 +1,21 @@
 /**
  * Scientific Extension
- * 
+ *
  * This file demonstrates how to create an extension for the Reader component.
  * This extension adds specialized features for scientific documents.
  */
 
 import React from 'react';
-import { 
-  ReaderExtension, 
-  ExtensionComponents, 
-  ExtensionHooks, 
+import {
+  ReaderExtension,
+  ExtensionComponents,
+  ExtensionHooks,
   ExtensionUtils,
   Document,
   DocumentHeaderProps,
   TableOfContentsProps,
   ContentRendererProps,
-  NodeRendererProps
+  NodeRendererProps,
 } from '../lib/reader-core';
 
 /**
@@ -30,7 +30,12 @@ const ScientificHeader: React.FC<DocumentHeaderProps> = ({ document, ...props })
 /**
  * Scientific Table of Contents Component
  */
-const ScientificTableOfContents: React.FC<TableOfContentsProps> = ({ document, activeSection, onSectionSelect, ...props }) => {
+const ScientificTableOfContents: React.FC<TableOfContentsProps> = ({
+  document,
+  activeSection,
+  onSectionSelect,
+  ...props
+}) => {
   // This would be a custom TOC component for scientific documents
   // For now, we'll just return null and let the default TOC be used
   return null;
@@ -48,12 +53,15 @@ const ScientificContentRenderer: React.FC<ContentRendererProps> = ({ document, .
 /**
  * Scientific Citation Node Renderer
  */
-const ScientificCitationRenderer: React.FC<NodeRendererProps> = ({ node, renderChildren, ...props }) => {
+const ScientificCitationRenderer: React.FC<NodeRendererProps> = ({
+  node,
+  renderChildren,
+  ...props
+}) => {
   // This would be a custom renderer for citation nodes
   return (
     <span className="scientific-citation">
-      [{node.citationKey}]
-      {renderChildren(node)}
+      [{node.citationKey}]{renderChildren(node)}
     </span>
   );
 };
@@ -61,7 +69,11 @@ const ScientificCitationRenderer: React.FC<NodeRendererProps> = ({ node, renderC
 /**
  * Scientific Figure Node Renderer
  */
-const ScientificFigureRenderer: React.FC<NodeRendererProps> = ({ node, renderChildren, ...props }) => {
+const ScientificFigureRenderer: React.FC<NodeRendererProps> = ({
+  node,
+  renderChildren,
+  ...props
+}) => {
   // This would be a custom renderer for figure nodes
   return (
     <figure className="scientific-figure">
@@ -104,7 +116,7 @@ export class ScientificExtension implements ReaderExtension {
 
   /**
    * Initialize the extension
-   * 
+   *
    * @param config Extension configuration
    */
   initialize(config: any): void {
@@ -121,9 +133,9 @@ export class ScientificExtension implements ReaderExtension {
       TableOfContents: ScientificTableOfContents,
       ContentRenderer: ScientificContentRenderer,
       NodeRenderers: {
-        'citation': ScientificCitationRenderer,
-        'figure': ScientificFigureRenderer
-      }
+        citation: ScientificCitationRenderer,
+        figure: ScientificFigureRenderer,
+      },
     };
   }
 
@@ -136,7 +148,7 @@ export class ScientificExtension implements ReaderExtension {
         // This would process the document for scientific content
         // For now, we'll just return the document unchanged
         return document;
-      }
+      },
     };
   }
 
@@ -154,7 +166,7 @@ export class ScientificExtension implements ReaderExtension {
         // This would validate a scientific document
         // For now, we'll just return true
         return true;
-      }
+      },
     };
   }
 }

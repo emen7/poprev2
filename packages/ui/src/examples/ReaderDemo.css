@@ -86,7 +86,7 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .sample-content h1 {
     font-size: 1.75rem;
   }
@@ -101,7 +101,7 @@
 }
 
 /* Small screens */
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .sample-content h1 {
     font-size: 1.5rem;
   }

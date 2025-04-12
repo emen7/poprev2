@@ -1,5 +1,6 @@
-import React from 'react';
 import { useNavigation } from '@ub-ecosystem/state-management';
+import React from 'react';
+
 import styles from './BookNavigationPanel.module.css';
 
 export interface BookNavigationPanelProps {

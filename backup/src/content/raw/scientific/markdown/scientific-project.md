@@ -21,4 +21,3 @@
 - Build a verification system that validates all cross-document references
 - Implement hover previews that show snippets of referenced content without leaving the current page
 - Add visual indicators for citation types (direct quotes, conceptual references, etc.)
-

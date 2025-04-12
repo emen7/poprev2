@@ -92,11 +92,11 @@ You can adjust the search relevance by modifying the weights in `src/lib/search/
 ```typescript
 this.fuse = new Fuse(this.documents, {
   keys: [
-    { name: "title", weight: 2 },
-    { name: "content", weight: 1 },
-    { name: "metadata.author", weight: 1.5 },
-    { name: "metadata.categories", weight: 1.2 },
-    { name: "metadata.tags", weight: 1.2 },
+    { name: 'title', weight: 2 },
+    { name: 'content', weight: 1 },
+    { name: 'metadata.author', weight: 1.5 },
+    { name: 'metadata.categories', weight: 1.2 },
+    { name: 'metadata.tags', weight: 1.2 },
   ],
   // ...
 });

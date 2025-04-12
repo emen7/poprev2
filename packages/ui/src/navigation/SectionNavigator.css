@@ -31,7 +31,7 @@
 
 .section-navigator-toggle:focus {
   outline: none;
-  box-shadow: 0 0 0 2px var(--section-nav-focus-ring, rgba(127, 200, 245, 0.5));
+  box-shadow: 0 0 0 2px var(--section-nav-focus-ring, rgb(127 200 245 / 50%));
 }
 
 .section-navigator-toggle-open {
@@ -92,7 +92,7 @@
   border-bottom-left-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
   z-index: 10;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
 }
 
 /* Section items */
@@ -114,7 +114,7 @@
 }
 
 .section-navigator-item-active {
-  background-color: var(--section-nav-item-active-bg, rgba(127, 200, 245, 0.1));
+  background-color: var(--section-nav-item-active-bg, rgb(127 200 245 / 10%));
   color: var(--section-nav-item-active-color, #7fc8f5);
 }
 
@@ -141,7 +141,7 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .section-navigator {
     max-width: 100%;
     font-size: 0.8125rem;

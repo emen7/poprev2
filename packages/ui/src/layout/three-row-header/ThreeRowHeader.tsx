@@ -1,8 +1,10 @@
-import React from 'react';
 import { useNavigation } from '@ub-ecosystem/state-management';
-import { HeaderRow } from './HeaderRow';
-import { DynamicSectionTitle } from './DynamicSectionTitle';
+import React from 'react';
+
 import { DualHamburgerNavigation } from '../../navigation/dual-hamburger';
+
+import { DynamicSectionTitle } from './DynamicSectionTitle';
+import { HeaderRow } from './HeaderRow';
 import styles from './ThreeRowHeader.module.css';
 
 export interface ThreeRowHeaderProps {

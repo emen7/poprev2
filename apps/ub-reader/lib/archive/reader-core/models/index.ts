@@ -1,6 +1,6 @@
 /**
  * Reader Core Models
- * 
+ *
  * This file exports all models used by the Reader component.
  */
 

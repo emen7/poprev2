@@ -19,9 +19,5 @@ interface TinaCMSProviderProps {
 
 // Provider component that makes the TinaCMS client available to any child component
 export function TinaCMSProvider({ children }: TinaCMSProviderProps) {
-  return (
-    <TinaCMSContext.Provider value={{ client }}>
-      {children}
-    </TinaCMSContext.Provider>
-  );
+  return <TinaCMSContext.Provider value={{ client }}>{children}</TinaCMSContext.Provider>;
 }

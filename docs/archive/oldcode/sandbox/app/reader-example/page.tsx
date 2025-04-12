@@ -1,6 +1,6 @@
 /**
  * Reader Example Page
- * 
+ *
  * This page demonstrates the Reader component with the Scientific extension.
  */
 
@@ -10,7 +10,7 @@ import dynamic from 'next/dynamic';
 // Use dynamic import with SSR disabled for the Reader example
 // This is necessary because the Reader component uses browser APIs
 const ReaderExample = dynamic(() => import('../../examples/reader-example'), {
-  ssr: false
+  ssr: false,
 });
 
 /**

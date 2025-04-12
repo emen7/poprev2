@@ -1,9 +1,10 @@
 'use client';
 
 import React from 'react';
+
+import { PullupContent } from './PullupContent';
 import { PullupPanel } from './PullupPanel';
 import { PullupTabs } from './PullupTabs';
-import { PullupContent } from './PullupContent';
 import { Note, Quote, ReaderSettings, PullupTab } from './types';
 import './Pullup.css';
 

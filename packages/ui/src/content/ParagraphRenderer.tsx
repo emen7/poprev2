@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+
 import './ParagraphRenderer.css';
 import { ParagraphNumbering } from './ParagraphNumbering';
 
@@ -161,8 +162,8 @@ export const ParagraphRenderer = forwardRef<HTMLDivElement, ParagraphRendererPro
       typeof paragraphNumberOnly === 'string'
         ? parseInt(paragraphNumberOnly, 10) || 0 // Default to 0 if parsing fails
         : typeof paragraphNumberOnly === 'number'
-        ? paragraphNumberOnly
-        : 0; // Default to 0 if undefined
+          ? paragraphNumberOnly
+          : 0; // Default to 0 if undefined
 
     // For list items, we need special handling to ensure numbers are visible
     // and avoid using <li> elements for better copy/paste experience

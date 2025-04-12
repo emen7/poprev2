@@ -1,12 +1,12 @@
 export interface ThreeRowHeaderProps {
-    /**
-     * The title of the current paper
-     */
-    paperTitle: string;
-    /**
-     * Additional CSS class name
-     */
-    className?: string;
+  /**
+   * The title of the current paper
+   */
+  paperTitle: string;
+  /**
+   * Additional CSS class name
+   */
+  className?: string;
 }
 /**
  * ThreeRowHeader Component
@@ -16,6 +16,9 @@ export interface ThreeRowHeaderProps {
  * 2. Paper row: Current paper title
  * 3. Section row: Dynamic section title that updates based on scroll position
  */
-export declare function ThreeRowHeader({ paperTitle, className }: ThreeRowHeaderProps): import("react/jsx-runtime").JSX.Element;
+export declare function ThreeRowHeader({
+  paperTitle,
+  className,
+}: ThreeRowHeaderProps): import('react/jsx-runtime').JSX.Element;
 export default ThreeRowHeader;
 //# sourceMappingURL=ThreeRowHeader.d.ts.map

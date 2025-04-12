@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import React, { useState, useEffect } from 'react';
+
 import { getContentsData, PartInfo, FOREWORD_SECTIONS } from '../../services/PaperDataService';
 
 /**

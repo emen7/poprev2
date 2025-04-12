@@ -6,9 +6,9 @@
 /* Selection menu */
 .ub-selection-menu {
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgb(255 255 255 / 95%);
   border-radius: 4px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
   padding: 8px;
   z-index: 1000;
   display: flex;
@@ -19,8 +19,8 @@
 }
 
 body.dark-mode .ub-selection-menu {
-  background-color: rgba(51, 51, 51, 0.95);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  background-color: rgb(51 51 51 / 95%);
+  box-shadow: 0 2px 10px rgb(0 0 0 / 30%);
 }
 
 @keyframes ub-fadeIn {
@@ -28,6 +28,7 @@ body.dark-mode .ub-selection-menu {
     opacity: 0;
     transform: translateY(5px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -65,9 +66,9 @@ body.dark-mode .ub-action-button:hover {
 /* Color picker */
 .ub-color-picker {
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgb(255 255 255 / 95%);
   border-radius: 4px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
   padding: 8px;
   z-index: 1000;
   display: flex;
@@ -78,8 +79,8 @@ body.dark-mode .ub-action-button:hover {
 }
 
 body.dark-mode .ub-color-picker {
-  background-color: rgba(51, 51, 51, 0.95);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  background-color: rgb(51 51 51 / 95%);
+  box-shadow: 0 2px 10px rgb(0 0 0 / 30%);
 }
 
 .ub-color-option {
@@ -134,7 +135,9 @@ body.dark-mode .ub-color-option.ub-color-none {
 
 /* Highlight styles */
 .ub-highlight {
-  transition: color 0.2s, background-color 0.2s;
+  transition:
+    color 0.2s,
+    background-color 0.2s;
 }
 
 /* Hide highlights when showHighlights is false */
@@ -213,12 +216,12 @@ body.dark-mode .ub-toggle-switch span {
 /* Fix for dark mode text selection */
 body.dark-mode ::selection {
   color: #000;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgb(255 255 255 / 70%);
 }
 
 /* Highlight colors */
 .ub-highlight-yellow {
-  background-color: rgba(255, 245, 120, 0.6);
+  background-color: rgb(255 245 120 / 60%);
 }
 
 body.dark-mode .ub-highlight-yellow {
@@ -227,7 +230,7 @@ body.dark-mode .ub-highlight-yellow {
 }
 
 .ub-highlight-orange {
-  background-color: rgba(255, 133, 89, 0.6);
+  background-color: rgb(255 133 89 / 60%);
 }
 
 body.dark-mode .ub-highlight-orange {
@@ -236,7 +239,7 @@ body.dark-mode .ub-highlight-orange {
 }
 
 .ub-highlight-pink {
-  background-color: rgba(255, 193, 204, 0.6);
+  background-color: rgb(255 193 204 / 60%);
 }
 
 body.dark-mode .ub-highlight-pink {
@@ -245,7 +248,7 @@ body.dark-mode .ub-highlight-pink {
 }
 
 .ub-highlight-red {
-  background-color: rgba(255, 116, 108, 0.6);
+  background-color: rgb(255 116 108 / 60%);
 }
 
 body.dark-mode .ub-highlight-red {
@@ -254,7 +257,7 @@ body.dark-mode .ub-highlight-red {
 }
 
 .ub-highlight-lavender {
-  background-color: rgba(179, 156, 208, 0.6);
+  background-color: rgb(179 156 208 / 60%);
 }
 
 body.dark-mode .ub-highlight-lavender {
@@ -263,7 +266,7 @@ body.dark-mode .ub-highlight-lavender {
 }
 
 .ub-highlight-blue {
-  background-color: rgba(176, 196, 222, 0.6);
+  background-color: rgb(176 196 222 / 60%);
 }
 
 body.dark-mode .ub-highlight-blue {
@@ -272,7 +275,7 @@ body.dark-mode .ub-highlight-blue {
 }
 
 .ub-highlight-dodgerblue {
-  background-color: rgba(30, 144, 255, 0.6);
+  background-color: rgb(30 144 255 / 60%);
 }
 
 body.dark-mode .ub-highlight-dodgerblue {
@@ -281,7 +284,7 @@ body.dark-mode .ub-highlight-dodgerblue {
 }
 
 .ub-highlight-green {
-  background-color: rgba(152, 251, 152, 0.6);
+  background-color: rgb(152 251 152 / 60%);
 }
 
 body.dark-mode .ub-highlight-green {

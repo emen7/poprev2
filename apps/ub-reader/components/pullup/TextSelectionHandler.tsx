@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+
 import { usePullup } from './PullupContext';
 import { Note, Quote } from './types';
 import './TextSelectionHandler.css';

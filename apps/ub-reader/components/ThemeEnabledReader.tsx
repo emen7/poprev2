@@ -1,7 +1,9 @@
 'use client';
 
 import React from 'react';
+
 import { ThemeProvider } from '../contexts/ThemeContext';
+
 import { ThemeSettingsPanel } from './ThemeSettingsPanel';
 import '../styles/themes/index.css';
 

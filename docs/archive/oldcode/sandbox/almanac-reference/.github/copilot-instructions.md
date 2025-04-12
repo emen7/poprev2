@@ -1,6 +1,6 @@
 <img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" class="logo" width="120"/>
 
-# 
+#
 
 ---
 
@@ -20,7 +20,6 @@ The Master Universe Almanac serves as a specialized reference resource for stude
 - Integrate almanac reference materials with a Urantia Book reader
 - Replace current HTML page references with an integrated UB Reader
 
-
 ## Repository Structure
 
 The project uses a **monorepo approach** to house all components, ensuring tight integration between the Almanac and the Urantia Book Reader.
@@ -32,7 +31,6 @@ The project uses a **monorepo approach** to house all components, ensuring tight
 - Atomic commits for changes spanning multiple components
 - Streamlined cross-component refactoring
 - Single source of truth for the entire codebase
-
 
 ### Repository Organization
 
@@ -53,13 +51,11 @@ master-universe-almanac/
 └── docs/               # Project documentation
 ```
 
-
 ### Performance Optimizations
 
 - Use Git LFS for large media files (audio content)
 - Implement sparse checkouts for working with specific parts of the codebase
 - Maintain clean commit history through rebasing and atomic commits
-
 
 ## Technical Architecture
 
@@ -72,14 +68,12 @@ master-universe-almanac/
 - **Version Control**: GitHub (user: emen7)
 - **Build System**: Turborepo for managing the monorepo build process
 
-
 ### Performance Optimization
 
 - Implement lazy loading for non-critical resources
 - Use code splitting to deliver code in smaller chunks
 - Leverage server-side rendering for improved initial load times and SEO
 - Optimize media assets for faster loading
-
 
 ## Development Guidelines
 
@@ -92,7 +86,6 @@ master-universe-almanac/
 - Follow semantic HTML practices
 - Implement proper ARIA labels for accessibility
 
-
 ### Component Structure
 
 - Create modular, reusable components
@@ -101,7 +94,6 @@ master-universe-almanac/
 - Use React hooks for state management
 - Document component APIs with JSDoc comments
 
-
 ### Responsive Design
 
 - Design mobile-first, then enhance for larger screens
@@ -109,17 +101,15 @@ master-universe-almanac/
 - Break large datasets into modular sections or cards
 - Test thoroughly on multiple device sizes (desktop, Android phones, iPads)
 
-
 ## Navigation and UI
 
 ### Core Navigation Features
 
 - Implement a left-top-floating hamburger menu for quick internal links
 - Create a floating settings icon with the following options:
-    - Dark/light mode toggle (default to dark mode)
-    - Progressive font size adjustments
+  - Dark/light mode toggle (default to dark mode)
+  - Progressive font size adjustments
 - Ensure keyboard navigation support for accessibility
-
 
 ### Content Presentation
 
@@ -127,7 +117,6 @@ master-universe-almanac/
 - Implement a consistent card design pattern
 - Enable sharing functionality for specific reference materials
 - Break large datasets into modular sections
-
 
 ## Urantia Book Reader Integration
 
@@ -142,7 +131,6 @@ The Urantia Book Reader will serve as both an integrated component of the Almana
 - Support light/dark theme toggle for comfortable reading in different environments
 - Create a responsive layout that adapts to all device sizes
 
-
 #### Annotation System
 
 - Develop an auto-referencing note-taking feature that maintains context within the book's structure
@@ -150,13 +138,11 @@ The Urantia Book Reader will serve as both an integrated component of the Almana
 - Create a quote collection system for saving and organizing meaningful content
 - Ensure annotations persist across sessions and devices
 
-
 #### Audio Integration
 
 - Integrate MP3 playback of pre-recorded audio content
 - Implement browser-based text-to-speech functionality
 - Synchronize text and audio content for seamless transitions
-
 
 #### Reference System
 
@@ -164,14 +150,12 @@ The Urantia Book Reader will serve as both an integrated component of the Almana
 - Implement precise referencing to papers, sections, and paragraphs
 - Support deep linking for sharing specific passages
 
-
 ### Technical Implementation
 
 - Utilize the existing JSON-formatted content from the data repository
 - Implement modular content loading for optimal performance
 - Create a persistent state management system for user preferences and annotations
 - Optimize for both online and offline reading experiences
-
 
 ## Content Management System (CMS)
 
@@ -182,24 +166,24 @@ The project includes a non-public content management system to facilitate the cr
 #### CMS Core Features
 
 1. **Dataset Card Creation**
-    - Structured forms for creating new dataset cards
-    - Rich text editor with formatting options
-    - Table builder using CSS Grid/Flexbox (not HTML tables)
-    - Citation linking to Urantia Book passages through the integrated reader
+   - Structured forms for creating new dataset cards
+   - Rich text editor with formatting options
+   - Table builder using CSS Grid/Flexbox (not HTML tables)
+   - Citation linking to Urantia Book passages through the integrated reader
 2. **Content Organization**
-    - Drag-and-drop interface for arranging cards
-    - Hierarchical organization capabilities
-    - Tagging system for cross-referencing
-    - Bulk operations for multiple cards
+   - Drag-and-drop interface for arranging cards
+   - Hierarchical organization capabilities
+   - Tagging system for cross-referencing
+   - Bulk operations for multiple cards
 3. **Navigation Management**
-    - Automatic generation of site navigation based on content structure
-    - Custom ordering of navigation items
-    - Preview of navigation changes before publishing
+   - Automatic generation of site navigation based on content structure
+   - Custom ordering of navigation items
+   - Preview of navigation changes before publishing
 4. **Publishing Workflow**
-    - Draft/review/publish stages
-    - Scheduled publishing
-    - Version history and rollback capabilities
-    - Preview functionality for different device sizes
+   - Draft/review/publish stages
+   - Scheduled publishing
+   - Version history and rollback capabilities
+   - Preview functionality for different device sizes
 
 #### CMS Technical Implementation
 
@@ -207,7 +191,6 @@ The project includes a non-public content management system to facilitate the cr
 - RESTful API for content operations
 - Real-time validation and error checking
 - Optimized database queries for performance
-
 
 ## Accessibility Standards
 
@@ -217,7 +200,6 @@ The project includes a non-public content management system to facilitate the cr
 - Maintain appropriate color contrast ratios
 - Support screen readers and assistive technologies
 - Implement progressive enhancement principles
-
 
 ## Getting Started
 
@@ -263,16 +245,14 @@ git checkout -b feature/your-feature-name
 - [Turborepo Documentation](https://turbo.build/repo/docs)
 - [Data Repository](https://github.com/emen7/data)
 
-
 ## Contact
 
 For questions or support, please contact the project maintainer at [maintainer email] or open an issue on GitHub.
 
 ---
 
-*Last updated: March 13, 2025*
+_Last updated: March 13, 2025_
 
 <div style="text-align: center">⁂</div>
 
 [^1]: https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/6754629/95a6c9f2-e8a6-4cab-b5b0-0ccfd6b65688/Evaluating-the-Urantia-Book-Reader-for-the-Almanac.pdf
-

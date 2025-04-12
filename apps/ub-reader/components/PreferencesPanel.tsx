@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useUserPreferences } from '../contexts/UserPreferencesContext';
 import { useHighlight } from '@ub/highlighting';
+import React, { useState } from 'react';
+
+import { useUserPreferences } from '../contexts/UserPreferencesContext';
 
 /**
  * Component for displaying and managing user preferences

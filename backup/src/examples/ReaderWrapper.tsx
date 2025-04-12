@@ -1,6 +1,6 @@
 /**
  * Reader Wrapper Component
- * 
+ *
  * This component wraps our Reader component with the necessary context providers.
  */
 
@@ -17,9 +17,5 @@ interface ReaderWrapperProps {
  * Wrapper component that provides all necessary contexts for the Reader
  */
 export function ReaderWrapper({ children }: ReaderWrapperProps) {
-  return (
-    <ReaderSettingsProvider>
-      {children}
-    </ReaderSettingsProvider>
-  );
+  return <ReaderSettingsProvider>{children}</ReaderSettingsProvider>;
 }

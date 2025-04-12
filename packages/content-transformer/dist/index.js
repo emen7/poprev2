@@ -17,7 +17,12 @@ export * from './types';
 export { transformMarkdown } from './markdown-transformer';
 export { transformDocx } from './docx-transformer';
 export { transformPerplexity } from './perplexity-transformer';
-export { normalizeContent, standardizeHeadingHierarchy, normalizeLinks, normalizeImages } from './content-normalizer';
+export {
+  normalizeContent,
+  standardizeHeadingHierarchy,
+  normalizeLinks,
+  normalizeImages,
+} from './content-normalizer';
 export { enrichMetadata } from './metadata-enricher';
 export { validateContent } from './content-validator';
 /**
@@ -29,40 +34,40 @@ export { validateContent } from './content-validator';
  * @returns A transformed document
  */
 export async function transformContent(content, documentType, options = {}) {
-    let transformedContent;
-    // Step 1: Transform the content based on document type
-    switch (documentType) {
-        case 'markdown':
-            if (typeof content !== 'string') {
-                throw new Error('Markdown content must be a string');
-            }
-            transformedContent = await transformMarkdown(content);
-            break;
-        case 'docx':
-            if (!(content instanceof Buffer)) {
-                throw new Error('DOCX content must be a Buffer');
-            }
-            transformedContent = await transformDocx(content);
-            break;
-        case 'perplexity':
-            if (typeof content !== 'string') {
-                throw new Error('Perplexity content must be a string');
-            }
-            transformedContent = await transformPerplexity(content);
-            break;
-        default:
-            throw new Error(`Unsupported document type: ${documentType}`);
-    }
-    // Step 2: Normalize the content structure
-    transformedContent = await normalizeContent(transformedContent);
-    // Step 3: Enrich with metadata
-    transformedContent = await enrichMetadata(transformedContent, options);
-    // Step 4: Validate and sanitize the content
-    transformedContent = await validateContent(transformedContent);
-    // Add publicationType if provided in options
-    if (options.publicationType) {
-        transformedContent.publicationType = options.publicationType;
-    }
-    return transformedContent;
+  let transformedContent;
+  // Step 1: Transform the content based on document type
+  switch (documentType) {
+    case 'markdown':
+      if (typeof content !== 'string') {
+        throw new Error('Markdown content must be a string');
+      }
+      transformedContent = await transformMarkdown(content);
+      break;
+    case 'docx':
+      if (!(content instanceof Buffer)) {
+        throw new Error('DOCX content must be a Buffer');
+      }
+      transformedContent = await transformDocx(content);
+      break;
+    case 'perplexity':
+      if (typeof content !== 'string') {
+        throw new Error('Perplexity content must be a string');
+      }
+      transformedContent = await transformPerplexity(content);
+      break;
+    default:
+      throw new Error(`Unsupported document type: ${documentType}`);
+  }
+  // Step 2: Normalize the content structure
+  transformedContent = await normalizeContent(transformedContent);
+  // Step 3: Enrich with metadata
+  transformedContent = await enrichMetadata(transformedContent, options);
+  // Step 4: Validate and sanitize the content
+  transformedContent = await validateContent(transformedContent);
+  // Add publicationType if provided in options
+  if (options.publicationType) {
+    transformedContent.publicationType = options.publicationType;
+  }
+  return transformedContent;
 }
 //# sourceMappingURL=index.js.map

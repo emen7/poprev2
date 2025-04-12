@@ -6,12 +6,17 @@
  */
 
 // Import functions from modules
-import { transformMarkdown } from './markdown-transformer';
-import { transformDocx } from './docx-transformer';
-import { transformPerplexity } from './perplexity-transformer';
-import { normalizeContent, standardizeHeadingHierarchy, normalizeLinks, normalizeImages } from './content-normalizer';
-import { enrichMetadata } from './metadata-enricher';
+import {
+  normalizeContent,
+  standardizeHeadingHierarchy,
+  normalizeLinks,
+  normalizeImages,
+} from './content-normalizer';
 import { validateContent } from './content-validator';
+import { transformDocx } from './docx-transformer';
+import { transformMarkdown } from './markdown-transformer';
+import { enrichMetadata } from './metadata-enricher';
+import { transformPerplexity } from './perplexity-transformer';
 import { DocumentType, TransformOptions, TransformedDocument, PublicationType } from './types';
 
 // Export all types
@@ -21,7 +26,12 @@ export * from './types';
 export { transformMarkdown } from './markdown-transformer';
 export { transformDocx } from './docx-transformer';
 export { transformPerplexity } from './perplexity-transformer';
-export { normalizeContent, standardizeHeadingHierarchy, normalizeLinks, normalizeImages } from './content-normalizer';
+export {
+  normalizeContent,
+  standardizeHeadingHierarchy,
+  normalizeLinks,
+  normalizeImages,
+} from './content-normalizer';
 export { enrichMetadata } from './metadata-enricher';
 export { validateContent } from './content-validator';
 
@@ -69,7 +79,7 @@ export async function transformContent(
 
   // Step 2: Normalize the content structure
   transformedContent = await normalizeContent(transformedContent);
-  
+
   // Step 3: Enrich with metadata
   transformedContent = await enrichMetadata(transformedContent, options);
 

@@ -1,12 +1,13 @@
 /**
  * Configuration Hook
- * 
+ *
  * This hook provides access to the Enhanced Reader configuration.
  */
 
 'use client';
 
 import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+
 import { EnhancedReaderConfig, DEFAULT_CONFIG } from '../types';
 
 /**
@@ -17,17 +18,17 @@ interface ConfigContextType {
    * Current configuration
    */
   config: EnhancedReaderConfig;
-  
+
   /**
    * Update configuration
    */
   updateConfig: (updates: Partial<EnhancedReaderConfig>) => void;
-  
+
   /**
    * Update typography configuration
    */
   updateTypography: (updates: Partial<EnhancedReaderConfig['typography']>) => void;
-  
+
   /**
    * Update layout configuration
    */
@@ -41,7 +42,7 @@ const ConfigContext = createContext<ConfigContextType>({
   config: DEFAULT_CONFIG,
   updateConfig: () => {},
   updateTypography: () => {},
-  updateLayout: () => {}
+  updateLayout: () => {},
 });
 
 /**
@@ -52,7 +53,7 @@ interface ConfigProviderProps {
    * Children
    */
   children: React.ReactNode;
-  
+
   /**
    * Initial configuration
    */
@@ -66,9 +67,9 @@ export function ConfigProvider({ children, initialConfig = {} }: ConfigProviderP
   // Merge initial config with default config
   const [config, setConfig] = useState<EnhancedReaderConfig>({
     ...DEFAULT_CONFIG,
-    ...initialConfig
+    ...initialConfig,
   });
-  
+
   // Load config from localStorage on mount
   useEffect(() => {
     const savedConfig = localStorage.getItem('er-reader-config');
@@ -77,49 +78,49 @@ export function ConfigProvider({ children, initialConfig = {} }: ConfigProviderP
         const parsedConfig = JSON.parse(savedConfig);
         setConfig(prevConfig => ({
           ...prevConfig,
-          ...parsedConfig
+          ...parsedConfig,
         }));
       } catch (e) {
         console.error('Failed to parse saved config', e);
       }
     }
   }, []);
-  
+
   // Save config to localStorage when it changes
   useEffect(() => {
     localStorage.setItem('er-reader-config', JSON.stringify(config));
   }, [config]);
-  
+
   // Update config
   const updateConfig = useCallback((updates: Partial<EnhancedReaderConfig>) => {
     setConfig(prevConfig => ({
       ...prevConfig,
-      ...updates
+      ...updates,
     }));
   }, []);
-  
+
   // Update typography config
   const updateTypography = useCallback((updates: Partial<EnhancedReaderConfig['typography']>) => {
     setConfig(prevConfig => ({
       ...prevConfig,
       typography: {
         ...prevConfig.typography,
-        ...updates
-      }
+        ...updates,
+      },
     }));
   }, []);
-  
+
   // Update layout config
   const updateLayout = useCallback((updates: Partial<EnhancedReaderConfig['layout']>) => {
     setConfig(prevConfig => ({
       ...prevConfig,
       layout: {
         ...prevConfig.layout,
-        ...updates
-      }
+        ...updates,
+      },
     }));
   }, []);
-  
+
   return (
     <ConfigContext.Provider value={{ config, updateConfig, updateTypography, updateLayout }}>
       {children}

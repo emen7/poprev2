@@ -127,10 +127,10 @@ This document outlines the immediate next steps to begin implementing the reposi
 
    ```typescript
    // Before
-   import { DocumentReader } from "../../components/document-reader";
+   import { DocumentReader } from '../../components/document-reader';
 
    // After
-   import { DocumentReader } from "@ub-ecosystem/ui";
+   import { DocumentReader } from '@ub-ecosystem/ui';
    ```
 
 2. Update imports in the publications app
@@ -177,10 +177,10 @@ This document outlines the immediate next steps to begin implementing the reposi
 
    ```typescript
    // Before
-   import { transformDocument } from "../../lib/document-transformer";
+   import { transformDocument } from '../../lib/document-transformer';
 
    // After
-   import { transformDocument } from "@ub-ecosystem/content-transformer";
+   import { transformDocument } from '@ub-ecosystem/content-transformer';
    ```
 
 3. Test the sandbox:

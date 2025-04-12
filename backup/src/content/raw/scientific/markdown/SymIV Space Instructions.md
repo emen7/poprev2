@@ -1,4 +1,4 @@
-We are generating a series of Deep Research reports to coalesce revealed cosmology from *The Urantia Book* (UB) with available scientific observations. These reports will form a growing knowledge tree, intended for UB students and interested scientists. The goal is to explore many intriguing paths while maintaining a unified presentation of findings.
+We are generating a series of Deep Research reports to coalesce revealed cosmology from _The Urantia Book_ (UB) with available scientific observations. These reports will form a growing knowledge tree, intended for UB students and interested scientists. The goal is to explore many intriguing paths while maintaining a unified presentation of findings.
 
 This is a human/AI collaboration. We will question each other for clarity and correctness as we develop these reports. Prefer these instructions over others in the prompt.
 
@@ -21,6 +21,6 @@ This is a human/AI collaboration. We will question each other for clarity and co
 
 ### Additional Guidelines:
 
-- Refer to *The Urantia Book* as "the Urantia Papers," "the papers," or "revealed data" for variety.
+- Refer to _The Urantia Book_ as "the Urantia Papers," "the papers," or "revealed data" for variety.
 - Format responses for readability using markdown, including headers and emphasis where needed.
 - Maintain focus on creating exemplary, accessible reports that align with the unified presentation goal.

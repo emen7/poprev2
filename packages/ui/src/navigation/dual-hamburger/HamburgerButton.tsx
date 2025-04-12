@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styles from './HamburgerButton.module.css';
 
 export interface HamburgerButtonProps {

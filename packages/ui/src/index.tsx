@@ -1,6 +1,6 @@
 /**
  * UI Components Package
- * 
+ *
  * This package provides shared UI components for the UB ecosystem.
  */
 
@@ -33,7 +33,7 @@ export const UBReferenceLink: React.FC<UBReferenceLinkProps> = ({
   children,
 }) => {
   const url = `${baseUrl}/paper/${reference.paper}/section/${reference.section}`;
-  
+
   return (
     <a href={url} className={`ub-reference ${className}`}>
       {children || reference.originalText}
@@ -52,18 +52,13 @@ export interface UBPaperViewerProps {
 /**
  * A component that renders a UB paper
  */
-export const UBPaperViewer: React.FC<UBPaperViewerProps> = ({
-  paper,
-  className = '',
-}) => {
+export const UBPaperViewer: React.FC<UBPaperViewerProps> = ({ paper, className = '' }) => {
   return (
     <div className={`ub-paper ${className}`}>
       <h1 className="ub-paper-title">
         Paper {paper.number}: {paper.title}
       </h1>
-      {paper.author && (
-        <div className="ub-paper-author">Presented by: {paper.author}</div>
-      )}
+      {paper.author && <div className="ub-paper-author">Presented by: {paper.author}</div>}
       <div className="ub-paper-sections">
         {paper.sections.map((section: any) => (
           <UBSectionViewer key={section.number} section={section} />
@@ -84,10 +79,7 @@ export interface UBSectionViewerProps {
 /**
  * A component that renders a UB section
  */
-export const UBSectionViewer: React.FC<UBSectionViewerProps> = ({
-  section,
-  className = '',
-}) => {
+export const UBSectionViewer: React.FC<UBSectionViewerProps> = ({ section, className = '' }) => {
   return (
     <div className={`ub-section ${className}`} id={`section-${section.number}`}>
       <h2 className="ub-section-title">
@@ -136,10 +128,7 @@ export interface DocumentViewerProps {
 /**
  * A component that renders a document
  */
-export const DocumentViewer: React.FC<DocumentViewerProps> = ({
-  content,
-  className = '',
-}) => {
+export const DocumentViewer: React.FC<DocumentViewerProps> = ({ content, className = '' }) => {
   return (
     <div className={`document-viewer ${className}`}>
       <div className="document-content" dangerouslySetInnerHTML={{ __html: content }} />

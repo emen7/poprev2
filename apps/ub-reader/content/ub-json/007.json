@@ -2,11 +2,7 @@
   {
     "globalId": "1:7.-.-",
     "htmlText": null,
-    "labels": [
-      "Cosmology",
-      "Theology",
-      "Philosophy"
-    ],
+    "labels": ["Cosmology", "Theology", "Philosophy"],
     "language": "eng",
     "objectID": "1:7.-.-",
     "paperId": "7",

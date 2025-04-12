@@ -50,11 +50,11 @@ export default async function TestPage() {
   try {
     // Transform the sample markdown document
     const transformedDocument = await transformDocument(sampleMarkdown, 'markdown');
-    
+
     return (
       <div className="container mx-auto py-8 px-4">
         <h1 className="text-3xl font-bold mb-8">Scientific Document Test</h1>
-        
+
         <div className="bg-white rounded-lg shadow-lg p-6">
           <DocumentReader document={transformedDocument} />
         </div>

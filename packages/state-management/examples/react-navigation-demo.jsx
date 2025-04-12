@@ -1,5 +1,5 @@
-import React from 'react';
 import { AppStateProvider, useNavigation, usePullup } from '@ub-ecosystem/state-management';
+import React from 'react';
 
 /**
  * Navigation Header Component

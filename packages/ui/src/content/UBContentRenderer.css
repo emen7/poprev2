@@ -21,7 +21,7 @@
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
   text-align: center;
   color: #666;
   font-style: italic;
@@ -39,7 +39,7 @@
   padding: 20px;
   background-color: #fff0f0;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
   text-align: center;
   color: #c00;
 }
@@ -66,7 +66,7 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .ub-content-renderer-paper-title {
     font-size: 20px;
   }

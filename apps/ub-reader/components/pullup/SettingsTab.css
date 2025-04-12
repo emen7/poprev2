@@ -11,7 +11,7 @@
 .settings-tab-title {
   font-size: 1.2rem;
   font-weight: 600;
-  margin: 0 0 16px 0;
+  margin: 0 0 16px;
   color: var(--title-color, #fff);
 }
 
@@ -22,7 +22,7 @@
 .settings-section-title {
   font-size: 1rem;
   font-weight: 500;
-  margin: 0 0 8px 0;
+  margin: 0 0 8px;
   color: var(--section-title-color, #ddd);
 }
 
@@ -57,7 +57,7 @@
 .settings-description {
   font-size: 0.9rem;
   color: var(--description-color, #888);
-  margin: 4px 0 8px 0;
+  margin: 4px 0 8px;
 }
 
 /* Dark theme variables */
@@ -91,7 +91,7 @@
 }
 
 /* Media query for persistent mode */
-@media (min-width: 1025px) {
+@media (width >= 1025px) {
   .pullup-panel-persistent .settings-tab {
     padding: 20px;
   }

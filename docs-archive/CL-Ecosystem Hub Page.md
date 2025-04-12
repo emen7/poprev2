@@ -11,28 +11,28 @@ Instead of implementing cross-publication features, I recommend creating a dedic
 **Implementation Components:**
 
 1. **Main Hub Structure**:
-    - Clean, visually appealing layout with distinct sections for each ecosystem component
-    - Consistent branding that visually ties all publications together
-    - Clear navigation between sections
+   - Clean, visually appealing layout with distinct sections for each ecosystem component
+   - Consistent branding that visually ties all publications together
+   - Clear navigation between sections
 2. **UB Reader Section**:
-    - Description of the core UB Reader application and its primary features
-    - Screenshots showcasing the reading experience
-    - Direct download/access links
-    - Brief explanation of its role as the flagship application
+   - Description of the core UB Reader application and its primary features
+   - Screenshots showcasing the reading experience
+   - Direct download/access links
+   - Brief explanation of its role as the flagship application
 3. **Publications Directory**:
-    - Individual cards or sections for each publication reader (Scientific, Lectionary, UB Catechism, and Popular Revelation Magazine.)
-    - Brief descriptions of the specialized features of each publication
-    - Visual examples of content presentation
-    - Direct links to access each publication reader
+   - Individual cards or sections for each publication reader (Scientific, Lectionary, UB Catechism, and Popular Revelation Magazine.)
+   - Brief descriptions of the specialized features of each publication
+   - Visual examples of content presentation
+   - Direct links to access each publication reader
 4. **Almanac-New Spotlight**:
-    - Featured section highlighting the almanac-new as a special publication
-    - Overview of its purpose and content structure
-    - Visual previews of its unique features
-    - Explanation of how it complements the broader ecosystem
+   - Featured section highlighting the almanac-new as a special publication
+   - Overview of its purpose and content structure
+   - Visual previews of its unique features
+   - Explanation of how it complements the broader ecosystem
 5. **Technical Information**:
-    - Optional expandable sections with technical details for developers
-    - Information about the architecture and design principles
-    - Resources for contributors or content creators
+   - Optional expandable sections with technical details for developers
+   - Information about the architecture and design principles
+   - Resources for contributors or content creators
 
 This approach maintains the independence of each application while still providing users with a comprehensive understanding of the entire ecosystem. The Hub page would serve as both an informational resource and a discovery tool, helping users find the specific readers that best suit their needs.
 
@@ -81,4 +81,3 @@ The Hub could be implemented as a standalone web page, an integrated component w
 [^20]: https://www.goodreads.com/shelf/show/book-ub
 
 [^21]: https://ub.org/ministers/lay-ministers-reading-list/
-

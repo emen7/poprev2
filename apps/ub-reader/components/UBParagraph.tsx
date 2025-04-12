@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { useUserPreferences } from '../contexts/UserPreferencesContext';
-import { useTheme } from '../contexts/ThemeContext';
-import { ReferenceProcessor } from './references';
+
 import { useHighlight } from '../components/HighlightProvider';
+import { useTheme } from '../contexts/ThemeContext';
+import { useUserPreferences } from '../contexts/UserPreferencesContext';
+
+import { ReferenceProcessor } from './references';
 
 interface UBParagraphProps {
   paragraph: {

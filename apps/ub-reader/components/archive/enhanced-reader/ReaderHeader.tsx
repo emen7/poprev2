@@ -1,22 +1,23 @@
 /**
  * Reader Header Component
- * 
+ *
  * This component renders the header of the Enhanced Reader with navigation and settings toggles.
  */
 
 'use client';
 
 import React from 'react';
+
 import { ReaderHeaderProps } from './types';
 
 /**
  * Reader Header Component
  */
-export function ReaderHeader({ 
-  title, 
-  onNavigationToggle, 
-  onSettingsToggle, 
-  className = '' 
+export function ReaderHeader({
+  title,
+  onNavigationToggle,
+  onSettingsToggle,
+  className = '',
 }: ReaderHeaderProps) {
   return (
     <header className={`er-reader-header ${className}`}>
@@ -28,10 +29,10 @@ export function ReaderHeader({
       >
         <span aria-hidden="true">☰</span>
       </button>
-      
+
       {/* Title */}
       <h1 className="er-reader-title">{title}</h1>
-      
+
       {/* Settings Toggle Button */}
       <button
         className="er-reader-header-button"

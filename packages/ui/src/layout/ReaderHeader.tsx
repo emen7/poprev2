@@ -1,6 +1,8 @@
 import React, { useState, ReactNode } from 'react';
-import { Header, SidePanel } from './';
+
 import HamburgerButton from '../navigation/HamburgerButton';
+
+import { Header, SidePanel } from './';
 import './ReaderHeader.css';
 
 export interface ReaderHeaderProps {

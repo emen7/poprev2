@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+
 import { ReferenceProcessor, UBReference } from './';
 
 /**
@@ -127,8 +128,15 @@ export function ReferenceExample() {
 
       <style jsx>{`
         .reference-example {
-          font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-            'Helvetica Neue', Arial, sans-serif;
+          font-family:
+            system-ui,
+            -apple-system,
+            BlinkMacSystemFont,
+            'Segoe UI',
+            Roboto,
+            'Helvetica Neue',
+            Arial,
+            sans-serif;
           max-width: 800px;
           margin: 0 auto;
           padding: 20px;

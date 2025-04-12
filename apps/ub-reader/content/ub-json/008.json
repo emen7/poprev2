@@ -2,11 +2,7 @@
   {
     "globalId": "1:8.-.-",
     "htmlText": null,
-    "labels": [
-      "Spirituality",
-      "Theology",
-      "Philosophy"
-    ],
+    "labels": ["Spirituality", "Theology", "Philosophy"],
     "language": "eng",
     "objectID": "1:8.-.-",
     "paperId": "8",

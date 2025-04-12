@@ -1,6 +1,7 @@
 import React from 'react';
-import { PullupTab } from './PullupTabs';
+
 import { NotesTab, Note } from './NotesTab';
+import { PullupTab } from './PullupTabs';
 import { QuotesTab, Quote } from './QuotesTab';
 import { SettingsTab, ReaderSettings } from './SettingsTab';
 import './PullupContent.css';

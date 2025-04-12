@@ -45,20 +45,19 @@ export default function Home() {
       <div className="bg-gray-100 p-6 rounded-lg">
         <h2 className="text-2xl font-bold mb-4">About the Sandbox</h2>
         <p className="mb-4">
-          The Sandbox is a development playground and demonstration environment for the PopRev2 platform. 
-          It contains examples, prototypes, and test implementations that showcase the capabilities of 
-          the platform's components and utilities.
+          The Sandbox is a development playground and demonstration environment for the PopRev2
+          platform. It contains examples, prototypes, and test implementations that showcase the
+          capabilities of the platform's components and utilities.
         </p>
         <p>
-          This environment uses the shared packages from the PopRev2 monorepo, demonstrating how they 
-          can be used together to create powerful document transformation and reading experiences.
+          This environment uses the shared packages from the PopRev2 monorepo, demonstrating how
+          they can be used together to create powerful document transformation and reading
+          experiences.
         </p>
       </div>
 
       <footer className="mt-16 pt-8 border-t border-gray-200 text-center text-gray-600">
-        <p>
-          &copy; {new Date().getFullYear()} PopRev2 Platform Sandbox
-        </p>
+        <p>&copy; {new Date().getFullYear()} PopRev2 Platform Sandbox</p>
       </footer>
     </div>
   );

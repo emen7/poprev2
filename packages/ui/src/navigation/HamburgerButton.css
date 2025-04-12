@@ -21,7 +21,7 @@
 }
 
 .hamburger-button:focus-visible {
-  outline: 2px solid var(--focus-color, #0088ff);
+  outline: 2px solid var(--focus-color, #08f);
   outline-offset: 2px;
 }
 
@@ -69,7 +69,7 @@
 }
 
 .hamburger-button-secondary .hamburger-line {
-  background-color: var(--hamburger-secondary-color, #0088ff);
+  background-color: var(--hamburger-secondary-color, #08f);
 }
 
 .hamburger-button-tertiary .hamburger-line {
@@ -78,11 +78,11 @@
 
 /* Hover effects */
 .hamburger-button:hover .hamburger-line {
-  background-color: var(--hamburger-hover-color, #0088ff);
+  background-color: var(--hamburger-hover-color, #08f);
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .hamburger-button {
     width: 22px;
     height: 18px;

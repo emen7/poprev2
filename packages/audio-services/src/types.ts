@@ -11,7 +11,7 @@ export enum TTSProvider {
   GOOGLE_TTS = 'google-tts',
   AZURE_TTS = 'azure-tts',
   ELEVENLABS = 'elevenlabs',
-  OPENAI_TTS = 'openai-tts'
+  OPENAI_TTS = 'openai-tts',
 }
 
 /**
@@ -47,12 +47,12 @@ export type PhoneticFormat = 'ssml' | 'narakeet';
  * Entry in the pronunciation dictionary
  */
 export interface PronunciationEntry {
-  term: string;           // The Urantia term
-  ipa: string;            // IPA phonetic representation from official guide
-  category?: string;      // E.g., "Deity", "Cosmic", "Geographic"
-  definition?: string;    // Brief definition if available
+  term: string; // The Urantia term
+  ipa: string; // IPA phonetic representation from official guide
+  category?: string; // E.g., "Deity", "Cosmic", "Geographic"
+  definition?: string; // Brief definition if available
   pageReference?: string; // Reference to UB page number
-  notes?: string;         // Any special considerations
+  notes?: string; // Any special considerations
 }
 
 /**

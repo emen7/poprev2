@@ -1,12 +1,13 @@
 /**
  * Overlay Component
- * 
+ *
  * This component renders an overlay that covers the screen when a panel is open.
  */
 
 'use client';
 
 import React from 'react';
+
 import { OverlayProps } from './types';
 
 /**

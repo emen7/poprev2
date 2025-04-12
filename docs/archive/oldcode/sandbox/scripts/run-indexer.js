@@ -1,6 +1,6 @@
 /**
  * Run Search Indexer Script
- * 
+ *
  * This script runs the build-search-index.ts script using ts-node.
  * It's a simple helper to make it easier to run the indexer.
  */
@@ -24,7 +24,7 @@ try {
   console.log('Building search index...');
   execSync('node scripts/build-search-index.js', {
     stdio: 'inherit',
-    cwd: path.resolve(__dirname, '..')
+    cwd: path.resolve(__dirname, '..'),
   });
 
   console.log('Search index built successfully!');

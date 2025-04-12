@@ -13,15 +13,15 @@ npm install @ub-ecosystem/config
 ### Domain Configuration
 
 ```typescript
-import { getDomainUrl, getLocalizedUrl, domains } from "@ub-ecosystem/config";
+import { getDomainUrl, getLocalizedUrl, domains } from '@ub-ecosystem/config';
 
 // Get the URL for a specific domain
-const readerUrl = getDomainUrl("reader");
+const readerUrl = getDomainUrl('reader');
 console.log(readerUrl); // In production: https://reader.masteruniverse.org
 // In development: http://localhost:3001
 
 // Get a localized URL for a specific domain
-const spanishReaderUrl = getLocalizedUrl("reader", "es", "/paper/1");
+const spanishReaderUrl = getLocalizedUrl('reader', 'es', '/paper/1');
 console.log(spanishReaderUrl); // In production: https://reader.masteruniverse.org/es/paper/1
 // In development: http://localhost:3001/es/paper/1
 
@@ -60,12 +60,7 @@ An object containing configuration for all domains.
 A union type of all available domains:
 
 ```typescript
-type AppDomain =
-  | "reader"
-  | "almanac"
-  | "publications"
-  | "lectionary"
-  | "finder";
+type AppDomain = 'reader' | 'almanac' | 'publications' | 'lectionary' | 'finder';
 ```
 
 #### `DomainConfig`

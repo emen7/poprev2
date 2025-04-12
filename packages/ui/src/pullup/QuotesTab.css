@@ -112,7 +112,7 @@
 }
 
 /* Media query for small screens */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .quotes-tab-header {
     flex-direction: column;
     align-items: flex-start;

@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+
 import { SelectionMenu, useSelectionMenu, HighlightColor } from '../selection';
 import './HighlightExample.css';
 

@@ -1,9 +1,9 @@
 ---
-title: "Quantum Computing: Principles and Applications"
-author: "Dr. Jane Smith"
-date: "2025-03-26"
-categories: ["Computer Science", "Quantum Physics"]
-tags: ["Quantum Computing", "Qubits", "Quantum Algorithms"]
+title: 'Quantum Computing: Principles and Applications'
+author: 'Dr. Jane Smith'
+date: '2025-03-26'
+categories: ['Computer Science', 'Quantum Physics']
+tags: ['Quantum Computing', 'Qubits', 'Quantum Algorithms']
 ---
 
 # Quantum Computing: Principles and Applications

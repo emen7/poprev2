@@ -1,6 +1,6 @@
 /**
  * Example Page
- * 
+ *
  * This page demonstrates the document transformation system and reader component.
  */
 
@@ -68,15 +68,15 @@ For more information, visit [our website](https://example.com).
 export default async function ExamplePage() {
   // Transform the sample markdown document
   const transformedDocument = await transformContent(sampleMarkdown, 'markdown');
-  
+
   return (
     <div className="container mx-auto py-8 px-4">
       <h1 className="text-3xl font-bold mb-8">Document Transformation Example</h1>
-      
+
       <div className="bg-white rounded-lg shadow-lg p-6">
         <DocumentReader document={transformedDocument} />
       </div>
-      
+
       <div className="mt-8">
         <h2 className="text-2xl font-bold mb-4">Raw Transformed Data</h2>
         <pre className="bg-gray-100 p-4 rounded overflow-auto max-h-96">

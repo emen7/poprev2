@@ -79,7 +79,7 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .pullup-example {
     padding: 15px;
   }

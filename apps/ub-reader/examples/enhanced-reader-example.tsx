@@ -8,10 +8,13 @@
 'use client';
 
 import React from 'react';
+
 import { Reader, Document, ReaderConfig } from '../lib/archive/reader-core';
+
 import './enhanced-reader-example.css';
-import { createScientificExtension } from './scientific-extension';
 import { globalExtensionRegistry } from '../lib/archive/reader-core/utils';
+
+import { createScientificExtension } from './scientific-extension';
 
 /**
  * Example document

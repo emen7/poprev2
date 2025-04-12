@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Paragraph, ParagraphRenderer } from './ParagraphRenderer';
+
 import { ParagraphNumberingContainer } from './ParagraphNumbering';
+import { Paragraph, ParagraphRenderer } from './ParagraphRenderer';
 import './ParagraphContainer.css';
 
 export interface ParagraphContainerProps {

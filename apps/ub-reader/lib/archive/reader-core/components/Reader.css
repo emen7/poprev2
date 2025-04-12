@@ -10,13 +10,13 @@
   /* Default values that will be overridden by inline styles */
   --reader-primary-color: #0070f3;
   --reader-secondary-color: #6c757d;
-  --reader-background-color: #ffffff;
-  --reader-text-color: #333333;
-  --reader-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif;
+  --reader-background-color: #fff;
+  --reader-text-color: #333;
+  --reader-font-family:
+    system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
   --reader-heading-font-family: var(--reader-font-family);
-  --reader-code-font-family: "SFMono-Regular", Consolas, "Liberation Mono",
-    Menlo, monospace;
+  --reader-code-font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
   --reader-line-height: 1.6;
   --reader-heading-line-height: 1.3;
   --reader-border-color: #eaeaea;
@@ -296,15 +296,15 @@
 }
 
 .reader-reference-direct {
-  background-color: rgba(0, 112, 243, 0.1);
+  background-color: rgb(0 112 243 / 10%);
 }
 
 .reader-reference-conceptual {
-  background-color: rgba(108, 117, 125, 0.1);
+  background-color: rgb(108 117 125 / 10%);
 }
 
 .reader-reference-supporting {
-  background-color: rgba(40, 167, 69, 0.1);
+  background-color: rgb(40 167 69 / 10%);
 }
 
 /* Typography Styles */
@@ -373,7 +373,7 @@
   height: auto;
   margin: 1.5rem 0;
   border-radius: var(--reader-border-radius);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
 }
 
 .reader-blockquote {
@@ -438,7 +438,7 @@
 }
 
 /* Responsive Adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .reader-main {
     flex-direction: column;
   }
@@ -483,7 +483,7 @@
 }
 
 /* Dark Theme Styles */
-.reader-container[data-theme="dark"] {
+.reader-container[data-theme='dark'] {
   --reader-background-color: #1a202c;
   --reader-text-color: #e2e8f0;
   --reader-border-color: #4a5568;
@@ -519,7 +519,9 @@
   padding: 0.5rem;
   cursor: pointer;
   border-radius: 0.25rem;
-  transition: color 0.2s, background-color 0.2s;
+  transition:
+    color 0.2s,
+    background-color 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -529,7 +531,7 @@
 
 .reader-header-button:hover {
   color: var(--reader-primary-color);
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgb(0 0 0 / 5%);
 }
 
 .reader-header-button:focus {

@@ -22,14 +22,14 @@
 }
 
 .navigation-button:hover:not(:disabled) {
-  background-color: var(--nav-button-hover-bg, rgba(255, 255, 255, 0.1));
+  background-color: var(--nav-button-hover-bg, rgb(255 255 255 / 10%));
   border-color: var(--nav-button-hover-border, #7fc8f5);
-  color: var(--nav-button-hover-color, #ffffff);
+  color: var(--nav-button-hover-color, #fff);
 }
 
 .navigation-button:focus {
   outline: none;
-  box-shadow: 0 0 0 2px var(--nav-button-focus-ring, rgba(127, 200, 245, 0.5));
+  box-shadow: 0 0 0 2px var(--nav-button-focus-ring, rgb(127 200 245 / 50%));
 }
 
 .navigation-button:disabled {
@@ -99,7 +99,7 @@
 }
 
 /* Responsive behavior */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .navigation-controls-responsive .navigation-label {
     display: none;
   }

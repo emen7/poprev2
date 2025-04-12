@@ -121,7 +121,7 @@
 .note-textarea:focus {
   outline: none;
   border-color: #40a9ff;
-  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+  box-shadow: 0 0 0 2px rgb(24 144 255 / 20%);
 }
 
 .note-editor-actions {
@@ -177,7 +177,7 @@
 }
 
 /* Media query for small screens */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .notes-tab-header {
     flex-direction: column;
     align-items: flex-start;

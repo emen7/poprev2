@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+
 import { PullupTab } from './types';
 import './PullupTabs.css';
 

@@ -1,10 +1,11 @@
 'use client';
 
 import React from 'react';
-import { PullupTab, Note, Quote, ReaderSettings } from './types';
+
 import { NotesTab } from './NotesTab';
 import { QuotesTab } from './QuotesTab';
 import { SettingsTab } from './SettingsTab';
+import { PullupTab, Note, Quote, ReaderSettings } from './types';
 import './PullupContent.css';
 
 export interface PullupContentProps {

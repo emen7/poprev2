@@ -1,6 +1,6 @@
 /**
  * Enhanced Reader Configuration Types
- * 
+ *
  * This file contains type definitions for the Enhanced Reader configuration system.
  */
 
@@ -12,12 +12,12 @@ export interface TypographyConfig {
    * Font size
    */
   fontSize: 'small' | 'medium' | 'large' | 'x-large';
-  
+
   /**
    * Font family
    */
   fontFamily: 'serif' | 'sans-serif' | 'monospace';
-  
+
   /**
    * Line spacing
    */
@@ -30,7 +30,7 @@ export interface TypographyConfig {
 export const DEFAULT_TYPOGRAPHY_CONFIG: TypographyConfig = {
   fontSize: 'medium',
   fontFamily: 'serif',
-  lineSpacing: 'normal'
+  lineSpacing: 'normal',
 };
 
 /**
@@ -41,12 +41,12 @@ export interface LayoutConfig {
    * Text width
    */
   textWidth: 'narrow' | 'medium' | 'wide' | 'full';
-  
+
   /**
    * Whether to show paragraph numbers
    */
   showParagraphNumbers: boolean;
-  
+
   /**
    * Whether to make the header sticky
    */
@@ -59,7 +59,7 @@ export interface LayoutConfig {
 export const DEFAULT_LAYOUT_CONFIG: LayoutConfig = {
   textWidth: 'medium',
   showParagraphNumbers: false,
-  stickyHeader: true
+  stickyHeader: true,
 };
 
 /**
@@ -70,12 +70,12 @@ export interface EnhancedReaderConfig {
    * Theme
    */
   theme: 'light' | 'dark' | 'system';
-  
+
   /**
    * Typography configuration
    */
   typography: TypographyConfig;
-  
+
   /**
    * Layout configuration
    */
@@ -88,5 +88,5 @@ export interface EnhancedReaderConfig {
 export const DEFAULT_CONFIG: EnhancedReaderConfig = {
   theme: 'light',
   typography: DEFAULT_TYPOGRAPHY_CONFIG,
-  layout: DEFAULT_LAYOUT_CONFIG
+  layout: DEFAULT_LAYOUT_CONFIG,
 };

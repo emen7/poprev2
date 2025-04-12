@@ -1,9 +1,11 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import React, { useState, useEffect, useRef } from 'react';
+
 import { useTheme } from '../../contexts/ThemeContext';
+import { addToHistory } from '../../services/HistoryService';
 import {
   getPaper,
   getParts,
@@ -14,7 +16,6 @@ import {
   Section,
   Part,
 } from '../../services/PaperDataService';
-import { addToHistory } from '../../services/HistoryService';
 import Breadcrumbs from '../navigation/Breadcrumbs';
 import { PullupProvider } from '../pullup';
 import { PullupContainer } from '../PullupContainer';

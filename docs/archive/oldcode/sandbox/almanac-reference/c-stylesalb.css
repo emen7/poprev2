@@ -106,7 +106,7 @@ body-bkg {
   background: #000000;
   font-family: Verdana, Tahoma, Arial;
   list-style-type: disc;
-  background-image: url("/web/20220824164749im_/https://www.masteruniverse.org/images/M5-cr.jpg");
+  background-image: url('/web/20220824164749im_/https://www.masteruniverse.org/images/M5-cr.jpg');
   background-repeat: no-repeat;
 }
 .auto770auto {
@@ -347,7 +347,7 @@ body-bkg {
   top: 0px;
   padding-bottom: 0.5em;
   width: 770px;
-  background-image: url("/web/20220824164749im_/https://www.masteruniverse.org/images/michaelsbannerH2.jpg");
+  background-image: url('/web/20220824164749im_/https://www.masteruniverse.org/images/michaelsbannerH2.jpg');
 }
 .tbl-title-big {
   color: #008080;
@@ -1083,7 +1083,7 @@ body-bkg {
   margin-left: auto;
   position: relative;
   bottom: 0px;
-  background-image: url("/web/20220824164749im_/https://www.masteruniverse.org/images/bannerbanner.jpg");
+  background-image: url('/web/20220824164749im_/https://www.masteruniverse.org/images/bannerbanner.jpg');
   height: 77px;
 }
 .mua-big-right {
@@ -1109,8 +1109,7 @@ a.button:active {
 }
 .body-bkg {
   background: #000000
-    url("/web/20220824164749im_/https://www.masteruniverse.org/images/download.jpg")
-    top;
+    url('/web/20220824164749im_/https://www.masteruniverse.org/images/download.jpg') top;
   background-repeat: no-repeat;
   right: auto;
   left: auto;

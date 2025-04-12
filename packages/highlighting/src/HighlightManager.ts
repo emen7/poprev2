@@ -783,7 +783,7 @@ export class HighlightManager {
     // Process each text node
     textNodes.forEach(textNode => {
       // Skip if the text node is already inside a highlight
-      let parent = textNode.parentNode;
+      const parent = textNode.parentNode;
       if (parent && (parent as HTMLElement).classList?.contains('ub-highlight')) {
         // Update the class of the existing highlight
         (parent as HTMLElement).className = className;
@@ -828,7 +828,7 @@ export class HighlightManager {
     // Process each text node
     textNodes.forEach(textNode => {
       // Check if the parent is a highlight
-      let parent = textNode.parentNode;
+      const parent = textNode.parentNode;
       if (parent && (parent as HTMLElement).classList?.contains('ub-highlight')) {
         // Replace the highlight with the text node
         parent.parentNode?.insertBefore(textNode, parent);

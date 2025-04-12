@@ -1,7 +1,9 @@
 import React, { ReactNode } from 'react';
-import { ResponsiveHeader } from './responsive/ResponsiveHeader';
-import { ResponsiveFooter } from './responsive/ResponsiveFooter';
+
 import { StickyHeadersContainer } from '../navigation/sticky/StickyHeadersContainer';
+
+import { ResponsiveFooter } from './responsive/ResponsiveFooter';
+import { ResponsiveHeader } from './responsive/ResponsiveHeader';
 import './ReaderLayout.css';
 import './EnhancedReaderLayout.css';
 

@@ -64,7 +64,7 @@ To use TinaCMS in your components:
 1. Import the TinaCMS provider:
 
 ```tsx
-import { TinaCMSProvider } from "../components/tina-provider";
+import { TinaCMSProvider } from '../components/tina-provider';
 ```
 
 2. Wrap your component with the provider:
@@ -76,13 +76,13 @@ import { TinaCMSProvider } from "../components/tina-provider";
 3. Use the TinaCMS client to fetch content:
 
 ```tsx
-import { fetchDocument, fetchDocumentList } from "../tina/client";
+import { fetchDocument, fetchDocumentList } from '../tina/client';
 
 // Fetch a single document
-const document = await fetchDocument("document-name.md", "scientific");
+const document = await fetchDocument('document-name.md', 'scientific');
 
 // Fetch a list of documents
-const documents = await fetchDocumentList("scientific");
+const documents = await fetchDocumentList('scientific');
 ```
 
 ### Displaying TinaCMS Content
@@ -92,12 +92,9 @@ To display content from TinaCMS:
 1. Use the `TinaDocumentLoader` component:
 
 ```tsx
-import { TinaDocumentLoader } from "../components/tina-document-loader";
+import { TinaDocumentLoader } from '../components/tina-document-loader';
 
-<TinaDocumentLoader
-  relativePath="document-name.md"
-  documentType="scientific"
-/>;
+<TinaDocumentLoader relativePath="document-name.md" documentType="scientific" />;
 ```
 
 This component:

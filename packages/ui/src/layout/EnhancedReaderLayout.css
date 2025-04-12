@@ -18,7 +18,7 @@
 }
 
 /* Ensure proper spacing on mobile */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .enhanced-reader-layout {
     padding-top: var(--header-height-mobile, 50px);
     padding-bottom: var(--footer-height-mobile, 50px);
@@ -32,10 +32,11 @@
 }
 
 /* Adjust for desktop persistent navigation */
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
   .enhanced-reader-layout {
     /* No need for top padding when header is persistent */
     padding-top: 0;
+
     /* Adjust content to account for header height */
     --header-offset: var(--header-height, 60px);
   }

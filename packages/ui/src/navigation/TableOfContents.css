@@ -93,7 +93,7 @@
 }
 
 .toc-link:hover {
-  color: var(--toc-link-hover-color, #ffffff);
+  color: var(--toc-link-hover-color, #fff);
 }
 
 /* Active item styling */
@@ -116,7 +116,7 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .table-of-contents {
     font-size: 0.85rem;
   }

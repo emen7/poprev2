@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+
 import { TooltipData, TooltipDataRecord, exampleTooltipData } from '../types/TooltipData';
 
 /**

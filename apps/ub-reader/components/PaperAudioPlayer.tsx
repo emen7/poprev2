@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+
 import AudioPlayer from './AudioPlayer';
 
 interface PaperAudioPlayerProps {
@@ -27,28 +28,23 @@ export default function PaperAudioPlayer({ paper }: PaperAudioPlayerProps) {
   // Extract all text content from the paper
   const extractContent = () => {
     let content = `Paper ${paper.number}: ${paper.title}. `;
-    
+
     if (paper.author) {
       content += `Presented by: ${paper.author}. `;
     }
-    
+
     paper.sections.forEach(section => {
       content += `Section ${section.number}: ${section.title}. `;
-      
+
       section.paragraphs.forEach(paragraph => {
         content += `${paragraph.text} `;
       });
     });
-    
+
     return content;
   };
-  
+
   const content = extractContent();
-  
-  return (
-    <AudioPlayer 
-      content={content}
-      title={`Listen to Paper ${paper.number}`}
-    />
-  );
+
+  return <AudioPlayer content={content} title={`Listen to Paper ${paper.number}`} />;
 }

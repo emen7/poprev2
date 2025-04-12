@@ -86,7 +86,7 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .reader-body {
     flex-direction: column;
   }

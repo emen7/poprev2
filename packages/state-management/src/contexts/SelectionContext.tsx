@@ -1,4 +1,6 @@
 import React, { createContext, useReducer, ReactNode, useMemo, useEffect } from 'react';
+
+import { selectionReducer, initialSelectionState } from '../reducers/selectionReducer';
 import {
   SelectionContextType,
   SelectionState,
@@ -6,7 +8,6 @@ import {
   SelectionActionType,
   TextSelection,
 } from '../types/selection.types';
-import { selectionReducer, initialSelectionState } from '../reducers/selectionReducer';
 
 // Create context with undefined default value
 export const SelectionContext = createContext<SelectionContextType | undefined>(undefined);

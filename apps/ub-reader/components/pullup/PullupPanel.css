@@ -9,7 +9,7 @@
   border-top: 1px solid var(--border-color, #333);
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 -4px 10px rgb(0 0 0 / 20%);
   transition: transform 0.3s ease-in-out;
   z-index: 1000;
   overflow: hidden;
@@ -110,7 +110,7 @@
 }
 
 /* Media query for persistent mode */
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
   .pullup-panel-persistent {
     width: 100%;
     position: fixed;

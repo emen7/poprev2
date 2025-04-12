@@ -79,11 +79,11 @@ src/
 export function LectionaryForm({ initialData, onSubmit }) {
   const [formData, setFormData] = useState(
     initialData || {
-      title: "",
+      title: '',
       date: new Date().toISOString(),
-      liturgicalSeason: "Ordinary Time",
+      liturgicalSeason: 'Ordinary Time',
       scriptureReferences: [],
-      body: "",
+      body: '',
     }
   );
 
@@ -99,9 +99,7 @@ export function LectionaryForm({ initialData, onSubmit }) {
           <input
             type="text"
             value={formData.title}
-            onChange={(e) =>
-              setFormData({ ...formData, title: e.target.value })
-            }
+            onChange={e => setFormData({ ...formData, title: e.target.value })}
           />
         </div>
 
@@ -109,7 +107,7 @@ export function LectionaryForm({ initialData, onSubmit }) {
           <label>Date</label>
           <CalendarHelper
             value={formData.date}
-            onChange={(date) => setFormData({ ...formData, date })}
+            onChange={date => setFormData({ ...formData, date })}
           />
         </div>
 
@@ -117,9 +115,7 @@ export function LectionaryForm({ initialData, onSubmit }) {
           <label>Liturgical Season</label>
           <select
             value={formData.liturgicalSeason}
-            onChange={(e) =>
-              setFormData({ ...formData, liturgicalSeason: e.target.value })
-            }
+            onChange={e => setFormData({ ...formData, liturgicalSeason: e.target.value })}
           >
             <option value="Advent">Advent</option>
             <option value="Christmas">Christmas</option>
@@ -136,9 +132,7 @@ export function LectionaryForm({ initialData, onSubmit }) {
         <h2>Scripture Readings</h2>
         <ScriptureHelper
           references={formData.scriptureReferences}
-          onChange={(refs) =>
-            setFormData({ ...formData, scriptureReferences: refs })
-          }
+          onChange={refs => setFormData({ ...formData, scriptureReferences: refs })}
         />
       </div>
 
@@ -148,7 +142,7 @@ export function LectionaryForm({ initialData, onSubmit }) {
           <label>Reflection</label>
           <textarea
             value={formData.body}
-            onChange={(e) => setFormData({ ...formData, body: e.target.value })}
+            onChange={e => setFormData({ ...formData, body: e.target.value })}
             rows={10}
           />
         </div>
@@ -169,14 +163,14 @@ export function LectionaryForm({ initialData, onSubmit }) {
 
 ```tsx
 export function ScriptureHelper({ references, onChange }) {
-  const [newRef, setNewRef] = useState({ book: "", chapter: "", verses: "" });
+  const [newRef, setNewRef] = useState({ book: '', chapter: '', verses: '' });
 
   const addReference = () => {
     onChange([...references, newRef]);
-    setNewRef({ book: "", chapter: "", verses: "" });
+    setNewRef({ book: '', chapter: '', verses: '' });
   };
 
-  const removeReference = (index) => {
+  const removeReference = index => {
     const newRefs = [...references];
     newRefs.splice(index, 1);
     onChange(newRefs);
@@ -198,10 +192,7 @@ export function ScriptureHelper({ references, onChange }) {
       </div>
 
       <div className="add-reference">
-        <select
-          value={newRef.book}
-          onChange={(e) => setNewRef({ ...newRef, book: e.target.value })}
-        >
+        <select value={newRef.book} onChange={e => setNewRef({ ...newRef, book: e.target.value })}>
           <option value="">Select Book</option>
           {/* List of Bible books */}
         </select>
@@ -210,14 +201,14 @@ export function ScriptureHelper({ references, onChange }) {
           type="number"
           placeholder="Chapter"
           value={newRef.chapter}
-          onChange={(e) => setNewRef({ ...newRef, chapter: e.target.value })}
+          onChange={e => setNewRef({ ...newRef, chapter: e.target.value })}
         />
 
         <input
           type="text"
           placeholder="Verses (e.g., 1-5)"
           value={newRef.verses}
-          onChange={(e) => setNewRef({ ...newRef, verses: e.target.value })}
+          onChange={e => setNewRef({ ...newRef, verses: e.target.value })}
         />
 
         <button type="button" onClick={addReference}>
@@ -225,9 +216,7 @@ export function ScriptureHelper({ references, onChange }) {
         </button>
       </div>
 
-      <div className="scripture-preview">
-        {/* Preview of the selected scripture */}
-      </div>
+      <div className="scripture-preview">{/* Preview of the selected scripture */}</div>
     </div>
   );
 }
@@ -238,7 +227,7 @@ export function ScriptureHelper({ references, onChange }) {
 #### Client for TinaCMS (client.ts)
 
 ```typescript
-import { client } from "../../tina/client";
+import { client } from '../../tina/client';
 
 export async function fetchLectionaryEntries() {
   try {
@@ -249,9 +238,9 @@ export async function fetchLectionaryEntries() {
       },
     });
 
-    return result.data.lectionaryConnection.edges.map((edge) => edge.node);
+    return result.data.lectionaryConnection.edges.map(edge => edge.node);
   } catch (error) {
-    console.error("Error fetching lectionary entries:", error);
+    console.error('Error fetching lectionary entries:', error);
     throw error;
   }
 }
@@ -267,7 +256,7 @@ export async function fetchLectionaryEntry(id: string) {
 
     return result.data.lectionary;
   } catch (error) {
-    console.error("Error fetching lectionary entry:", error);
+    console.error('Error fetching lectionary entry:', error);
     throw error;
   }
 }
@@ -288,7 +277,7 @@ export async function saveLectionaryEntry(data: any, id?: string) {
 
     return { success: true };
   } catch (error) {
-    console.error("Error saving lectionary entry:", error);
+    console.error('Error saving lectionary entry:', error);
     throw error;
   }
 }
@@ -303,20 +292,20 @@ For simplicity, we'll use a basic authentication approach:
 export function isAuthenticated() {
   // Check if user is authenticated
   // For simplicity, could use a password stored in localStorage
-  return localStorage.getItem("lectionary-auth") === "true";
+  return localStorage.getItem('lectionary-auth') === 'true';
 }
 
 export function authenticate(password: string) {
   // Simple authentication
   if (password === process.env.LECTIONARY_ADMIN_PASSWORD) {
-    localStorage.setItem("lectionary-auth", "true");
+    localStorage.setItem('lectionary-auth', 'true');
     return true;
   }
   return false;
 }
 
 export function logout() {
-  localStorage.removeItem("lectionary-auth");
+  localStorage.removeItem('lectionary-auth');
 }
 ```
 

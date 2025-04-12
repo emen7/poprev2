@@ -7,7 +7,7 @@
   padding: 8px;
   background-color: #fff;
   border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
 }
 
 .highlight-color-picker-dark {
@@ -43,23 +43,23 @@
 
 /* Color options - complementary colors with cyan (#00e5ff) as primary */
 .highlight-color-cyan {
-  background-color: rgba(0, 229, 255, 0.5);
+  background-color: rgb(0 229 255 / 50%);
 }
 
 .highlight-color-pink {
-  background-color: rgba(255, 105, 180, 0.5);
+  background-color: rgb(255 105 180 / 50%);
 }
 
 .highlight-color-orange {
-  background-color: rgba(255, 165, 0, 0.5);
+  background-color: rgb(255 165 0 / 50%);
 }
 
 .highlight-color-green {
-  background-color: rgba(50, 205, 50, 0.5);
+  background-color: rgb(50 205 50 / 50%);
 }
 
 .highlight-color-purple {
-  background-color: rgba(147, 112, 219, 0.5);
+  background-color: rgb(147 112 219 / 50%);
 }
 
 /* Dark mode colors (text colors) */

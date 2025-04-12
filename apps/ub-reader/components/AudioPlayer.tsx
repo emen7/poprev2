@@ -1,14 +1,14 @@
 /**
  * Audio Player Component
- * 
+ *
  * This component provides audio playback capabilities for the reader application.
  * It can generate and play audio for the current content using the audio-services package.
  */
 
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
 import { generateAudio, TTSProvider } from '@ub-ecosystem/audio-services';
+import React, { useState, useRef, useEffect } from 'react';
 
 interface AudioPlayerProps {
   content: string;
@@ -30,7 +30,9 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   // Generate audio when the button is clicked
   const handleGenerateAudio = async () => {
     if (!apiKey) {
-      setError('No API key provided. Please configure the NEXT_PUBLIC_NARAKEET_API_KEY environment variable.');
+      setError(
+        'No API key provided. Please configure the NEXT_PUBLIC_NARAKEET_API_KEY environment variable.'
+      );
       return;
     }
 
@@ -40,10 +42,10 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     try {
       // In a real implementation, this would call the actual generateAudio function
       // For now, we'll simulate the API call
-      
+
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       // Simulate API response
       const result = {
         url: 'https://example.com/audio/sample.mp3',
@@ -51,7 +53,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
         format: 'mp3',
         size: content.length * 100, // Rough estimate: 100 bytes per character
       };
-      
+
       setAudioUrl(result.url);
     } catch (err) {
       setError(`Error generating audio: ${err instanceof Error ? err.message : String(err)}`);
@@ -75,15 +77,15 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   // Update isPlaying state when audio ends
   useEffect(() => {
     const audioElement = audioRef.current;
-    
+
     const handleEnded = () => {
       setIsPlaying(false);
     };
-    
+
     if (audioElement) {
       audioElement.addEventListener('ended', handleEnded);
     }
-    
+
     return () => {
       if (audioElement) {
         audioElement.removeEventListener('ended', handleEnded);
@@ -94,7 +96,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   return (
     <div className="audio-player border rounded-lg p-4 my-4 bg-gray-50">
       <h3 className="text-lg font-semibold mb-2">{title}</h3>
-      
+
       {!audioUrl && (
         <button
           onClick={handleGenerateAudio}
@@ -104,7 +106,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           {isLoading ? 'Generating Audio...' : 'Generate Audio'}
         </button>
       )}
-      
+
       {audioUrl && (
         <div className="flex flex-col space-y-2">
           <div className="flex items-center space-x-2">
@@ -114,14 +116,12 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
             >
               {isPlaying ? 'Pause' : 'Play'}
             </button>
-            
+
             <audio ref={audioRef} src={audioUrl} className="hidden" />
-            
-            <div className="text-sm text-gray-600">
-              {isPlaying ? 'Playing...' : 'Paused'}
-            </div>
+
+            <div className="text-sm text-gray-600">{isPlaying ? 'Playing...' : 'Paused'}</div>
           </div>
-          
+
           <button
             onClick={() => setAudioUrl(null)}
             className="text-sm text-gray-500 hover:text-gray-700"
@@ -130,16 +130,12 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           </button>
         </div>
       )}
-      
-      {error && (
-        <div className="text-red-500 mt-2">
-          {error}
-        </div>
-      )}
-      
+
+      {error && <div className="text-red-500 mt-2">{error}</div>}
+
       <div className="text-xs text-gray-500 mt-4">
-        Note: This is a simulated implementation. In a production environment, 
-        this would generate actual audio using the Narakeet API.
+        Note: This is a simulated implementation. In a production environment, this would generate
+        actual audio using the Narakeet API.
       </div>
     </div>
   );

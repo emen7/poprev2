@@ -1,6 +1,6 @@
 /**
  * Enhanced Reader Example
- * 
+ *
  * This file demonstrates the enhanced Reader component with the new
  * navigation and settings features.
  */
@@ -27,14 +27,16 @@ const exampleDocument: Document = {
       paragraphs: [
         {
           id: 'paragraph-1',
-          content: 'This is an example document that demonstrates the enhanced Reader component with the new navigation and settings features. It shows how to structure content and how the Reader renders it.',
-          references: []
+          content:
+            'This is an example document that demonstrates the enhanced Reader component with the new navigation and settings features. It shows how to structure content and how the Reader renders it.',
+          references: [],
         },
         {
           id: 'paragraph-2',
-          content: 'The Reader component is designed to be extensible and configurable, allowing for specialized features for different types of content.',
-          references: []
-        }
+          content:
+            'The Reader component is designed to be extensible and configurable, allowing for specialized features for different types of content.',
+          references: [],
+        },
       ],
       subsections: [
         {
@@ -43,12 +45,13 @@ const exampleDocument: Document = {
           paragraphs: [
             {
               id: 'paragraph-3',
-              content: 'The purpose of this example is to show how the Reader component can be used to display structured content with proper formatting and navigation.',
-              references: []
-            }
-          ]
-        }
-      ]
+              content:
+                'The purpose of this example is to show how the Reader component can be used to display structured content with proper formatting and navigation.',
+              references: [],
+            },
+          ],
+        },
+      ],
     },
     {
       id: 'section-2',
@@ -57,8 +60,8 @@ const exampleDocument: Document = {
         {
           id: 'paragraph-4',
           content: 'The enhanced Reader component includes several new features:',
-          references: []
-        }
+          references: [],
+        },
       ],
       subsections: [
         {
@@ -67,10 +70,11 @@ const exampleDocument: Document = {
           paragraphs: [
             {
               id: 'paragraph-5',
-              content: 'The Reader includes a hamburger menu that opens a navigation panel with a hierarchical structure of parts, papers, and sections.',
-              references: []
-            }
-          ]
+              content:
+                'The Reader includes a hamburger menu that opens a navigation panel with a hierarchical structure of parts, papers, and sections.',
+              references: [],
+            },
+          ],
         },
         {
           id: 'section-2-2',
@@ -78,17 +82,18 @@ const exampleDocument: Document = {
           paragraphs: [
             {
               id: 'paragraph-6',
-              content: 'The Reader includes a settings panel that allows users to customize the theme, typography, and layout.',
+              content:
+                'The Reader includes a settings panel that allows users to customize the theme, typography, and layout.',
               references: [
                 {
                   id: 'ref-1',
                   type: 'supporting',
                   targetDocumentId: 'doc-2',
-                  targetParagraphId: 'para-5'
-                }
-              ]
-            }
-          ]
+                  targetParagraphId: 'para-5',
+                },
+              ],
+            },
+          ],
         },
         {
           id: 'section-2-3',
@@ -96,12 +101,13 @@ const exampleDocument: Document = {
           paragraphs: [
             {
               id: 'paragraph-7',
-              content: 'The Reader can be extended with plugins that provide specialized features for different types of content.',
-              references: []
-            }
-          ]
-        }
-      ]
+              content:
+                'The Reader can be extended with plugins that provide specialized features for different types of content.',
+              references: [],
+            },
+          ],
+        },
+      ],
     },
     {
       id: 'section-3',
@@ -109,18 +115,19 @@ const exampleDocument: Document = {
       paragraphs: [
         {
           id: 'paragraph-8',
-          content: 'This example demonstrates the enhanced Reader component with the new navigation and settings features. In a real application, you would use the document transformation system to convert content from various formats into the standardized document model.',
-          references: []
-        }
-      ]
-    }
+          content:
+            'This example demonstrates the enhanced Reader component with the new navigation and settings features. In a real application, you would use the document transformation system to convert content from various formats into the standardized document model.',
+          references: [],
+        },
+      ],
+    },
   ],
   relationships: [
     {
       type: 'supports',
       targetDocumentId: 'doc-2',
-      description: 'This document supports the concepts described in Document 2.'
-    }
+      description: 'This document supports the concepts described in Document 2.',
+    },
   ],
   metadata: {
     title: 'Enhanced Reader Example',
@@ -128,8 +135,8 @@ const exampleDocument: Document = {
     author: 'Reader Team',
     date: '2025-04-01',
     categories: ['Documentation', 'Example'],
-    tags: ['reader', 'component', 'example']
-  }
+    tags: ['reader', 'component', 'example'],
+  },
 };
 
 /**
@@ -139,7 +146,7 @@ const exampleConfig: Partial<ReaderConfig> = {
   branding: {
     primaryColor: '#4a6da7',
     secondaryColor: '#6c757d',
-    appName: 'Enhanced Reader Example'
+    appName: 'Enhanced Reader Example',
   },
   navigation: {
     showTableOfContents: true,
@@ -149,7 +156,7 @@ const exampleConfig: Partial<ReaderConfig> = {
     showSearch: true,
     showSettings: true,
     linkbackUrl: '/',
-    linkbackText: 'Back to Examples'
+    linkbackText: 'Back to Examples',
   },
   theme: {
     mode: 'light',
@@ -157,19 +164,20 @@ const exampleConfig: Partial<ReaderConfig> = {
       background: '#ffffff',
       text: '#333333',
       border: '#e2e8f0',
-      panelBackground: '#f7fafc'
-    }
+      panelBackground: '#f7fafc',
+    },
   },
   typography: {
-    fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    fontFamily:
+      'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     fontSize: 'medium',
     fontStyle: 'sans-serif',
-    lineSpacing: 'normal'
+    lineSpacing: 'normal',
   },
   layout: {
     textWidth: 'medium',
     showParagraphNumbers: true,
-    enableStickyHeaders: true
+    enableStickyHeaders: true,
   },
   extensions: ['scientific-extension'],
   extensionConfig: {
@@ -177,9 +185,9 @@ const exampleConfig: Partial<ReaderConfig> = {
       // Scientific extension specific configuration
       citationStyle: 'APA',
       enableMathJax: true,
-      enableCharts: true
-    }
-  }
+      enableCharts: true,
+    },
+  },
 };
 
 /**
@@ -191,19 +199,16 @@ export default function EnhancedReaderExample() {
     // Create and register the scientific extension
     const scientificExtension = createScientificExtension();
     globalExtensionRegistry.register(scientificExtension);
-    
+
     // Clean up on unmount
     return () => {
       globalExtensionRegistry.unregister(scientificExtension.id);
     };
   }, []);
-  
+
   return (
     <div className="enhanced-reader-example">
-      <Reader 
-        document={exampleDocument} 
-        config={exampleConfig}
-      />
+      <Reader document={exampleDocument} config={exampleConfig} />
     </div>
   );
 }

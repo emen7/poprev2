@@ -1,10 +1,10 @@
 <img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" class="logo" width="120"/>
 
-# 
+#
 
 ---
 
-# Check out the Neufer-Ray report in Files.  Are you capable of viewing images
+# Check out the Neufer-Ray report in Files. Are you capable of viewing images
 
 I've reviewed the Neufer-Ray report titled "Understanding Revealed Cosmology Through Visualization: Matching Stellar Observations with Revealed Universe Architecture" that was presented at the 2022 Science Symposium[^1_1].
 
@@ -155,4 +155,3 @@ As Neufer and Ray themselves noted, their model is "a starting point for visuall
 [^3_4]: https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_4de958ad-61dc-4bad-8f97-39c43d4e8f1c/af31515c-3783-44fb-b24b-6a649f3c319b/Symposium-Report-Neufer-Ray-3.pdf
 
 [^3_5]: https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_4de958ad-61dc-4bad-8f97-39c43d4e8f1c/5059f246-aa4e-4e99-9618-f6648607c84e/REF-TimescaeAndromeda-thread.docx
-

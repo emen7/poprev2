@@ -1,19 +1,20 @@
 /**
  * Markdown Transformer
- * 
+ *
  * This module handles the transformation of markdown content into the standardized
  * internal representation using the unified.js ecosystem (remark/rehype).
  */
 
-import { unified } from 'unified';
+import rehypeStringify from 'rehype-stringify';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
-import rehypeStringify from 'rehype-stringify';
+import { unified } from 'unified';
+
 import { RootNode, DocumentNode } from './types';
 
 /**
  * Extract metadata from markdown frontmatter if present
- * 
+ *
  * @param content The markdown content
  * @returns An object containing the extracted metadata and the content without frontmatter
  */
@@ -21,14 +22,14 @@ function extractFrontmatter(content: string): { metadata: Record<string, any>; c
   // Simple frontmatter extraction (YAML between --- delimiters)
   const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n/;
   const match = content.match(frontmatterRegex);
-  
+
   if (!match) {
     return { metadata: {}, content };
   }
-  
+
   const frontmatter = match[1];
   const contentWithoutFrontmatter = content.slice(match[0].length);
-  
+
   // Parse YAML frontmatter
   const metadata: Record<string, any> = {};
   frontmatter.split('\n').forEach(line => {
@@ -38,25 +39,23 @@ function extractFrontmatter(content: string): { metadata: Record<string, any>; c
       metadata[key.trim()] = value;
     }
   });
-  
+
   return { metadata, content: contentWithoutFrontmatter };
 }
 
 /**
  * Transform markdown content into the standardized internal representation
- * 
+ *
  * @param content The markdown content to transform
  * @returns A promise that resolves to the transformed content
  */
 export async function transformMarkdown(content: string): Promise<any> {
   // Extract frontmatter metadata if present
   const { metadata, content: contentWithoutFrontmatter } = extractFrontmatter(content);
-  
+
   // Parse markdown to AST
-  const markdownAST = unified()
-    .use(remarkParse)
-    .parse(contentWithoutFrontmatter);
-  
+  const markdownAST = unified().use(remarkParse).parse(contentWithoutFrontmatter);
+
   // Convert to HTML for preview/display purposes
   const html = String(
     await unified()
@@ -65,20 +64,20 @@ export async function transformMarkdown(content: string): Promise<any> {
       .use(rehypeStringify)
       .process(contentWithoutFrontmatter)
   );
-  
+
   // Convert the remark AST to our internal representation
   const transformedContent = convertRemarkAstToInternalFormat(markdownAST);
-  
+
   return {
     content: transformedContent,
     metadata,
-    html
+    html,
   };
 }
 
 /**
  * Convert a remark AST to our internal document representation format
- * 
+ *
  * @param ast The remark AST to convert
  * @returns The converted AST in our internal format
  */
@@ -86,29 +85,29 @@ function convertRemarkAstToInternalFormat(ast: any): RootNode {
   // Start with the root node
   const root: RootNode = {
     type: 'root',
-    children: []
+    children: [],
   };
-  
+
   // Process each child node
   if (ast.children && Array.isArray(ast.children)) {
     root.children = ast.children.map(convertNode);
   }
-  
+
   return root;
 }
 
 /**
  * Convert a single remark node to our internal format
- * 
+ *
  * @param node The remark node to convert
  * @returns The converted node in our internal format
  */
 function convertNode(node: any): DocumentNode {
   // Base node structure
   const convertedNode: DocumentNode = {
-    type: node.type
+    type: node.type,
   };
-  
+
   // Copy relevant properties based on node type
   switch (node.type) {
     case 'heading':
@@ -154,11 +153,11 @@ function convertNode(node: any): DocumentNode {
       }
       break;
   }
-  
+
   // Process children recursively
   if (node.children && Array.isArray(node.children)) {
     convertedNode.children = node.children.map(convertNode);
   }
-  
+
   return convertedNode;
 }

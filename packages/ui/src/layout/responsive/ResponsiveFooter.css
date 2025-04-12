@@ -11,8 +11,10 @@
   background-color: var(--footer-bg-color, #222);
   color: var(--footer-text-color, #fff);
   border-top: 1px solid var(--border-color, #333);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 -2px 4px rgb(0 0 0 / 10%);
 }
 
 /* Auto-hiding behavior for mobile */
@@ -21,7 +23,7 @@
 }
 
 /* Ensure desktop footers don't hide */
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
   .responsive-footer.hidden {
     transform: translateY(0);
   }
@@ -42,11 +44,11 @@ html[data-theme='light'] .responsive-footer {
   background-color: var(--light-surface-1, #fff);
   color: var(--light-text-primary, #333);
   border-top-color: var(--light-divider, #e0e0e0);
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 -2px 4px rgb(0 0 0 / 5%);
 }
 
 /* Add a subtle indicator for pull-up on mobile */
-@media (max-width: 1023px) {
+@media (width <= 1023px) {
   .responsive-footer::before {
     content: '';
     position: absolute;

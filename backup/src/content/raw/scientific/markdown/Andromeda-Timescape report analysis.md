@@ -1,6 +1,6 @@
 <img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" class="logo" width="120"/>
 
-# 
+#
 
 ---
 
@@ -72,7 +72,7 @@ To fully reconcile this with current scientific models would require significant
 
 ---
 
-# 1.	Real Distance: 2.5 million light-years (scientific consensus).
+# 1. Real Distance: 2.5 million light-years (scientific consensus).
 
 2. Time Dilation Factor: 35% (Timescape estimate).
 3. Zone Width: 0.4 million light-years (UB average).
@@ -86,8 +86,8 @@ Yes, the label "Real Distance" in this context could indeed be more accurately d
 
 ### **Real vs. Apparent Distance**
 
-1. **Scientific Consensus**: The 2.5 million light-years figure for Andromeda's distance is based on current astronomical methods, which assume uniformity in the propagation of light through space. This is effectively its *apparent distance* as measured from Earth under standard cosmological assumptions.
-2. **Urantia Papers Perspective**: The claim that light from Andromeda left its stars "almost one million years ago" suggests that the actual time light takes to travel could be shorter due to effects like time dilation in semi-quiet zones. This implies that the *real distance* (in terms of light travel time) might differ from the apparent measurement.
+1. **Scientific Consensus**: The 2.5 million light-years figure for Andromeda's distance is based on current astronomical methods, which assume uniformity in the propagation of light through space. This is effectively its _apparent distance_ as measured from Earth under standard cosmological assumptions.
+2. **Urantia Papers Perspective**: The claim that light from Andromeda left its stars "almost one million years ago" suggests that the actual time light takes to travel could be shorter due to effects like time dilation in semi-quiet zones. This implies that the _real distance_ (in terms of light travel time) might differ from the apparent measurement.
 
 Thus, labeling "Real Distance" as "Apparent Distance" aligns better with the distinction between how distances are perceived versus how they might actually exist under different cosmological frameworks.
 
@@ -131,7 +131,7 @@ The distinction between "Real Distance" and "Apparent Distance" highlights how g
 
 ---
 
-# Simulations reveal that placing a semi-quiet zone approximately 0.2 million light-years  from Earth yields an apparent distance closest to UB's claim of one million light-years. At this position, light traveling through the zone experiences sufficient time dilation to reduce its perceived travel time significantly.
+# Simulations reveal that placing a semi-quiet zone approximately 0.2 million light-years from Earth yields an apparent distance closest to UB's claim of one million light-years. At this position, light traveling through the zone experiences sufficient time dilation to reduce its perceived travel time significantly.
 
 Rewrite this paragraph in light of what we discussed.
 
@@ -172,4 +172,3 @@ This approach would leverage the strengths of AI-assisted research while ensurin
 <div style="text-align: center">⁂</div>
 
 [^7_1]: https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/6754629/42007971-6c5b-4705-b695-f2a9d6cc8418/timescape-andromeda-notes.docx
-

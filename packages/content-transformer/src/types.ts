@@ -209,7 +209,13 @@ export interface PerplexityMetadata extends BaseMetadata {
 /**
  * Union type for all metadata types
  */
-export type DocumentMetadata = BaseMetadata | ScientificMetadata | LectionaryMetadata | UBGemsMetadata | UBCatechismMetadata | PerplexityMetadata;
+export type DocumentMetadata =
+  | BaseMetadata
+  | ScientificMetadata
+  | LectionaryMetadata
+  | UBGemsMetadata
+  | UBCatechismMetadata
+  | PerplexityMetadata;
 
 /**
  * Represents a transformed document with content and metadata

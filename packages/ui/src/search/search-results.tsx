@@ -6,9 +6,9 @@
 
 'use client';
 
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
 import type { SearchResult } from '@ub-ecosystem/reference-parser';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 /**
  * Props for the SearchResults component

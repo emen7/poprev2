@@ -9,7 +9,12 @@ export * from './types';
 export { transformMarkdown } from './markdown-transformer';
 export { transformDocx } from './docx-transformer';
 export { transformPerplexity } from './perplexity-transformer';
-export { normalizeContent, standardizeHeadingHierarchy, normalizeLinks, normalizeImages } from './content-normalizer';
+export {
+  normalizeContent,
+  standardizeHeadingHierarchy,
+  normalizeLinks,
+  normalizeImages,
+} from './content-normalizer';
 export { enrichMetadata } from './metadata-enricher';
 export { validateContent } from './content-validator';
 /**
@@ -20,4 +25,8 @@ export { validateContent } from './content-validator';
  * @param options Transformation options
  * @returns A transformed document
  */
-export declare function transformContent(content: string | Buffer, documentType: DocumentType, options?: TransformOptions): Promise<TransformedDocument>;
+export declare function transformContent(
+  content: string | Buffer,
+  documentType: DocumentType,
+  options?: TransformOptions
+): Promise<TransformedDocument>;

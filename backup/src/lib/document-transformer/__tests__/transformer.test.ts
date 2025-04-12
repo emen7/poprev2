@@ -34,27 +34,28 @@ console.log('Hello, world!');
 
     it('should transform markdown to the internal format', async () => {
       const result = await transformDocument(sampleMarkdown, 'markdown' as DocumentType);
-      
+
       // Check that the result has the expected structure
       expect(result).toHaveProperty('content');
       expect(result).toHaveProperty('metadata');
       expect(result).toHaveProperty('html');
-      
+
       // Check metadata extraction
       expect(result.metadata).toHaveProperty('title', 'Test Document');
       expect(result.metadata).toHaveProperty('author', 'Test Author');
       expect(result.metadata).toHaveProperty('date', '2025-03-26');
-      
+
       // Check content structure
       expect(result.content).toHaveProperty('type', 'root');
       expect(result.content).toHaveProperty('children');
       expect(Array.isArray(result.content.children)).toBe(true);
-      
+
       // Check that headings were properly parsed
-      const headings = result.content.children ?
-        result.content.children.filter((node: any) => node.type === 'heading') : [];
+      const headings = result.content.children
+        ? result.content.children.filter((node: any) => node.type === 'heading')
+        : [];
       expect(headings.length).toBeGreaterThan(0);
-      
+
       // Check HTML output
       expect(typeof result.html).toBe('string');
       expect(result.html).toContain('<h1>');
@@ -66,7 +67,7 @@ console.log('Hello, world!');
       expect(result.html).toContain('<pre><code class="language-javascript">');
     });
   });
-  
+
   describe('Content Normalization', () => {
     const markdownWithIssues = `
 # Heading 1
@@ -80,16 +81,16 @@ console.log('Hello, world!');
 
     it('should sanitize potentially harmful content', async () => {
       const result = await transformDocument(markdownWithIssues, 'markdown' as DocumentType);
-      
+
       // Check that the javascript: URL was sanitized
       const links = findNodesByType(result.content, 'link');
       for (const link of links) {
         expect(link.url).not.toContain('javascript:');
       }
-      
+
       // Check that script tags were removed or sanitized
       expect(result.html).not.toContain('<script>');
-      
+
       // Check that images have alt text
       const images = findNodesByType(result.content, 'image');
       for (const image of images) {
@@ -122,20 +123,23 @@ https://en.wikipedia.org/wiki/The_Urantia_Book
 `;
 
     it('should transform Perplexity responses to the internal format', async () => {
-      const result = await transformDocument(samplePerplexityResponse, 'perplexity' as DocumentType);
-      
+      const result = await transformDocument(
+        samplePerplexityResponse,
+        'perplexity' as DocumentType
+      );
+
       // Check that the result has the expected structure
       expect(result).toHaveProperty('content');
       expect(result).toHaveProperty('metadata');
       expect(result).toHaveProperty('html');
-      
+
       // Check metadata extraction
       expect(result.metadata).toHaveProperty('title');
       expect(result.metadata.title).toBe('What is the Urantia Book?');
       expect(result.metadata).toHaveProperty('author', 'Perplexity AI');
       expect(result.metadata).toHaveProperty('categories');
       expect(result.metadata).toHaveProperty('tags');
-      
+
       // Check content structure
       expect(result.content).toHaveProperty('type', 'root');
       expect(result.content).toHaveProperty('children');
@@ -143,48 +147,51 @@ https://en.wikipedia.org/wiki/The_Urantia_Book
       // Check that the question is included as a heading
       const headings = findNodesByType(result.content, 'heading');
       expect(headings.length).toBeGreaterThan(0);
-      expect(headings[0].children && headings[0].children[0] && headings[0].children[0].value).toBe('What is the Urantia Book?');
-      
-      
+      expect(headings[0].children && headings[0].children[0] && headings[0].children[0].value).toBe(
+        'What is the Urantia Book?'
+      );
+
       // Check that the list was properly parsed
       const lists = findNodesByType(result.content, 'list');
       expect(lists.length).toBeGreaterThan(0);
-      
+
       // Check that sources were included
-      const sourcesHeading = headings.find((h: any) =>
-        h.children && h.children[0] && h.children[0].value === 'Sources'
+      const sourcesHeading = headings.find(
+        (h: any) => h.children && h.children[0] && h.children[0].value === 'Sources'
       );
       expect(sourcesHeading).toBeDefined();
-      
+
       // Check HTML output
       expect(typeof result.html).toBe('string');
       expect(result.html).toContain('<h1>');
       expect(result.html).toContain('<ul>');
       expect(result.html).toContain('<li>');
-      expect(result.html).toContain('<a href="https://www.urantia.org/urantia-book/read-urantia-book-online"');
+      expect(result.html).toContain(
+        '<a href="https://www.urantia.org/urantia-book/read-urantia-book-online"'
+      );
     });
   });
 });
 
 /**
  * Find all nodes of a specific type in the content tree
- * 
+ *
  * @param node The root node to search
  * @param type The type of nodes to find
  * @returns Array of matching nodes
  */
 function findNodesByType(node: any, type: string): any[] {
   const results: any[] = [];
-  
+
   if (node.type === type) {
     results.push(node);
   }
-  
+
   if (node.children && Array.isArray(node.children)) {
     for (const child of node.children) {
       results.push(...findNodesByType(child, type));
     }
   }
-  
+
   return results;
 }

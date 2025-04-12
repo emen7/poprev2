@@ -1,5 +1,6 @@
-import React from 'react';
 import { useNavigation } from '@ub-ecosystem/state-management';
+import React from 'react';
+
 import styles from './SectionNavigationPanel.module.css';
 
 export interface SectionNavigationPanelProps {
@@ -48,14 +49,14 @@ export function SectionNavigationPanel({ isOpen, className = '' }: SectionNaviga
     currentPaperId === 'paper1'
       ? 'The Universal Father'
       : currentPaperId === 'paper2'
-      ? 'The Nature of God'
-      : currentPaperId === 'paper3'
-      ? 'The Attributes of God'
-      : currentPaperId === 'paper4'
-      ? "God's Relation to the Universe"
-      : currentPaperId === 'paper5'
-      ? "God's Relation to the Individual"
-      : 'Current Paper';
+        ? 'The Nature of God'
+        : currentPaperId === 'paper3'
+          ? 'The Attributes of God'
+          : currentPaperId === 'paper4'
+            ? "God's Relation to the Universe"
+            : currentPaperId === 'paper5'
+              ? "God's Relation to the Individual"
+              : 'Current Paper';
 
   return (
     <nav className={panelClasses} aria-hidden={!isOpen}>

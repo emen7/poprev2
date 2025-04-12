@@ -35,5 +35,8 @@ export declare function getProvider(provider: TTSProvider, apiKey: string): TTSP
  * @param options TTS options
  * @returns Promise resolving to the audio result
  */
-export declare function generateAudio(text: string, options?: Partial<TTSOptions>): Promise<AudioResult>;
+export declare function generateAudio(
+  text: string,
+  options?: Partial<TTSOptions>
+): Promise<AudioResult>;
 //# sourceMappingURL=index.d.ts.map

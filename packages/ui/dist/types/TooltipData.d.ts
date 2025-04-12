@@ -9,34 +9,34 @@
  * Defines the structure for tooltip content
  */
 export interface TooltipData {
-    /**
-     * The type of tooltip content
-     */
-    type: 'abbreviation' | 'equation' | 'term';
-    /**
-     * The short form (for abbreviations)
-     */
-    shortForm?: string;
-    /**
-     * The full text or explanation
-     */
-    fullForm: string;
-    /**
-     * Simplified explanation (for equations)
-     */
-    simplifiedForm?: string;
-    /**
-     * Additional context or examples
-     */
-    context?: string;
-    /**
-     * Related terms or concepts
-     */
-    relatedTerms?: string[];
-    /**
-     * Source or reference information
-     */
-    source?: string;
+  /**
+   * The type of tooltip content
+   */
+  type: 'abbreviation' | 'equation' | 'term';
+  /**
+   * The short form (for abbreviations)
+   */
+  shortForm?: string;
+  /**
+   * The full text or explanation
+   */
+  fullForm: string;
+  /**
+   * Simplified explanation (for equations)
+   */
+  simplifiedForm?: string;
+  /**
+   * Additional context or examples
+   */
+  context?: string;
+  /**
+   * Related terms or concepts
+   */
+  relatedTerms?: string[];
+  /**
+   * Source or reference information
+   */
+  source?: string;
 }
 /**
  * TooltipDataRecord type
@@ -53,7 +53,10 @@ export declare const exampleTooltipData: TooltipDataRecord;
  * @param dataRecord The tooltip data record to search in
  * @returns The tooltip data or undefined if not found
  */
-export declare function getTooltipData(term: string, dataRecord: TooltipDataRecord): TooltipData | undefined;
+export declare function getTooltipData(
+  term: string,
+  dataRecord: TooltipDataRecord
+): TooltipData | undefined;
 /**
  * Function to register new tooltip data
  * @param term The term to register
@@ -61,6 +64,10 @@ export declare function getTooltipData(term: string, dataRecord: TooltipDataReco
  * @param dataRecord The tooltip data record to update
  * @returns The updated tooltip data record
  */
-export declare function registerTooltipData(term: string, data: TooltipData, dataRecord: TooltipDataRecord): TooltipDataRecord;
+export declare function registerTooltipData(
+  term: string,
+  data: TooltipData,
+  dataRecord: TooltipDataRecord
+): TooltipDataRecord;
 export default TooltipData;
 //# sourceMappingURL=TooltipData.d.ts.map

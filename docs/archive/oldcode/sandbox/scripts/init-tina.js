@@ -6,7 +6,7 @@ console.log('Initializing TinaCMS...');
 try {
   // Initialize TinaCMS
   execSync('npx @tinacms/cli init', { stdio: 'inherit' });
-  
+
   console.log('TinaCMS initialized successfully!');
   console.log('');
   console.log('Next steps:');

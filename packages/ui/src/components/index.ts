@@ -1,6 +1,6 @@
 /**
  * Reader Core Components
- * 
+ *
  * This file exports all components used by the Reader.
  */
 

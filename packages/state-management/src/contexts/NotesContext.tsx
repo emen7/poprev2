@@ -1,4 +1,6 @@
 import React, { createContext, useReducer, ReactNode, useMemo, useEffect } from 'react';
+
+import { notesReducer, initialNotesState } from '../reducers/notesReducer';
 import {
   NotesContextType,
   NotesState,
@@ -7,7 +9,6 @@ import {
   Note,
   Quote,
 } from '../types/notes.types';
-import { notesReducer, initialNotesState } from '../reducers/notesReducer';
 
 // Create context with undefined default value
 export const NotesContext = createContext<NotesContextType | undefined>(undefined);

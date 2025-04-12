@@ -13,12 +13,7 @@ The domain configuration will be updated to include the Paradise Finder:
 **packages/config/src/domains.ts** (updated)
 
 ```typescript
-export type AppDomain =
-  | "reader"
-  | "almanac"
-  | "publications"
-  | "lectionary"
-  | "finder";
+export type AppDomain = 'reader' | 'almanac' | 'publications' | 'lectionary' | 'finder';
 
 export interface DomainConfig {
   subdomain: string;
@@ -29,34 +24,34 @@ export interface DomainConfig {
 
 export const domains: Record<AppDomain, DomainConfig> = {
   reader: {
-    subdomain: "reader",
+    subdomain: 'reader',
     port: 3001,
-    title: "UB Reader",
-    description: "Read The Urantia Book online",
+    title: 'UB Reader',
+    description: 'Read The Urantia Book online',
   },
   almanac: {
-    subdomain: "almanac",
+    subdomain: 'almanac',
     port: 3002,
-    title: "Master Universe Almanac",
-    description: "Explore the cosmology and personalities of the Urantia Book",
+    title: 'Master Universe Almanac',
+    description: 'Explore the cosmology and personalities of the Urantia Book',
   },
   publications: {
-    subdomain: "publications",
+    subdomain: 'publications',
     port: 3000,
-    title: "UB Publications",
-    description: "Publications and articles related to The Urantia Book",
+    title: 'UB Publications',
+    description: 'Publications and articles related to The Urantia Book',
   },
   lectionary: {
-    subdomain: "lectionary",
+    subdomain: 'lectionary',
     port: 3003,
-    title: "UB Lectionary",
-    description: "Lectionary readings from The Urantia Book",
+    title: 'UB Lectionary',
+    description: 'Lectionary readings from The Urantia Book',
   },
   finder: {
-    subdomain: "finder",
+    subdomain: 'finder',
     port: 3004,
-    title: "Paradise Finder",
-    description: "Interactive tool to conceptualize and locate Paradise",
+    title: 'Paradise Finder',
+    description: 'Interactive tool to conceptualize and locate Paradise',
   },
 };
 ```
