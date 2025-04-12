@@ -284,6 +284,13 @@ importers:
         version: 5.6.3
 
   packages/data-models:
+    dependencies:
+      '@ub-ecosystem/content-transformer':
+        specifier: '*'
+        version: link:../content-transformer
+      react:
+        specifier: ^18.2.0
+        version: 18.3.1
     devDependencies:
       '@types/jest':
         specifier: ^29.5.1
