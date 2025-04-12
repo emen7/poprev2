@@ -17,7 +17,7 @@ export const PullupContainer: React.FC = () => {
     activeTab,
     height,
     isPersistent,
-    openPullup,
+    // openPullup is not used in this component
     closePullup,
     setActiveTab,
     setHeight,

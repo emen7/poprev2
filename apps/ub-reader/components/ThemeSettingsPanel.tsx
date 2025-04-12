@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { useTheme, UITheme, ContentTheme } from '../contexts/ThemeContext';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface ThemeSettingsPanelProps {
   isOpen: boolean;
@@ -85,8 +85,8 @@ export function ThemeSettingsPanel({ isOpen, onClose, className = '' }: ThemeSet
                 </>
               ) : (
                 <>
-                  <strong>Traditional:</strong> Matches the original book's presentation with serif
-                  fonts and traditional paragraph formatting.
+                  <strong>Traditional:</strong> Matches the original book&apos;s presentation with
+                  serif fonts and traditional paragraph formatting.
                 </>
               )}
             </p>
