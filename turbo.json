@@ -9,6 +9,26 @@
     "lint": {
       "outputs": []
     },
+    "lint:css": {
+      "outputs": [],
+      "inputs": ["**/*.css"]
+    },
+    "lint:js": {
+      "outputs": [],
+      "inputs": ["**/*.{js,jsx,ts,tsx}"]
+    },
+    "lint:js:fix": {
+      "outputs": [],
+      "inputs": ["**/*.{js,jsx,ts,tsx}"]
+    },
+    "format": {
+      "outputs": [],
+      "inputs": ["**/*.{js,jsx,ts,tsx,css,json,md}"]
+    },
+    "format:check": {
+      "outputs": [],
+      "inputs": ["**/*.{js,jsx,ts,tsx,css,json,md}"]
+    },
     "dev": {
       "cache": false,
       "persistent": true
