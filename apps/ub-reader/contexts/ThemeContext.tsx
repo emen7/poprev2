@@ -2,9 +2,12 @@
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-type ContentTheme = 'modern' | 'traditional';
+export type UITheme = 'light' | 'dark';
+export type ContentTheme = 'modern' | 'traditional';
 
 interface ThemeContextType {
+  uiTheme: UITheme;
+  setUITheme: (theme: UITheme) => void;
   contentTheme: ContentTheme;
   setContentTheme: (theme: ContentTheme) => void;
 }
@@ -13,6 +16,8 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 interface ThemeProviderProps {
   children: ReactNode;
+  initialUITheme?: UITheme;
+  initialContentTheme?: ContentTheme;
 }
 
 /**
@@ -21,11 +26,16 @@ interface ThemeProviderProps {
  * This component provides theme context to the application.
  * It manages the content theme state (modern or traditional).
  */
-export function ThemeProvider({ children }: ThemeProviderProps) {
-  const [contentTheme, setContentTheme] = useState<ContentTheme>('traditional');
+export function ThemeProvider({
+  children,
+  initialUITheme = 'light',
+  initialContentTheme = 'traditional',
+}: ThemeProviderProps) {
+  const [uiTheme, setUITheme] = useState<UITheme>(initialUITheme);
+  const [contentTheme, setContentTheme] = useState<ContentTheme>(initialContentTheme);
 
   return (
-    <ThemeContext.Provider value={{ contentTheme, setContentTheme }}>
+    <ThemeContext.Provider value={{ uiTheme, setUITheme, contentTheme, setContentTheme }}>
       {children}
     </ThemeContext.Provider>
   );
