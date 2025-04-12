@@ -28,12 +28,17 @@ export interface ReaderHeaderProps {
    * Additional class name
    */
   className?: string;
+
+  /**
+   * Children components
+   */
+  children?: React.ReactNode;
 }
 
 /**
  * The ReaderHeader component
  */
-export function ReaderHeader({ document, config, className = '' }: ReaderHeaderProps) {
+export function ReaderHeader({ document, config, className = '', children }: ReaderHeaderProps) {
   // Get extension components
   const extensionHeaderComponents = config.extensions
     .map(extensionId => {
@@ -93,6 +98,9 @@ export function ReaderHeader({ document, config, className = '' }: ReaderHeaderP
           <a href={config.navigation.linkbackUrl}>{config.navigation.linkbackText || 'Back'}</a>
         </div>
       )}
+
+      {/* Render children */}
+      {children}
     </div>
   );
 }
