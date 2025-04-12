@@ -34,13 +34,12 @@ export const UBParagraph: React.FC<UBParagraphProps> = ({
   const { highlightManager } = useHighlight();
 
   // Try to use the ThemeContext, but provide a fallback if it's not available
-  let contentTheme = 'traditional';
+  // We get the theme but don't directly use the variable - it affects the styling through CSS variables
   try {
-    const themeContext = useTheme();
-    contentTheme = themeContext.contentTheme;
-  } catch (error) {
-    // ThemeContext not available, use default theme
-    console.log('ThemeContext not available, using default theme');
+    useTheme(); // This ensures the theme context is available and CSS variables are set
+  } catch (_) {
+    // ThemeContext not available, use default theme (traditional)
+    // Silent catch - no need for console logs in production code
   }
 
   // Determine if paragraph numbers should be shown
@@ -79,7 +78,10 @@ export const UBParagraph: React.FC<UBParagraphProps> = ({
   };
 
   // Handle reference click
-  const handleReferenceClick = (reference: any, event: React.MouseEvent) => {
+  const handleReferenceClick = (
+    reference: { type: string; paper: number; section?: number },
+    event: React.MouseEvent
+  ) => {
     // Navigate to the referenced content
     window.location.href =
       reference.type === 'paper'

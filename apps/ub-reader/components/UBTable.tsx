@@ -26,13 +26,12 @@ interface UBTableProps {
  */
 export const UBTable: React.FC<UBTableProps> = ({ caption, rows, className = '' }) => {
   // Try to use the ThemeContext, but provide a fallback if it's not available
-  let contentTheme = 'traditional';
+  // We get the theme but don't directly use the variable - it affects the styling through CSS variables
   try {
-    const themeContext = useTheme();
-    contentTheme = themeContext.contentTheme;
-  } catch (error) {
-    // ThemeContext not available, use default theme
-    console.log('ThemeContext not available, using default theme');
+    useTheme(); // This ensures the theme context is available and CSS variables are set
+  } catch (_) {
+    // ThemeContext not available, use default theme (traditional)
+    // Silent catch - no need for console logs in production code
   }
 
   // Apply appropriate classes based on the content theme
