@@ -1,0 +1,1 @@
+{"version":3,"file":"reader.js","sourceRoot":"","sources":["../../src/types/reader.ts"],"names":[],"mappings":"AAAA;;GAEG;AA+GH;;GAEG;AACH,MAAM,CAAC,MAAM,uBAAuB,GAAmB;IACrD,QAAQ,EAAE,EAAE;IACZ,UAAU,EAAE,GAAG;IACf,UAAU,EAAE,8EAA8E;IAC1F,oBAAoB,EAAE,IAAI;IAC1B,iBAAiB,EAAE,IAAI;IACvB,KAAK,EAAE,OAAO;IACd,mBAAmB,EAAE,IAAI;IACzB,kBAAkB,EAAE,IAAI;CACzB,CAAC"}
