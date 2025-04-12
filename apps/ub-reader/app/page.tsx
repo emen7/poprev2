@@ -19,7 +19,8 @@ export default function HomePage() {
             temporarily archived during deployment optimization.
           </p>
           <p className="commit-message">
-            Latest update: "Fix React Hook dependency arrays and unused variables"
+            Latest update: "Add code quality tools: VSCode settings, pre-commit hooks, and
+            documentation"
           </p>
         </section>
       </main>
