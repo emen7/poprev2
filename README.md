@@ -1,65 +1,87 @@
-# PopRev2 Platform
+# UB Ecosystem
 
-A comprehensive ecosystem for document transformation, reading, and content management with TinaCMS integration.
+A comprehensive monorepo for document transformation, reading, and content management with a focus on accessibility and code quality.
 
 ## Repository Structure
 
-This monorepo contains multiple applications and shared packages that make up the PopRev2 platform:
+This monorepo contains multiple applications and shared packages that make up the UB Ecosystem:
 
 ```
-poprev2/
+ub-ecosystem/
 ├── apps/                  # Application implementations
-│   ├── reader/            # UB Reader application
+│   ├── ub-reader/         # UB Reader application
 │   ├── publications/      # Publications application
-│   └── almanac/           # Almanac application
+│   └── almanac-new/       # Almanac application
 ├── packages/              # Shared libraries and components
+│   ├── core/              # Core functionality and types
 │   ├── ui/                # Shared UI components
+│   ├── theme-system/      # Theming capabilities
 │   ├── content-transformer/ # Document transformation utilities
+│   ├── content-storage/   # Content storage and retrieval
 │   ├── data-models/       # Shared data models
 │   ├── reference-parser/  # Reference parsing utilities
 │   ├── audio-services/    # Audio playback services
+│   ├── highlighting/      # Text highlighting functionality
+│   ├── state-management/  # State management utilities
 │   └── table-transformer/ # Table transformation utilities
-├── sandbox/               # Examples and prototypes
-│   ├── app/               # Example pages
-│   ├── components/        # Example components
-│   └── lib/               # Example utilities
-├── docs/                  # Documentation
-│   ├── architecture/      # Architecture documentation
-│   ├── development/       # Development guides
-│   └── deployment/        # Deployment guides
-└── content/               # Content files for the applications
+├── content/               # Content files for the applications
+│   ├── raw/               # Raw content files
+│   └── scientific/        # Scientific content
+├── config/                # Shared configuration
+├── scripts/               # Utility scripts
+└── styles/                # Global styles
 ```
 
 ## Applications
 
-### UB Reader (`apps/reader/`)
+### UB Reader (`apps/ub-reader/`)
 
-The UB Reader is the central application for reading and navigating content. It provides a rich reading experience with features like navigation, search, and user preferences.
+The UB Reader is the central application for reading and navigating content. It provides a rich reading experience with features like navigation, search, and user preferences. Built with Next.js, it leverages the shared packages for core functionality.
+
+Key features:
+
+- Document navigation and rendering
+- Theme customization
+- Pullup panels for additional content
+- Audio playback integration
+- Highlighting and notes
 
 ### Publications (`apps/publications/`)
 
-The Publications app is used for various publication types:
+The Publications app is used for various publication types. It shares much of its codebase with the UB Reader but is configured for different content types and presentation styles.
 
-- Scientific
-- Lectionary
-- Catechism
-- PopRev (formerly UBgems/Perplexity)
-
-Each publication type is configured through environment variables and shares the same codebase.
-
-### Almanac (`apps/almanac/`)
+### Almanac (`apps/almanac-new/`)
 
 The Almanac application provides access to almanac content with specialized features for this content type.
 
 ## Shared Packages
 
-### UI Components (`packages/ui/`)
+### Core (`packages/core/`)
 
-Reusable UI components used across all applications, ensuring a consistent look and feel.
+The core package provides fundamental functionality for reader applications:
+
+- Document model for structured content
+- Navigation system for document traversal
+- Selection system for text selection and highlighting
+- Reader components for content display
+- Extension system for plugin architecture
+
+### Theme System (`packages/theme-system/`)
+
+Provides theming capabilities for all applications:
+
+- Theme definitions with CSS modules
+- ThemeProvider with React context
+- Theme switching functionality
+- Default themes (light, dark, traditional)
 
 ### Content Transformer (`packages/content-transformer/`)
 
-Utilities for transforming content from various formats (Markdown, DOCX) into a standardized internal representation.
+Utilities for transforming content from various formats into a standardized internal representation.
+
+### Content Storage (`packages/content-storage/`)
+
+Services for storing and retrieving content with caching capabilities.
 
 ### Data Models (`packages/data-models/`)
 
@@ -73,63 +95,93 @@ Utilities for parsing and handling references within documents.
 
 Services for audio playback and management.
 
+### Highlighting (`packages/highlighting/`)
+
+Text highlighting functionality with persistence.
+
+### State Management (`packages/state-management/`)
+
+State management utilities with persistence and synchronization.
+
 ### Table Transformer (`packages/table-transformer/`)
 
 Utilities for transforming and displaying tables in documents.
 
-## Sandbox (`sandbox/`)
-
-The sandbox contains examples and prototypes that demonstrate how to use the various components and utilities. It serves as a development playground and documentation through examples.
-
-## Getting Started
+## Development Setup
 
 ### Prerequisites
 
 - Node.js 16.x or higher
-- npm 9.x or higher
+- pnpm 8.x or higher
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/poprev2.git
-cd poprev2
+git clone https://github.com/yourusername/ub-ecosystem.git
+cd ub-ecosystem
 
 # Install dependencies
-npm install
+pnpm install
 ```
 
 ### Development
 
 ```bash
 # Start all applications in development mode
-npm run dev
+pnpm dev
 
 # Start a specific application
-npm run dev -- --filter=reader
+pnpm dev --filter=ub-reader
+
+# Lint code
+pnpm lint
+
+# Format code
+pnpm format
+
+# Type check
+pnpm type-check
+
+# Run tests
+pnpm test
 ```
 
 ### Building
 
 ```bash
 # Build all applications
-npm run build
+pnpm build
+
+# Build with bundle analysis
+pnpm build:analyze
 
 # Build a specific application
-npm run build -- --filter=reader
+pnpm build --filter=ub-reader
 ```
 
-## Deployment
+## Technical Architecture
 
-Each application can be deployed separately to Vercel. See the [deployment guide](docs/deployment/vercel-deployment.md) for detailed instructions.
+The UB Ecosystem follows a modular architecture where applications leverage shared packages for common functionality. This approach enables:
 
-## Documentation
+- Code reuse across applications
+- Consistent user experience
+- Isolated testing and development
+- Flexible deployment options
 
-- [Architecture Documentation](docs/architecture/README.md)
-- [Development Guide](docs/development/README.md)
-- [Deployment Guide](docs/deployment/README.md)
-- [Repository Cleanup Plan](repository-cleanup-plan.md)
+The architecture is designed around a core package that provides fundamental functionality, with specialized packages for specific features. Applications integrate these packages to create complete reading experiences tailored to different content types and user needs.
 
-## Contributing
+## Implementation Plan
 
-Please read our [Contributing Guide](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+The current implementation is following the [UB Ecosystem Implementation Plan 2025](./16-P1-Implementation-Plan-2025.md), which outlines a four-phase approach:
+
+1. **Foundation**: Core package, theme system, pullup components, content repository
+2. **State Management**: Enhanced state management, notes and quotes, data export/import
+3. **Content Services**: Content storage, reference parser, content API
+4. **App Integration**: UB Reader app, scientific reader, deployment
+
+## Documentation References
+
+- [Code Quality Tools](./CODE_QUALITY.md)
+- [Development Tools Guide](./DEV_TOOLS.md)
+- [Implementation Plan](./16-P1-Implementation-Plan-2025.md)
