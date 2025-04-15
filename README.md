@@ -1,4 +1,4 @@
-# UB Ecosystem
+# poprev2
 
 A comprehensive monorepo for document transformation, reading, and content management with a focus on accessibility and code quality.
 
@@ -7,7 +7,7 @@ A comprehensive monorepo for document transformation, reading, and content manag
 This monorepo contains multiple applications and shared packages that make up the UB Ecosystem:
 
 ```
-ub-ecosystem/
+poprev2/
 ├── apps/                  # Application implementations
 │   ├── ub-reader/         # UB Reader application
 │   ├── publications/      # Publications application
