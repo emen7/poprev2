@@ -2,7 +2,10 @@
  * Paper Data Service
  *
  * This service provides functions for fetching paper data and related information.
+ * It uses the ContentService to load real content when available and falls back to mock data.
  */
+
+import { loadPaper, isPaperAvailable } from './ContentService';
 
 export interface Paragraph {
   number: number;
@@ -268,8 +271,25 @@ export function getPart(partNumber: number): Part | undefined {
  * Get a specific paper by number
  */
 export async function getPaper(paperNumber: number): Promise<Paper> {
-  // In a real implementation, this would fetch data from an API or database
-  // For now, we'll generate mock data
+  try {
+    // Check if the paper is available in the content repository
+    const isAvailable = await isPaperAvailable(paperNumber);
+
+    if (isAvailable) {
+      // Load the paper from the content repository
+      const paper = await loadPaper(paperNumber);
+
+      if (paper) {
+        // Return the paper
+        return paper;
+      }
+    }
+  } catch (error) {
+    console.error(`Error loading paper ${paperNumber} from content repository:`, error);
+  }
+
+  // If the paper is not available or there was an error, fall back to mock data
+  console.log(`Using mock data for paper ${paperNumber}`);
 
   const sectionTitles = getSectionTitles(paperNumber);
 

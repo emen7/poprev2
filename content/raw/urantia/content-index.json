@@ -1,0 +1,101 @@
+{
+  "title": "The Urantia Book",
+  "description": "The Urantia Book is a spiritual, philosophical, and religious book that originated in Chicago sometime between 1924 and 1955.",
+  "version": "1.0.0",
+  "lastUpdated": "2025-04-14",
+  "parts": [
+    {
+      "number": 1,
+      "title": "THE CENTRAL AND SUPERUNIVERSES",
+      "papers": [
+        {
+          "number": 1,
+          "title": "The Universal Father",
+          "author": "a Divine Counselor",
+          "sections": [
+            "The Father's Name",
+            "The Reality of God",
+            "God is a Universal Spirit",
+            "The Mystery of God",
+            "Personality of the Universal Father",
+            "Personality in the Universe",
+            "Spiritual Value of the Personality Concept"
+          ],
+          "path": "papers/paper-1.json",
+          "available": true
+        },
+        {
+          "number": 2,
+          "title": "The Nature of God",
+          "author": "a Divine Counselor",
+          "sections": [
+            "The Infinity of God",
+            "The Father's Eternal Perfection",
+            "Justice and Righteousness",
+            "The Divine Mercy",
+            "The Love of God",
+            "The Goodness of God",
+            "Divine Truth and Beauty"
+          ],
+          "path": "papers/paper-2.json",
+          "available": false
+        },
+        {
+          "number": 3,
+          "title": "The Attributes of God",
+          "author": "a Divine Counselor",
+          "sections": [
+            "God's Everywhereness",
+            "God's Infinite Power",
+            "God's Universal Knowledge",
+            "God's Limitlessness",
+            "The Father's Supreme Rule",
+            "The Father's Primacy"
+          ],
+          "path": "papers/paper-3.json",
+          "available": false
+        },
+        {
+          "number": 4,
+          "title": "God's Relation to the Universe",
+          "author": "a Divine Counselor",
+          "sections": [
+            "The Universe Attitude of the Father",
+            "God and Nature",
+            "God's Unchanging Character",
+            "The Realization of God",
+            "Erroneous Ideas of God"
+          ],
+          "path": "papers/paper-4.json",
+          "available": false
+        },
+        {
+          "number": 5,
+          "title": "God's Relation to the Individual",
+          "author": "a Divine Counselor",
+          "sections": [
+            "The Approach to God",
+            "The Presence of God",
+            "True Worship",
+            "God in Religion",
+            "The Consciousness of God",
+            "The God of Personality"
+          ],
+          "path": "papers/paper-5.json",
+          "available": false
+        }
+      ]
+    }
+  ],
+  "contentStructure": {
+    "paper": {
+      "properties": ["number", "title", "author", "sections"]
+    },
+    "section": {
+      "properties": ["number", "title", "paragraphs"]
+    },
+    "paragraph": {
+      "properties": ["number", "text"]
+    }
+  }
+}
