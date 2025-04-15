@@ -176,7 +176,66 @@ body {
   overflow-y: hidden;
   margin-top: 56px; /* Header height */
   display: flex;
-  flex-direction: column;
+  flex-direction: row; /* Changed to row to accommodate sidebar */
+}
+
+/* Section Navigation Sidebar */
+.section-navigation-sidebar {
+  width: 250px;
+  background-color: #222;
+  border-right: 1px solid #333;
+  overflow-y: auto;
+  padding: 1rem 0;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  display: none; /* Hidden by default on mobile */
+}
+
+@media (min-width: 1024px) {
+  .section-navigation-sidebar {
+    display: block; /* Show on desktop */
+  }
+}
+
+.section-navigation-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #7fc8f5;
+  padding: 0 1rem 0.5rem;
+  border-bottom: 1px solid #333;
+  margin-bottom: 0.5rem;
+}
+
+.section-navigation-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.section-navigation-list li {
+  margin: 0;
+  padding: 0;
+}
+
+.section-navigation-list li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.section-navigation-list li a:hover {
+  background-color: rgb(255 255 255 / 5%);
+}
+
+.section-navigation-list li.active a {
+  background-color: rgb(127 200 245 / 10%);
+  border-left-color: #7fc8f5;
+  color: #7fc8f5;
 }
 
 .reading-area {
@@ -185,6 +244,13 @@ body {
   padding: 0;
   position: relative;
   background-color: #1a1a1a; /* Match body background */
+  width: 100%; /* Take full width on mobile */
+}
+
+@media (min-width: 1024px) {
+  .reading-area {
+    width: calc(100% - 250px); /* Adjust for sidebar on desktop */
+  }
 }
 
 .content {
@@ -249,21 +315,21 @@ body {
 }
 
 /* Traditional theme specific styles */
-.content-traditional .paragraph-text {
+.content[data-theme='traditional'] .paragraph-text {
   font-family: Georgia, Times, 'Times New Roman', serif;
 }
 
-.content-traditional em {
+.content[data-theme='traditional'] em {
   font-style: italic;
   font-weight: normal;
 }
 
-.content-traditional strong {
+.content[data-theme='traditional'] strong {
   font-weight: bold;
 }
 
 /* Modern theme specific styles */
-.content-modern .paragraph-text {
+.content[data-theme='modern'] .paragraph-text {
   font-family:
     system-ui,
     -apple-system,
@@ -273,12 +339,12 @@ body {
     sans-serif;
 }
 
-.content-modern em {
+.content[data-theme='modern'] em {
   font-style: italic;
   font-weight: bold;
 }
 
-.content-modern .paragraph {
+.content[data-theme='modern'] .paragraph {
   position: relative;
 }
 
@@ -469,6 +535,24 @@ body {
 
 .overlay.active {
   display: block;
+}
+
+/* Reading Progress Bar */
+.reading-progress-container {
+  position: fixed;
+  top: 56px; /* Just below the header */
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #333;
+  z-index: 45;
+}
+
+.reading-progress-bar {
+  height: 100%;
+  background-color: #7fc8f5; /* Match header button color */
+  width: 0;
+  transition: width 0.3s ease;
 }
 
 /* Settings panel styles */

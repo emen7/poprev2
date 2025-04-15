@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState, useEffect, useRef } from 'react';
 
+import { UBParagraph } from '../UBParagraph';
+import { UBSectionDivider } from '../UBSectionDivider';
 import { useTheme } from '../../contexts/ThemeContext';
 import { addToHistory } from '../../services/HistoryService';
 import {
@@ -13,7 +15,6 @@ import {
   getNextPaper,
   getPartForPaper,
   Paper,
-  Section,
   Part,
 } from '../../services/PaperDataService';
 import Breadcrumbs from '../navigation/Breadcrumbs';
@@ -54,6 +55,9 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
 
   // Active section state
   const [activeSection, setActiveSection] = useState<string | null>(null);
+
+  // Reading progress state
+  const [readingProgress, setReadingProgress] = useState(0);
 
   // Refs for dropdown and sections
   const sectionDropdownRef = useRef<HTMLDivElement>(null);
@@ -161,8 +165,6 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
 
   // Handle section navigation
   const handleSectionClick = (e: React.MouseEvent, sectionId: string) => {
-    e.preventDefault();
-
     // Close the dropdown
     setSectionDropdownOpen(false);
 
@@ -314,6 +316,24 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
     };
   }, [activeSection, paper]);
 
+  // Set up scroll listener for reading progress
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!readingAreaRef.current) return;
+
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight;
+      const winHeight = window.innerHeight;
+      const scrollPercent = scrollTop / (docHeight - winHeight);
+      setReadingProgress(scrollPercent * 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   // Render loading state
   if (loading) {
     return (
@@ -382,9 +402,21 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
 
             {/* Book Title */}
             <div className="header-title-container">
-              <h1 className="header-title" onClick={handleTitleClick} style={{ cursor: 'pointer' }}>
+              <button
+                className="header-title"
+                onClick={handleTitleClick}
+                style={{
+                  cursor: 'pointer',
+                  background: 'none',
+                  border: 'none',
+                  padding: 0,
+                  font: 'inherit',
+                  fontSize: '1.5rem',
+                  fontWeight: 600,
+                }}
+              >
                 The Urantia Book
-              </h1>
+              </button>
               <div className="header-subtitle">
                 <Link href="/papers" className="header-subtitle-link">
                   View All Papers
@@ -565,13 +597,36 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
         </div>
 
         {/* Overlay */}
-        <div
+        <button
           id="overlay"
           className={`overlay ${
             navigationOpen || settingsOpen || sectionDropdownOpen ? 'active' : ''
           }`}
           onClick={handleOverlayClick}
-        ></div>
+          aria-label="Close panels"
+          style={{
+            background: 'none',
+            border: 'none',
+            padding: 0,
+            width: '100%',
+            height: '100%',
+            position: 'fixed',
+            inset: '56px 0 0',
+            zIndex: 30,
+            display: navigationOpen || settingsOpen || sectionDropdownOpen ? 'block' : 'none',
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            backdropFilter: 'blur(2px)',
+          }}
+        ></button>
+
+        {/* Reading Progress Bar */}
+        <div className="reading-progress-container">
+          <div
+            className="reading-progress-bar"
+            style={{ width: `${readingProgress}%` }}
+            title={`Reading progress: ${Math.round(readingProgress)}%`}
+          ></div>
+        </div>
 
         {/* Breadcrumbs Navigation */}
         {paper && (
@@ -584,9 +639,44 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
 
         {/* Content Container */}
         <div className="content-container">
+          {/* Section Navigation Sidebar */}
+          {paper && (
+            <div className="section-navigation-sidebar">
+              <div className="section-navigation-title">Sections</div>
+              <ul className="section-navigation-list">
+                {paper.sections.map(section => (
+                  <li
+                    key={section.number}
+                    className={activeSection === `section${section.number}` ? 'active' : ''}
+                  >
+                    <button
+                      onClick={e => handleSectionClick(e, `section${section.number}`)}
+                      className="section-navigation-button"
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        padding: '0.5rem 1rem',
+                        color: '#e2e8f0',
+                        textDecoration: 'none',
+                        fontSize: '0.9rem',
+                        transition: 'background-color 0.2s',
+                        borderLeft: '3px solid transparent',
+                        textAlign: 'left',
+                        width: '100%',
+                        display: 'block',
+                      }}
+                    >
+                      {section.number}. {section.title}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           {/* Reading Area */}
           <div className="reading-area" id="reading-area" ref={readingAreaRef}>
-            <div className={`content content-${contentTheme}`}>
+            <div className="content" data-theme={contentTheme}>
               {/* Sticky Headers */}
               <div className="sticky-header">
                 <div className="sticky-part-title" id="sticky-part-title">
@@ -620,10 +710,10 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
 
                     {/* Introduction paragraph (if available) */}
                     {paper.sections[0]?.paragraphs[0] && (
-                      <div className="paragraph" data-paragraph-id="p0">
-                        <span className="paragraph-number">0</span>
-                        <div className="paragraph-text">{paper.sections[0].paragraphs[0].text}</div>
-                      </div>
+                      <UBParagraph
+                        paragraph={paper.sections[0].paragraphs[0]}
+                        currentPaper={paper.number}
+                      />
                     )}
                   </div>
 
@@ -638,15 +728,16 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
                         {section.number}. {section.title.toUpperCase()}
                       </h3>
 
-                      {section.paragraphs.map(paragraph => (
-                        <div
+                      {/* Add section divider for visual separation */}
+                      <UBSectionDivider />
+
+                      {section.paragraphs.map((paragraph, index) => (
+                        <UBParagraph
                           key={paragraph.number}
-                          className="paragraph"
-                          data-paragraph-id={`p${section.number}-${paragraph.number}`}
-                        >
-                          <span className="paragraph-number">{paragraph.number}</span>
-                          <div className="paragraph-text">{paragraph.text}</div>
-                        </div>
+                          paragraph={paragraph}
+                          currentPaper={paper.number}
+                          isTopicChange={index > 0 && index % 3 === 0} // Add topic change spacing every 3 paragraphs
+                        />
                       ))}
                     </div>
                   ))}
