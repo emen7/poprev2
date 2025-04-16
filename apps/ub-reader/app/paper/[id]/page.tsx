@@ -52,22 +52,11 @@ const getPaper = async (id: string) => {
 };
 
 export default async function PaperPage({ params }: { params: { id: string } }) {
-  // Add server-side console log for debugging
-  console.log('Rendering PaperPage component with id:', params.id);
-
   const paper = await getPaper(params.id);
 
-  // Add debug information to the page
   return (
     <div className="container mx-auto px-4 py-8">
       <PaperNavigation currentPaper={paper.number} />
-
-      {/* Debug information */}
-      <div className="p-4 mb-6 bg-yellow-100 border border-yellow-400 rounded">
-        <p className="font-bold">Debug Info:</p>
-        <p>This is the dynamic route handler (app/paper/[id]/page.tsx)</p>
-        <p>Paper ID: {params.id}</p>
-      </div>
 
       <div className="ub-paper">
         <h1 className="ub-paper-title">

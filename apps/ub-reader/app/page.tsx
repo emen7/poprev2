@@ -3,26 +3,12 @@
 import Link from 'next/link';
 
 export default function HomePage() {
-  // Add console log for debugging
-  console.log('Rendering HomePage component');
-
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-4xl w-full bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
         <h1 className="text-3xl font-bold mb-6 text-center text-gray-900 dark:text-white">
-          UB Reader - Root Page
+          UB Reader
         </h1>
-
-        {/* Debug information */}
-        <div className="p-4 mb-6 bg-yellow-100 border border-yellow-400 rounded">
-          <p className="font-bold">Debug Info:</p>
-          <p>This is the root page (app/page.tsx)</p>
-          <p>
-            Current URL:{' '}
-            {typeof window !== 'undefined' ? window.location.href : 'Server-side rendering'}
-          </p>
-          <p>If you're seeing a redirect, it's not coming from this component</p>
-        </div>
 
         <div className="mb-8">
           <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">

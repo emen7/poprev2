@@ -20,15 +20,6 @@ const initialNotes = [
 ];
 
 export default function Paper1Page() {
-  // Add console log for debugging
-  console.log('Rendering Paper1Page component');
-
-  // Log when component mounts
-  React.useEffect(() => {
-    console.log('Paper1Page component mounted');
-    console.log('Current URL:', window.location.href);
-  }, []);
-
   // State for notes
   const [notes, setNotes] = useState(initialNotes);
   // State for active note
@@ -60,15 +51,6 @@ export default function Paper1Page() {
       <ExtendedUserPreferencesProvider>
         <EnhancedHighlightProvider>
           <div className="ub-reader-demo">
-            {/* Debug information */}
-            <div className="p-4 mb-6 bg-green-100 border border-green-400 rounded">
-              <p className="font-bold">Debug Info:</p>
-              <p>This is the static Paper 1 page (app/paper/1/page.tsx)</p>
-              <p>
-                Current URL:{' '}
-                {typeof window !== 'undefined' ? window.location.href : 'Server-side rendering'}
-              </p>
-            </div>
             {/* Header with Navigation */}
             <ReaderNavigation title={paper1Data.title} onSettingsClick={handleSettingsClick} />
 
