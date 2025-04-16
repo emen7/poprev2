@@ -9,10 +9,12 @@ import {
   Reference,
   ReferenceType,
   DocumentMetadata,
+  ContentType,
 } from '../types/document';
 
 // Re-export types
 export type { Document, Section, Paragraph, Reference, ReferenceType, DocumentMetadata };
+export { ContentType };
 
 // This is a placeholder for future implementation
 // The actual implementation will be added in subsequent tasks
@@ -24,7 +26,8 @@ export function createDocument(
   id: string,
   title: string,
   sections: Section[] = [],
-  metadata: Partial<DocumentMetadata> = {}
+  metadata: Partial<DocumentMetadata> = {},
+  contentType: ContentType = ContentType.STANDARD
 ): Document {
   return {
     id,
@@ -33,6 +36,7 @@ export function createDocument(
     metadata: {
       ...metadata,
     },
+    contentType,
   };
 }
 
