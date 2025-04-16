@@ -1,0 +1,13 @@
+# Exclude everything
+
+-
+
+# Include only the necessary directories and files
+
+!apps/ub-reader
+!packages
+!pnpm-workspace.yaml
+!package.json
+!pnpm-lock.yaml
+!turbo.json
+!.npmrc
