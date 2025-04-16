@@ -81,6 +81,10 @@ After successful deployment:
 - **Dependency Issues**: Check if all dependencies are properly installed
 - **Memory Errors**: Fluid Compute should handle this, but check if builds are exceeding limits
 - **Build Command Errors**: Verify the build command in vercel.json is correct
+- **Native Module Errors**: If you see errors related to native modules like better-sqlite3:
+  - Ensure `ignore-scripts=true` is set in .npmrc
+  - Add `--ignore-scripts` flag to the installCommand in vercel.json
+  - This prevents build failures due to C++ compiler version mismatches
 
 ### Runtime Errors
 
