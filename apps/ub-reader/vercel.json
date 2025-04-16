@@ -1,7 +1,7 @@
 {
   "version": 2,
   "buildCommand": "cd ../.. && pnpm turbo run build --filter=ub-reader...",
-  "installCommand": "cd ../.. && pnpm install --no-frozen-lockfile",
+  "installCommand": "cd ../.. && pnpm install --no-frozen-lockfile --ignore-scripts",
   "outputDirectory": ".next",
   "headers": [
     {
@@ -12,6 +12,13 @@
           "value": "no-store, no-cache, must-revalidate, proxy-revalidate"
         }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/paper/1",
+      "destination": "/",
+      "permanent": false
     }
   ],
   "trailingSlash": false
