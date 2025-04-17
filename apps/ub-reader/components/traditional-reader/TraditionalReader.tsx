@@ -347,15 +347,12 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
 
           // Update current section title
           const fullText = entry.target.textContent || '';
-          // Extract just the title part (remove the section number and period)
-          const sectionTitle = fullText.includes('.')
-            ? fullText.substring(fullText.indexOf('.') + 1).trim()
-            : fullText;
-
-          console.log('Setting section title:', sectionTitle);
+          // Keep the section number with the title
+          // This ensures consistency with the section titles in the document
+          console.log('Setting section title:', fullText);
           setCurrentSection(prev => ({
             ...prev,
-            section: sectionTitle,
+            section: fullText,
           }));
         } else if (
           activeSection === sectionId &&
@@ -370,6 +367,7 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
           if (currentIndex > 0) {
             const prevSection = sections[currentIndex - 1];
             setActiveSection(prevSection.id);
+            // Use the full text content for consistency
             setCurrentSection(prev => ({
               ...prev,
               section: prevSection.textContent || '',

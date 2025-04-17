@@ -475,7 +475,7 @@ body {
   right: 0;
   z-index: 10;
   background-color: var(--bg-color);
-  padding: 0.75rem 0 0.5rem;
+  padding: 0.4rem 0 0.3rem; /* Reduced padding */
   border-bottom: 1px solid var(--border-color);
   width: 100%;
   display: flex;
@@ -490,21 +490,21 @@ body {
 
 /* When a section is active, transform the sticky header to show only the paper title */
 .sticky-header.section-active {
-  transform: translateY(-20px); /* Reduced from -25px to prevent excessive movement */
-  padding-top: 0.5rem; /* Reduce top padding when in section-active state */
-  padding-bottom: 0.25rem; /* Reduce bottom padding when in section-active state */
+  transform: translateY(-15px); /* Reduced to prevent excessive movement */
+  padding-top: 0.3rem; /* Reduce top padding when in section-active state */
+  padding-bottom: 0.2rem; /* Reduce bottom padding when in section-active state */
 }
 
 .sticky-part-title {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--title-color);
   text-align: left; /* Left-aligned text */
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
   /* Ensure part title is always visible by default */
   display: block !important;
-  transition: opacity 0.3s ease;
-  line-height: 1.2;
+  transition: all 0.3s ease;
+  line-height: 1.1;
 }
 
 /* Hide part title when a section is active */
@@ -512,7 +512,10 @@ body {
   opacity: 0;
   height: 0;
   margin: 0;
+  padding: 0;
   overflow: hidden;
+  position: absolute;
+  top: -9999px;
 }
 
 .sticky-paper-title {
@@ -520,17 +523,17 @@ body {
   font-weight: 600;
   text-align: left; /* Left-aligned text */
   color: var(--title-color);
-  margin-bottom: 0.5rem;
-  transition:
-    transform 0.3s ease,
-    margin 0.3s ease;
-  line-height: 1.3;
+  margin-bottom: 0.3rem;
+  transition: all 0.3s ease;
+  line-height: 1.2;
+  position: relative;
+  z-index: 15; /* Ensure it's above other elements */
 }
 
 /* Adjust paper title position when a section is active */
 .sticky-header.section-active .sticky-paper-title {
   margin-top: 0; /* Don't move up, just let the part title collapse */
-  margin-bottom: 0.25rem; /* Reduce bottom margin when in section-active state */
+  margin-bottom: 0.2rem; /* Reduce bottom margin when in section-active state */
 }
 
 /* Sticky section title - Updated to fix flickering issue */
