@@ -86,6 +86,9 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
   // Active section state
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
+  // Debug mode state
+  const [debugMode, setDebugMode] = useState(false);
+
   // Reading progress state
   const [readingProgress, setReadingProgress] = useState(0);
 
@@ -320,8 +323,8 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
     // Options for the observer
     const options = {
       root: null, // Use the viewport
-      rootMargin: '-120px 0px 0px 0px', // Adjust for sticky header height
-      threshold: [0, 0.1, 0.5, 1], // Multiple thresholds for better detection
+      rootMargin: '-120px 0px -70% 0px', // Only consider the top portion of the viewport
+      threshold: [0, 0.1, 0.3, 0.5], // Multiple thresholds for better detection
     };
 
     // Callback for the observer
@@ -329,12 +332,27 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
       entries.forEach(entry => {
         const sectionId = entry.target.id;
 
+        // Add console logging for debugging
+        console.log('Intersection entry:', {
+          id: sectionId,
+          isIntersecting: entry.isIntersecting,
+          ratio: entry.intersectionRatio,
+          boundingRect: entry.boundingClientRect,
+        });
+
         if (entry.isIntersecting && entry.intersectionRatio > 0.1) {
           // Section is entering the viewport
+          console.log('Setting active section:', sectionId);
           setActiveSection(sectionId);
 
           // Update current section title
-          const sectionTitle = entry.target.textContent || '';
+          const fullText = entry.target.textContent || '';
+          // Extract just the title part (remove the section number and period)
+          const sectionTitle = fullText.includes('.')
+            ? fullText.substring(fullText.indexOf('.') + 1).trim()
+            : fullText;
+
+          console.log('Setting section title:', sectionTitle);
           setCurrentSection(prev => ({
             ...prev,
             section: sectionTitle,
@@ -358,6 +376,7 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
             }));
           } else {
             // If there's no previous section, we're at the top
+            console.log('Clearing active section - at the top');
             setActiveSection(null);
             setCurrentSection(prev => ({
               ...prev,
@@ -372,10 +391,13 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
     const observer = new IntersectionObserver(callback, options);
 
     // Observe all section titles
-    const sectionTitles = document.querySelectorAll('.section-title');
+    const sectionTitles = document.querySelectorAll('h3.section-title');
     sectionTitles.forEach(title => {
       observer.observe(title);
     });
+
+    // Add console logging for debugging
+    console.log('Observing section titles:', sectionTitles.length);
 
     return () => {
       observer.disconnect();
@@ -397,6 +419,21 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // Add keyboard shortcut for debug mode (Ctrl+Shift+D)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+        console.log('Toggling debug mode');
+        setDebugMode(prev => !prev);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
@@ -764,9 +801,9 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
                     <div
                       key={section.number}
                       className="section-content"
-                      id={`section${section.number}`}
+                      id={`section-container-${section.number}`}
                     >
-                      <h3 className="section-title" id={`section${section.number}`}>
+                      <h3 className="section-title" id={`section-title-${section.number}`}>
                         {section.number}. {section.title.toUpperCase()}
                       </h3>
 
@@ -796,6 +833,46 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
 
         {/* Toast Notification */}
         <div className="toast">Text copied to clipboard!</div>
+
+        {/* Debug Panel */}
+        {debugMode && (
+          <div
+            className="debug-panel"
+            style={{
+              position: 'fixed',
+              top: '150px',
+              right: '20px',
+              background: 'rgba(0,0,0,0.8)',
+              color: 'white',
+              padding: '10px',
+              zIndex: 1000,
+              borderRadius: '5px',
+              maxWidth: '300px',
+              fontFamily: 'monospace',
+              fontSize: '12px',
+            }}
+          >
+            <h4 style={{ margin: '0 0 10px 0' }}>Debug Info</h4>
+            <p style={{ margin: '5px 0' }}>Active Section: {activeSection || 'none'}</p>
+            <p style={{ margin: '5px 0' }}>
+              Current Section Title: {currentSection.section || 'none'}
+            </p>
+            <button
+              onClick={() => setDebugMode(false)}
+              style={{
+                background: '#555',
+                border: 'none',
+                color: 'white',
+                padding: '5px 10px',
+                borderRadius: '3px',
+                marginTop: '10px',
+                cursor: 'pointer',
+              }}
+            >
+              Close Debug
+            </button>
+          </div>
+        )}
 
         {/* Pullup Container */}
         <PullupContainer />

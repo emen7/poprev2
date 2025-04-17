@@ -9,6 +9,7 @@
 :root {
   /* Light theme variables - monochromatic */
   --light-bg-color: #ffffff;
+  --light-bg-color-rgb: 255, 255, 255; /* RGB values for rgba() */
   --light-header-bg: #f8f8f8;
   --light-text-color: #333333;
   --light-title-color: #222222; /* Darker shade for titles */
@@ -19,6 +20,7 @@
 
   /* Dark theme variables - monochromatic */
   --dark-bg-color: #1a1a1a;
+  --dark-bg-color-rgb: 26, 26, 26; /* RGB values for rgba() */
   --dark-header-bg: #222222;
   --dark-text-color: #e0e0e0; /* Light gray for text */
   --dark-title-color: #ffffff; /* White for titles */
@@ -31,6 +33,7 @@
 /* Apply theme variables based on body class */
 body.light-theme {
   --bg-color: var(--light-bg-color);
+  --bg-color-rgb: var(--light-bg-color-rgb);
   --header-bg: var(--light-header-bg);
   --text-color: var(--light-text-color);
   --title-color: var(--light-title-color);
@@ -43,6 +46,7 @@ body.light-theme {
 body.dark-theme,
 body.high-contrast-theme {
   --bg-color: var(--dark-bg-color);
+  --bg-color-rgb: var(--dark-bg-color-rgb);
   --header-bg: var(--dark-header-bg);
   --text-color: var(--dark-text-color);
   --title-color: var(--dark-title-color);
@@ -55,6 +59,7 @@ body.high-contrast-theme {
 /* Default to dark theme if no class is present */
 body {
   --bg-color: var(--dark-bg-color);
+  --bg-color-rgb: var(--dark-bg-color-rgb);
   --header-bg: var(--dark-header-bg);
   --text-color: var(--dark-text-color);
   --title-color: var(--dark-title-color);
@@ -103,6 +108,7 @@ body {
 /* Direct theme application to container */
 .light-theme-container {
   --bg-color: var(--light-bg-color) !important;
+  --bg-color-rgb: var(--light-bg-color-rgb) !important;
   --header-bg: var(--light-header-bg) !important;
   --text-color: var(--light-text-color) !important;
   --title-color: var(--light-title-color) !important;
@@ -114,6 +120,7 @@ body {
 
 .dark-theme-container {
   --bg-color: var(--dark-bg-color) !important;
+  --bg-color-rgb: var(--dark-bg-color-rgb) !important;
   --header-bg: var(--dark-header-bg) !important;
   --text-color: var(--dark-text-color) !important;
   --title-color: var(--dark-title-color) !important;
@@ -505,7 +512,7 @@ body {
   right: 0;
   padding: 0.5rem 0;
   background-color: var(--bg-color);
-  z-index: 9;
+  z-index: 20; /* Increased from 9 to ensure it's above other elements */
   border-bottom: 1px solid var(--border-color);
   font-size: 1.1rem;
   font-weight: 600;
@@ -520,12 +527,17 @@ body {
   transition:
     opacity 0.2s,
     visibility 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow for better visibility */
 }
 
 /* Show the sticky section title when a section is active */
 .sticky-section-title.active {
   opacity: 1;
   visibility: visible;
+  background-color: rgba(
+    var(--bg-color-rgb, 255, 255, 255),
+    0.95
+  ); /* Semi-transparent background */
 }
 
 /* Navigation menu styles */
