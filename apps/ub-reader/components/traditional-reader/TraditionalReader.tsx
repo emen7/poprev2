@@ -37,7 +37,37 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
   const router = useRouter();
 
   // Theme state from context
-  const { contentTheme, setContentTheme } = useTheme();
+  const { contentTheme, setContentTheme, uiTheme, setUITheme } = useTheme();
+
+  // Use inline styles based on theme
+  const getThemeStyles = () => {
+    return {
+      appContainer: {
+        backgroundColor: uiTheme === 'light' ? '#ffffff' : '#1a1a1a',
+        color: uiTheme === 'light' ? '#333333' : '#f0e6d8',
+      },
+      header: {
+        backgroundColor: uiTheme === 'light' ? '#f8f8f8' : '#222222',
+        borderBottom: uiTheme === 'light' ? '1px solid #e2e8f0' : '1px solid #333333',
+      },
+      title: {
+        color: uiTheme === 'light' ? '#2c5282' : '#7fc8f5',
+      },
+      settingsPanel: {
+        backgroundColor: uiTheme === 'light' ? '#f8f8f8' : '#222222',
+        borderLeft: uiTheme === 'light' ? '1px solid #e2e8f0' : '1px solid #333333',
+      },
+      text: {
+        color: uiTheme === 'light' ? '#333333' : '#f0e6d8',
+      },
+      sectionTitle: {
+        color: uiTheme === 'light' ? '#2c5282' : '#91a7f9',
+      },
+    };
+  };
+
+  // Get current theme styles
+  const themeStyles = getThemeStyles();
 
   // Paper data state
   const [paper, setPaper] = useState<Paper | null>(null);
@@ -106,6 +136,64 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
     setParts(getParts());
   }, []);
 
+  // Apply theme directly to app container
+  useEffect(() => {
+    // Apply theme to app container
+    const appContainer = document.querySelector('.app-container');
+    if (appContainer) {
+      // Apply styles directly based on theme
+      if (uiTheme === 'light') {
+        document.body.style.backgroundColor = '#ffffff';
+        document.body.style.color = '#333333';
+        appContainer.setAttribute(
+          'style',
+          'background-color: #ffffff !important; color: #333333 !important;'
+        );
+
+        // Update header and other elements
+        const header = document.querySelector('.header');
+        if (header) {
+          header.setAttribute(
+            'style',
+            'background-color: #f8f8f8 !important; border-bottom: 1px solid #e2e8f0 !important;'
+          );
+        }
+
+        // Update titles
+        const titles = document.querySelectorAll(
+          '.header-title, .section-title, .sticky-part-title, .sticky-paper-title, .sticky-section-title'
+        );
+        titles.forEach(title => {
+          title.setAttribute('style', 'color: #2c5282 !important;');
+        });
+      } else {
+        document.body.style.backgroundColor = '#1a1a1a';
+        document.body.style.color = '#f0e6d8';
+        appContainer.setAttribute(
+          'style',
+          'background-color: #1a1a1a !important; color: #f0e6d8 !important;'
+        );
+
+        // Update header and other elements
+        const header = document.querySelector('.header');
+        if (header) {
+          header.setAttribute(
+            'style',
+            'background-color: #222222 !important; border-bottom: 1px solid #333333 !important;'
+          );
+        }
+
+        // Update titles
+        const titles = document.querySelectorAll(
+          '.header-title, .section-title, .sticky-part-title, .sticky-paper-title, .sticky-section-title'
+        );
+        titles.forEach(title => {
+          title.setAttribute('style', 'color: #7fc8f5 !important;');
+        });
+      }
+    }
+  }, [uiTheme]);
+
   // Handle navigation toggle
   const handleNavigationToggle = () => {
     setNavigationOpen(!navigationOpen);
@@ -133,18 +221,8 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
     setSectionDropdownOpen(false);
   };
 
-  // Handle section dropdown toggle
-  const handleSectionDropdownToggle = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setSectionDropdownOpen(!sectionDropdownOpen);
-    // Close other panels if open
-    if (navigationOpen) {
-      setNavigationOpen(false);
-    }
-    if (settingsOpen) {
-      setSettingsOpen(false);
-    }
-  };
+  // This function was previously used for section dropdown toggle
+  // Now removed as part of the UI redesign
 
   // Close section dropdown when clicking outside
   useEffect(() => {
@@ -227,20 +305,8 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
     }
   };
 
-  // Handle previous/next navigation
-  const handlePrevious = () => {
-    const prevPaper = getPreviousPaper(paperId);
-    if (prevPaper !== null) {
-      router.push(`/traditional-reader/${prevPaper}`);
-    }
-  };
-
-  const handleNext = () => {
-    const nextPaper = getNextPaper(paperId);
-    if (nextPaper !== null) {
-      router.push(`/traditional-reader/${nextPaper}`);
-    }
-  };
+  // Previous/next navigation functions removed as part of UI redesign
+  // Navigation now handled through the menu system
 
   // Handle title click (navigate to contents)
   const handleTitleClick = () => {
@@ -337,7 +403,9 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
   // Render loading state
   if (loading) {
     return (
-      <div className="app-container">
+      <div
+        className={`app-container ${uiTheme === 'dark' ? 'dark-theme-container' : 'light-theme-container'}`}
+      >
         <div className="loading-container">
           <div className="loading-spinner"></div>
           <div className="loading-text">Loading...</div>
@@ -348,59 +416,27 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
 
   return (
     <PullupProvider>
-      <div className="app-container">
+      <div
+        className={`app-container ${uiTheme === 'dark' ? 'dark-theme-container' : 'light-theme-container'}`}
+      >
         {/* Header */}
-        <header className="header">
-          {/* Left Group - Navigation Buttons */}
+        <header className="header" style={themeStyles.header}>
+          {/* Left Group - Navigation Button */}
           <div className="header-left-group">
-            {/* Paper Navigation Button */}
+            {/* Paper Navigation Button - Changed to hamburger icon */}
             <button
               id="toggle-nav"
               className="header-button"
               onClick={handleNavigationToggle}
               title="Papers"
             >
-              <i className="fas fa-book"></i>
+              <i className="fas fa-bars"></i>
             </button>
-
-            {/* Section Navigation Button */}
-            <div className="section-navigation-header" ref={sectionDropdownRef}>
-              <button
-                className="header-button section-button"
-                onClick={handleSectionDropdownToggle}
-                title="Sections"
-              >
-                <i className="fas fa-list"></i>
-              </button>
-              <div className={`section-dropdown-content ${sectionDropdownOpen ? 'show' : ''}`}>
-                {paper?.sections.map(section => (
-                  <a
-                    key={section.number}
-                    href={`#section${section.number}`}
-                    onClick={e => handleSectionClick(e, `section${section.number}`)}
-                  >
-                    {section.number}. {section.title}
-                  </a>
-                ))}
-              </div>
-            </div>
           </div>
 
-          {/* Center Group - Title and Prev/Next Buttons */}
+          {/* Center Group - Title Only */}
           <div className="header-center-group">
-            {/* Previous Button */}
-            <button
-              className={`header-button nav-prev-button ${
-                getPreviousPaper(paperId) === null ? 'disabled' : ''
-              }`}
-              onClick={handlePrevious}
-              title="Previous"
-              disabled={getPreviousPaper(paperId) === null}
-            >
-              <i className="fas fa-chevron-left"></i>
-            </button>
-
-            {/* Book Title */}
+            {/* Book Title - Removed "The" */}
             <div className="header-title-container">
               <button
                 className="header-title"
@@ -413,38 +449,22 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
                   font: 'inherit',
                   fontSize: '1.5rem',
                   fontWeight: 600,
+                  color: themeStyles.title.color,
                 }}
               >
-                The Urantia Book
+                Urantia Book
               </button>
-              <div className="header-subtitle">
-                <Link href="/papers" className="header-subtitle-link">
-                  View All Papers
-                </Link>
-              </div>
             </div>
-
-            {/* Next Button */}
-            <button
-              className={`header-button nav-next-button ${
-                getNextPaper(paperId) === null ? 'disabled' : ''
-              }`}
-              onClick={handleNext}
-              title="Next"
-              disabled={getNextPaper(paperId) === null}
-            >
-              <i className="fas fa-chevron-right"></i>
-            </button>
           </div>
 
-          {/* Settings Button - Now on the right */}
+          {/* Right Group - Settings Button with hamburger icon */}
           <button
             id="toggle-settings"
             className="header-button"
             onClick={handleSettingsToggle}
             title="Settings"
           >
-            <i className="fas fa-cog"></i>
+            <i className="fas fa-bars"></i>
           </button>
         </header>
 
@@ -477,16 +497,21 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
                 <ul className="nav-list">
                   {part.papers.map(paperItem => (
                     <li key={paperItem.number}>
-                      <a
-                        href="#"
-                        className={paperItem.number === paperId ? 'active' : ''}
-                        onClick={e => {
-                          e.preventDefault();
-                          handlePaperClick(paperItem.number);
+                      <button
+                        className={`nav-paper-button ${paperItem.number === paperId ? 'active' : ''}`}
+                        onClick={() => handlePaperClick(paperItem.number)}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          padding: '0.25rem 0.5rem',
+                          color: 'inherit',
+                          textAlign: 'left',
+                          width: '100%',
+                          cursor: 'pointer',
                         }}
                       >
                         Paper {paperItem.number}: {paperItem.title}
-                      </a>
+                      </button>
                     </li>
                   ))}
                 </ul>
@@ -502,8 +527,18 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
             <div className="settings-option">
               <h4 className="settings-option-title">Theme</h4>
               <div className="settings-option-list">
-                <button className="settings-option-button active">Dark</button>
-                <button className="settings-option-button">Light</button>
+                <button
+                  className={`settings-option-button ${uiTheme === 'dark' ? 'active' : ''}`}
+                  onClick={() => setUITheme('dark')}
+                >
+                  Dark
+                </button>
+                <button
+                  className={`settings-option-button ${uiTheme === 'light' ? 'active' : ''}`}
+                  onClick={() => setUITheme('light')}
+                >
+                  Light
+                </button>
               </div>
             </div>
             <div className="settings-option">
@@ -642,7 +677,9 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
           {/* Section Navigation Sidebar */}
           {paper && (
             <div className="section-navigation-sidebar">
-              <div className="section-navigation-title">Sections</div>
+              <div className="section-navigation-title" style={themeStyles.sectionTitle}>
+                Sections
+              </div>
               <ul className="section-navigation-list">
                 {paper.sections.map(section => (
                   <li
@@ -656,7 +693,7 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
                         background: 'none',
                         border: 'none',
                         padding: '0.5rem 1rem',
-                        color: '#e2e8f0',
+                        color: uiTheme === 'light' ? '#333333' : '#f0e6d8',
                         textDecoration: 'none',
                         fontSize: '0.9rem',
                         transition: 'background-color 0.2s',
@@ -679,10 +716,18 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
             <div className="content" data-theme={contentTheme}>
               {/* Sticky Headers */}
               <div className="sticky-header">
-                <div className="sticky-part-title" id="sticky-part-title">
+                <div
+                  className="sticky-part-title"
+                  id="sticky-part-title"
+                  style={themeStyles.sectionTitle}
+                >
                   {currentSection.part}
                 </div>
-                <div className="sticky-paper-title" id="sticky-paper-title">
+                <div
+                  className="sticky-paper-title"
+                  id="sticky-paper-title"
+                  style={themeStyles.sectionTitle}
+                >
                   {currentSection.paper}
                 </div>
               </div>
@@ -691,6 +736,7 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
               <div
                 className={`sticky-section-title ${activeSection ? 'active' : ''}`}
                 id="sticky-section-title"
+                style={themeStyles.sectionTitle}
               >
                 {currentSection.section}
               </div>
@@ -702,11 +748,7 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
                     <h2 className="paper-title">
                       PAPER {paper.number}. {paper.title.toUpperCase()}
                     </h2>
-                    {paper.author && (
-                      <div className="paper-author">
-                        <em>Presented by {paper.author}</em>
-                      </div>
-                    )}
+                    {/* Attribution text removed as per design spec */}
 
                     {/* Introduction paragraph (if available) */}
                     {paper.sections[0]?.paragraphs[0] && (

@@ -5,16 +5,22 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: var(--bg-color, #1a1a1a);
-  border-top: 1px solid var(--border-color, #333);
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  box-shadow: 0 -4px 10px rgb(0 0 0 / 20%);
-  transition: transform 0.3s ease-in-out;
-  z-index: 1000;
+  background-color: var(--pullup-bg-color);
+  border-top: 1px solid var(--pullup-border-color);
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+  transition:
+    transform var(--transition-normal),
+    width var(--transition-normal),
+    height var(--transition-normal);
+  z-index: var(--z-index-fixed);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  max-width: 800px; /* Match reading area width constraint */
+  margin: 0 auto; /* Center the pullup panel */
+  width: 100%;
 }
 
 .pullup-panel-open {
@@ -24,7 +30,7 @@
 .pullup-panel-persistent {
   box-shadow: none;
   border-top: none;
-  border-left: 1px solid var(--border-color, #333);
+  border-left: 1px solid var(--pullup-border-color);
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   position: fixed;
@@ -39,6 +45,11 @@
   transition: none;
 }
 
+/* Add a peek state for better discoverability */
+.pullup-panel-peeking {
+  transform: translateY(calc(100% - 40px)) !important;
+}
+
 .pullup-panel-handle {
   width: 100%;
   height: 24px;
@@ -47,7 +58,7 @@
   align-items: center;
   cursor: ns-resize;
   user-select: none;
-  padding: 4px 0;
+  padding: var(--spacing-xs) 0;
 }
 
 .pullup-panel-persistent .pullup-panel-handle {
@@ -57,19 +68,19 @@
 .pullup-panel-handle-icon {
   width: 40px;
   height: 4px;
-  background-color: var(--handle-color, #666);
-  border-radius: 4px;
+  background-color: var(--pullup-handle-color);
+  border-radius: var(--radius-sm);
 }
 
 .pullup-panel-close {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background-color: var(--close-bg-color, #333);
-  color: var(--close-color, #fff);
+  background-color: var(--pullup-close-bg-color);
+  color: var(--pullup-close-color);
   border: none;
   display: flex;
   justify-content: center;
@@ -77,36 +88,50 @@
   font-size: 20px;
   cursor: pointer;
   z-index: 1;
+  transition: background-color var(--transition-fast);
 }
 
 .pullup-panel-close:hover {
-  background-color: var(--close-hover-bg-color, #444);
+  background-color: var(--pullup-close-hover-bg-color);
 }
 
 .pullup-panel-content {
   flex: 1;
   overflow-y: auto;
   padding: 0;
-}
+  color: var(--color-text-primary);
 
-/* Dark theme variables */
-:root {
-  --bg-color: #1a1a1a;
-  --border-color: #333;
-  --handle-color: #666;
-  --close-bg-color: #333;
-  --close-color: #fff;
-  --close-hover-bg-color: #444;
-}
+  /* Styles for the tabs area */
+  .pullup-panel-tabs {
+    position: absolute; /* Keep tabs positioned at the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 48px; /* Adjust based on actual tab height */
+    background-color: var(--color-bg-secondary);
+    border-bottom: 1px solid var(--color-border);
+    z-index: 2; /* Ensure tabs are above content */
+    /* Make tabs visible even when panel is peeking */
+    transform: translateY(0) !important;
+  }
 
-/* Light theme variables */
-.light-theme {
-  --bg-color: #f5f5f5;
-  --border-color: #ddd;
-  --handle-color: #aaa;
-  --close-bg-color: #e0e0e0;
-  --close-color: #333;
-  --close-hover-bg-color: #d0d0d0;
+  /* Adjust content padding when tabs are separate */
+  .pullup-panel-content {
+    padding-top: 58px; /* Add padding to account for tabs height + margin */
+    /* Ensure content scrolls correctly */
+    overflow-y: auto;
+    height: calc(100% - 48px); /* Adjust based on actual tab height */
+  }
+
+  /* Override transform for tabs when peeking */
+  .pullup-panel-peeking .pullup-panel-tabs {
+    transform: translateY(0) !important;
+  }
+
+  /* Hide handle when peeking, show tabs instead */
+  .pullup-panel-peeking .pullup-panel-handle {
+    display: none;
+  }
 }
 
 /* Media query for persistent mode */
@@ -119,9 +144,10 @@
     right: 0;
     height: auto !important;
     border-left: none;
-    border-top: 1px solid var(--border-color, #333);
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+    border-top: 1px solid var(--pullup-border-color);
+    border-top-left-radius: var(--radius-lg);
+    border-top-right-radius: var(--radius-lg);
+    transition: transform var(--transition-normal);
   }
 
   .pullup-panel-persistent .pullup-panel-handle {
