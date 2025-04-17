@@ -33,7 +33,7 @@ export default function HomePage() {
           <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
             Reader Options
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Link
               href="/traditional-reader/0"
               className="block p-4 bg-purple-100 dark:bg-purple-900 rounded-lg hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors"
@@ -43,19 +43,6 @@ export default function HomePage() {
               </h3>
               <p className="text-sm text-gray-700 dark:text-gray-300">
                 View the foreword in traditional format.
-              </p>
-            </Link>
-            <Link
-              href="https://ub-reader-2-p43e1ztxo-ub-modern.vercel.app/traditional-reader/0"
-              className="block p-4 bg-indigo-100 dark:bg-indigo-900 rounded-lg hover:bg-indigo-200 dark:hover:bg-indigo-800 transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <h3 className="font-bold text-indigo-800 dark:text-indigo-300 mb-2">
-                Advanced Traditional Reader
-              </h3>
-              <p className="text-sm text-gray-700 dark:text-gray-300">
-                Try the advanced traditional reader on Vercel.
               </p>
             </Link>
             <Link
