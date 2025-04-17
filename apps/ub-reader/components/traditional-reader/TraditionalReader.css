@@ -414,8 +414,8 @@ body {
   display: inline-block;
   min-width: 2rem;
   margin-right: 0.5rem;
-  color: #90f49d; /* Updated color as requested */
-  font-size: 0.75rem;
+  color: rgba(144, 244, 157, 0.6); /* Dimmer color with opacity */
+  font-size: 0.65rem; /* Smaller font size */
   text-align: right;
   user-select: none;
 }

@@ -746,7 +746,7 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
                 <>
                   <div className="paper-introduction">
                     <h2 className="paper-title">
-                      PAPER {paper.number}. {paper.title.toUpperCase()}
+                      {/* Paper title will be handled in the JSON in production */}
                     </h2>
                     {/* Attribution text removed as per design spec */}
 
@@ -766,7 +766,7 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
                       className="section-content"
                       id={`section${section.number}`}
                     >
-                      <h3 className="section-title">
+                      <h3 className="section-title" id={`section${section.number}`}>
                         {section.number}. {section.title.toUpperCase()}
                       </h3>
 
