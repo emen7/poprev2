@@ -752,7 +752,7 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
           <div className="reading-area" id="reading-area" ref={readingAreaRef}>
             <div className="content" data-theme={contentTheme}>
               {/* Sticky Headers */}
-              <div className="sticky-header">
+              <div className={`sticky-header ${activeSection ? 'section-active' : ''}`}>
                 <div
                   className="sticky-part-title"
                   id="sticky-part-title"

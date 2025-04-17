@@ -484,6 +484,12 @@ body {
   max-width: 800px; /* Match reading area width */
   margin: 0 auto; /* Center the container itself */
   padding-left: 1.5rem; /* Add some padding on the left */
+  transition: transform 0.3s ease;
+}
+
+/* When a section is active, transform the sticky header to show only the paper title */
+.sticky-header.section-active {
+  transform: translateY(-25px); /* Move up to hide the part title */
 }
 
 .sticky-part-title {
@@ -492,8 +498,14 @@ body {
   color: var(--title-color);
   text-align: left; /* Left-aligned text */
   margin-bottom: 0.25rem;
-  /* Ensure part title is always visible */
+  /* Ensure part title is always visible by default */
   display: block !important;
+  transition: opacity 0.3s ease;
+}
+
+/* Hide part title when a section is active */
+.sticky-header.section-active .sticky-part-title {
+  opacity: 0;
 }
 
 .sticky-paper-title {
@@ -502,6 +514,14 @@ body {
   text-align: left; /* Left-aligned text */
   color: var(--title-color);
   margin-bottom: 0.5rem;
+  transition:
+    transform 0.3s ease,
+    margin-top 0.3s ease;
+}
+
+/* Adjust paper title position when a section is active */
+.sticky-header.section-active .sticky-paper-title {
+  margin-top: -10px; /* Move up to compensate for the hidden part title */
 }
 
 /* Sticky section title - Updated to fix flickering issue */
@@ -526,18 +546,30 @@ body {
   visibility: hidden;
   transition:
     opacity 0.2s,
-    visibility 0.2s;
+    visibility 0.2s,
+    top 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow for better visibility */
+}
+
+/* When active, position it right below the paper title */
+.sticky-section-title.active {
+  top: 85px; /* Position it right below the paper title when active */
 }
 
 /* Show the sticky section title when a section is active */
 .sticky-section-title.active {
   opacity: 1;
   visibility: visible;
+  top: 82px; /* Position it right below the paper title when active */
   background-color: rgba(
     var(--bg-color-rgb, 255, 255, 255),
     0.95
   ); /* Semi-transparent background */
+}
+
+/* Adjust position when the sticky header is in section-active state */
+.sticky-header.section-active + .sticky-section-title.active {
+  top: 72px; /* Adjust position when part title is hidden */
 }
 
 /* Navigation menu styles */
