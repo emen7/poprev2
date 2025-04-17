@@ -804,7 +804,7 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
                       id={`section-container-${section.number}`}
                     >
                       <h3 className="section-title" id={`section-title-${section.number}`}>
-                        {section.number}. {section.title.toUpperCase()}
+                        {section.number}. {section.title}
                       </h3>
 
                       {/* Add section divider for visual separation */}
