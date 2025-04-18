@@ -316,6 +316,40 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
     router.push('/contents');
   };
 
+  // Create sticky section title element on mount
+  useEffect(() => {
+    if (!readingAreaRef.current) return;
+
+    // Create the sticky section title element if it doesn't exist
+    let stickySection = document.getElementById('sticky-section-title');
+    if (!stickySection) {
+      console.log('Creating initial sticky section title element');
+      const readingArea = document.querySelector('.reading-area');
+      if (readingArea) {
+        stickySection = document.createElement('div');
+        stickySection.id = 'sticky-section-title';
+        stickySection.style.position = 'fixed';
+        stickySection.style.top = '105px';
+        stickySection.style.left = '0';
+        stickySection.style.right = '0';
+        stickySection.style.zIndex = '25';
+        stickySection.style.backgroundColor = uiTheme === 'light' ? '#ffffff' : '#1a1a1a';
+        stickySection.style.borderBottom = '2px solid var(--border-color)';
+        stickySection.style.padding = '0.6rem 1.5rem';
+        stickySection.style.width = '100%';
+        stickySection.style.maxWidth = '800px';
+        stickySection.style.margin = '0 auto';
+        stickySection.style.boxShadow = '0 3px 5px rgba(0, 0, 0, 0.2)';
+        stickySection.style.color = uiTheme === 'light' ? '#2c5282' : '#91a7f9';
+        stickySection.style.fontWeight = '700';
+        stickySection.style.fontSize = '1.1rem';
+        stickySection.style.display = 'none'; // Initially hidden
+        stickySection.textContent = 'Current Section';
+        readingArea.appendChild(stickySection);
+      }
+    }
+  }, [readingAreaRef, uiTheme]);
+
   // Set up intersection observer for section titles
   useEffect(() => {
     if (!readingAreaRef.current) return;
@@ -323,137 +357,85 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
     // Options for the observer
     const options = {
       root: null, // Use the viewport
-      rootMargin: '-140px 0px -80% 0px', // More conservative margin to prevent premature section changes
-      threshold: [0, 0.25, 0.5], // Higher threshold for more accurate detection
+      rootMargin: '-120px 0px -70% 0px', // Adjusted margins for better detection
+      threshold: [0, 0.1, 0.5], // Lower threshold for earlier detection
     };
+
+    // Function to update the sticky section title
+    const updateStickyTitle = (sectionId: string | null, sectionText: string) => {
+      const stickySection = document.getElementById('sticky-section-title');
+      if (sectionId && sectionText) {
+        if (stickySection) {
+          stickySection.style.display = 'block';
+          stickySection.textContent = sectionText;
+          console.log('Updated sticky title to:', sectionText);
+        }
+      } else {
+        if (stickySection) {
+          stickySection.style.display = 'none';
+        }
+      }
+    };
+
+    // Get all section titles for reference
+    const allSectionTitles = Array.from(document.querySelectorAll('h3.section-title'));
 
     // Callback for the observer
     const callback = (entries: IntersectionObserverEntry[]) => {
-      // Sort entries by their position in the viewport (top to bottom)
-      const sortedEntries = [...entries].sort(
-        (a, b) => a.boundingClientRect.top - b.boundingClientRect.top
+      // First, handle entries that are leaving the viewport
+      const leavingEntries = entries.filter(
+        entry => !entry.isIntersecting && entry.boundingClientRect.top < 0
       );
 
-      // Find the first entry that is intersecting with sufficient ratio
-      // Using a higher threshold (0.25) to ensure the section is more visible before activating
-      const activeEntry = sortedEntries.find(
-        entry => entry.isIntersecting && entry.intersectionRatio > 0.25
-      );
+      if (leavingEntries.length > 0) {
+        // Sort by position (closest to viewport top first)
+        leavingEntries.sort(
+          (a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top)
+        );
+        const closestLeavingEntry = leavingEntries[0];
 
-      // Process each entry for leaving viewport detection
-      entries.forEach(entry => {
-        const sectionId = entry.target.id;
+        // Find the next section that should be active
+        const leavingSectionId = closestLeavingEntry.target.id;
+        const leavingIndex = allSectionTitles.findIndex(section => section.id === leavingSectionId);
 
-        if (
-          activeSection === sectionId &&
-          entry.boundingClientRect.top > 0 &&
-          !entry.isIntersecting
-        ) {
-          // Section is leaving the viewport by scrolling up
-          // Find the previous section
-          const sections = Array.from(document.querySelectorAll('.section-title'));
-          const currentIndex = sections.findIndex(section => section.id === sectionId);
-
-          if (currentIndex > 0) {
-            const prevSection = sections[currentIndex - 1];
-            setActiveSection(prevSection.id);
-            // Use the full text content for consistency
-            setCurrentSection(prev => ({
-              ...prev,
-              section: prevSection.textContent || '',
-            }));
-          } else {
-            // If there's no previous section, we're at the top
-            console.log('Clearing active section - at the top');
-            setActiveSection(null);
-            setCurrentSection(prev => ({
-              ...prev,
-              section: '',
-            }));
-          }
+        if (leavingIndex > 0) {
+          // There's a previous section, make it active
+          const nextActiveSection = allSectionTitles[leavingIndex - 1];
+          setActiveSection(nextActiveSection.id);
+          const sectionText = nextActiveSection.textContent || '';
+          setCurrentSection(prev => ({ ...prev, section: sectionText }));
+          updateStickyTitle(nextActiveSection.id, sectionText);
         }
-      });
+      }
 
-      // Update active section if we found one
-      if (activeEntry) {
-        const sectionId = activeEntry.target.id;
+      // Then handle entries that are entering the viewport
+      const visibleEntries = entries.filter(
+        entry => entry.isIntersecting && entry.intersectionRatio > 0.1
+      );
 
-        // Add console logging for debugging
-        console.log('Active intersection entry:', {
-          id: sectionId,
-          isIntersecting: activeEntry.isIntersecting,
-          ratio: activeEntry.intersectionRatio,
-          boundingRect: activeEntry.boundingClientRect,
-        });
+      if (visibleEntries.length > 0) {
+        // Sort by position (top to bottom)
+        visibleEntries.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        const topVisibleEntry = visibleEntries[0];
 
+        const sectionId = topVisibleEntry.target.id;
         // Only update if this is a different section than the current active one
         if (sectionId !== activeSection) {
           console.log('Setting active section:', sectionId);
-          console.log('Previous active section:', activeSection);
-
-          // Log the sticky section title element state
-          const stickySection = document.getElementById('sticky-section-title');
-          console.log('Sticky section title element:', stickySection);
-          if (stickySection) {
-            console.log('Sticky section visibility:', {
-              display: stickySection.style.display,
-              opacity: stickySection.style.opacity,
-              visibility: stickySection.style.visibility,
-              classList: stickySection.className,
-            });
-          }
-
           setActiveSection(sectionId);
 
           // Update current section title
-          const fullText = activeEntry.target.textContent || '';
-          console.log('Setting section title:', fullText);
-          setCurrentSection(prev => ({
-            ...prev,
-            section: fullText,
-          }));
-
-          // Force the section title to be visible
-          setTimeout(() => {
-            // Force create a new section title element if it doesn't exist
-            let stickySection = document.getElementById('sticky-section-title');
-            if (!stickySection) {
-              console.log('Creating new sticky section title element');
-              const readingArea = document.querySelector('.reading-area');
-              if (readingArea) {
-                stickySection = document.createElement('div');
-                stickySection.id = 'sticky-section-title';
-                stickySection.style.position = 'fixed';
-                stickySection.style.top = '105px';
-                stickySection.style.left = '0';
-                stickySection.style.right = '0';
-                stickySection.style.zIndex = '25';
-                stickySection.style.backgroundColor = uiTheme === 'light' ? '#ffffff' : '#1a1a1a';
-                stickySection.style.borderBottom = '2px solid var(--border-color)';
-                stickySection.style.padding = '0.6rem 1.5rem';
-                stickySection.style.width = '100%';
-                stickySection.style.maxWidth = '800px';
-                stickySection.style.margin = '0 auto';
-                stickySection.style.boxShadow = '0 3px 5px rgba(0, 0, 0, 0.2)';
-                stickySection.style.color = uiTheme === 'light' ? '#2c5282' : '#91a7f9';
-                stickySection.style.fontWeight = '700';
-                stickySection.style.fontSize = '1.1rem';
-                stickySection.style.display = 'block';
-                stickySection.textContent = fullText;
-                readingArea.appendChild(stickySection);
-              }
-            } else {
-              // Update existing section title
-              stickySection.style.display = 'block';
-              stickySection.textContent = fullText;
-            }
-
-            console.log('After update - Sticky section visibility:', {
-              display: stickySection?.style.display,
-              text: stickySection?.textContent,
-            });
-          }, 100);
+          const fullText = topVisibleEntry.target.textContent || '';
+          setCurrentSection(prev => ({ ...prev, section: fullText }));
+          updateStickyTitle(sectionId, fullText);
         }
+      }
+
+      // If no sections are visible and we're at the top, clear the active section
+      if (visibleEntries.length === 0 && window.scrollY < 100) {
+        setActiveSection(null);
+        setCurrentSection(prev => ({ ...prev, section: '' }));
+        updateStickyTitle(null, '');
       }
     };
 
@@ -461,18 +443,16 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
     const observer = new IntersectionObserver(callback, options);
 
     // Observe all section titles
-    const sectionTitles = document.querySelectorAll('h3.section-title');
-    sectionTitles.forEach(title => {
+    allSectionTitles.forEach(title => {
       observer.observe(title);
     });
 
-    // Add console logging for debugging
-    console.log('Observing section titles:', sectionTitles.length);
+    console.log('Observing section titles:', allSectionTitles.length);
 
     return () => {
       observer.disconnect();
     };
-  }, [activeSection, paper]);
+  }, [activeSection, paper, uiTheme]);
 
   // Set up scroll listener for reading progress
   useEffect(() => {
@@ -1012,37 +992,15 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
                   // Force toggle the sticky section title visibility
                   const stickySection = document.getElementById('sticky-section-title');
                   if (stickySection) {
-                    // Toggle display directly since we're using inline styles
+                    // Simple toggle for debugging
                     if (stickySection.style.display === 'block') {
                       stickySection.style.display = 'none';
                     } else {
                       stickySection.style.display = 'block';
-                    }
-                  } else {
-                    // Create a new section title if it doesn't exist
-                    const readingArea = document.querySelector('.reading-area');
-                    if (readingArea) {
-                      const newStickySection = document.createElement('div');
-                      newStickySection.id = 'sticky-section-title';
-                      newStickySection.style.position = 'fixed';
-                      newStickySection.style.top = '105px';
-                      newStickySection.style.left = '0';
-                      newStickySection.style.right = '0';
-                      newStickySection.style.zIndex = '25';
-                      newStickySection.style.backgroundColor =
-                        uiTheme === 'light' ? '#ffffff' : '#1a1a1a';
-                      newStickySection.style.borderBottom = '2px solid var(--border-color)';
-                      newStickySection.style.padding = '0.6rem 1.5rem';
-                      newStickySection.style.width = '100%';
-                      newStickySection.style.maxWidth = '800px';
-                      newStickySection.style.margin = '0 auto';
-                      newStickySection.style.boxShadow = '0 3px 5px rgba(0, 0, 0, 0.2)';
-                      newStickySection.style.color = uiTheme === 'light' ? '#2c5282' : '#91a7f9';
-                      newStickySection.style.fontWeight = '700';
-                      newStickySection.style.fontSize = '1.1rem';
-                      newStickySection.style.display = 'block';
-                      newStickySection.textContent = currentSection.section || 'Current Section';
-                      readingArea.appendChild(newStickySection);
+                      // Make sure it has content
+                      if (!stickySection.textContent || stickySection.textContent.trim() === '') {
+                        stickySection.textContent = currentSection.section || 'Current Section';
+                      }
                     }
                   }
                 }}
