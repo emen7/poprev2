@@ -413,18 +413,45 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
             section: fullText,
           }));
 
-          // Add a small delay and check if the sticky section title is visible
+          // Force the section title to be visible
           setTimeout(() => {
-            const stickySection = document.getElementById('sticky-section-title');
-            if (stickySection) {
-              console.log('After update - Sticky section visibility:', {
-                display: stickySection.style.display,
-                opacity: stickySection.style.opacity,
-                visibility: stickySection.style.visibility,
-                classList: stickySection.className,
-                computedStyle: window.getComputedStyle(stickySection).display,
-              });
+            // Force create a new section title element if it doesn't exist
+            let stickySection = document.getElementById('sticky-section-title');
+            if (!stickySection) {
+              console.log('Creating new sticky section title element');
+              const readingArea = document.querySelector('.reading-area');
+              if (readingArea) {
+                stickySection = document.createElement('div');
+                stickySection.id = 'sticky-section-title';
+                stickySection.style.position = 'fixed';
+                stickySection.style.top = '105px';
+                stickySection.style.left = '0';
+                stickySection.style.right = '0';
+                stickySection.style.zIndex = '25';
+                stickySection.style.backgroundColor = uiTheme === 'light' ? '#ffffff' : '#1a1a1a';
+                stickySection.style.borderBottom = '2px solid var(--border-color)';
+                stickySection.style.padding = '0.6rem 1.5rem';
+                stickySection.style.width = '100%';
+                stickySection.style.maxWidth = '800px';
+                stickySection.style.margin = '0 auto';
+                stickySection.style.boxShadow = '0 3px 5px rgba(0, 0, 0, 0.2)';
+                stickySection.style.color = uiTheme === 'light' ? '#2c5282' : '#91a7f9';
+                stickySection.style.fontWeight = '700';
+                stickySection.style.fontSize = '1.1rem';
+                stickySection.style.display = 'block';
+                stickySection.textContent = fullText;
+                readingArea.appendChild(stickySection);
+              }
+            } else {
+              // Update existing section title
+              stickySection.style.display = 'block';
+              stickySection.textContent = fullText;
             }
+
+            console.log('After update - Sticky section visibility:', {
+              display: stickySection?.style.display,
+              text: stickySection?.textContent,
+            });
           }, 100);
         }
       }
@@ -795,37 +822,81 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
           <div className="reading-area" id="reading-area" ref={readingAreaRef}>
             <div className="content" data-theme={contentTheme}>
               {/* Sticky Headers */}
-              <div className={`sticky-header ${activeSection ? 'section-active' : ''}`}>
+              <div
+                className={`sticky-header ${activeSection ? 'section-active' : ''}`}
+                style={{
+                  position: 'fixed',
+                  top: '56px',
+                  left: 0,
+                  right: 0,
+                  zIndex: 20,
+                  backgroundColor: uiTheme === 'light' ? '#ffffff' : '#1a1a1a',
+                  padding: '0.4rem 0 0.3rem',
+                  borderBottom: '1px solid var(--border-color)',
+                  width: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
+                  maxWidth: '800px',
+                  margin: '0 auto',
+                  paddingLeft: '1.5rem',
+                }}
+              >
                 <div
                   className="sticky-part-title"
                   id="sticky-part-title"
-                  style={themeStyles.sectionTitle}
+                  style={{
+                    ...themeStyles.sectionTitle,
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
+                    marginBottom: '0.2rem',
+                    display: 'block',
+                  }}
                 >
                   {currentSection.part}
                 </div>
                 <div
                   className="sticky-paper-title"
                   id="sticky-paper-title"
-                  style={themeStyles.sectionTitle}
+                  style={{
+                    ...themeStyles.sectionTitle,
+                    fontSize: '1.1rem',
+                    fontWeight: 600,
+                    marginBottom: '0.3rem',
+                  }}
                 >
                   {currentSection.paper}
                 </div>
               </div>
 
-              {/* Sticky Section Header - Only shown when a section is active */}
-              <div
-                className={`sticky-section-title ${activeSection ? 'active' : ''}`}
-                id="sticky-section-title"
-                data-active={activeSection ? 'true' : 'false'}
-                data-has-content={currentSection.section ? 'true' : 'false'}
-                style={{
-                  ...themeStyles.sectionTitle,
-                  color: uiTheme === 'light' ? '#2c5282' : '#91a7f9',
-                  fontWeight: 700,
-                }}
-              >
-                {currentSection.section || 'Current Section'} {/* Add fallback text */}
-              </div>
+              {/* Sticky Section Header - Always visible when a section is active */}
+              {activeSection && (
+                <div
+                  id="sticky-section-title"
+                  data-active="true"
+                  data-has-content={currentSection.section ? 'true' : 'false'}
+                  style={{
+                    position: 'fixed',
+                    top: '105px',
+                    left: 0,
+                    right: 0,
+                    zIndex: 25,
+                    backgroundColor: uiTheme === 'light' ? '#ffffff' : '#1a1a1a',
+                    borderBottom: '2px solid var(--border-color)',
+                    padding: '0.6rem 1.5rem',
+                    width: '100%',
+                    maxWidth: '800px',
+                    margin: '0 auto',
+                    boxShadow: '0 3px 5px rgba(0, 0, 0, 0.2)',
+                    color: uiTheme === 'light' ? '#2c5282' : '#91a7f9',
+                    fontWeight: 700,
+                    fontSize: '1.1rem',
+                    display: 'block',
+                  }}
+                >
+                  {currentSection.section || 'Current Section'} {/* Add fallback text */}
+                </div>
+              )}
 
               {/* Paper Introduction */}
               {paper && (
@@ -941,11 +1012,37 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
                   // Force toggle the sticky section title visibility
                   const stickySection = document.getElementById('sticky-section-title');
                   if (stickySection) {
-                    // Toggle the active class instead of manipulating styles directly
-                    if (stickySection.classList.contains('active')) {
-                      stickySection.classList.remove('active');
+                    // Toggle display directly since we're using inline styles
+                    if (stickySection.style.display === 'block') {
+                      stickySection.style.display = 'none';
                     } else {
-                      stickySection.classList.add('active');
+                      stickySection.style.display = 'block';
+                    }
+                  } else {
+                    // Create a new section title if it doesn't exist
+                    const readingArea = document.querySelector('.reading-area');
+                    if (readingArea) {
+                      const newStickySection = document.createElement('div');
+                      newStickySection.id = 'sticky-section-title';
+                      newStickySection.style.position = 'fixed';
+                      newStickySection.style.top = '105px';
+                      newStickySection.style.left = '0';
+                      newStickySection.style.right = '0';
+                      newStickySection.style.zIndex = '25';
+                      newStickySection.style.backgroundColor =
+                        uiTheme === 'light' ? '#ffffff' : '#1a1a1a';
+                      newStickySection.style.borderBottom = '2px solid var(--border-color)';
+                      newStickySection.style.padding = '0.6rem 1.5rem';
+                      newStickySection.style.width = '100%';
+                      newStickySection.style.maxWidth = '800px';
+                      newStickySection.style.margin = '0 auto';
+                      newStickySection.style.boxShadow = '0 3px 5px rgba(0, 0, 0, 0.2)';
+                      newStickySection.style.color = uiTheme === 'light' ? '#2c5282' : '#91a7f9';
+                      newStickySection.style.fontWeight = '700';
+                      newStickySection.style.fontSize = '1.1rem';
+                      newStickySection.style.display = 'block';
+                      newStickySection.textContent = currentSection.section || 'Current Section';
+                      readingArea.appendChild(newStickySection);
                     }
                   }
                 }}
