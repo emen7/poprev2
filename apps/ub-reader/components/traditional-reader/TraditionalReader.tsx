@@ -820,11 +820,8 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
                 data-has-content={currentSection.section ? 'true' : 'false'}
                 style={{
                   ...themeStyles.sectionTitle,
-                  display: activeSection ? 'block' : 'none' /* Force display when active */,
                   color: uiTheme === 'light' ? '#2c5282' : '#91a7f9',
                   fontWeight: 700,
-                  opacity: activeSection ? 1 : 0,
-                  visibility: activeSection ? 'visible' : 'hidden',
                 }}
               >
                 {currentSection.section || 'Current Section'} {/* Add fallback text */}
@@ -944,11 +941,12 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
                   // Force toggle the sticky section title visibility
                   const stickySection = document.getElementById('sticky-section-title');
                   if (stickySection) {
-                    stickySection.style.display =
-                      stickySection.style.display === 'block' ? 'none' : 'block';
-                    stickySection.style.opacity = stickySection.style.opacity === '1' ? '0' : '1';
-                    stickySection.style.visibility =
-                      stickySection.style.visibility === 'visible' ? 'hidden' : 'visible';
+                    // Toggle the active class instead of manipulating styles directly
+                    if (stickySection.classList.contains('active')) {
+                      stickySection.classList.remove('active');
+                    } else {
+                      stickySection.classList.add('active');
+                    }
                   }
                 }}
                 style={{
