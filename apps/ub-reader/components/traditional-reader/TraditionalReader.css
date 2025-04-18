@@ -529,7 +529,7 @@ body {
 /* Sticky section title - Updated to fix flickering issue */
 .sticky-section-title {
   position: fixed; /* Changed from sticky to fixed */
-  top: 120px; /* Position below the sticky header with both part and paper titles */
+  top: 105px; /* Position directly below the sticky header with no gap */
   left: 0;
   right: 0;
   padding: 0.5rem 0;

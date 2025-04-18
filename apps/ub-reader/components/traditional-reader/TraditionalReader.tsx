@@ -323,8 +323,8 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
     // Options for the observer
     const options = {
       root: null, // Use the viewport
-      rootMargin: '-120px 0px -70% 0px', // Only consider the top portion of the viewport
-      threshold: [0, 0.1, 0.3, 0.5], // Multiple thresholds for better detection
+      rootMargin: '-140px 0px -80% 0px', // More conservative margin to prevent premature section changes
+      threshold: [0, 0.25, 0.5], // Higher threshold for more accurate detection
     };
 
     // Callback for the observer
@@ -335,8 +335,9 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
       );
 
       // Find the first entry that is intersecting with sufficient ratio
+      // Using a higher threshold (0.25) to ensure the section is more visible before activating
       const activeEntry = sortedEntries.find(
-        entry => entry.isIntersecting && entry.intersectionRatio > 0.1
+        entry => entry.isIntersecting && entry.intersectionRatio > 0.25
       );
 
       // Process each entry for leaving viewport detection
