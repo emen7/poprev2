@@ -389,6 +389,20 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
         // Only update if this is a different section than the current active one
         if (sectionId !== activeSection) {
           console.log('Setting active section:', sectionId);
+          console.log('Previous active section:', activeSection);
+
+          // Log the sticky section title element state
+          const stickySection = document.getElementById('sticky-section-title');
+          console.log('Sticky section title element:', stickySection);
+          if (stickySection) {
+            console.log('Sticky section visibility:', {
+              display: stickySection.style.display,
+              opacity: stickySection.style.opacity,
+              visibility: stickySection.style.visibility,
+              classList: stickySection.className,
+            });
+          }
+
           setActiveSection(sectionId);
 
           // Update current section title
@@ -398,6 +412,20 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
             ...prev,
             section: fullText,
           }));
+
+          // Add a small delay and check if the sticky section title is visible
+          setTimeout(() => {
+            const stickySection = document.getElementById('sticky-section-title');
+            if (stickySection) {
+              console.log('After update - Sticky section visibility:', {
+                display: stickySection.style.display,
+                opacity: stickySection.style.opacity,
+                visibility: stickySection.style.visibility,
+                classList: stickySection.className,
+                computedStyle: window.getComputedStyle(stickySection).display,
+              });
+            }
+          }, 100);
         }
       }
     };
@@ -788,9 +816,18 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
               <div
                 className={`sticky-section-title ${activeSection ? 'active' : ''}`}
                 id="sticky-section-title"
-                style={themeStyles.sectionTitle}
+                data-active={activeSection ? 'true' : 'false'}
+                data-has-content={currentSection.section ? 'true' : 'false'}
+                style={{
+                  ...themeStyles.sectionTitle,
+                  display: activeSection ? 'block' : 'none' /* Force display when active */,
+                  color: uiTheme === 'light' ? '#2c5282' : '#91a7f9',
+                  fontWeight: 700,
+                  opacity: activeSection ? 1 : 0,
+                  visibility: activeSection ? 'visible' : 'hidden',
+                }}
               >
-                {currentSection.section}
+                {currentSection.section || 'Current Section'} {/* Add fallback text */}
               </div>
 
               {/* Paper Introduction */}
@@ -849,7 +886,7 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
         {/* Toast Notification */}
         <div className="toast">Text copied to clipboard!</div>
 
-        {/* Debug Panel */}
+        {/* Debug Panel - Enhanced for better visibility */}
         {debugMode && (
           <div
             className="debug-panel"
@@ -857,35 +894,75 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
               position: 'fixed',
               top: '150px',
               right: '20px',
-              background: 'rgba(0,0,0,0.8)',
+              background: 'rgba(0,0,0,0.9)',
               color: 'white',
-              padding: '10px',
+              padding: '15px',
               zIndex: 1000,
               borderRadius: '5px',
-              maxWidth: '300px',
+              maxWidth: '350px',
               fontFamily: 'monospace',
-              fontSize: '12px',
+              fontSize: '13px',
+              boxShadow: '0 0 10px rgba(0,0,0,0.5)',
             }}
           >
-            <h4 style={{ margin: '0 0 10px 0' }}>Debug Info</h4>
-            <p style={{ margin: '5px 0' }}>Active Section: {activeSection || 'none'}</p>
+            <h4 style={{ margin: '0 0 10px 0', color: '#7fc8f5' }}>Debug Info</h4>
             <p style={{ margin: '5px 0' }}>
-              Current Section Title: {currentSection.section || 'none'}
+              <strong>Active Section:</strong> {activeSection || 'none'}
             </p>
-            <button
-              onClick={() => setDebugMode(false)}
-              style={{
-                background: '#555',
-                border: 'none',
-                color: 'white',
-                padding: '5px 10px',
-                borderRadius: '3px',
-                marginTop: '10px',
-                cursor: 'pointer',
-              }}
-            >
-              Close Debug
-            </button>
+            <p style={{ margin: '5px 0' }}>
+              <strong>Current Section Title:</strong>{' '}
+              <span style={{ color: currentSection.section ? '#90ee90' : '#ff6666' }}>
+                {currentSection.section || 'none'}
+              </span>
+            </p>
+            <p style={{ margin: '5px 0' }}>
+              <strong>Sticky Section Visible:</strong>{' '}
+              <span style={{ color: activeSection ? '#90ee90' : '#ff6666' }}>
+                {activeSection ? 'Yes' : 'No'}
+              </span>
+            </p>
+            <p style={{ margin: '5px 0' }}>
+              <strong>Section Titles Count:</strong>{' '}
+              {document.querySelectorAll('h3.section-title').length}
+            </p>
+            <div style={{ marginTop: '10px', display: 'flex', gap: '10px' }}>
+              <button
+                onClick={() => setDebugMode(false)}
+                style={{
+                  background: '#555',
+                  border: 'none',
+                  color: 'white',
+                  padding: '5px 10px',
+                  borderRadius: '3px',
+                  cursor: 'pointer',
+                }}
+              >
+                Close Debug
+              </button>
+              <button
+                onClick={() => {
+                  // Force toggle the sticky section title visibility
+                  const stickySection = document.getElementById('sticky-section-title');
+                  if (stickySection) {
+                    stickySection.style.display =
+                      stickySection.style.display === 'block' ? 'none' : 'block';
+                    stickySection.style.opacity = stickySection.style.opacity === '1' ? '0' : '1';
+                    stickySection.style.visibility =
+                      stickySection.style.visibility === 'visible' ? 'hidden' : 'visible';
+                  }
+                }}
+                style={{
+                  background: '#2c5282',
+                  border: 'none',
+                  color: 'white',
+                  padding: '5px 10px',
+                  borderRadius: '3px',
+                  cursor: 'pointer',
+                }}
+              >
+                Toggle Section Title
+              </button>
+            </div>
           </div>
         )}
 
