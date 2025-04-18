@@ -329,32 +329,21 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
 
     // Callback for the observer
     const callback = (entries: IntersectionObserverEntry[]) => {
+      // Sort entries by their position in the viewport (top to bottom)
+      const sortedEntries = [...entries].sort(
+        (a, b) => a.boundingClientRect.top - b.boundingClientRect.top
+      );
+
+      // Find the first entry that is intersecting with sufficient ratio
+      const activeEntry = sortedEntries.find(
+        entry => entry.isIntersecting && entry.intersectionRatio > 0.1
+      );
+
+      // Process each entry for leaving viewport detection
       entries.forEach(entry => {
         const sectionId = entry.target.id;
 
-        // Add console logging for debugging
-        console.log('Intersection entry:', {
-          id: sectionId,
-          isIntersecting: entry.isIntersecting,
-          ratio: entry.intersectionRatio,
-          boundingRect: entry.boundingClientRect,
-        });
-
-        if (entry.isIntersecting && entry.intersectionRatio > 0.1) {
-          // Section is entering the viewport
-          console.log('Setting active section:', sectionId);
-          setActiveSection(sectionId);
-
-          // Update current section title
-          const fullText = entry.target.textContent || '';
-          // Keep the section number with the title
-          // This ensures consistency with the section titles in the document
-          console.log('Setting section title:', fullText);
-          setCurrentSection(prev => ({
-            ...prev,
-            section: fullText,
-          }));
-        } else if (
+        if (
           activeSection === sectionId &&
           entry.boundingClientRect.top > 0 &&
           !entry.isIntersecting
@@ -383,6 +372,33 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
           }
         }
       });
+
+      // Update active section if we found one
+      if (activeEntry) {
+        const sectionId = activeEntry.target.id;
+
+        // Add console logging for debugging
+        console.log('Active intersection entry:', {
+          id: sectionId,
+          isIntersecting: activeEntry.isIntersecting,
+          ratio: activeEntry.intersectionRatio,
+          boundingRect: activeEntry.boundingClientRect,
+        });
+
+        // Only update if this is a different section than the current active one
+        if (sectionId !== activeSection) {
+          console.log('Setting active section:', sectionId);
+          setActiveSection(sectionId);
+
+          // Update current section title
+          const fullText = activeEntry.target.textContent || '';
+          console.log('Setting section title:', fullText);
+          setCurrentSection(prev => ({
+            ...prev,
+            section: fullText,
+          }));
+        }
+      }
     };
 
     // Create observer
