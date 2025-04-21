@@ -27,36 +27,44 @@ pie title UB Reader Implementation Progress
 - [x] Add VS Code setting for file save conflict resolution
 - [x] Create plan for page structure redesign
 
-### 🔄 In Progress
+### 🔄 In Progress (HTML Phase)
 
-- [ ] Create HTML/CSS prototype for new page structure
-- [ ] Implement optimal reading width constraints (650-700px)
-- [ ] Develop text-only pullup component with adjustable height
+- [x] Create HTML/CSS prototype for new page structure (paper-1-alpha.html)
+- [x] Implement optimal reading width constraints (650-700px)
+- [x] Develop text-only pullup component with adjustable height
+- [ ] Refine paragraph numbering (positioning, styling, alignment)
+- [ ] Improve pullup drag behavior (responsiveness, visual feedback)
+- [ ] Enhance reading area layout (typography, spacing)
+- [ ] Create basic settings UI mockups (theme toggles, font controls)
 - [ ] Test prototype across environments (localhost and Vercel)
-- [ ] Address positioning inconsistencies between environments
 
-### 📅 Upcoming Tasks
+### 📅 Upcoming Tasks (React Phase)
 
-- [ ] Convert HTML/CSS prototype to React components
+- [ ] Create core React component structure
+- [ ] Convert essential layout elements to React components
+- [ ] Implement advanced features directly in React:
+  - [ ] Settings functionality (theme persistence, font customization)
+  - [ ] Content management (dynamic loading, pagination)
+  - [ ] Pullup advanced features (state persistence, notes integration)
 - [ ] Implement state management for interactive elements
 - [ ] Integrate with existing content system
 - [ ] Test with full paper content
 - [ ] Optimize for deployment
-- [ ] Implement comprehensive error handling
-- [ ] Add detailed component documentation
 
 ### Dependencies and Blockers
 
 - **Dependencies**:
 
-  - Clean HTML/CSS prototype needed before React implementation
+  - HTML refinements needed before React implementation
+  - Paragraph numbering and pullup behavior must be validated in HTML first
+  - Clean component hierarchy needed for React conversion
   - Consistent positioning approach needed for cross-environment compatibility
-  - Proper width constraints needed for optimal reading experience
 
 - **Potential Blockers**:
   - Positioning inconsistencies between localhost and Vercel
-  - Complex div nesting causing layout bugs
-  - Responsive design challenges across devices
+  - Complex interactions in pullup behavior across devices
+  - Responsive design challenges with paragraph numbering
+  - Performance considerations with full paper content
 
 ## Next Sprint: Component Performance Optimization
 

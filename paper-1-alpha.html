@@ -31,6 +31,21 @@
       --base-font-size: 16px;
       --heading-font-size: 1.5rem;
       --subheading-font-size: 1.25rem;
+      --content-line-height: 1.7;
+      --title-font-weight: 600;
+    }
+
+    /* Utility class for preventing selection */
+    .no-select {
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+
+    /* Cursor class for pullup dragging */
+    body.pullup-dragging {
+      cursor: ns-resize !important;
     }
 
     /* Reset and base styles */
@@ -129,49 +144,74 @@
 
     /* Reading Area */
     .reading-area {
-      padding-top: calc(var(--title-bar-height) + var(--paper-bar-height));
-      padding-bottom: calc(var(--pullup-closed-height) + 20px);
+      padding-top: calc(var(--title-bar-height) + var(--paper-bar-height) + 0.5rem);
+      padding-bottom: calc(var(--pullup-closed-height) + 2rem);
       width: 100%;
       max-width: var(--reading-max-width);
       margin: 0 auto;
       padding-left: var(--content-padding);
       padding-right: var(--content-padding);
+      color: var(--text-color);
+      font-size: var(--base-font-size);
+      line-height: var(--content-line-height);
     }
 
     .paper-content {
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
     }
 
     .paper-title {
-      font-size: 2rem;
+      font-size: 2.25rem;
+      font-weight: var(--title-font-weight);
       margin-bottom: 1rem;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      /* Slight negative tracking for headings */
     }
 
     .paper-author {
       font-style: italic;
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
       color: #aaa;
+      line-height: 1.5;
+      font-size: 0.95rem;
     }
 
     .section-title {
-      font-size: 1.5rem;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
+      font-size: 1.6rem;
+      font-weight: var(--title-font-weight);
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
     }
 
     .paragraph {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       position: relative;
-      padding-left: 30px;
+      padding-left: 45px;
+      line-height: 1.6;
+    }
+
+    .paragraph-text {
+      text-align: justify;
     }
 
     .paragraph-number {
       position: absolute;
       left: 0;
-      top: 0;
-      color: #666;
-      font-size: 0.8rem;
+      top: 0.25rem;
+      color: #777;
+      font-size: 0.75rem;
+      font-family: var(--font-family);
+      width: 40px;
+      text-align: right;
+      padding-right: 5px;
+      user-select: none;
+      /* Prevent paragraph number selection */
+      line-height: 1.4;
+      font-variant-numeric: tabular-nums;
+      /* For better alignment of numbers */
     }
 
     /* Pullup Footer */
@@ -209,6 +249,7 @@
       /* Hidden in closed state */
       position: relative;
       z-index: 10;
+      transition: background-color 0.2s ease;
     }
 
     .pullup-footer.expanded .pullup-handle {
@@ -216,12 +257,25 @@
       /* Shown in expanded state */
     }
 
+    .pullup-handle:hover,
+    .pullup-handle.dragging {
+      background-color: #555;
+    }
+
+    .pullup-handle:active {
+      background-color: #666;
+    }
+
     .pullup-handle-text {
       position: absolute;
       font-size: 0.7rem;
-      color: #999;
+      color: #aaa;
       text-transform: uppercase;
       letter-spacing: 1px;
+      pointer-events: none;
+      /* Make text not interfere with drag */
+      user-select: none;
+      /* Prevent text selection */
     }
 
     .pullup-handle-bar {
@@ -230,6 +284,15 @@
       background-color: var(--pullup-handle-color);
       border-radius: 3px;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      transition: width 0.2s ease, background-color 0.2s ease;
+      pointer-events: none;
+      /* Make handle bar not interfere with drag */
+    }
+
+    .pullup-handle:hover .pullup-handle-bar,
+    .pullup-handle.dragging .pullup-handle-bar {
+      width: 80px;
+      background-color: var(--accent-color);
     }
 
     .pullup-tabs {
@@ -282,6 +345,162 @@
       display: block;
     }
 
+    /* Settings UI Styles */
+    .settings-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .settings-section h4 {
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+      color: #ccc;
+    }
+
+    .settings-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* Theme options */
+    .theme-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+
+    .theme-option:hover {
+      opacity: 1;
+    }
+
+    .theme-option-selected {
+      opacity: 1;
+    }
+
+    .theme-option-selected::after {
+      content: '✓';
+      position: absolute;
+      color: var(--accent-color);
+      font-weight: bold;
+      margin-top: -1.5rem;
+    }
+
+    .theme-preview {
+      width: 50px;
+      height: 30px;
+      border-radius: 4px;
+      border: 1px solid #444;
+    }
+
+    .dark-theme {
+      background-color: #1a1a1a;
+    }
+
+    .light-theme {
+      background-color: #f5f5f5;
+    }
+
+    .sepia-theme {
+      background-color: #f4ecd8;
+    }
+
+    /* Font size controls */
+    .font-size-btn {
+      background: none;
+      border: 1px solid #444;
+      color: var(--text-color);
+      width: 30px;
+      height: 30px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .font-size-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .font-size-slider {
+      flex: 1;
+      height: 30px;
+      display: flex;
+      align-items: center;
+    }
+
+    .slider-track {
+      width: 100%;
+      height: 4px;
+      background-color: #444;
+      position: relative;
+      border-radius: 2px;
+    }
+
+    .slider-fill {
+      position: absolute;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      background-color: var(--accent-color);
+      border-radius: 2px;
+    }
+
+    .slider-handle {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 16px;
+      background-color: var(--accent-color);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .slider-handle:hover {
+      transform: translateX(-50%) scale(1.1);
+    }
+
+    /* Alignment buttons */
+    .alignment-buttons,
+    .spacing-buttons {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .alignment-btn,
+    .spacing-btn {
+      background: none;
+      border: 1px solid #444;
+      color: var(--text-color);
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .alignment-btn:hover,
+    .spacing-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .alignment-selected,
+    .spacing-selected {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+      background-color: rgba(0, 136, 255, 0.1);
+    }
+
+    .alignment-icon {
+      display: inline-block;
+      font-size: 0.7rem;
+      line-height: 1.2;
+      text-align: left;
+    }
+
     /* Media queries for responsive design */
     @media (max-width: 768px) {
       :root {
@@ -295,6 +514,19 @@
 
       .paper-bar-title {
         font-size: 1rem;
+      }
+
+      .settings-controls {
+        flex-wrap: wrap;
+      }
+
+      .theme-option {
+        font-size: 0.8rem;
+      }
+
+      .theme-preview {
+        width: 40px;
+        height: 25px;
       }
     }
   </style>
@@ -437,7 +669,63 @@
         </div>
         <div class="tab-panel" id="settingsPanel">
           <h3>Settings</h3>
-          <p>Reading settings will appear here.</p>
+
+          <!-- Theme Selection -->
+          <div class="settings-section">
+            <h4>Theme</h4>
+            <div class="settings-controls">
+              <div class="theme-option theme-option-selected" data-theme="dark">
+                <div class="theme-preview dark-theme"></div>
+                <span>Dark</span>
+              </div>
+              <div class="theme-option" data-theme="light">
+                <div class="theme-preview light-theme"></div>
+                <span>Light</span>
+              </div>
+              <div class="theme-option" data-theme="sepia">
+                <div class="theme-preview sepia-theme"></div>
+                <span>Sepia</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Font Size -->
+          <div class="settings-section">
+            <h4>Font Size</h4>
+            <div class="settings-controls">
+              <button class="font-size-btn" data-size="small">A-</button>
+              <div class="font-size-slider">
+                <div class="slider-track">
+                  <div class="slider-fill"></div>
+                  <div class="slider-handle" tabindex="0"></div>
+                </div>
+              </div>
+              <button class="font-size-btn" data-size="large">A+</button>
+            </div>
+          </div>
+
+          <!-- Text Alignment -->
+          <div class="settings-section">
+            <h4>Text Alignment</h4>
+            <div class="settings-controls alignment-buttons">
+              <button class="alignment-btn" data-align="left">
+                <span class="alignment-icon">≡≡<br>≡≡≡<br>≡≡</span>
+              </button>
+              <button class="alignment-btn alignment-selected" data-align="justify">
+                <span class="alignment-icon">≡≡≡<br>≡≡≡<br>≡≡≡</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Line Spacing -->
+          <div class="settings-section">
+            <h4>Line Spacing</h4>
+            <div class="settings-controls spacing-buttons">
+              <button class="spacing-btn" data-spacing="narrow">Narrow</button>
+              <button class="spacing-btn spacing-selected" data-spacing="normal">Normal</button>
+              <button class="spacing-btn" data-spacing="wide">Wide</button>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
@@ -529,16 +817,24 @@
 
     // Handle drag functionality for resizing pullup
     let startY, startHeight;
+    let isDragging = false;
 
     pullupHandle.addEventListener('mousedown', function (e) {
       e.preventDefault(); // Prevent text selection during drag
       startY = e.clientY;
       startHeight = parseInt(document.defaultView.getComputedStyle(pullupFooter).height, 10);
+      isDragging = true;
+      pullupHandle.classList.add('dragging');
       document.documentElement.addEventListener('mousemove', doDrag, false);
       document.documentElement.addEventListener('mouseup', stopDrag, false);
+
+      // Add class to body to indicate dragging state (useful for cursor changes)
+      document.body.classList.add('pullup-dragging');
     });
 
     function doDrag(e) {
+      if (!isDragging) return;
+
       // Calculate new height (dragging up increases height, down decreases)
       let newHeight = startHeight - (e.clientY - startY);
 
@@ -546,12 +842,21 @@
       newHeight = Math.max(100, newHeight); // Minimum height
       newHeight = Math.min(window.innerHeight * 0.8, newHeight); // Maximum height (80% of viewport)
 
+      // Apply with smooth transition only for small movements
       pullupFooter.style.height = newHeight + 'px';
+
+      // Update active panel content area to show it extends
+      updateActivePanelHeight();
     }
 
     function stopDrag() {
+      isDragging = false;
+      pullupHandle.classList.remove('dragging');
       document.documentElement.removeEventListener('mousemove', doDrag, false);
       document.documentElement.removeEventListener('mouseup', stopDrag, false);
+
+      // Remove dragging class from body
+      document.body.classList.remove('pullup-dragging');
     }
 
     // Touch events for mobile
@@ -559,11 +864,18 @@
       e.preventDefault(); // Prevent scrolling during drag
       startY = e.touches[0].clientY;
       startHeight = parseInt(document.defaultView.getComputedStyle(pullupFooter).height, 10);
+      isDragging = true;
+      pullupHandle.classList.add('dragging');
       document.documentElement.addEventListener('touchmove', doTouchDrag, false);
       document.documentElement.addEventListener('touchend', stopTouchDrag, false);
+
+      // Add class to body to indicate dragging state
+      document.body.classList.add('pullup-dragging');
     });
 
     function doTouchDrag(e) {
+      if (!isDragging) return;
+
       // Calculate new height (dragging up increases height, down decreases)
       let newHeight = startHeight - (e.touches[0].clientY - startY);
 
@@ -572,21 +884,29 @@
       newHeight = Math.min(window.innerHeight * 0.8, newHeight); // Maximum height (80% of viewport)
 
       pullupFooter.style.height = newHeight + 'px';
+
+      // Update active panel content area
+      updateActivePanelHeight();
     }
 
     function stopTouchDrag() {
+      isDragging = false;
+      pullupHandle.classList.remove('dragging');
       document.documentElement.removeEventListener('touchmove', doTouchDrag, false);
       document.documentElement.removeEventListener('touchend', stopTouchDrag, false);
+
+      // Remove dragging class from body
+      document.body.classList.remove('pullup-dragging');
     }
 
-    // Add visual feedback when hovering over the handle
-    pullupHandle.addEventListener('mouseenter', function () {
-      this.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
-    });
-
-    pullupHandle.addEventListener('mouseleave', function () {
-      this.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-    });
+    // Helper function to update active panel height
+    function updateActivePanelHeight() {
+      // This ensures the panel content area fills the available space
+      const activePanel = pullupFooter.querySelector('.tab-panel.active');
+      if (activePanel) {
+        activePanel.style.minHeight = (parseInt(pullupFooter.style.height) - 70) + 'px';
+      }
+    }
   </script>
 </body>
 

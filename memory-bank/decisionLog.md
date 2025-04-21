@@ -2,23 +2,51 @@
 
 This document maintains a chronological record of significant architectural and implementation decisions made during the development of the UB Reader application.
 
+## 2025-04-21: Hybrid Development Approach
+
+**Decision**: Implement a two-phase hybrid approach for page structure redesign:
+
+1. Complete essential layout and design aspects in HTML (Phase 1)
+2. Implement more complex interactive features directly in React (Phase 2)
+
+**Rationale**:
+
+- Balances efficient design validation with development productivity
+- Allows for quick iteration on core layout elements like paragraph numbering
+- Avoids duplicating complex interactive feature development
+- Provides clear transition points between HTML and React phases
+- Maintains focus on visual consistency while leveraging React's strengths
+
+**Implementation**:
+
+- Phase 1 (HTML):
+  - Refine paragraph numbering (positioning, styling, alignment)
+  - Improve pullup drag behavior (responsiveness, visual feedback)
+  - Enhance reading area layout (typography, spacing)
+  - Create basic settings UI mockups
+- Phase 2 (React):
+  - Create core layout components based on HTML prototype
+  - Implement advanced interactive features directly in React
+  - Add complex state management for settings and content
+  - Integrate with existing content system
+
 ## 2025-04-20: Page Structure Redesign Approach
 
-**Decision**: Implement a hybrid approach for page structure redesign, starting with HTML/CSS prototype before converting to React components.
+**Decision**: Implement a clean page structure design with proper component hierarchy.
 
 **Rationale**:
 
 - Need to address positioning inconsistencies between localhost and Vercel deployment
-- Clean HTML/CSS prototype allows for faster iteration on structural issues
-- Prototype can validate the design before investing in full React implementation
-- Allows for clearer understanding of the div structure causing layout issues
+- Clean component hierarchy improves maintainability and performance
+- Consistent structure ensures proper layout across devices
+- Simplified approach supports future enhancements
 
 **Implementation**:
 
-- Create HTML/CSS/JS prototype with clean component hierarchy
-- Test prototype across environments to ensure consistent positioning
-- Convert validated design to React components
-- Integrate with existing content system
+- Create paper-1-alpha.html with clean component hierarchy
+- Implement permanent title bar, paper bar, and reading area
+- Add pullup footer with text-only tabs and drag handle
+- Test across environments to ensure consistent positioning
 
 ## 2025-04-20: Reading Area Width Constraints
 

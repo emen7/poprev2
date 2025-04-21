@@ -44,8 +44,13 @@ Working on page structure redesign for the UB Reader application, focusing on:
 
 ## Recent Changes
 
+- [4/21/2025] Decided on hybrid implementation approach with two phases:
+  - Phase 1: Complete essential HTML layout (paragraph numbering, pullup behavior, reading area, basic UI)
+  - Phase 2: Implement advanced features directly in React (settings functionality, content management)
+- [4/21/2025] Created paper-1-alpha.html with basic implementation of the new page structure design
+- [4/21/2025] Modified ub-reader-demo.html to redirect to paper-1-alpha.html
+- [4/21/2025] Cleaned up repository structure by archiving old demo files
 - [4/20/2025] Decided to suspend work on three-row header temporarily
 - [4/20/2025] Created plan for page structure redesign
-- [4/20/2025] Decided on hybrid implementation approach (HTML/CSS prototype first, then React)
 - [4/20/2025] Established optimal reading width constraints (650-700px)
 - [4/20/2025] Defined pullup behavior with text-only initial state
