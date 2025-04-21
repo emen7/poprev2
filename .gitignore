@@ -1,5 +1,7 @@
 # Backup directories
 content-backup/
+backup/
+archive/
 
 # Separate git repositories
 /almanac-reference/
@@ -15,10 +17,23 @@ scientific_document_viewer_plan.md
 
 # Node.js dependencies
 node_modules/
+**/node_modules/
 
-# Next.js build output
+# Build outputs
 .next/
 out/
+dist/
+build/
+.turbo/
+**/.turbo/
+.cache/
+**/.cache/
+# TypeScript artifacts
+tsconfig.tsbuildinfo
+*.js.map
+*.ts.map
+*.d.ts.map
+**/tsconfig.tsbuildinfo
 
 # Environment variables
 .env
@@ -26,23 +41,49 @@ out/
 .env.development.local
 .env.test.local
 .env.production.local
+.npmrc
 
 # Debug logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
 # IDE files
 .idea/
-.vscode/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
 *.swp
 *.swo
 
 # OS files
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # Vercel
-.vercel
 .vercel/
-.turbo/
+.vercel
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# HTML demo files
+*-demo*.html
+# Keep paper-1-alpha.html tracked
+!paper-1-alpha.html
+
+# Lock files (uncomment if you want to ignore lock files)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
