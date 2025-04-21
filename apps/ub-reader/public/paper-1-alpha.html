@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UB Reader - Paper 1 Alpha</title>
+  <style>
+    /* CSS Variables for consistent measurements and theming */
+    :root {
+      /* Layout measurements */
+      --title-bar-height: 60px;
+      --paper-bar-height: 40px;
+      --pullup-closed-height: 40px;
+      --reading-max-width: 700px;
+      --content-padding: 20px;
+
+      /* Colors */
+      --bg-color: #1a1a1a;
+      --text-color: #e2e8f0;
+      --header-bg-color: #222;
+      --header-text-color: #fff;
+      --border-color: #333;
+      --accent-color: #0088ff;
+      --pullup-bg-color: #222;
+      --pullup-text-color: #fff;
+      --pullup-handle-color: #666;
+
+      /* Typography */
+      --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      --base-font-size: 16px;
+      --heading-font-size: 1.5rem;
+      --subheading-font-size: 1.25rem;
+      --content-line-height: 1.7;
+      --title-font-weight: 600;
+    }
+
+    /* Utility class for preventing selection */
+    .no-select {
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+
+    /* Cursor class for pullup dragging */
+    body.pullup-dragging {
+      cursor: ns-resize !important;
+    }
+
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-family);
+      font-size: var(--base-font-size);
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Main container */
+    .ub-reader-container {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+    }
+
+    /* Permanent Title Bar */
+    .title-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--title-bar-height);
+      background-color: var(--header-bg-color);
+      color: var(--header-text-color);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .title-bar-content {
+      width: 100%;
+      max-width: var(--reading-max-width);
+      padding: 0 var(--content-padding);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .title-bar-left,
+    .title-bar-right {
+      flex: 1;
+    }
+
+    .title-bar-center {
+      flex: 2;
+      text-align: center;
+    }
+
+    .title-bar-title {
+      font-size: var(--heading-font-size);
+      font-weight: 600;
+    }
+
+    /* Paper Bar */
+    .paper-bar {
+      position: fixed;
+      top: var(--title-bar-height);
+      left: 0;
+      right: 0;
+      height: var(--paper-bar-height);
+      background-color: var(--header-bg-color);
+      color: var(--header-text-color);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .paper-bar-content {
+      width: 100%;
+      max-width: var(--reading-max-width);
+      padding: 0 var(--content-padding);
+    }
+
+    .paper-bar-title {
+      font-size: var(--subheading-font-size);
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Reading Area */
+    .reading-area {
+      padding-top: calc(var(--title-bar-height) + var(--paper-bar-height) + 0.5rem);
+      padding-bottom: calc(var(--pullup-closed-height) + 2rem);
+      width: 100%;
+      max-width: var(--reading-max-width);
+      margin: 0 auto;
+      padding-left: var(--content-padding);
+      padding-right: var(--content-padding);
+      color: var(--text-color);
+      font-size: var(--base-font-size);
+      line-height: var(--content-line-height);
+    }
+
+    .paper-content {
+      margin-bottom: 3rem;
+    }
+
+    .paper-title {
+      font-size: 2.25rem;
+      font-weight: var(--title-font-weight);
+      margin-bottom: 1rem;
+      margin-top: 1.5rem;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      /* Slight negative tracking for headings */
+    }
+
+    .paper-author {
+      font-style: italic;
+      margin-bottom: 3rem;
+      color: #aaa;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: var(--title-font-weight);
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .paragraph {
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-left: 45px;
+      line-height: 1.6;
+    }
+
+    .paragraph-text {
+      text-align: justify;
+    }
+
+    .paragraph-number {
+      position: absolute;
+      left: 0;
+      top: 0.25rem;
+      color: #777;
+      font-size: 0.75rem;
+      font-family: var(--font-family);
+      width: 40px;
+      text-align: right;
+      padding-right: 5px;
+      user-select: none;
+      /* Prevent paragraph number selection */
+      line-height: 1.4;
+      font-variant-numeric: tabular-nums;
+      /* For better alignment of numbers */
+    }
+
+    /* Pullup Footer */
+    .pullup-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: var(--pullup-closed-height);
+      background-color: var(--pullup-bg-color);
+      color: var(--pullup-text-color);
+      border-top: 1px solid var(--border-color);
+      z-index: 100;
+      transition: height 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pullup-footer.expanded {
+      height: 300px;
+      /* Fixed initial expanded height */
+    }
+
+    .pullup-handle {
+      width: 100%;
+      height: 30px;
+      cursor: ns-resize;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5px 0;
+      background-color: #444;
+      border-bottom: 1px solid var(--border-color);
+      display: none;
+      /* Hidden in closed state */
+      position: relative;
+      z-index: 10;
+      transition: background-color 0.2s ease;
+    }
+
+    .pullup-footer.expanded .pullup-handle {
+      display: flex;
+      /* Shown in expanded state */
+    }
+
+    .pullup-handle:hover,
+    .pullup-handle.dragging {
+      background-color: #555;
+    }
+
+    .pullup-handle:active {
+      background-color: #666;
+    }
+
+    .pullup-handle-text {
+      position: absolute;
+      font-size: 0.7rem;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      pointer-events: none;
+      /* Make text not interfere with drag */
+      user-select: none;
+      /* Prevent text selection */
+    }
+
+    .pullup-handle-bar {
+      width: 60px;
+      height: 6px;
+      background-color: var(--pullup-handle-color);
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      transition: width 0.2s ease, background-color 0.2s ease;
+      pointer-events: none;
+      /* Make handle bar not interfere with drag */
+    }
+
+    .pullup-handle:hover .pullup-handle-bar,
+    .pullup-handle.dragging .pullup-handle-bar {
+      width: 80px;
+      background-color: var(--accent-color);
+    }
+
+    .pullup-tabs {
+      display: flex;
+      height: var(--pullup-closed-height);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .pullup-tab {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      background: none;
+      border: none;
+      color: var(--pullup-text-color);
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.2s ease;
+    }
+
+    .pullup-tab:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .pullup-tab.active {
+      color: var(--accent-color);
+      border-bottom: 2px solid var(--accent-color);
+    }
+
+    .pullup-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+      display: none;
+      /* Hidden in closed state */
+    }
+
+    .pullup-footer.expanded .pullup-content {
+      display: block;
+      /* Shown in expanded state */
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* Settings UI Styles */
+    .settings-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .settings-section h4 {
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+      color: #ccc;
+    }
+
+    .settings-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* Theme options */
+    .theme-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+
+    .theme-option:hover {
+      opacity: 1;
+    }
+
+    .theme-option-selected {
+      opacity: 1;
+    }
+
+    .theme-option-selected::after {
+      content: '✓';
+      position: absolute;
+      color: var(--accent-color);
+      font-weight: bold;
+      margin-top: -1.5rem;
+    }
+
+    .theme-preview {
+      width: 50px;
+      height: 30px;
+      border-radius: 4px;
+      border: 1px solid #444;
+    }
+
+    .dark-theme {
+      background-color: #1a1a1a;
+    }
+
+    .light-theme {
+      background-color: #f5f5f5;
+    }
+
+    .sepia-theme {
+      background-color: #f4ecd8;
+    }
+
+    /* Font size controls */
+    .font-size-btn {
+      background: none;
+      border: 1px solid #444;
+      color: var(--text-color);
+      width: 30px;
+      height: 30px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .font-size-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .font-size-slider {
+      flex: 1;
+      height: 30px;
+      display: flex;
+      align-items: center;
+    }
+
+    .slider-track {
+      width: 100%;
+      height: 4px;
+      background-color: #444;
+      position: relative;
+      border-radius: 2px;
+    }
+
+    .slider-fill {
+      position: absolute;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      background-color: var(--accent-color);
+      border-radius: 2px;
+    }
+
+    .slider-handle {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 16px;
+      background-color: var(--accent-color);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .slider-handle:hover {
+      transform: translateX(-50%) scale(1.1);
+    }
+
+    /* Alignment buttons */
+    .alignment-buttons,
+    .spacing-buttons {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .alignment-btn,
+    .spacing-btn {
+      background: none;
+      border: 1px solid #444;
+      color: var(--text-color);
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .alignment-btn:hover,
+    .spacing-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .alignment-selected,
+    .spacing-selected {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+      background-color: rgba(0, 136, 255, 0.1);
+    }
+
+    .alignment-icon {
+      display: inline-block;
+      font-size: 0.7rem;
+      line-height: 1.2;
+      text-align: left;
+    }
+
+    /* Media queries for responsive design */
+    @media (max-width: 768px) {
+      :root {
+        --title-bar-height: 50px;
+        --reading-max-width: 100%;
+      }
+
+      .title-bar-title {
+        font-size: 1.2rem;
+      }
+
+      .paper-bar-title {
+        font-size: 1rem;
+      }
+
+      .settings-controls {
+        flex-wrap: wrap;
+      }
+
+      .theme-option {
+        font-size: 0.8rem;
+      }
+
+      .theme-preview {
+        width: 40px;
+        height: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ub-reader-container">
+    <!-- Permanent Title Bar -->
+    <header class="title-bar">
+      <div class="title-bar-content">
+        <div class="title-bar-left">
+          <!-- Navigation controls could go here -->
+        </div>
+        <div class="title-bar-center">
+          <h1 class="title-bar-title">Urantia Book</h1>
+        </div>
+        <div class="title-bar-right">
+          <!-- Additional controls could go here -->
+        </div>
+      </div>
+    </header>
+
+    <!-- Paper Bar -->
+    <div class="paper-bar">
+      <div class="paper-bar-content">
+        <h2 class="paper-bar-title">PAPER 1: THE UNIVERSAL FATHER</h2>
+      </div>
+    </div>
+
+    <!-- Reading Area -->
+    <main class="reading-area">
+      <div class="paper-content">
+        <h1 class="paper-title">PAPER 1</h1>
+        <h2 class="paper-title">THE UNIVERSAL FATHER</h2>
+        <p class="paper-author">Presented by a Divine Counselor, a member of a group of celestial personalities assigned
+          by the Ancients of Days on Uversa.</p>
+
+        <!-- Introduction (unlabeled) -->
+        <div class="paragraph">
+          <span class="paragraph-number">0:0.1</span>
+          <div class="paragraph-text">THE Universal Father is the God of all creation, the First Source and Center of
+            all things and beings. First think of God as a creator, then as a controller, and lastly as an infinite
+            upholder. The truth about the Universal Father had begun to dawn upon mankind when the prophet said: "You,
+            God, are alone; there is none beside you. You have created the heaven and the heaven of heavens, with all
+            their hosts; you preserve and control them. By the Sons of God were the universes made. The Creator covers
+            himself with light as with a garment and stretches out the heavens as a curtain." Only the concept of the
+            Universal Father—one God in the place of many gods—enabled mortal man to comprehend the Father as divine
+            creator and infinite controller.</div>
+        </div>
+
+        <div class="paragraph">
+          <span class="paragraph-number">0:0.2</span>
+          <div class="paragraph-text">The myriads of planetary systems were all made to be eventually inhabited by many
+            different types of intelligent creatures, beings who could know God, receive the divine affection, and love
+            him in return. The universe of universes is the work of God and the dwelling place of his diverse creatures.
+            "God created the heavens and formed the earth; he established the universe and created this world not in
+            vain; he formed it to be inhabited."</div>
+        </div>
+
+        <div class="paragraph">
+          <span class="paragraph-number">0:0.3</span>
+          <div class="paragraph-text">The enlightened worlds all recognize and worship the Universal Father, the eternal
+            maker and infinite upholder of all creation. The will creatures of universe upon universe have embarked upon
+            the long, long journey to the Paradise of the Father, the intriguing challenge of the adventure of attaining
+            God. The transcendent goal of the children of time is to find the eternal God, to comprehend the divine
+            nature, to recognize the Universal Father.</div>
+        </div>
+
+        <!-- Section 1: THE FATHER'S NAME -->
+        <h3 class="section-title">1. THE FATHER'S NAME</h3>
+
+        <div class="paragraph">
+          <span class="paragraph-number">1:1.1</span>
+          <div class="paragraph-text">OF ALL the names by which God the Father is known throughout the universes, those
+            which designate him as the First Source and the Universe Center are most often encountered. The First Father
+            is known by various names in different universes and in different sectors of the same universe. The names
+            which the creature assigns to the Creator are much dependent on the creature's concept of the Creator. The
+            First Source and Universe Center has never revealed himself by name, only by nature. If we believe that we
+            are the children of this Creator, it is only natural that we should eventually call him Father. But this is
+            the name of our own choosing, and it grows out of the recognition of our personal relationship with the
+            First Source and Center.</div>
+        </div>
+
+        <div class="paragraph">
+          <span class="paragraph-number">1:1.2</span>
+          <div class="paragraph-text">The Universal Father never imposes any form of arbitrary recognition, formal
+            worship, or slavish service upon the intelligent will creatures of the universes. The evolutionary
+            inhabitants of the worlds of time and space must of themselves—in their own hearts—recognize, love, and
+            voluntarily worship him. The Creator refuses to coerce or compel the submission of the spiritual free wills
+            of his material creatures. The affectionate dedication of the human will to the doing of the Father's will
+            is man's choicest gift to God; in fact, such a consecration of creature will constitutes man's only possible
+            gift of true value to the Paradise Father.</div>
+        </div>
+
+        <!-- Section 2: THE REALITY OF GOD -->
+        <h3 class="section-title">2. THE REALITY OF GOD</h3>
+
+        <div class="paragraph">
+          <span class="paragraph-number">1:2.1</span>
+          <div class="paragraph-text">God is primal reality in the spirit world; God is the source of truth in the mind
+            spheres; God overshadows all throughout the material realms. To all created intelligences God is a
+            personality, and to the universe of universes he is the First Source and Center of eternal reality. God is
+            neither manlike nor machinelike. The First Father is universal spirit, eternal truth, infinite reality, and
+            father personality.</div>
+        </div>
+
+        <div class="paragraph">
+          <span class="paragraph-number">1:2.2</span>
+          <div class="paragraph-text">The eternal God is infinitely more than reality idealized or the universe
+            personalized. God is not simply the supreme desire of man, the mortal quest objectified. Neither is God
+            merely a concept, the power-potential of righteousness. The Universal Father is not a synonym for nature,
+            neither is he natural law personified. God is a transcendent reality, not merely man's traditional concept
+            of supreme values. God is not a psychological focalization of spiritual meanings, neither is he "the noblest
+            work of man." God may be any or all of these concepts in the minds of men, but he is more. He is a saving
+            person and a loving Father to all who enjoy spiritual peace on earth, and who crave to experience
+            personality survival in death.</div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Pullup Footer -->
+    <footer class="pullup-footer" id="pullupFooter">
+      <div class="pullup-handle" id="pullupHandle" title="Drag to resize">
+        <div class="pullup-handle-bar"></div>
+        <span class="pullup-handle-text">Drag to resize</span>
+      </div>
+      <div class="pullup-tabs">
+        <button class="pullup-tab" id="notesTab">Notes</button>
+        <button class="pullup-tab" id="quotesTab">Quotes</button>
+        <button class="pullup-tab" id="settingsTab">Settings</button>
+      </div>
+      <div class="pullup-content">
+        <div class="tab-panel" id="notesPanel">
+          <h3>Notes</h3>
+          <p>Your notes will appear here.</p>
+        </div>
+        <div class="tab-panel" id="quotesPanel">
+          <h3>Quotes</h3>
+          <p>Your saved quotes will appear here.</p>
+        </div>
+        <div class="tab-panel" id="settingsPanel">
+          <h3>Settings</h3>
+
+          <!-- Theme Selection -->
+          <div class="settings-section">
+            <h4>Theme</h4>
+            <div class="settings-controls">
+              <div class="theme-option theme-option-selected" data-theme="dark">
+                <div class="theme-preview dark-theme"></div>
+                <span>Dark</span>
+              </div>
+              <div class="theme-option" data-theme="light">
+                <div class="theme-preview light-theme"></div>
+                <span>Light</span>
+              </div>
+              <div class="theme-option" data-theme="sepia">
+                <div class="theme-preview sepia-theme"></div>
+                <span>Sepia</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Font Size -->
+          <div class="settings-section">
+            <h4>Font Size</h4>
+            <div class="settings-controls">
+              <button class="font-size-btn" data-size="small">A-</button>
+              <div class="font-size-slider">
+                <div class="slider-track">
+                  <div class="slider-fill"></div>
+                  <div class="slider-handle" tabindex="0"></div>
+                </div>
+              </div>
+              <button class="font-size-btn" data-size="large">A+</button>
+            </div>
+          </div>
+
+          <!-- Text Alignment -->
+          <div class="settings-section">
+            <h4>Text Alignment</h4>
+            <div class="settings-controls alignment-buttons">
+              <button class="alignment-btn" data-align="left">
+                <span class="alignment-icon">≡≡<br>≡≡≡<br>≡≡</span>
+              </button>
+              <button class="alignment-btn alignment-selected" data-align="justify">
+                <span class="alignment-icon">≡≡≡<br>≡≡≡<br>≡≡≡</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Line Spacing -->
+          <div class="settings-section">
+            <h4>Line Spacing</h4>
+            <div class="settings-controls spacing-buttons">
+              <button class="spacing-btn" data-spacing="narrow">Narrow</button>
+              <button class="spacing-btn spacing-selected" data-spacing="normal">Normal</button>
+              <button class="spacing-btn" data-spacing="wide">Wide</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // DOM Elements
+    const pullupFooter = document.getElementById('pullupFooter');
+    const pullupHandle = document.getElementById('pullupHandle');
+    const notesTab = document.getElementById('notesTab');
+    const quotesTab = document.getElementById('quotesTab');
+    const settingsTab = document.getElementById('settingsTab');
+    const notesPanel = document.getElementById('notesPanel');
+    const quotesPanel = document.getElementById('quotesPanel');
+    const settingsPanel = document.getElementById('settingsPanel');
+
+    // State
+    let activeTab = null;
+    let isExpanded = false;
+
+    // Functions
+    function expandPullup() {
+      pullupFooter.classList.add('expanded');
+      isExpanded = true;
+      // Reset to default height when expanding
+      pullupFooter.style.height = '300px';
+
+      // Make sure the handle is visible by scrolling to it
+      setTimeout(() => {
+        pullupHandle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+
+    function collapsePullup() {
+      pullupFooter.classList.remove('expanded');
+      isExpanded = false;
+      // Deactivate all tabs when collapsed
+      notesTab.classList.remove('active');
+      quotesTab.classList.remove('active');
+      settingsTab.classList.remove('active');
+      notesPanel.classList.remove('active');
+      quotesPanel.classList.remove('active');
+      settingsPanel.classList.remove('active');
+      activeTab = null;
+    }
+
+    function setActiveTab(tab, panel) {
+      // Deactivate all tabs
+      notesTab.classList.remove('active');
+      quotesTab.classList.remove('active');
+      settingsTab.classList.remove('active');
+      notesPanel.classList.remove('active');
+      quotesPanel.classList.remove('active');
+      settingsPanel.classList.remove('active');
+
+      // Activate selected tab
+      tab.classList.add('active');
+      panel.classList.add('active');
+      activeTab = tab;
+
+      // Ensure pullup is expanded
+      expandPullup();
+    }
+
+    // Event Listeners
+    notesTab.addEventListener('click', function () {
+      if (activeTab === notesTab && isExpanded) {
+        collapsePullup();
+      } else {
+        setActiveTab(notesTab, notesPanel);
+      }
+    });
+
+    quotesTab.addEventListener('click', function () {
+      if (activeTab === quotesTab && isExpanded) {
+        collapsePullup();
+      } else {
+        setActiveTab(quotesTab, quotesPanel);
+      }
+    });
+
+    settingsTab.addEventListener('click', function () {
+      if (activeTab === settingsTab && isExpanded) {
+        collapsePullup();
+      } else {
+        setActiveTab(settingsTab, settingsPanel);
+      }
+    });
+
+    // Handle drag functionality for resizing pullup
+    let startY, startHeight;
+    let isDragging = false;
+
+    pullupHandle.addEventListener('mousedown', function (e) {
+      e.preventDefault(); // Prevent text selection during drag
+      startY = e.clientY;
+      startHeight = parseInt(document.defaultView.getComputedStyle(pullupFooter).height, 10);
+      isDragging = true;
+      pullupHandle.classList.add('dragging');
+      document.documentElement.addEventListener('mousemove', doDrag, false);
+      document.documentElement.addEventListener('mouseup', stopDrag, false);
+
+      // Add class to body to indicate dragging state (useful for cursor changes)
+      document.body.classList.add('pullup-dragging');
+    });
+
+    function doDrag(e) {
+      if (!isDragging) return;
+
+      // Calculate new height (dragging up increases height, down decreases)
+      let newHeight = startHeight - (e.clientY - startY);
+
+      // Set minimum and maximum height constraints
+      newHeight = Math.max(100, newHeight); // Minimum height
+      newHeight = Math.min(window.innerHeight * 0.8, newHeight); // Maximum height (80% of viewport)
+
+      // Apply with smooth transition only for small movements
+      pullupFooter.style.height = newHeight + 'px';
+
+      // Update active panel content area to show it extends
+      updateActivePanelHeight();
+    }
+
+    function stopDrag() {
+      isDragging = false;
+      pullupHandle.classList.remove('dragging');
+      document.documentElement.removeEventListener('mousemove', doDrag, false);
+      document.documentElement.removeEventListener('mouseup', stopDrag, false);
+
+      // Remove dragging class from body
+      document.body.classList.remove('pullup-dragging');
+    }
+
+    // Touch events for mobile
+    pullupHandle.addEventListener('touchstart', function (e) {
+      e.preventDefault(); // Prevent scrolling during drag
+      startY = e.touches[0].clientY;
+      startHeight = parseInt(document.defaultView.getComputedStyle(pullupFooter).height, 10);
+      isDragging = true;
+      pullupHandle.classList.add('dragging');
+      document.documentElement.addEventListener('touchmove', doTouchDrag, false);
+      document.documentElement.addEventListener('touchend', stopTouchDrag, false);
+
+      // Add class to body to indicate dragging state
+      document.body.classList.add('pullup-dragging');
+    });
+
+    function doTouchDrag(e) {
+      if (!isDragging) return;
+
+      // Calculate new height (dragging up increases height, down decreases)
+      let newHeight = startHeight - (e.touches[0].clientY - startY);
+
+      // Set minimum and maximum height constraints
+      newHeight = Math.max(100, newHeight); // Minimum height
+      newHeight = Math.min(window.innerHeight * 0.8, newHeight); // Maximum height (80% of viewport)
+
+      pullupFooter.style.height = newHeight + 'px';
+
+      // Update active panel content area
+      updateActivePanelHeight();
+    }
+
+    function stopTouchDrag() {
+      isDragging = false;
+      pullupHandle.classList.remove('dragging');
+      document.documentElement.removeEventListener('touchmove', doTouchDrag, false);
+      document.documentElement.removeEventListener('touchend', stopTouchDrag, false);
+
+      // Remove dragging class from body
+      document.body.classList.remove('pullup-dragging');
+    }
+
+    // Helper function to update active panel height
+    function updateActivePanelHeight() {
+      // This ensures the panel content area fills the available space
+      const activePanel = pullupFooter.querySelector('.tab-panel.active');
+      if (activePanel) {
+        activePanel.style.minHeight = (parseInt(pullupFooter.style.height) - 70) + 'px';
+      }
+    }
+  </script>
+</body>
+
+</html>
