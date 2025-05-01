@@ -24,7 +24,7 @@
   "rewrites": [
     {
       "source": "/index.html",
-      "destination": "/../../index.html"
+      "destination": "/index.html"
     }
   ],
   "trailingSlash": false
