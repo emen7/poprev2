@@ -36,6 +36,18 @@ export default function HomePage() {
                 View the Paper 1 test page for mobile testing.
               </p>
             </Link>
+
+            <Link
+              href="/improved-demo.html"
+              className="block p-4 bg-blue-100 dark:bg-blue-900 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
+            >
+              <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-2">
+                Improved Demo Page
+              </h3>
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                View the improved demo with section row and other UI enhancements.
+              </p>
+            </Link>
           </div>
         </div>
       </div>

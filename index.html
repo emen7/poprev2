@@ -9,8 +9,9 @@
     /* CSS Variables for consistent measurements and theming */
     :root {
       /* Layout measurements */
-      --title-bar-height: 60px;
-      --paper-bar-height: 40px;
+      --title-bar-height: 56px;
+      --paper-bar-height: 56px;
+      --section-bar-height: 56px;
       --pullup-closed-height: 40px;
       --reading-max-width: 700px;
       --content-padding: 20px;
@@ -120,6 +121,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      height: 100%;
     }
 
     .title-bar-left,
@@ -157,6 +159,9 @@
       width: 100%;
       max-width: var(--reading-max-width);
       padding: 0 var(--content-padding);
+      display: flex;
+      align-items: center;
+      height: 100%;
     }
 
     .paper-bar-title {
@@ -167,9 +172,43 @@
       text-overflow: ellipsis;
     }
 
+    /* Section Bar */
+    .section-bar {
+      position: fixed;
+      top: calc(var(--title-bar-height) + var(--paper-bar-height));
+      left: 0;
+      right: 0;
+      height: var(--section-bar-height);
+      background-color: var(--header-bg-color);
+      color: #a0aec0;
+      /* Grayed color */
+      border-bottom: 1px solid var(--border-color);
+      z-index: 98;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .section-bar-content {
+      width: 100%;
+      max-width: var(--reading-max-width);
+      padding: 0 var(--content-padding);
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .section-bar-title {
+      font-size: 1rem;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     /* Reading Area */
     .reading-area {
-      padding-top: calc(var(--title-bar-height) + var(--paper-bar-height) + 0.5rem);
+      padding-top: calc(var(--title-bar-height) + var(--paper-bar-height) + var(--section-bar-height) + 0.5rem);
       padding-bottom: calc(var(--pullup-closed-height) + 2rem);
       width: 100%;
       max-width: var(--reading-max-width);
@@ -593,6 +632,13 @@
       </div>
     </div>
 
+    <!-- Section Bar -->
+    <div class="section-bar">
+      <div class="section-bar-content">
+        <h3 class="section-bar-title">Introduction</h3>
+      </div>
+    </div>
+
     <!-- Reading Area -->
     <main class="reading-area">
       <div class="paper-content">
@@ -999,6 +1045,57 @@
     document.addEventListener('DOMContentLoaded', function () {
       const savedTheme = localStorage.getItem('ub-reader-theme') || 'dark';
       setTheme(savedTheme);
+    });
+  </script>
+
+  <!-- Section Title Update Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const sectionBar = document.querySelector('.section-bar-title');
+      const sectionTitles = document.querySelectorAll('.section-title');
+      const paragraphs = document.querySelectorAll('.paragraph');
+      let currentSectionTitle = 'Introduction';
+
+      // Function to update the section title based on scroll position
+      function updateSectionTitle() {
+        // Default to Introduction if we're at the top
+        if (window.scrollY < 200) {
+          if (currentSectionTitle !== 'Introduction') {
+            currentSectionTitle = 'Introduction';
+            sectionBar.textContent = currentSectionTitle;
+          }
+          return;
+        }
+
+        // Find the section title that's currently in view
+        let highestVisibleSection = null;
+        let highestPosition = -1000;
+
+        sectionTitles.forEach(section => {
+          const rect = section.getBoundingClientRect();
+          // Only consider sections that are in the viewport or just above it
+          // We use 150px as threshold to account for the sticky header height
+          if (rect.top <= 150) {
+            // Find the highest (closest to top but still above threshold) section
+            if (rect.top > highestPosition) {
+              highestPosition = rect.top;
+              highestVisibleSection = section;
+            }
+          }
+        });
+
+        // If we found a visible section, use it
+        if (highestVisibleSection && highestVisibleSection.textContent !== currentSectionTitle) {
+          currentSectionTitle = highestVisibleSection.textContent;
+          sectionBar.textContent = currentSectionTitle;
+        }
+      }
+
+      // Update on scroll
+      window.addEventListener('scroll', updateSectionTitle);
+
+      // Initial update
+      updateSectionTitle();
     });
   </script>
 </body>
