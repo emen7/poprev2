@@ -964,9 +964,12 @@
 
       // Function to update the section title based on scroll position
       function updateSectionTitle() {
+        console.log("Scroll position:", window.scrollY);
+
         // Default to (intro) if we're at the top
         if (window.scrollY < 200) {
           if (currentSectionTitle !== '(intro)') {
+            console.log("Switching to intro, scroll position:", window.scrollY);
             currentSectionTitle = '(intro)';
             sectionBar.textContent = currentSectionTitle;
           }
@@ -979,6 +982,16 @@
         sectionTitles.forEach(section => {
           const rect = section.getBoundingClientRect();
           const viewportHeight = window.innerHeight;
+
+          console.log("Section:", section.textContent, "Position:", {
+            top: rect.top,
+            bottom: rect.bottom,
+            visible: (
+              (rect.top > -50 && rect.top < viewportHeight) ||
+              (rect.bottom > 0 && rect.bottom < viewportHeight + 50) ||
+              (rect.top <= 0 && rect.bottom >= viewportHeight)
+            )
+          });
 
           // Check if section is visible in viewport or just above it
           if ((rect.top > -50 && rect.top < viewportHeight) ||
@@ -1008,15 +1021,21 @@
         // Sort visible sections by their position (top to bottom)
         visibleSections.sort((a, b) => a.top - b.top);
 
+        console.log("Visible sections:", visibleSections.map(s => s.text));
+
         // Use the topmost visible section
         if (visibleSections.length > 0) {
           const topSection = visibleSections[0];
+          console.log("Current section:", currentSectionTitle, "Top section:", topSection.text);
+
           if (topSection.text !== currentSectionTitle) {
+            console.log("CHANGING section from", currentSectionTitle, "to", topSection.text);
             currentSectionTitle = topSection.text;
             sectionBar.textContent = currentSectionTitle;
           }
         } else if (currentSectionTitle !== '(intro)') {
           // Fallback to (intro) if no sections are visible
+          console.log("No sections visible, reverting to (intro)");
           currentSectionTitle = '(intro)';
           sectionBar.textContent = currentSectionTitle;
         }
