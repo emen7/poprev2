@@ -9,9 +9,9 @@
     /* CSS Variables for consistent measurements and theming */
     :root {
       /* Layout measurements */
-      --title-bar-height: 56px;
-      --paper-bar-height: 56px;
-      --section-bar-height: 56px;
+      --title-bar-height: 40px;
+      --paper-bar-height: 40px;
+      --section-bar-height: 40px;
       --pullup-closed-height: 40px;
       --reading-max-width: 700px;
       --content-padding: 20px;
@@ -1067,50 +1067,29 @@
           return;
         }
 
-        // Find all visible sections
-        let visibleSections = [];
+        // Find the section that should be active based on scroll position
+        let activeSection = null;
+        let activeSectionTop = -Infinity;
 
         sectionTitles.forEach(section => {
           const rect = section.getBoundingClientRect();
-          const viewportHeight = window.innerHeight;
 
-          // Check if section is visible in viewport or just above it
-          if ((rect.top > -50 && rect.top < viewportHeight) ||
-            (rect.bottom > 0 && rect.bottom < viewportHeight + 50) ||
-            (rect.top <= 0 && rect.bottom >= viewportHeight)) {
-            visibleSections.push({
-              element: section,
-              top: rect.top,
-              text: section.textContent
-            });
+          // Only consider a section if it's near the top of the viewport
+          // This ensures we only change when the section is actually visible
+          // and prevents premature changes
+          if (rect.top <= 100 && rect.top > activeSectionTop) {
+            activeSection = section;
+            activeSectionTop = rect.top;
           }
         });
 
-        // If no sections are visible, check if we're above all sections
-        if (visibleSections.length === 0) {
-          const firstSectionRect = sectionTitles[0]?.getBoundingClientRect();
-          if (firstSectionRect && firstSectionRect.top > 0) {
-            // We're above all sections, show (intro)
-            if (currentSectionTitle !== '(intro)') {
-              currentSectionTitle = '(intro)';
-              sectionBar.textContent = currentSectionTitle;
-            }
-            return;
-          }
+        // If we found an active section and it's different from the current one
+        if (activeSection && activeSection.textContent !== currentSectionTitle) {
+          currentSectionTitle = activeSection.textContent;
+          sectionBar.textContent = currentSectionTitle;
         }
-
-        // Sort visible sections by their position (top to bottom)
-        visibleSections.sort((a, b) => a.top - b.top);
-
-        // Use the topmost visible section
-        if (visibleSections.length > 0) {
-          const topSection = visibleSections[0];
-          if (topSection.text !== currentSectionTitle) {
-            currentSectionTitle = topSection.text;
-            sectionBar.textContent = currentSectionTitle;
-          }
-        } else if (currentSectionTitle !== '(intro)') {
-          // Fallback to (intro) if no sections are visible
+        // If no section is active and we're not showing (intro), revert to (intro)
+        else if (!activeSection && currentSectionTitle !== '(intro)') {
           currentSectionTitle = '(intro)';
           sectionBar.textContent = currentSectionTitle;
         }
