@@ -92,7 +92,7 @@
     .title-bar-content {
       width: 100%;
       max-width: var(--reading-max-width);
-      padding: 0 var(--content-padding);
+      padding: 0 calc(var(--content-padding) / 2);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -133,7 +133,7 @@
     .paper-bar-content {
       width: 100%;
       max-width: var(--reading-max-width);
-      padding: 0 var(--content-padding);
+      padding: 0 calc(var(--content-padding) / 2);
       display: flex;
       align-items: center;
       height: 100%;
@@ -167,7 +167,7 @@
     .section-bar-content {
       width: 100%;
       max-width: var(--reading-max-width);
-      padding: 0 var(--content-padding);
+      padding: 0 calc(var(--content-padding) / 2);
       display: flex;
       align-items: center;
       height: 100%;
@@ -602,7 +602,7 @@
     <!-- Section Bar -->
     <div class="section-bar">
       <div class="section-bar-content">
-        <h3 class="section-bar-title">Introduction</h3>
+        <h3 class="section-bar-title">(intro)</h3>
       </div>
     </div>
 
@@ -960,39 +960,64 @@
       const sectionBar = document.querySelector('.section-bar-title');
       const sectionTitles = document.querySelectorAll('.section-title');
       const paragraphs = document.querySelectorAll('.paragraph');
-      let currentSectionTitle = 'Introduction';
+      let currentSectionTitle = '(intro)';
 
       // Function to update the section title based on scroll position
       function updateSectionTitle() {
-        // Default to Introduction if we're at the top
+        // Default to (intro) if we're at the top
         if (window.scrollY < 200) {
-          if (currentSectionTitle !== 'Introduction') {
-            currentSectionTitle = 'Introduction';
+          if (currentSectionTitle !== '(intro)') {
+            currentSectionTitle = '(intro)';
             sectionBar.textContent = currentSectionTitle;
           }
           return;
         }
 
-        // Find the section title that's currently in view
-        let highestVisibleSection = null;
-        let highestPosition = -1000;
+        // Find all visible sections
+        let visibleSections = [];
 
         sectionTitles.forEach(section => {
           const rect = section.getBoundingClientRect();
-          // Only consider sections that are in the viewport or just above it
-          // We use 150px as threshold to account for the sticky header height
-          if (rect.top <= 150) {
-            // Find the highest (closest to top but still above threshold) section
-            if (rect.top > highestPosition) {
-              highestPosition = rect.top;
-              highestVisibleSection = section;
-            }
+          const viewportHeight = window.innerHeight;
+
+          // Check if section is visible in viewport or just above it
+          if ((rect.top > -50 && rect.top < viewportHeight) ||
+            (rect.bottom > 0 && rect.bottom < viewportHeight + 50) ||
+            (rect.top <= 0 && rect.bottom >= viewportHeight)) {
+            visibleSections.push({
+              element: section,
+              top: rect.top,
+              text: section.textContent
+            });
           }
         });
 
-        // If we found a visible section, use it
-        if (highestVisibleSection && highestVisibleSection.textContent !== currentSectionTitle) {
-          currentSectionTitle = highestVisibleSection.textContent;
+        // If no sections are visible, check if we're above all sections
+        if (visibleSections.length === 0) {
+          const firstSectionRect = sectionTitles[0]?.getBoundingClientRect();
+          if (firstSectionRect && firstSectionRect.top > 0) {
+            // We're above all sections, show (intro)
+            if (currentSectionTitle !== '(intro)') {
+              currentSectionTitle = '(intro)';
+              sectionBar.textContent = currentSectionTitle;
+            }
+            return;
+          }
+        }
+
+        // Sort visible sections by their position (top to bottom)
+        visibleSections.sort((a, b) => a.top - b.top);
+
+        // Use the topmost visible section
+        if (visibleSections.length > 0) {
+          const topSection = visibleSections[0];
+          if (topSection.text !== currentSectionTitle) {
+            currentSectionTitle = topSection.text;
+            sectionBar.textContent = currentSectionTitle;
+          }
+        } else if (currentSectionTitle !== '(intro)') {
+          // Fallback to (intro) if no sections are visible
+          currentSectionTitle = '(intro)';
           sectionBar.textContent = currentSectionTitle;
         }
       }
