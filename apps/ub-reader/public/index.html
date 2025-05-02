@@ -9,9 +9,9 @@
     /* CSS Variables for consistent measurements and theming */
     :root {
       /* Layout measurements */
-      --title-bar-height: 40px;
-      --paper-bar-height: 40px;
-      --section-bar-height: 40px;
+      --title-bar-height: 37px;
+      --paper-bar-height: 28px;
+      --section-bar-height: 28px;
       --pullup-closed-height: 40px;
       --reading-max-width: 700px;
       --content-padding: 20px;
@@ -99,6 +99,11 @@
       height: 100%;
     }
 
+    .title-bar-title {
+      font-size: 1.2rem;
+      /* Slightly bigger than section bar font */
+    }
+
     .title-bar-left,
     .title-bar-right {
       flex: 1;
@@ -174,11 +179,14 @@
     }
 
     .section-bar-title {
-      font-size: 1rem;
+      font-size: 1.1rem;
+      /* Slightly bigger than normal text */
       font-weight: 500;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      padding-left: 1rem;
+      /* Indent the section bar text */
     }
 
     /* Reading Area */
@@ -218,12 +226,16 @@
     }
 
     .section-title {
-      font-size: 1.4rem;
+      font-size: 1.1rem;
+      /* Match section bar font size */
       font-weight: var(--title-font-weight);
-      margin-top: 3rem;
-      margin-bottom: 1.5rem;
+      margin-top: 2rem;
+      /* Reduced from 3rem */
+      margin-bottom: 1rem;
+      /* Reduced from 1.5rem */
       letter-spacing: -0.01em;
       text-transform: none;
+      /* Ensure not all caps */
     }
 
     .paragraph {
