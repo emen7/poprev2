@@ -79,12 +79,12 @@ export function useFormatting({
   }, [formatType, persistPreference, storageKey]);
 
   // Set format type
-  const setFormatType = useCallback((format: FormatType) => {
+  const setFormatType = useCallback((format: FormatType): void => {
     setFormatTypeState(format);
   }, []);
 
   // Toggle between traditional and modern
-  const toggleFormat = useCallback(() => {
+  const toggleFormat = useCallback((): void => {
     setFormatTypeState(current => (current === 'traditional' ? 'modern' : 'traditional'));
   }, []);
 

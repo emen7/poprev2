@@ -44,7 +44,7 @@ export function ScientificTooltip({
   className = '',
   interactive = true,
   position = 'auto',
-}: ScientificTooltipProps) {
+}: ScientificTooltipProps): JSX.Element {
   const [isVisible, setIsVisible] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState(position);
   const termRef = useRef<HTMLSpanElement>(null);

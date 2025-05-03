@@ -6,9 +6,126 @@
 
 import React from 'react';
 
-// Temporarily comment out these imports until the referenced packages are properly set up
-// import { UBReference } from '@ub-ecosystem/reference-parser';
-// import { UBPaper, UBSection, UBParagraph } from '@ub-ecosystem/data-models';
+// Define interfaces for UB types to avoid using 'any'
+// These should eventually be imported from their respective packages
+
+/**
+ * Represents a reference to the Urantia Book
+ */
+export interface UBReference {
+  /**
+   * Type of reference
+   */
+  type: 'paper-section' | 'paper-section-paragraph' | 'paper' | 'section';
+
+  /**
+   * Paper number
+   */
+  paper: number;
+
+  /**
+   * Section number (optional for paper-only references)
+   */
+  section?: number;
+
+  /**
+   * Paragraph number (optional for paper-section references)
+   */
+  paragraph?: number;
+
+  /**
+   * Original text that was matched
+   */
+  originalText: string;
+
+  /**
+   * Position in the original text
+   */
+  position: {
+    start: number;
+    end: number;
+  };
+}
+
+/**
+ * Represents a UB paragraph
+ */
+export interface UBParagraph {
+  /**
+   * Unique identifier for the paragraph
+   */
+  id?: string;
+
+  /**
+   * Paragraph number
+   */
+  number: number | string;
+
+  /**
+   * Paragraph text content (can include HTML)
+   */
+  text: string;
+
+  /**
+   * Whether this paragraph has notes
+   */
+  hasNotes?: boolean;
+}
+
+/**
+ * Represents a UB section
+ */
+export interface UBSection {
+  /**
+   * Unique identifier for the section
+   */
+  id?: string;
+
+  /**
+   * Section number
+   */
+  number: number | string;
+
+  /**
+   * Section title
+   */
+  title: string;
+
+  /**
+   * Paragraphs in the section
+   */
+  paragraphs: UBParagraph[];
+}
+
+/**
+ * Represents a UB paper
+ */
+export interface UBPaper {
+  /**
+   * Unique identifier for the paper
+   */
+  id?: string;
+
+  /**
+   * Paper number
+   */
+  number: number | string;
+
+  /**
+   * Paper title
+   */
+  title: string;
+
+  /**
+   * Paper author
+   */
+  author?: string;
+
+  /**
+   * Sections in the paper
+   */
+  sections: UBSection[];
+}
 
 // Export the DocumentReader component
 export { DocumentReader } from './document-reader';
@@ -17,7 +134,7 @@ export { DocumentReader } from './document-reader';
  * Props for the UBReferenceLink component
  */
 export interface UBReferenceLinkProps {
-  reference: any; // Temporarily use 'any' instead of UBReference
+  reference: UBReference;
   baseUrl?: string;
   className?: string;
   children?: React.ReactNode;
@@ -45,7 +162,7 @@ export const UBReferenceLink: React.FC<UBReferenceLinkProps> = ({
  * Props for the UBPaperViewer component
  */
 export interface UBPaperViewerProps {
-  paper: any; // Temporarily use 'any' instead of UBPaper
+  paper: UBPaper;
   className?: string;
 }
 
@@ -60,7 +177,7 @@ export const UBPaperViewer: React.FC<UBPaperViewerProps> = ({ paper, className =
       </h1>
       {paper.author && <div className="ub-paper-author">Presented by: {paper.author}</div>}
       <div className="ub-paper-sections">
-        {paper.sections.map((section: any) => (
+        {paper.sections.map((section: UBSection) => (
           <UBSectionViewer key={section.number} section={section} />
         ))}
       </div>
@@ -72,7 +189,7 @@ export const UBPaperViewer: React.FC<UBPaperViewerProps> = ({ paper, className =
  * Props for the UBSectionViewer component
  */
 export interface UBSectionViewerProps {
-  section: any; // Temporarily use 'any' instead of UBSection
+  section: UBSection;
   className?: string;
 }
 
@@ -86,7 +203,7 @@ export const UBSectionViewer: React.FC<UBSectionViewerProps> = ({ section, class
         {section.number}. {section.title}
       </h2>
       <div className="ub-section-paragraphs">
-        {section.paragraphs.map((paragraph: any) => (
+        {section.paragraphs.map((paragraph: UBParagraph) => (
           <UBParagraphViewer key={paragraph.number} paragraph={paragraph} />
         ))}
       </div>
@@ -98,7 +215,7 @@ export const UBSectionViewer: React.FC<UBSectionViewerProps> = ({ section, class
  * Props for the UBParagraphViewer component
  */
 export interface UBParagraphViewerProps {
-  paragraph: any; // Temporarily use 'any' instead of UBParagraph
+  paragraph: UBParagraph;
   className?: string;
 }
 

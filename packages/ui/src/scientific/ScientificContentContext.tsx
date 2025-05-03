@@ -83,6 +83,8 @@ interface ScientificContentProviderProps {
 
 /**
  * Provider component for scientific content context
+ * @param props The provider props
+ * @returns The provider component
  */
 export function ScientificContentProvider({
   initialData = {},
@@ -90,7 +92,7 @@ export function ScientificContentProvider({
   includeExampleData = false,
   persistData = true,
   children,
-}: ScientificContentProviderProps) {
+}: ScientificContentProviderProps): JSX.Element {
   // Initialize state with initial data and optionally example data
   const [tooltipData, setTooltipData] = useState<TooltipDataRecord>(() => {
     // Try to load from localStorage if persistData is true
@@ -132,8 +134,10 @@ export function ScientificContentProvider({
 
   /**
    * Register new tooltip data
+   * @param term The term to register
+   * @param data The tooltip data
    */
-  const registerTooltipData = (term: string, data: TooltipData) => {
+  const registerTooltipData = (term: string, data: TooltipData): void => {
     setTooltipData(prevData => ({
       ...prevData,
       [term]: data,
@@ -142,8 +146,9 @@ export function ScientificContentProvider({
 
   /**
    * Register multiple tooltip data entries
+   * @param dataRecord The tooltip data record to register
    */
-  const registerTooltipDataBatch = (dataRecord: TooltipDataRecord) => {
+  const registerTooltipDataBatch = (dataRecord: TooltipDataRecord): void => {
     setTooltipData(prevData => ({
       ...prevData,
       ...dataRecord,
@@ -152,22 +157,26 @@ export function ScientificContentProvider({
 
   /**
    * Get tooltip data for a term
+   * @param term The term to get tooltip data for
+   * @returns The tooltip data or undefined if not found
    */
-  const getTooltipData = (term: string) => {
+  const getTooltipData = (term: string): TooltipData | undefined => {
     return tooltipData[term];
   };
 
   /**
    * Clear all tooltip data
    */
-  const clearTooltipData = () => {
+  const clearTooltipData = (): void => {
     setTooltipData({});
   };
 
   /**
    * Load tooltip data from a URL
+   * @param url The URL to load tooltip data from
+   * @returns A promise that resolves when the data is loaded
    */
-  const loadTooltipDataFromUrl = async (url: string) => {
+  const loadTooltipDataFromUrl = async (url: string): Promise<void> => {
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -200,8 +209,9 @@ export function ScientificContentProvider({
 
 /**
  * Hook to use the scientific content context
+ * @returns The scientific content context
  */
-export function useScientificContent() {
+export function useScientificContent(): ScientificContentContextType {
   const context = useContext(ScientificContentContext);
 
   if (!context) {
