@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+'use client';
+
+import React from 'react';
 
 import { ThemeProvider } from '../contexts/ThemeContext';
 import { UserPreferencesProvider } from '../contexts/UserPreferencesContext';
 import { HighlightProvider } from '../components/HighlightProvider';
 import { DebugHelper } from '../components/debug/DebugHelper';
-import { analyticsReporter, reportWebVitals } from '../lib/web-vitals';
+import { WebVitalsReporter } from '../components/WebVitalsReporter';
 
 import '../styles/globals.css';
 import '../styles/global.css'; // Import our new global CSS
@@ -17,16 +19,8 @@ import '../styles/three-row-header.css'; // Import 3-row header styles
 import '../styles/fixed-width-layout.css'; // Import fixed-width layout styles
 import '../styles/desktop-pullup.css'; // Import desktop pullup styles
 
-// Report web vitals
-export function reportWebVitalsMetrics(metric: {
-  name: string;
-  value: number;
-  delta: number;
-  id: string;
-  navigationType: string;
-}) {
-  analyticsReporter(metric);
-}
+// Import the reportWebVitalsMetrics function from the web-vitals utility
+export { reportWebVitalsMetrics } from '../lib/web-vitals';
 
 export const metadata = {
   title: 'UB Reader',
@@ -34,11 +28,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // Initialize web vitals reporting
-  useEffect(() => {
-    reportWebVitals(analyticsReporter);
-  }, []);
-
   return (
     <html lang="en">
       <head>
@@ -57,6 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ThemeProvider>
             <HighlightProvider containerSelector=".ub-paper">
               <main className="min-h-screen">{children}</main>
+              <WebVitalsReporter />
               <DebugHelper />
             </HighlightProvider>
           </ThemeProvider>

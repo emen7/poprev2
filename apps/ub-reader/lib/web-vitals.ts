@@ -7,6 +7,15 @@ type ReportHandler = (metric: {
   navigationType: string;
 }) => void;
 
+// Define the metric type for export
+export type WebVitalMetric = {
+  name: string;
+  value: number;
+  delta: number;
+  id: string;
+  navigationType: string;
+};
+
 /**
  * Web Vitals reporting function
  *
@@ -81,3 +90,11 @@ export const analyticsReporter: ReportHandler = metric => {
     }
   }
 };
+
+/**
+ * Function to report Web Vitals metrics from Next.js
+ * This is exported and used in the app layout
+ */
+export function reportWebVitalsMetrics(metric: WebVitalMetric): void {
+  analyticsReporter(metric);
+}
