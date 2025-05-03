@@ -1,11 +1,5 @@
-// Using type definition only to avoid direct import
-type ReportHandler = (metric: {
-  name: string;
-  value: number;
-  delta: number;
-  id: string;
-  navigationType: string;
-}) => void;
+// Import directly from web-vitals package
+import { ReportHandler, getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals';
 
 // Define the metric type for export
 export type WebVitalMetric = {
@@ -31,19 +25,12 @@ export type WebVitalMetric = {
  */
 export const reportWebVitals = (onPerfEntry?: ReportHandler): void => {
   if (onPerfEntry && typeof onPerfEntry === 'function' && typeof window !== 'undefined') {
-    // Only load web-vitals when in the browser and we have a reporting function
-    // Dynamic import of web-vitals is handled at runtime
-    // The module will be loaded from node_modules
-    Promise.all([
-      import('web-vitals').then(({ onCLS }) => onCLS(onPerfEntry)),
-      import('web-vitals').then(({ onFID }) => onFID(onPerfEntry)),
-      import('web-vitals').then(({ onFCP }) => onFCP(onPerfEntry)),
-      import('web-vitals').then(({ onLCP }) => onLCP(onPerfEntry)),
-      import('web-vitals').then(({ onTTFB }) => onTTFB(onPerfEntry)),
-    ]).catch(error => {
-      // eslint-disable-next-line no-console
-      console.error('Error loading web-vitals:', error);
-    });
+    // Only report web-vitals when in the browser and we have a reporting function
+    getCLS(onPerfEntry);
+    getFID(onPerfEntry);
+    getFCP(onPerfEntry);
+    getLCP(onPerfEntry);
+    getTTFB(onPerfEntry);
   }
 };
 
