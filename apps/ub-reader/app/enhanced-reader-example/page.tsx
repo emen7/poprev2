@@ -9,9 +9,9 @@
  * the improved-demo.html design.
  */
 
-import dynamic from 'next/dynamic';
-import Link from 'next/link';
-import React from 'react';
+import dynamic from &apos;next/dynamic';
+import Link from &apos;next/link';
+import React from &apos;react';
 
 // Use dynamic import with SSR disabled for the Reader example
 // This is necessary because the Reader component uses browser APIs
@@ -25,10 +25,10 @@ const EnhancedReaderExample = dynamic(() => import('../../examples/enhanced-read
 export default function EnhancedReaderExamplePage() {
   return (
     <div className="enhanced-reader-example-page">
-      <div className="fixed top-0 left-0 right-0 bg-yellow-500 text-black p-2 text-center z-50">
+      <div className="fixed inset-x-0 top-0 z-50 bg-yellow-500 p-2 text-center text-black">
         <strong>DEPRECATED:</strong> This example uses the deprecated Enhanced Reader. Please use
         the{' '}
-        <Link href="/traditional-test" className="underline font-bold">
+        <Link href="/traditional-test" className="font-bold underline">
           Traditional Reader
         </Link>{' '}
         instead.

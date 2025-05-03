@@ -1,0 +1,117 @@
+/**
+ * Traditional Reader Menu Styles
+ *
+ * This file contains styles for the navigation menu.
+ */
+
+/* Navigation menu styles */
+.navigation-menu {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  bottom: 0;
+  width: 300px;
+  background-color: var(--color-bg-secondary);
+  border-right: 1px solid var(--color-border);
+  z-index: 40;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.navigation-menu.open {
+  transform: translateX(0);
+}
+
+/* Fixed top and bottom containers for part toggles */
+.nav-fixed-top,
+.nav-fixed-bottom {
+  background-color: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nav-fixed-bottom {
+  margin-top: auto; /* Push to bottom */
+  border-top: 1px solid var(--color-border);
+  border-bottom: none;
+}
+
+.nav-scrollable {
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+/* Part title toggles */
+.part-toggle {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-secondary);
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s;
+}
+
+.part-toggle:hover {
+  background-color: var(--color-bg-hover);
+}
+
+.part-toggle.active {
+  color: var(--color-accent);
+}
+
+.part-toggle i {
+  transition: transform 0.2s;
+}
+
+.part-toggle.expanded i {
+  transform: rotate(180deg);
+}
+
+/* Paper list styles */
+.part-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.part-content.expanded {
+  max-height: 500px; /* Arbitrary large value, will be constrained by content */
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0 0 0 0.75rem;
+  margin: 0.25rem 0;
+}
+
+.nav-list li {
+  margin-bottom: 0.2rem;
+}
+
+.nav-list li a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  display: block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s;
+  font-size: 0.8rem;
+}
+
+.nav-list li a:hover {
+  background-color: var(--color-bg-hover);
+}
+
+.nav-list li a.active {
+  background-color: var(--color-bg-active);
+  color: var(--color-accent);
+}

@@ -18,11 +18,5 @@ export { TextSelectionHandler } from './TextSelectionHandler';
 export * from './types';
 
 // Export context and hooks
-export {
-  PullupContext,
-  PullupProvider,
-  usePullup,
-  pullupReducer,
-  initialPullupState,
-  PullupActionType,
-} from './PullupContext';
+// Export context and hooks from global context
+export { usePullup, PullupProvider } from '../../contexts/PullupContext';

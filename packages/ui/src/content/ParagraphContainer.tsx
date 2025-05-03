@@ -28,6 +28,18 @@ export interface ParagraphContainerProps {
   useVerticalNumbering?: boolean;
 
   /**
+   * Text alignment for paragraphs
+   * @default 'left'
+   */
+  textAlignment?: 'left' | 'right' | 'justified';
+
+  /**
+   * Whether to show note indicators
+   * @default true
+   */
+  showNoteIndicators?: boolean;
+
+  /**
    * ID of the currently highlighted paragraph
    */
   highlightedParagraphId?: string;
@@ -58,6 +70,8 @@ export const ParagraphContainer: React.FC<ParagraphContainerProps> = ({
   formatType,
   showNumbers = true,
   useVerticalNumbering = true,
+  textAlignment = 'left',
+  showNoteIndicators = true,
   highlightedParagraphId,
   onParagraphVisible,
   onParagraphClick,
@@ -82,7 +96,10 @@ export const ParagraphContainer: React.FC<ParagraphContainerProps> = ({
 
   return (
     <div className={containerClasses}>
-      <ParagraphNumberingContainer visible={numbersVisible && useVerticalNumbering}>
+      <ParagraphNumberingContainer
+        visible={numbersVisible && useVerticalNumbering}
+        showNoteIndicators={showNoteIndicators}
+      >
         {paragraphs.map(paragraph => (
           <ParagraphRenderer
             key={paragraph.id}
@@ -90,6 +107,8 @@ export const ParagraphContainer: React.FC<ParagraphContainerProps> = ({
             formatType={formatType}
             showNumber={numbersVisible}
             useVerticalNumbering={useVerticalNumbering}
+            textAlignment={textAlignment}
+            showNoteIndicators={showNoteIndicators}
             isHighlighted={paragraph.id === highlightedParagraphId}
             onVisible={onParagraphVisible ? () => onParagraphVisible(paragraph.id) : undefined}
             onClick={onParagraphClick ? (id, event) => onParagraphClick(id, event) : undefined}

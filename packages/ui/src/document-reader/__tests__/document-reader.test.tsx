@@ -1,4 +1,8 @@
-import { render, screen } from '@testing-library/react';
+/**
+ * Unit tests for the DocumentReader component
+ */
+
+import { render, screen, fireEvent } from '@testing-library/react';
 import { TransformedDocument } from '@ub-ecosystem/content-transformer';
 import React from 'react';
 
@@ -103,5 +107,60 @@ describe('DocumentReader', () => {
     expect(screen.getByText('Main Title')).toBeInTheDocument();
     expect(screen.getByText('Section 1')).toBeInTheDocument();
     expect(screen.getByText('Section 2')).toBeInTheDocument();
+  });
+
+  it('applies custom className', () => {
+    const { container } = render(
+      <DocumentReader document={mockDocument} className="custom-reader" />
+    );
+
+    // Check that the custom class is applied
+    expect(container.firstChild).toHaveClass('document-reader');
+    expect(container.firstChild).toHaveClass('custom-reader');
+  });
+
+  it('handles clicking on table of contents links', () => {
+    // Mock scrollIntoView
+    const mockScrollIntoView = jest.fn();
+    window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
+
+    // Mock getElementById
+    const mockGetElementById = jest.fn().mockImplementation(() => ({
+      scrollIntoView: mockScrollIntoView,
+    }));
+    document.getElementById = mockGetElementById;
+
+    const documentWithMultipleHeadings: TransformedDocument = {
+      ...mockDocument,
+      content: {
+        type: 'root',
+        children: [
+          {
+            type: 'heading',
+            depth: 1,
+            children: [{ type: 'text', value: 'Main Title' }],
+          },
+          {
+            type: 'heading',
+            depth: 2,
+            children: [{ type: 'text', value: 'Section 1' }],
+          },
+        ],
+      },
+    };
+
+    render(<DocumentReader document={documentWithMultipleHeadings} />);
+
+    // Find all links in the table of contents
+    const tocLinks = screen.getAllByRole('link');
+
+    // Click the first TOC link
+    fireEvent.click(tocLinks[0]);
+
+    // Check that getElementById was called
+    expect(mockGetElementById).toHaveBeenCalled();
+
+    // Check that scrollIntoView was called with smooth behavior
+    expect(mockScrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth' });
   });
 });

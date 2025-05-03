@@ -1,16 +1,17 @@
 'use client';
 
-import React, { createContext, useReducer, ReactNode, useMemo, useEffect, useContext } from 'react';
+import type { ReactNode } from &apos;react';
+import React, { createContext, useReducer, useMemo, useEffect, useContext } from &apos;react';
 
-import { PullupState, PullupTab } from './types';
+import type { PullupState, PullupTab } from './types';
 
 // Action types
 export enum PullupActionType {
-  OPEN_PULLUP = 'OPEN_PULLUP',
-  CLOSE_PULLUP = 'CLOSE_PULLUP',
-  SET_ACTIVE_TAB = 'SET_ACTIVE_TAB',
-  SET_HEIGHT = 'SET_HEIGHT',
-  SET_PERSISTENT = 'SET_PERSISTENT',
+  OPEN_PULLUP = &apos;OPEN_PULLUP',
+  CLOSE_PULLUP = &apos;CLOSE_PULLUP',
+  SET_ACTIVE_TAB = &apos;SET_ACTIVE_TAB',
+  SET_HEIGHT = &apos;SET_HEIGHT',
+  SET_PERSISTENT = &apos;SET_PERSISTENT',
 }
 
 // Action interfaces
@@ -30,7 +31,7 @@ export interface PullupContextType {
 // Initial state
 export const initialPullupState: PullupState = {
   isOpen: false,
-  activeTab: 'notes',
+  activeTab: &apos;notes',
   height: 300, // Default height in pixels
   isPersistent: false,
 };

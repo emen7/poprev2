@@ -1,12 +1,13 @@
-import React from 'react';
+import React from &apos;react';
+
 import RootLayoutClient from './layout-client';
 
 // Import the reportWebVitalsMetrics function from the web-vitals utility
 export { reportWebVitalsMetrics } from '../lib/web-vitals';
 
 export const metadata = {
-  title: 'UB Reader',
-  description: 'A modern reader for The Urantia Book',
+  title: &apos;UB Reader',
+  description: &apos;A modern reader for The Urantia Book',
 };
 
 /**

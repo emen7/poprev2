@@ -161,18 +161,64 @@ Validates and sanitizes the transformed content.
 ### `DocumentType`
 
 ```typescript
+/**
+ * Document types supported by the transformation system
+ *
+ * @typedef {('markdown'|'docx'|'perplexity')} DocumentType
+ * @description Defines the source format of the document being transformed
+ */
 type DocumentType = 'markdown' | 'docx' | 'perplexity';
 ```
 
 ### `PublicationType`
 
 ```typescript
+/**
+ * Publication types supported by the system
+ *
+ * @typedef {('scientific'|'lectionary'|'ubgems'|'ubcatechism')} PublicationType
+ * @description Defines the type of publication being transformed, which affects
+ * how the content is processed and displayed
+ */
 type PublicationType = 'scientific' | 'lectionary' | 'ubgems' | 'ubcatechism';
+```
+
+### `DocumentNode`
+
+```typescript
+/**
+ * Represents a node in the document structure
+ *
+ * @interface DocumentNode
+ * @description Base interface for all document nodes in the AST (Abstract Syntax Tree)
+ * @property {string} type - The type of node (e.g., 'paragraph', 'heading', etc.)
+ * @property {DocumentNode[]} [children] - Child nodes contained within this node
+ * @property {string} [value] - Text content of the node, if applicable
+ * @property {Record<string, any>} [properties] - Additional properties specific to the node type
+ */
+export interface DocumentNode {
+  type: string;
+  children?: DocumentNode[];
+  value?: string;
+  properties?: Record<string, any>;
+  [key: string]: any;
+}
 ```
 
 ### `TransformedDocument`
 
 ```typescript
+/**
+ * Represents a transformed document with content and metadata
+ *
+ * @interface TransformedDocument
+ * @description The result of transforming a document from its source format
+ * @property {RootNode} content - The document content as a tree of nodes
+ * @property {DocumentMetadata} metadata - The document metadata
+ * @property {PublicationType} [publicationType] - The type of publication
+ * @property {string} [html] - HTML representation of the document (if generated)
+ * @property {string} [text] - Plain text representation of the document (if generated)
+ */
 interface TransformedDocument {
   content: RootNode;
   metadata: DocumentMetadata;
@@ -185,6 +231,15 @@ interface TransformedDocument {
 ### `TransformOptions`
 
 ```typescript
+/**
+ * Options for the transformation process
+ *
+ * @interface TransformOptions
+ * @description Configuration options for the document transformation process
+ * @property {boolean} [extractMetadata=true] - Whether to extract metadata from the document
+ * @property {boolean} [sanitize=true] - Whether to sanitize the document content
+ * @property {PublicationType} [publicationType] - The type of publication being transformed
+ */
 interface TransformOptions {
   extractMetadata?: boolean;
   sanitize?: boolean;

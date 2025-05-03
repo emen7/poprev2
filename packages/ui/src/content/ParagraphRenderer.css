@@ -22,6 +22,20 @@
 /* Paragraph text */
 .paragraph-text {
   line-height: 1.6;
+  text-align: left; /* Default left alignment */
+}
+
+/* Text alignment options */
+.paragraph-text-align-left {
+  text-align: left;
+}
+
+.paragraph-text-align-right {
+  text-align: right;
+}
+
+.paragraph-text-align-justified {
+  text-align: justify;
 }
 
 /* Highlighted paragraph */

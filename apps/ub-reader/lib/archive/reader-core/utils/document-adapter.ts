@@ -5,8 +5,8 @@
  * and our new Document model.
  */
 
-import { TransformedDocument, DocumentNode } from '../../../document-transformer/types';
-import { Document, DocumentMetadata, Section, Paragraph } from '../models';
+import type { TransformedDocument, DocumentNode } from '../../../document-transformer/types';
+import type { Document, DocumentMetadata, Section, Paragraph } from '../models';
 
 /**
  * Adapter for converting between TransformedDocument and Document

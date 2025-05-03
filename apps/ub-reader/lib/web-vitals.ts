@@ -1,5 +1,6 @@
 // Import directly from web-vitals package
-import { ReportHandler, getCLS, getFID, getFCP, getLCP, getTTFB, Metric } from 'web-vitals';
+import type { ReportHandler, Metric } from 'web-vitals';
+import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals';
 
 // Use the Metric type from web-vitals package
 export type WebVitalMetric = Metric;
@@ -40,7 +41,7 @@ export const analyticsReporter = (metric: Metric): void => {
   // Log metrics to console in development
   if (process.env.NODE_ENV === 'development') {
     // eslint-disable-next-line no-console
-    console.log(metric);
+    // Removed console.log
   }
 
   // In production, you would send these metrics to your analytics service

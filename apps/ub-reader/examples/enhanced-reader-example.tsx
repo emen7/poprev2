@@ -5,11 +5,12 @@
  * navigation and settings features.
  */
 
-'use client';
+&apos;use client';
 
-import React from 'react';
+import React from &apos;react';
 
-import { Reader, Document, ReaderConfig } from '../lib/archive/reader-core';
+import type { Document, ReaderConfig } from '../lib/archive/reader-core';
+import { Reader } from '../lib/archive/reader-core';
 
 import './enhanced-reader-example.css';
 import { globalExtensionRegistry } from '../lib/archive/reader-core/utils';
@@ -20,36 +21,36 @@ import { createScientificExtension } from './scientific-extension';
  * Example document
  */
 const exampleDocument: Document = {
-  id: 'example-doc-1',
-  title: 'Example Document',
-  type: 'main',
+  id: &apos;example-doc-1',
+  title: &apos;Example Document',
+  type: &apos;main',
   sections: [
     {
-      id: 'section-1',
-      title: 'Introduction',
+      id: &apos;section-1',
+      title: &apos;Introduction',
       paragraphs: [
         {
-          id: 'paragraph-1',
+          id: &apos;paragraph-1',
           content:
-            'This is an example document that demonstrates the enhanced Reader component with the new navigation and settings features. It shows how to structure content and how the Reader renders it.',
+            &apos;This is an example document that demonstrates the enhanced Reader component with the new navigation and settings features. It shows how to structure content and how the Reader renders it.',
           references: [],
         },
         {
-          id: 'paragraph-2',
+          id: &apos;paragraph-2',
           content:
-            'The Reader component is designed to be extensible and configurable, allowing for specialized features for different types of content.',
+            &apos;The Reader component is designed to be extensible and configurable, allowing for specialized features for different types of content.',
           references: [],
         },
       ],
       subsections: [
         {
-          id: 'section-1-1',
-          title: 'Purpose',
+          id: &apos;section-1-1',
+          title: &apos;Purpose',
           paragraphs: [
             {
-              id: 'paragraph-3',
+              id: &apos;paragraph-3',
               content:
-                'The purpose of this example is to show how the Reader component can be used to display structured content with proper formatting and navigation.',
+                &apos;The purpose of this example is to show how the Reader component can be used to display structured content with proper formatting and navigation.',
               references: [],
             },
           ],
@@ -57,55 +58,55 @@ const exampleDocument: Document = {
       ],
     },
     {
-      id: 'section-2',
-      title: 'Features',
+      id: &apos;section-2',
+      title: &apos;Features',
       paragraphs: [
         {
-          id: 'paragraph-4',
-          content: 'The enhanced Reader component includes several new features:',
+          id: &apos;paragraph-4',
+          content: &apos;The enhanced Reader component includes several new features:',
           references: [],
         },
       ],
       subsections: [
         {
-          id: 'section-2-1',
-          title: 'Navigation',
+          id: &apos;section-2-1',
+          title: &apos;Navigation',
           paragraphs: [
             {
-              id: 'paragraph-5',
+              id: &apos;paragraph-5',
               content:
-                'The Reader includes a hamburger menu that opens a navigation panel with a hierarchical structure of parts, papers, and sections.',
+                &apos;The Reader includes a hamburger menu that opens a navigation panel with a hierarchical structure of parts, papers, and sections.',
               references: [],
             },
           ],
         },
         {
-          id: 'section-2-2',
-          title: 'Settings',
+          id: &apos;section-2-2',
+          title: &apos;Settings',
           paragraphs: [
             {
-              id: 'paragraph-6',
+              id: &apos;paragraph-6',
               content:
-                'The Reader includes a settings panel that allows users to customize the theme, typography, and layout.',
+                &apos;The Reader includes a settings panel that allows users to customize the theme, typography, and layout.',
               references: [
                 {
-                  id: 'ref-1',
-                  type: 'supporting',
-                  targetDocumentId: 'doc-2',
-                  targetParagraphId: 'para-5',
+                  id: &apos;ref-1',
+                  type: &apos;supporting',
+                  targetDocumentId: &apos;doc-2',
+                  targetParagraphId: &apos;para-5',
                 },
               ],
             },
           ],
         },
         {
-          id: 'section-2-3',
-          title: 'Extensions',
+          id: &apos;section-2-3',
+          title: &apos;Extensions',
           paragraphs: [
             {
-              id: 'paragraph-7',
+              id: &apos;paragraph-7',
               content:
-                'The Reader can be extended with plugins that provide specialized features for different types of content.',
+                &apos;The Reader can be extended with plugins that provide specialized features for different types of content.',
               references: [],
             },
           ],
@@ -113,13 +114,13 @@ const exampleDocument: Document = {
       ],
     },
     {
-      id: 'section-3',
-      title: 'Conclusion',
+      id: &apos;section-3',
+      title: &apos;Conclusion',
       paragraphs: [
         {
-          id: 'paragraph-8',
+          id: &apos;paragraph-8',
           content:
-            'This example demonstrates the enhanced Reader component with the new navigation and settings features. In a real application, you would use the document transformation system to convert content from various formats into the standardized document model.',
+            &apos;This example demonstrates the enhanced Reader component with the new navigation and settings features. In a real application, you would use the document transformation system to convert content from various formats into the standardized document model.',
           references: [],
         },
       ],
@@ -127,18 +128,18 @@ const exampleDocument: Document = {
   ],
   relationships: [
     {
-      type: 'supports',
-      targetDocumentId: 'doc-2',
-      description: 'This document supports the concepts described in Document 2.',
+      type: &apos;supports',
+      targetDocumentId: &apos;doc-2',
+      description: &apos;This document supports the concepts described in Document 2.',
     },
   ],
   metadata: {
-    title: 'Enhanced Reader Example',
-    subtitle: 'A demonstration of the enhanced Reader component',
-    author: 'Reader Team',
-    date: '2025-04-01',
-    categories: ['Documentation', 'Example'],
-    tags: ['reader', 'component', 'example'],
+    title: &apos;Enhanced Reader Example',
+    subtitle: &apos;A demonstration of the enhanced Reader component',
+    author: &apos;Reader Team',
+    date: &apos;2025-04-01',
+    categories: ['Documentation', &apos;Example'],
+    tags: ['reader', &apos;component', &apos;example'],
   },
 };
 
@@ -149,7 +150,7 @@ const exampleConfig: Partial<ReaderConfig> = {
   branding: {
     primaryColor: '#4a6da7',
     secondaryColor: '#6c757d',
-    appName: 'Enhanced Reader Example',
+    appName: &apos;Enhanced Reader Example',
   },
   navigation: {
     showTableOfContents: true,
@@ -159,10 +160,10 @@ const exampleConfig: Partial<ReaderConfig> = {
     showSearch: true,
     showSettings: true,
     linkbackUrl: '/',
-    linkbackText: 'Back to Examples',
+    linkbackText: &apos;Back to Examples',
   },
   theme: {
-    mode: 'light',
+    mode: &apos;light',
     colors: {
       background: '#ffffff',
       text: '#333333',
@@ -172,21 +173,21 @@ const exampleConfig: Partial<ReaderConfig> = {
   },
   typography: {
     fontFamily:
-      'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-    fontSize: 'medium',
-    fontStyle: 'sans-serif',
-    lineSpacing: 'normal',
+      &apos;system-ui, -apple-system, BlinkMacSystemFont, &quot;Segoe UI", Roboto, &quot;Helvetica Neue", Arial, sans-serif',
+    fontSize: &apos;medium',
+    fontStyle: &apos;sans-serif',
+    lineSpacing: &apos;normal',
   },
   layout: {
-    textWidth: 'medium',
+    textWidth: &apos;medium',
     showParagraphNumbers: true,
     enableStickyHeaders: true,
   },
   extensions: ['scientific-extension'],
   extensionConfig: {
-    'scientific-extension': {
+    &apos;scientific-extension': {
       // Scientific extension specific configuration
-      citationStyle: 'APA',
+      citationStyle: &apos;APA',
       enableMathJax: true,
       enableCharts: true,
     },

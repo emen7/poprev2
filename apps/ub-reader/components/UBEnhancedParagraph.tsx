@@ -1,9 +1,11 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
-import { useEnhancedHighlight } from './EnhancedHighlightProvider';
-import { useTheme } from '../contexts/ThemeContext';
+import React, { useRef, useState } from &apos;react';
+
 import { useExtendedUserPreferences } from '../contexts/ExtendedUserPreferencesContext';
+import { useTheme } from '../contexts/ThemeContext';
+
+import { useEnhancedHighlight } from './EnhancedHighlightProvider';
 import { ReferenceProcessor } from './references';
 
 interface UBEnhancedParagraphProps {
@@ -33,7 +35,7 @@ interface UBEnhancedParagraphProps {
   /**
    * Function called when the note indicator is clicked
    */
-  onNoteIndicatorClick?: (paragraphNumber: number) => void;
+  onNoteIndicatorClick?: (paragraphId: string) => void;
 }
 
 /**
@@ -54,9 +56,9 @@ export const UBEnhancedParagraph: React.FC<UBEnhancedParagraphProps> = ({
 }) => {
   const { preferences } = useExtendedUserPreferences();
   const paragraphRef = useRef<HTMLDivElement>(null);
-  const { highlightManager, showHighlights } = useEnhancedHighlight();
+  const { highlightManager, _showHighlights } = useEnhancedHighlight();
   const [isHovered, setIsHovered] = useState(false);
-  const { uiTheme } = useTheme();
+  const { _uiTheme } = useTheme();
 
   // Determine if paragraph numbers should be shown
   const showParagraphNumbers = preferences.reader.showParagraphNumbers;
@@ -72,8 +74,8 @@ export const UBEnhancedParagraph: React.FC<UBEnhancedParagraphProps> = ({
 
   // Apply appropriate classes based on the content theme and topic change status
   const paragraphClasses = [
-    'ub-enhanced-paragraph',
-    isTopicChange ? 'ub-topic-change' : '',
+    &apos;ub-enhanced-paragraph',
+    isTopicChange ? &apos;ub-topic-change' : '',
     className,
   ]
     .filter(Boolean)
@@ -109,11 +111,11 @@ export const UBEnhancedParagraph: React.FC<UBEnhancedParagraphProps> = ({
   // Helper function to get line height value
   function getLineHeightValue(lineHeight: string): number {
     switch (lineHeight) {
-      case 'compact':
+      case &apos;compact':
         return 1.4;
-      case 'relaxed':
+      case &apos;relaxed':
         return 1.8;
-      case 'normal':
+      case &apos;normal':
       default:
         return 1.6;
     }
@@ -122,13 +124,13 @@ export const UBEnhancedParagraph: React.FC<UBEnhancedParagraphProps> = ({
   // Helper function to get font size value
   function getFontSizeValue(fontSize: string): string {
     switch (fontSize) {
-      case 'small':
-        return '0.9rem';
-      case 'large':
-        return '1.1rem';
-      case 'medium':
+      case &apos;small':
+        return &apos;0.9rem';
+      case &apos;large':
+        return &apos;1.1rem';
+      case &apos;medium':
       default:
-        return '1rem';
+        return &apos;1rem';
     }
   }
 
@@ -139,7 +141,7 @@ export const UBEnhancedParagraph: React.FC<UBEnhancedParagraphProps> = ({
   ) => {
     // Navigate to the referenced content
     window.location.href =
-      reference.type === 'paper'
+      reference.type === &apos;paper'
         ? `/paper/${reference.paper}`
         : `/paper/${reference.paper}#section-${reference.section}`;
 
@@ -149,7 +151,7 @@ export const UBEnhancedParagraph: React.FC<UBEnhancedParagraphProps> = ({
 
   // Handle text selection for highlighting
   const handleMouseUp = () => {
-    if (typeof window === 'undefined' || !highlightManager) return;
+    if (typeof window === &apos;undefined' || !highlightManager) return;
 
     const selection = window.getSelection();
     if (!selection || selection.isCollapsed || !paragraphRef.current) return;
@@ -187,7 +189,7 @@ export const UBEnhancedParagraph: React.FC<UBEnhancedParagraphProps> = ({
   // Handle note indicator click
   const handleNoteIndicatorClick = () => {
     if (hasNote && onNoteIndicatorClick) {
-      onNoteIndicatorClick(paragraph.number);
+      onNoteIndicatorClick(paragraph.number.toString());
     }
   };
 
@@ -203,10 +205,10 @@ export const UBEnhancedParagraph: React.FC<UBEnhancedParagraphProps> = ({
       {/* Note indicator column */}
       {showNoteIndicators && (
         <div
-          className={`ub-note-indicator ${hasNote ? 'has-note' : ''} ${isHovered ? 'hovered' : ''}`}
+          className={`ub-note-indicator ${hasNote ? &apos;has-note' : ''} ${isHovered ? &apos;hovered' : ''}`}
           onClick={handleNoteIndicatorClick}
         >
-          {hasNote && <span className="ub-note-dot"></span>}
+          {hasNote && <span className="ub-note-dot" />}
         </div>
       )}
 
@@ -232,8 +234,8 @@ export const UBEnhancedParagraph: React.FC<UBEnhancedParagraphProps> = ({
       <style jsx>{`
         .ub-enhanced-paragraph {
           display: grid;
-          grid-template-columns: ${showNoteIndicators ? '20px' : ''} ${showParagraphNumbers
-              ? 'minmax(30px, auto)'
+          grid-template-columns: ${showNoteIndicators ? &apos;20px' : ''} ${showParagraphNumbers
+              ? &apos;minmax(30px, auto)'
               : ''} 1fr;
           margin-bottom: 1rem;
           position: relative;
@@ -245,7 +247,7 @@ export const UBEnhancedParagraph: React.FC<UBEnhancedParagraphProps> = ({
           justify-content: center;
           align-items: flex-start;
           padding-top: 0.25rem;
-          cursor: ${hasNote ? 'pointer' : 'default'};
+          cursor: ${hasNote ? &apos;pointer' : &apos;default'};
         }
 
         .ub-note-indicator.has-note {

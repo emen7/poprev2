@@ -1,0 +1,40 @@
+/**
+ * Traditional Reader Responsive Styles
+ *
+ * This file contains responsive adjustments for different screen sizes.
+ */
+
+/* Responsive Adjustments */
+@media (width <= 768px) {
+  .navigation-menu,
+  .settings-panel {
+    width: 85%;
+    max-width: 300px;
+  }
+
+  .header-title {
+    font-size: 1.25rem;
+  }
+
+  .header {
+    padding: 0.75rem;
+  }
+
+  /* Ensure part title is visible on mobile */
+  .sticky-part-title {
+    font-size: 0.75rem;
+  }
+
+  .sticky-paper-title {
+    font-size: 0.85rem;
+  }
+
+  /* Adjust navigation buttons on mobile */
+  .nav-prev-button {
+    margin-right: 0.25rem;
+  }
+
+  .nav-next-button {
+    margin-left: 0.25rem;
+  }
+}

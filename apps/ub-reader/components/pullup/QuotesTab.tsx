@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
+import React from &apos;react';
 
-import { Quote } from './types';
+import type { Quote } from './types';
 import './QuotesTab.css';
 
 export interface QuotesTabProps {
@@ -19,12 +19,12 @@ export interface QuotesTabProps {
   /**
    * The sort order for quotes
    */
-  sortOrder?: 'entry' | 'paper';
+  sortOrder?: &apos;entry' | &apos;paper';
 
   /**
    * Function called when the sort order is changed
    */
-  onSortOrderChange?: (sortOrder: 'entry' | 'paper') => void;
+  onSortOrderChange?: (sortOrder: &apos;entry' | &apos;paper') => void;
 
   /**
    * Additional CSS class name
@@ -40,7 +40,7 @@ export interface QuotesTabProps {
 export function QuotesTab({
   quotes,
   onQuoteDelete,
-  sortOrder = 'entry',
+  sortOrder = &apos;entry',
   onSortOrderChange,
   className = '',
 }: QuotesTabProps) {
@@ -72,7 +72,7 @@ export function QuotesTab({
 
   // Handle sort order change
   const handleSortOrderChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newSortOrder = e.target.value as 'entry' | 'paper';
+    const newSortOrder = e.target.value as &apos;entry' | &apos;paper';
     if (onSortOrderChange) {
       onSortOrderChange(newSortOrder);
     }
@@ -80,7 +80,7 @@ export function QuotesTab({
 
   // Sort quotes based on sort order
   const sortedQuotes = [...quotes].sort((a, b) => {
-    if (sortOrder === 'entry') {
+    if (sortOrder === &apos;entry') {
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     } else {
       // Sort by paper reference
@@ -113,7 +113,7 @@ export function QuotesTab({
       {/* Quotes list */}
       {sortedQuotes.length === 0 ? (
         <div className="quotes-tab-empty">
-          <p>No quotes yet. Select text in the document and choose "Save Quote" to create one.</p>
+          <p>No quotes yet. Select text in the document and choose &quot;Save Quote" to create one.</p>
         </div>
       ) : (
         <div className="quotes-list">

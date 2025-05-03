@@ -5,9 +5,9 @@
  * It provides a plugin architecture for adding specialized features to the Reader.
  */
 
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import { Document } from './document';
+import type { Document } from './document';
 
 /**
  * Represents a Reader extension
@@ -224,14 +224,14 @@ export interface ExtensionRegistry {
    *
    * @param extensionId The ID of the extension to unregister
    */
-  unregister(extensionId: string): void;
+  unregister(_extensionId: string): void;
 
   /**
    * Get an extension by ID
    *
    * @param extensionId The ID of the extension to get
    */
-  getExtension(extensionId: string): ReaderExtension | undefined;
+  getExtension(_extensionId: string): ReaderExtension | undefined;
 
   /**
    * Get all registered extensions

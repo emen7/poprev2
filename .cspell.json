@@ -1,0 +1,16 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "Urantia",
+    "roomodes",
+    "Turborepo",
+    "roocode",
+    "cooldown",
+    "poprev",
+    "boomerang",
+    "Pullup",
+    "pullup"
+  ],
+  "ignorePaths": ["node_modules/**", "dist/**", ".next/**", "coverage/**", "backup/**"]
+}

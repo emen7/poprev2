@@ -4,9 +4,9 @@
  * This page demonstrates a simple example without relying on the complex Reader component.
  */
 
-'use client';
+&apos;use client';
 
-import React from 'react';
+import React from &apos;react';
 
 export default function SimpleExamplePage() {
   return (

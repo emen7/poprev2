@@ -76,10 +76,22 @@
   align-items: center;
 }
 
+.note-selection {
+  margin-right: 8px;
+}
+
+.note-checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--checkbox-color, #7fc8f5);
+}
+
 .note-reference {
   font-weight: 600;
   color: var(--reference-color, #7fc8f5);
   font-size: 0.9rem;
+  flex-grow: 1;
 }
 
 .note-actions {
@@ -181,6 +193,7 @@
   --textarea-color: #fff;
   --textarea-border-color: #444;
   --date-color: #888;
+  --checkbox-color: #7fc8f5;
 }
 
 /* Light theme variables */
@@ -208,4 +221,5 @@
   --textarea-color: #333;
   --textarea-border-color: #ddd;
   --date-color: #888;
+  --checkbox-color: #0078d4;
 }

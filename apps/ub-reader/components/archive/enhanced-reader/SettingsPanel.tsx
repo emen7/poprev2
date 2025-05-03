@@ -4,11 +4,11 @@
  * This component renders a slide-in settings panel with theme options.
  */
 
-'use client';
+&apos;use client';
 
-import React from 'react';
+import React from &apos;react';
 
-import { SettingsPanelProps } from './types';
+import type { SettingsPanelProps } from './types';
 
 /**
  * Settings Panel Component
@@ -22,7 +22,7 @@ export function SettingsPanel({
 }: SettingsPanelProps) {
   return (
     <aside
-      className={`er-settings-panel ${isOpen ? 'er-open' : ''} ${className}`}
+      className={`er-settings-panel ${isOpen ? &apos;er-open' : ''} ${className}`}
       aria-hidden={!isOpen}
       role="complementary"
     >
@@ -41,16 +41,16 @@ export function SettingsPanel({
           <h3 className="er-settings-option-title">Theme</h3>
           <div className="er-settings-option-buttons">
             <button
-              className={`er-settings-option-button ${theme === 'light' ? 'er-active' : ''}`}
+              className={`er-settings-option-button ${theme === &apos;light' ? &apos;er-active' : ''}`}
               onClick={() => onThemeChange('light')}
-              aria-pressed={theme === 'light'}
+              aria-pressed={theme === &apos;light'}
             >
               Light
             </button>
             <button
-              className={`er-settings-option-button ${theme === 'dark' ? 'er-active' : ''}`}
+              className={`er-settings-option-button ${theme === &apos;dark' ? &apos;er-active' : ''}`}
               onClick={() => onThemeChange('dark')}
-              aria-pressed={theme === 'dark'}
+              aria-pressed={theme === &apos;dark'}
             >
               Dark
             </button>

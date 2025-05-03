@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React from &apos;react';
 
 import { useReaderSettings } from '../contexts/ReaderSettingsContext';
 

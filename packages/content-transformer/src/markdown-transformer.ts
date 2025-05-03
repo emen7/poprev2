@@ -3,6 +3,8 @@
  *
  * This module handles the transformation of markdown content into the standardized
  * internal representation using the unified.js ecosystem (remark/rehype).
+ *
+ * @module content-transformer/markdown-transformer
  */
 
 import rehypeStringify from 'rehype-stringify';
@@ -10,15 +12,17 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 
-import { RootNode, DocumentNode } from './types';
+import { RootNode, DocumentNode, TransformedDocument, BaseMetadata } from './types';
 
 /**
  * Extract metadata from markdown frontmatter if present
  *
- * @param content The markdown content
- * @returns An object containing the extracted metadata and the content without frontmatter
+ * @param {string} content - The markdown content to extract frontmatter from
+ * @returns {Object} An object containing the extracted metadata and the content without frontmatter
+ * @returns {BaseMetadata} returns.metadata - The extracted metadata as key-value pairs
+ * @returns {string} returns.content - The content with frontmatter removed
  */
-function extractFrontmatter(content: string): { metadata: Record<string, any>; content: string } {
+function extractFrontmatter(content: string): { metadata: BaseMetadata; content: string } {
   // Simple frontmatter extraction (YAML between --- delimiters)
   const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n/;
   const match = content.match(frontmatterRegex);
@@ -31,7 +35,7 @@ function extractFrontmatter(content: string): { metadata: Record<string, any>; c
   const contentWithoutFrontmatter = content.slice(match[0].length);
 
   // Parse YAML frontmatter
-  const metadata: Record<string, any> = {};
+  const metadata: BaseMetadata = {};
   frontmatter.split('\n').forEach(line => {
     const [key, ...valueParts] = line.split(':');
     if (key && valueParts.length) {
@@ -46,10 +50,10 @@ function extractFrontmatter(content: string): { metadata: Record<string, any>; c
 /**
  * Transform markdown content into the standardized internal representation
  *
- * @param content The markdown content to transform
- * @returns A promise that resolves to the transformed content
+ * @param {string} content - The markdown content to transform
+ * @returns {Promise<TransformedDocument>} A promise that resolves to the transformed document
  */
-export async function transformMarkdown(content: string): Promise<any> {
+export async function transformMarkdown(content: string): Promise<TransformedDocument> {
   // Extract frontmatter metadata if present
   const { metadata, content: contentWithoutFrontmatter } = extractFrontmatter(content);
 
@@ -68,18 +72,23 @@ export async function transformMarkdown(content: string): Promise<any> {
   // Convert the remark AST to our internal representation
   const transformedContent = convertRemarkAstToInternalFormat(markdownAST);
 
+  // Create plain text version
+  const text = contentWithoutFrontmatter;
+
+  // Return the transformed document
   return {
     content: transformedContent,
     metadata,
     html,
+    text,
   };
 }
 
 /**
  * Convert a remark AST to our internal document representation format
  *
- * @param ast The remark AST to convert
- * @returns The converted AST in our internal format
+ * @param {Object} ast - The remark AST to convert
+ * @returns {RootNode} The converted AST in our internal format
  */
 function convertRemarkAstToInternalFormat(ast: any): RootNode {
   // Start with the root node
@@ -99,8 +108,8 @@ function convertRemarkAstToInternalFormat(ast: any): RootNode {
 /**
  * Convert a single remark node to our internal format
  *
- * @param node The remark node to convert
- * @returns The converted node in our internal format
+ * @param {Object} node - The remark node to convert
+ * @returns {DocumentNode} The converted node in our internal format
  */
 function convertNode(node: any): DocumentNode {
   // Base node structure
@@ -111,21 +120,25 @@ function convertNode(node: any): DocumentNode {
   // Copy relevant properties based on node type
   switch (node.type) {
     case 'heading':
+      // Convert heading with depth property
       convertedNode.depth = node.depth;
       break;
     case 'list':
+      // Convert list with ordered and start properties
       convertedNode.ordered = node.ordered;
       if (node.start !== null && node.start !== undefined) {
         convertedNode.start = node.start;
       }
       break;
     case 'link':
+      // Convert link with url and optional title
       convertedNode.url = node.url;
       if (node.title) {
         convertedNode.title = node.title;
       }
       break;
     case 'image':
+      // Convert image with url, alt, and optional title
       convertedNode.url = node.url;
       if (node.alt) {
         convertedNode.alt = node.alt;
@@ -135,6 +148,7 @@ function convertNode(node: any): DocumentNode {
       }
       break;
     case 'code':
+      // Convert code block with optional lang and meta properties
       if (node.lang) {
         convertedNode.lang = node.lang;
       }
@@ -145,9 +159,11 @@ function convertNode(node: any): DocumentNode {
       break;
     case 'inlineCode':
     case 'text':
+      // Convert text nodes with value property
       convertedNode.value = node.value;
       break;
     case 'table':
+      // Convert table with optional align property
       if (node.align) {
         convertedNode.align = node.align;
       }

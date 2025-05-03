@@ -1,0 +1,94 @@
+/**
+ * Traditional Reader Variables
+ *
+ * This file contains standardized CSS variables for the Traditional Reader component.
+ * Variables follow a consistent naming pattern: --color-{purpose}-{variant}
+ */
+
+:root {
+  /* Light theme variables */
+  --color-bg-primary-light: #ffffff;
+  --color-bg-primary-light-rgb: 255, 255, 255; /* RGB values for rgba() */
+  --color-bg-secondary-light: #f8f8f8;
+  --color-text-primary-light: #333333;
+  --color-text-title-light: #222222; /* Darker shade for titles */
+  --color-accent-light: #555555; /* Mid-tone for accents */
+  --color-border-light: #e2e8f0;
+  --color-bg-hover-light: rgba(0, 0, 0, 0.05);
+  --color-bg-active-light: rgba(0, 0, 0, 0.1);
+
+  /* Dark theme variables */
+  --color-bg-primary-dark: #1a1a1a;
+  --color-bg-primary-dark-rgb: 26, 26, 26; /* RGB values for rgba() */
+  --color-bg-secondary-dark: #222222;
+  --color-text-primary-dark: #e0e0e0; /* Light gray for text */
+  --color-text-title-dark: #ffffff; /* White for titles */
+  --color-accent-dark: #aaaaaa; /* Mid-gray for accents */
+  --color-border-dark: #333333;
+  --color-bg-hover-dark: rgba(255, 255, 255, 0.05);
+  --color-bg-active-dark: rgba(255, 255, 255, 0.1);
+}
+
+/* Apply theme variables based on body class */
+body.light-theme {
+  --color-bg-primary: var(--color-bg-primary-light);
+  --color-bg-primary-rgb: var(--color-bg-primary-light-rgb);
+  --color-bg-secondary: var(--color-bg-secondary-light);
+  --color-text-primary: var(--color-text-primary-light);
+  --color-text-title: var(--color-text-title-light);
+  --color-accent: var(--color-accent-light);
+  --color-border: var(--color-border-light);
+  --color-bg-hover: var(--color-bg-hover-light);
+  --color-bg-active: var(--color-bg-active-light);
+}
+
+body.dark-theme,
+body.high-contrast-theme {
+  --color-bg-primary: var(--color-bg-primary-dark);
+  --color-bg-primary-rgb: var(--color-bg-primary-dark-rgb);
+  --color-bg-secondary: var(--color-bg-secondary-dark);
+  --color-text-primary: var(--color-text-primary-dark);
+  --color-text-title: var(--color-text-title-dark);
+  --color-accent: var(--color-accent-dark);
+  --color-border: var(--color-border-dark);
+  --color-bg-hover: var(--color-bg-hover-dark);
+  --color-bg-active: var(--color-bg-active-dark);
+}
+
+/* Default to dark theme if no class is present */
+body {
+  --color-bg-primary: var(--color-bg-primary-dark);
+  --color-bg-primary-rgb: var(--color-bg-primary-dark-rgb);
+  --color-bg-secondary: var(--color-bg-secondary-dark);
+  --color-text-primary: var(--color-text-primary-dark);
+  --color-text-title: var(--color-text-title-dark);
+  --color-accent: var(--color-accent-dark);
+  --color-border: var(--color-border-dark);
+  --color-bg-hover: var(--color-bg-hover-dark);
+  --color-bg-active: var(--color-bg-active-dark);
+}
+
+/* Direct theme application to container */
+.light-theme-container {
+  --color-bg-primary: var(--color-bg-primary-light);
+  --color-bg-primary-rgb: var(--color-bg-primary-light-rgb);
+  --color-bg-secondary: var(--color-bg-secondary-light);
+  --color-text-primary: var(--color-text-primary-light);
+  --color-text-title: var(--color-text-title-light);
+  --color-accent: var(--color-accent-light);
+  --color-border: var(--color-border-light);
+  --color-bg-hover: var(--color-bg-hover-light);
+  --color-bg-active: var(--color-bg-active-light);
+}
+
+.dark-theme-container {
+  --color-bg-primary: var(--color-bg-primary-dark);
+  --color-bg-primary-rgb: var(--color-bg-primary-dark-rgb);
+  --color-bg-secondary: var(--color-bg-secondary-dark);
+  --color-text-primary: var(--color-text-primary-dark);
+  --color-text-title: var(--color-text-title-dark);
+  --color-accent: var(--color-accent-dark);
+  --color-border: var(--color-border-dark);
+  --color-bg-hover: var(--color-bg-hover-dark);
+  --color-bg-active: var(--color-bg-active-dark);
+}

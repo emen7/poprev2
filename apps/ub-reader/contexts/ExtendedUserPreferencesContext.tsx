@@ -1,11 +1,9 @@
 'use client';
 
-import {
-  ExtendedUserPreferences,
-  extendedDefaultPreferences,
-  LocalStoragePreferences,
-} from '@ub-ecosystem/config';
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import type { ExtendedUserPreferences } from '@ub-ecosystem/config';
+import { extendedDefaultPreferences, LocalStoragePreferences } from '@ub-ecosystem/config';
+import type { ReactNode } from &apos;react';
+import React, { createContext, useContext, useState, useEffect } from &apos;react';
 
 interface ExtendedUserPreferencesContextType {
   preferences: ExtendedUserPreferences;
@@ -24,7 +22,7 @@ export function useExtendedUserPreferences() {
   const context = useContext(ExtendedUserPreferencesContext);
   if (context === undefined) {
     throw new Error(
-      'useExtendedUserPreferences must be used within an ExtendedUserPreferencesProvider'
+      &apos;useExtendedUserPreferences must be used within an ExtendedUserPreferencesProvider'
     );
   }
   return context;

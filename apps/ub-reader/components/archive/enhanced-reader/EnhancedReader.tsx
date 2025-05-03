@@ -4,16 +4,16 @@
  * This is the main component that renders a document with enhanced navigation and settings.
  */
 
-'use client';
+&apos;use client';
 
-import React from 'react';
+import React from &apos;react';
 
 import { useTheme, usePanel } from './hooks';
 import { NavigationPanel } from './NavigationPanel';
 import { Overlay } from './Overlay';
 import { ReaderHeader } from './ReaderHeader';
 import { SettingsPanel } from './SettingsPanel';
-import { EnhancedReaderProps } from './types';
+import type { EnhancedReaderProps } from './types';
 import './EnhancedReader.css';
 
 /**
@@ -22,7 +22,7 @@ import './EnhancedReader.css';
 export function EnhancedReader({
   title,
   children,
-  initialTheme = 'light',
+  initialTheme = &apos;light',
   className = '',
 }: EnhancedReaderProps) {
   // Theme state
@@ -57,7 +57,7 @@ export function EnhancedReader({
   };
 
   // Handle theme change
-  const handleThemeChange = (newTheme: 'light' | 'dark') => {
+  const handleThemeChange = (newTheme: &apos;light' | &apos;dark') => {
     setTheme(newTheme);
   };
 

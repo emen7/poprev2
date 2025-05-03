@@ -5,12 +5,12 @@
  * It can generate and play audio for the current content using the audio-services package.
  */
 
-'use client';
+&apos;use client';
 
 // Import from audio-services package - currently not using any imports
 // but keeping the import for future use
 import {} from '@ub-ecosystem/audio-services';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from &apos;react';
 
 interface AudioPlayerProps {
   content: string;
@@ -20,7 +20,7 @@ interface AudioPlayerProps {
 
 export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   content,
-  title = 'Audio Player',
+  title = &apos;Audio Player',
   apiKey = process.env.NEXT_PUBLIC_NARAKEET_API_KEY || '',
 }) => {
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
@@ -33,7 +33,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   const handleGenerateAudio = async () => {
     if (!apiKey) {
       setError(
-        'No API key provided. Please configure the NEXT_PUBLIC_NARAKEET_API_KEY environment variable.'
+        &apos;No API key provided. Please configure the NEXT_PUBLIC_NARAKEET_API_KEY environment variable.'
       );
       return;
     }
@@ -50,9 +50,9 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
       // Simulate API response
       const result = {
-        url: 'https://example.com/audio/sample.mp3',
+        url: &apos;https://example.com/audio/sample.mp3',
         duration: content.length / 20, // Rough estimate: 20 chars per second
-        format: 'mp3',
+        format: &apos;mp3',
         size: content.length * 100, // Rough estimate: 100 bytes per character
       };
 
@@ -100,16 +100,16 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   }, []);
 
   return (
-    <div className="audio-player border rounded-lg p-4 my-4 bg-gray-50">
-      <h3 className="text-lg font-semibold mb-2">{title}</h3>
+    <div className="audio-player my-4 rounded-lg border bg-gray-50 p-4">
+      <h3 className="mb-2 text-lg font-semibold">{title}</h3>
 
       {!audioUrl && (
         <button
           onClick={handleGenerateAudio}
           disabled={isLoading}
-          className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:bg-blue-300"
+          className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 disabled:bg-blue-300"
         >
-          {isLoading ? 'Generating Audio...' : 'Generate Audio'}
+          {isLoading ? &apos;Generating Audio...' : &apos;Generate Audio'}
         </button>
       )}
 
@@ -118,14 +118,14 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           <div className="flex items-center space-x-2">
             <button
               onClick={togglePlayPause}
-              className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
             >
-              {isPlaying ? 'Pause' : 'Play'}
+              {isPlaying ? &apos;Pause' : &apos;Play'}
             </button>
 
             <audio ref={audioRef} src={audioUrl} className="hidden" />
 
-            <div className="text-sm text-gray-600">{isPlaying ? 'Playing...' : 'Paused'}</div>
+            <div className="text-sm text-gray-600">{isPlaying ? &apos;Playing...' : &apos;Paused'}</div>
           </div>
 
           <button
@@ -137,9 +137,9 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
         </div>
       )}
 
-      {error && <div className="text-red-500 mt-2">{error}</div>}
+      {error && <div className="mt-2 text-red-500">{error}</div>}
 
-      <div className="text-xs text-gray-500 mt-4">
+      <div className="mt-4 text-xs text-gray-500">
         Note: This is a simulated implementation. In a production environment, this would generate
         actual audio using the Narakeet API.
       </div>

@@ -76,6 +76,8 @@ The `HighlightProvider` component provides the highlighting functionality to its
   colors={customColors} // Optional
   onHighlight={data => console.log('Highlight applied:', data)} // Optional
   showHighlights={true} // Optional, default: true
+  currentPaper={1} // Optional, for context
+  currentSection={2} // Optional, for context
 >
   {children}
 </HighlightProvider>
@@ -83,11 +85,22 @@ The `HighlightProvider` component provides the highlighting functionality to its
 
 #### Props
 
-- `containerSelector` (string): CSS selector for the container element where highlighting will be applied
-- `isDarkMode` (function): Function that returns true if dark mode is active
-- `colors` (array, optional): Array of color objects with name, lightModeColor, and darkModeColor properties
-- `onHighlight` (function, optional): Callback function when text is highlighted
-- `showHighlights` (boolean, optional): Whether to show highlights (default: true)
+```typescript
+/**
+ * Props for the HighlightProvider component
+ *
+ * @interface HighlightProviderProps
+ * @description Props for the React component that provides highlighting functionality
+ * @property {React.ReactNode} children - The children to render within the provider
+ * @property {string} containerSelector - CSS selector for the container element where highlighting will be applied
+ * @property {() => boolean} isDarkMode - Function that returns true if dark mode is active
+ * @property {HighlightColor[]} [colors] - Array of color objects for highlighting
+ * @property {(data: HighlightData) => void} [onHighlight] - Callback function when text is highlighted
+ * @property {boolean} [showHighlights=true] - Whether to show highlights initially
+ * @property {number} [currentPaper] - Current paper number for context
+ * @property {number} [currentSection] - Current section number for context
+ */
+```
 
 ### useHighlight
 
@@ -106,12 +119,55 @@ const {
 
 #### Return Value
 
-- `highlightManager` (HighlightManager): The underlying highlight manager instance
-- `showHighlights` (boolean): Whether highlights are currently visible
-- `setShowHighlights` (function): Function to set whether highlights are visible
-- `highlights` (array): Array of highlight objects
-- `addHighlight` (function): Function to add a highlight
-- `removeHighlight` (function): Function to remove a highlight
+```typescript
+/**
+ * Context for the highlighting system
+ *
+ * @interface HighlightContextValue
+ * @description The value provided by the HighlightContext
+ * @property {HighlightManager|null} highlightManager - The underlying highlight manager instance
+ * @property {boolean} showHighlights - Whether highlights are currently visible
+ * @property {(show: boolean) => void} setShowHighlights - Function to set whether highlights are visible
+ * @property {HighlightData[]} highlights - Array of highlight objects
+ * @property {(highlight: HighlightData) => void} addHighlight - Function to add a highlight
+ * @property {(highlight: HighlightData) => void} removeHighlight - Function to remove a highlight
+ */
+```
+
+### HighlightData
+
+The data structure for highlights:
+
+```typescript
+/**
+ * Data for a highlight
+ *
+ * @interface HighlightData
+ * @description Contains information about a text highlight
+ * @property {string} text - The highlighted text content
+ * @property {string|null} color - The color name used for the highlight, or null if removed
+ * @property {Range} range - The DOM Range object representing the highlighted text
+ */
+```
+
+### HighlightColor
+
+The data structure for highlight colors:
+
+```typescript
+/**
+ * Color object for highlighting
+ *
+ * @interface HighlightColor
+ * @description Defines a color that can be used for highlighting text
+ * @property {string} name - Unique identifier for the color
+ * @property {string} lightModeColor - CSS color value for light mode (background color)
+ * @property {string} darkModeColor - CSS color value for dark mode (text color)
+ * @property {string} [displayName] - Human-readable name for the color
+ * @property {boolean} [lightModeOnly] - Whether the color is only available in light mode
+ * @property {boolean} [darkModeOnly] - Whether the color is only available in dark mode
+ */
+```
 
 ## License
 

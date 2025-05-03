@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState } from &apos;react';
 
-import { ReferenceProcessor, UBReference } from './';
+import type { UBReference } from './';
+import { ReferenceProcessor } from './';
 
 /**
  * Reference Example Component
@@ -53,7 +54,7 @@ export function ReferenceExample() {
     </ul>
     
     <p>
-      When viewing Paper 1, a reference to "Section 3" will be understood as "Paper 1, Section 3"
+      When viewing Paper 1, a reference to &quot;Section 3" will be understood as &quot;Paper 1, Section 3"
       because the current paper context is applied.
     </p>
     
@@ -69,7 +70,7 @@ export function ReferenceExample() {
 
   // Handle reference click
   const handleReferenceClick = (reference: UBReference, event: React.MouseEvent) => {
-    console.log('Reference clicked:', reference);
+    // Removed console.log
     alert(
       `Clicked reference: ${reference.type} - Paper ${reference.paper}${
         reference.section ? `, Section ${reference.section}` : ''
@@ -132,9 +133,9 @@ export function ReferenceExample() {
             system-ui,
             -apple-system,
             BlinkMacSystemFont,
-            'Segoe UI',
+            &apos;Segoe UI',
             Roboto,
-            'Helvetica Neue',
+            &apos;Helvetica Neue',
             Arial,
             sans-serif;
           max-width: 800px;

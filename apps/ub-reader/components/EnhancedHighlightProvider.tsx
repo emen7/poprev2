@@ -1,6 +1,8 @@
 'use client';
 
-import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
+import type { ReactNode } from &apos;react';
+import React, { createContext, useState, useContext, useEffect } from &apos;react';
+
 import { useExtendedUserPreferences } from '../contexts/ExtendedUserPreferencesContext';
 
 // Define the selection menu position type
@@ -24,7 +26,7 @@ interface HighlightMetadata {
 }
 
 // Local storage key for highlights
-const HIGHLIGHTS_STORAGE_KEY = 'ub-reader-highlights';
+const HIGHLIGHTS_STORAGE_KEY = &apos;ub-reader-highlights';
 
 // Define the highlight manager type
 interface HighlightManager {
@@ -86,7 +88,7 @@ export const EnhancedHighlightProvider: React.FC<EnhancedHighlightProviderProps>
   );
 
   // Get the showHighlights value from preferences
-  const showHighlights = preferences.reader.showHighlights;
+  const _showHighlights = preferences.reader.showHighlights;
 
   // Toggle highlights visibility
   const toggleHighlights = () => {
@@ -100,7 +102,7 @@ export const EnhancedHighlightProvider: React.FC<EnhancedHighlightProviderProps>
     // Apply or remove the class to hide highlights
     const container = document.querySelector(containerSelector);
     if (container) {
-      if (showHighlights) {
+      if (_showHighlights) {
         container.classList.add('ub-highlights-hidden');
       } else {
         container.classList.remove('ub-highlights-hidden');
@@ -110,7 +112,7 @@ export const EnhancedHighlightProvider: React.FC<EnhancedHighlightProviderProps>
 
   // Helper function to save highlights to localStorage
   const saveHighlightsToStorage = (highlightsToSave: Highlight[]) => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== &apos;undefined') {
       try {
         localStorage.setItem(HIGHLIGHTS_STORAGE_KEY, JSON.stringify(highlightsToSave));
       } catch (error) {
@@ -121,7 +123,7 @@ export const EnhancedHighlightProvider: React.FC<EnhancedHighlightProviderProps>
 
   // Helper function to load highlights from localStorage
   const loadHighlightsFromStorage = (): Highlight[] => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== &apos;undefined') {
       try {
         const storedHighlights = localStorage.getItem(HIGHLIGHTS_STORAGE_KEY);
         if (storedHighlights) {
@@ -151,7 +153,7 @@ export const EnhancedHighlightProvider: React.FC<EnhancedHighlightProviderProps>
   const highlightText = (
     text: string,
     color: string,
-    metadata: HighlightMetadata = { paperId: '0', paragraphId: '0' }
+    metadata: HighlightMetadata = { paperId: &apos;0', paragraphId: &apos;0' }
   ) => {
     const newHighlight: Highlight = {
       id: `highlight-${Date.now()}`,
@@ -223,7 +225,7 @@ export const EnhancedHighlightProvider: React.FC<EnhancedHighlightProviderProps>
   return (
     <EnhancedHighlightContext.Provider
       value={{
-        showHighlights,
+        _showHighlights,
         toggleHighlights,
         highlightText,
         removeHighlight,
@@ -238,7 +240,7 @@ export const EnhancedHighlightProvider: React.FC<EnhancedHighlightProviderProps>
         <div
           className="ub-selection-menu"
           style={{
-            position: 'absolute',
+            position: &apos;absolute',
             top: `${selectionMenuPosition.top}px`,
             left: `${selectionMenuPosition.left}px`,
           }}
@@ -250,7 +252,7 @@ export const EnhancedHighlightProvider: React.FC<EnhancedHighlightProviderProps>
               setSelectionMenuVisible(false);
             }}
           >
-            <span style={{ backgroundColor: 'rgba(255, 245, 120, 0.6)', padding: '4px 8px' }}>
+            <span style={{ backgroundColor: &apos;rgba(255, 245, 120, 0.6)', padding: &apos;4px 8px' }}>
               A
             </span>
           </button>
@@ -262,7 +264,7 @@ export const EnhancedHighlightProvider: React.FC<EnhancedHighlightProviderProps>
               setSelectionMenuVisible(false);
             }}
           >
-            <span style={{ backgroundColor: 'rgba(152, 251, 152, 0.6)', padding: '4px 8px' }}>
+            <span style={{ backgroundColor: &apos;rgba(152, 251, 152, 0.6)', padding: &apos;4px 8px' }}>
               A
             </span>
           </button>
@@ -274,7 +276,7 @@ export const EnhancedHighlightProvider: React.FC<EnhancedHighlightProviderProps>
               setSelectionMenuVisible(false);
             }}
           >
-            <span style={{ backgroundColor: 'rgba(176, 196, 222, 0.6)', padding: '4px 8px' }}>
+            <span style={{ backgroundColor: &apos;rgba(176, 196, 222, 0.6)', padding: &apos;4px 8px' }}>
               A
             </span>
           </button>

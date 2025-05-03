@@ -1,0 +1,157 @@
+/**
+ * Traditional Reader Header Styles
+ *
+ * This file contains styles for the header component.
+ */
+
+/* Header styles */
+.header {
+  background-color: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  height: 56px;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Left group for navigation buttons */
+.header-left-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Center group for title and prev/next buttons */
+.header-center-group {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.header-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-title);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.header-subtitle {
+  font-size: 0.7rem;
+  margin-top: 0.2rem;
+}
+
+.header-subtitle-link {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.header-subtitle-link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.header-button {
+  background: none;
+  border: none;
+  color: var(--color-accent);
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition:
+    color 0.2s,
+    background-color 0.2s;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Navigation buttons (prev/next) */
+.nav-prev-button,
+.nav-next-button {
+  color: var(--color-text-title);
+}
+
+.nav-prev-button {
+  margin-right: 0.5rem; /* Closer to title */
+}
+
+.nav-next-button {
+  margin-left: 0.5rem; /* Closer to title */
+}
+
+.header-button:hover {
+  color: var(--color-text-title);
+  background-color: var(--color-bg-hover);
+}
+
+/* Disabled buttons */
+.header-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.header-button.disabled:hover {
+  background-color: transparent;
+}
+
+/* Section navigation in header */
+.section-navigation-header {
+  position: relative;
+}
+
+.section-dropdown-content {
+  display: none;
+  position: absolute;
+  top: 45px;
+  left: 0;
+  background-color: var(--color-bg-secondary);
+  min-width: 250px;
+  border: 1px solid var(--color-border);
+  border-radius: 0.25rem;
+  z-index: 50;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.section-dropdown-content a {
+  color: var(--color-text-primary);
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  display: block;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section-dropdown-content a:last-child {
+  border-bottom: none;
+}
+
+.section-dropdown-content a:hover {
+  background-color: var(--color-bg-hover);
+}
+
+.section-dropdown-content.show {
+  display: block;
+}

@@ -130,33 +130,12 @@ export interface UBPaper {
 // Export the DocumentReader component
 export { DocumentReader } from './document-reader';
 
-/**
- * Props for the UBReferenceLink component
- */
-export interface UBReferenceLinkProps {
-  reference: UBReference;
-  baseUrl?: string;
-  className?: string;
-  children?: React.ReactNode;
-}
-
-/**
- * A component that renders a link to a UB reference
- */
-export const UBReferenceLink: React.FC<UBReferenceLinkProps> = ({
-  reference,
-  baseUrl = '/reader',
-  className = '',
-  children,
-}) => {
-  const url = `${baseUrl}/paper/${reference.paper}/section/${reference.section}`;
-
-  return (
-    <a href={url} className={`ub-reference ${className}`}>
-      {children || reference.originalText}
-    </a>
-  );
-};
+// Export the UBReferenceLink component
+export {
+  UBReferenceLink,
+  UBReferenceLinkProps,
+  generateUBReferenceUrl,
+} from './ub-reference-link/UBReferenceLink';
 
 /**
  * Props for the UBPaperViewer component

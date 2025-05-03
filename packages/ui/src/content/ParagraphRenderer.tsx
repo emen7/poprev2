@@ -103,6 +103,18 @@ export interface ParagraphRendererProps {
    * Function called when the paragraph is clicked
    */
   onClick?: (paragraphId: string, event: React.MouseEvent) => void;
+
+  /**
+   * Text alignment for the paragraph
+   * @default 'left'
+   */
+  textAlignment?: 'left' | 'right' | 'justified';
+
+  /**
+   * Whether to show note indicators
+   * @default true
+   */
+  showNoteIndicators?: boolean;
 }
 
 /**
@@ -125,6 +137,8 @@ export const ParagraphRenderer = forwardRef<HTMLDivElement, ParagraphRendererPro
       onVisible,
       className = '',
       onClick,
+      textAlignment = 'left',
+      showNoteIndicators = true,
     }: ParagraphRendererProps,
     ref
   ) {
@@ -145,6 +159,9 @@ export const ParagraphRenderer = forwardRef<HTMLDivElement, ParagraphRendererPro
     ]
       .filter(Boolean)
       .join(' ');
+
+    // Determine text alignment class
+    const textAlignmentClass = `paragraph-text-align-${textAlignment}`;
 
     // Handle paragraph click
     const handleClick = (event: React.MouseEvent) => {
@@ -180,7 +197,7 @@ export const ParagraphRenderer = forwardRef<HTMLDivElement, ParagraphRendererPro
               visible={showNumber}
             />
           )}
-          <div className="paragraph-text">
+          <div className={`paragraph-text ${textAlignmentClass}`}>
             <span className="list-number">{number}.</span> {/* Explicit number for lists */}
             <span dangerouslySetInnerHTML={{ __html: text }} />
           </div>
@@ -199,7 +216,7 @@ export const ParagraphRenderer = forwardRef<HTMLDivElement, ParagraphRendererPro
               visible={showNumber}
             />
           )}
-          <div className="paragraph-text">
+          <div className={`paragraph-text ${textAlignmentClass}`}>
             <span className="list-bullet">•</span> {/* Bullet for bulleted lists */}
             <span dangerouslySetInnerHTML={{ __html: text }} />
           </div>
@@ -219,7 +236,10 @@ export const ParagraphRenderer = forwardRef<HTMLDivElement, ParagraphRendererPro
               visible={showNumber}
             />
           )}
-          <div className="paragraph-text" dangerouslySetInnerHTML={{ __html: text }} />
+          <div
+            className={`paragraph-text ${textAlignmentClass}`}
+            dangerouslySetInnerHTML={{ __html: text }}
+          />
         </div>
       );
     }

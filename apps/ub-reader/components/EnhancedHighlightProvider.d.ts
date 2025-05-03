@@ -1,0 +1,43 @@
+import React, { ReactNode } from 'react';
+interface Position {
+    top: number;
+    left: number;
+}
+interface SelectionMenuOptions {
+    text: string;
+    position: Position;
+    onHighlight: (color: string) => void;
+}
+interface HighlightMetadata {
+    paperId: string;
+    paragraphId: string;
+    [key: string]: string;
+}
+interface HighlightManager {
+    showSelectionMenu: (options: SelectionMenuOptions) => void;
+    createHighlight: (text: string, color: string, metadata: HighlightMetadata) => void;
+    removeHighlight: (id: string) => void;
+}
+interface EnhancedHighlightContextType {
+    showHighlights: boolean;
+    toggleHighlights: () => void;
+    highlightText: (text: string, color: string) => void;
+    removeHighlight: (id: string) => void;
+    highlights: Highlight[];
+    highlightManager: HighlightManager;
+}
+interface Highlight {
+    id: string;
+    text: string;
+    color: string;
+    createdAt: Date;
+    metadata: HighlightMetadata;
+}
+interface EnhancedHighlightProviderProps {
+    children: ReactNode;
+    containerSelector?: string;
+}
+export declare const EnhancedHighlightProvider: React.FC<EnhancedHighlightProviderProps>;
+export declare const useEnhancedHighlight: () => EnhancedHighlightContextType;
+export default EnhancedHighlightProvider;
+//# sourceMappingURL=EnhancedHighlightProvider.d.ts.map

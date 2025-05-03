@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     // Log the metrics in development
     if (process.env.NODE_ENV === 'development') {
       // eslint-disable-next-line no-console
-      console.log('Web Vitals:', body);
+      // Removed console.log
     }
 
     // In production, you would typically:

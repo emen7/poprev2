@@ -1,4 +1,4 @@
-import { redirect } from 'next/navigation';
+import { redirect } from &apos;next/navigation';
 
 /**
  * Traditional Reader Default Page

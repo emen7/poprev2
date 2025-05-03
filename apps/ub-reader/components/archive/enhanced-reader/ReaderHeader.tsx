@@ -4,11 +4,11 @@
  * This component renders the header of the Enhanced Reader with navigation and settings toggles.
  */
 
-'use client';
+&apos;use client';
 
-import React from 'react';
+import React from &apos;react';
 
-import { ReaderHeaderProps } from './types';
+import type { ReaderHeaderProps } from './types';
 
 /**
  * Reader Header Component

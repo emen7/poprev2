@@ -1,30 +1,30 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from &apos;react';
 
 // Pronunciation dictionary for Urantia terms
 // This would ideally come from the audio-services package
 const pronunciationDictionary: Record<string, string> = {
-  Andovontia: 'andovonsha',
-  Urantia: 'yuransha',
-  Nebadon: 'nebbadon',
-  Orvonton: 'orvonton',
-  Salvington: 'salvington',
-  Satania: 'satania',
-  Jerusem: 'jerusem',
-  Edentia: 'edentia',
-  Havona: 'havona',
-  Divinington: 'divinington',
-  Splandon: 'splandon',
-  Melchizedek: 'melkizedek',
-  Lanonandek: 'lanonandek',
-  Vorondadek: 'vorondadek',
-  Caligastia: 'caligastia',
-  Lucifer: 'lucifer',
-  Tabamantia: 'tabamantia',
-  Grandfanda: 'grandfanda',
-  Solonia: 'solonia',
-  Serapatatia: 'serapatatia',
+  Andovontia: &apos;andovonsha',
+  Urantia: &apos;yuransha',
+  Nebadon: &apos;nebbadon',
+  Orvonton: &apos;orvonton',
+  Salvington: &apos;salvington',
+  Satania: &apos;satania',
+  Jerusem: &apos;jerusem',
+  Edentia: &apos;edentia',
+  Havona: &apos;havona',
+  Divinington: &apos;divinington',
+  Splandon: &apos;splandon',
+  Melchizedek: &apos;melkizedek',
+  Lanonandek: &apos;lanonandek',
+  Vorondadek: &apos;vorondadek',
+  Caligastia: &apos;caligastia',
+  Lucifer: &apos;lucifer',
+  Tabamantia: &apos;tabamantia',
+  Grandfanda: &apos;grandfanda',
+  Solonia: &apos;solonia',
+  Serapatatia: &apos;serapatatia',
 };
 
 interface WebSpeechAudioPlayerProps {
@@ -34,7 +34,7 @@ interface WebSpeechAudioPlayerProps {
 
 export const WebSpeechAudioPlayer: React.FC<WebSpeechAudioPlayerProps> = ({
   content,
-  title = 'Audio Player',
+  title = &apos;Audio Player',
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
@@ -50,7 +50,7 @@ export const WebSpeechAudioPlayer: React.FC<WebSpeechAudioPlayerProps> = ({
 
     // Replace UB terms with their phonetic spellings
     Object.entries(pronunciationDictionary).forEach(([term, pronunciation]) => {
-      const termRegex = new RegExp(`\\b${term}\\b`, 'gi');
+      const termRegex = new RegExp(`\\b${term}\\b`, &apos;gi');
       processedText = processedText.replace(termRegex, pronunciation);
     });
 
@@ -164,14 +164,14 @@ export const WebSpeechAudioPlayer: React.FC<WebSpeechAudioPlayerProps> = ({
   };
 
   return (
-    <div className="audio-player border rounded-lg p-4 my-4 bg-gray-50">
-      <h3 className="text-lg font-semibold mb-2">{title}</h3>
+    <div className="audio-player my-4 rounded-lg border bg-gray-50 p-4">
+      <h3 className="mb-2 text-lg font-semibold">{title}</h3>
 
-      <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Voice:</label>
+          <label className="mb-1 block text-sm font-medium text-gray-700">Voice:</label>
           <select
-            className="block w-full p-2 border border-gray-300 rounded-md"
+            className="block w-full rounded-md border border-gray-300 p-2"
             value={selectedVoice?.name || ''}
             onChange={handleVoiceChange}
             disabled={isPlaying || isPaused}
@@ -186,7 +186,7 @@ export const WebSpeechAudioPlayer: React.FC<WebSpeechAudioPlayerProps> = ({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="mb-1 block text-sm font-medium text-gray-700">
             Speed: {speechRate.toFixed(1)}x
           </label>
           <input
@@ -206,7 +206,7 @@ export const WebSpeechAudioPlayer: React.FC<WebSpeechAudioPlayerProps> = ({
         {!isPlaying && !isPaused && (
           <button
             onClick={handlePlay}
-            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+            className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
           >
             Play
           </button>
@@ -215,7 +215,7 @@ export const WebSpeechAudioPlayer: React.FC<WebSpeechAudioPlayerProps> = ({
         {isPlaying && (
           <button
             onClick={handlePause}
-            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+            className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
           >
             Pause
           </button>
@@ -224,7 +224,7 @@ export const WebSpeechAudioPlayer: React.FC<WebSpeechAudioPlayerProps> = ({
         {isPaused && (
           <button
             onClick={handleResume}
-            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+            className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
           >
             Resume
           </button>
@@ -233,14 +233,14 @@ export const WebSpeechAudioPlayer: React.FC<WebSpeechAudioPlayerProps> = ({
         {(isPlaying || isPaused) && (
           <button
             onClick={handleStop}
-            className="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded"
+            className="rounded bg-gray-500 px-4 py-2 text-white hover:bg-gray-600"
           >
             Stop
           </button>
         )}
       </div>
 
-      <div className="text-xs text-gray-500 mt-4">
+      <div className="mt-4 text-xs text-gray-500">
         Using browser's built-in text-to-speech. For best results, use a modern browser.
       </div>
     </div>

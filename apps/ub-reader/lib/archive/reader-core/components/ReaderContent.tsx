@@ -4,11 +4,11 @@
  * This component displays the document content with proper formatting.
  */
 
-'use client';
+&apos;use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect } from &apos;react';
 
-import { Document, ReaderConfig, Section, Paragraph } from '../models';
+import type { Document, ReaderConfig, Section, Paragraph } from '../models';
 
 /**
  * Props for the ReaderContent component
@@ -55,7 +55,7 @@ export function ReaderContent({
     if (activeSection) {
       const element = window.document.getElementById(activeSection);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({ behavior: &apos;smooth' });
       }
     }
   }, [activeSection]);
@@ -120,7 +120,7 @@ function renderOriginalContent(content: any): React.ReactNode {
   }
 
   // If content is a string, return it
-  if (typeof content === 'string') {
+  if (typeof content === &apos;string') {
     return content;
   }
 
@@ -152,13 +152,13 @@ function renderOriginalNode(node: any): React.ReactNode {
   }
 
   // If node is a string, return it
-  if (typeof node === 'string') {
+  if (typeof node === &apos;string') {
     return node;
   }
 
   // Handle different node types
   switch (node.type) {
-    case 'heading': {
+    case &apos;heading': {
       const headingNode = node as any;
       const text = getNodeText(node);
       const id = `heading-${text
@@ -212,23 +212,23 @@ function renderOriginalNode(node: any): React.ReactNode {
       }
     }
 
-    case 'paragraph':
+    case &apos;paragraph':
       return <p className="reader-paragraph">{renderOriginalChildren(node)}</p>;
 
-    case 'text':
+    case &apos;text':
       return node.value || '';
 
-    case 'list':
+    case &apos;list':
       return (node as any).ordered ? (
         <ol className="reader-ordered-list">{renderOriginalChildren(node)}</ol>
       ) : (
         <ul className="reader-unordered-list">{renderOriginalChildren(node)}</ul>
       );
 
-    case 'listItem':
+    case &apos;listItem':
       return <li className="reader-list-item">{renderOriginalChildren(node)}</li>;
 
-    case 'link':
+    case &apos;link':
       return (
         <a
           href={(node as any).url}
@@ -241,7 +241,7 @@ function renderOriginalNode(node: any): React.ReactNode {
         </a>
       );
 
-    case 'image':
+    case &apos;image':
       return (
         <img
           src={(node as any).url}
@@ -251,10 +251,10 @@ function renderOriginalNode(node: any): React.ReactNode {
         />
       );
 
-    case 'blockquote':
+    case &apos;blockquote':
       return <blockquote className="reader-blockquote">{renderOriginalChildren(node)}</blockquote>;
 
-    case 'code':
+    case &apos;code':
       return (
         <pre className="reader-code-block">
           <code className={(node as any).lang ? `language-${(node as any).lang}` : ''}>
@@ -263,23 +263,23 @@ function renderOriginalNode(node: any): React.ReactNode {
         </pre>
       );
 
-    case 'inlineCode':
+    case &apos;inlineCode':
       return (
         <code className="reader-inline-code">
           {(node as any).value || renderOriginalChildren(node)}
         </code>
       );
 
-    case 'emphasis':
+    case &apos;emphasis':
       return <em className="reader-emphasis">{renderOriginalChildren(node)}</em>;
 
-    case 'strong':
+    case &apos;strong':
       return <strong className="reader-strong">{renderOriginalChildren(node)}</strong>;
 
-    case 'thematicBreak':
+    case &apos;thematicBreak':
       return <hr className="reader-hr" />;
 
-    case 'table':
+    case &apos;table':
       return (
         <div className="reader-table-container">
           <table className="reader-table">
@@ -288,10 +288,10 @@ function renderOriginalNode(node: any): React.ReactNode {
         </div>
       );
 
-    case 'tableRow':
+    case &apos;tableRow':
       return <tr className="reader-table-row">{renderOriginalChildren(node)}</tr>;
 
-    case 'tableCell':
+    case &apos;tableCell':
       return <td className="reader-table-cell">{renderOriginalChildren(node)}</td>;
 
     default:
@@ -327,7 +327,7 @@ function renderOriginalChildren(node: any): React.ReactNode {
  * @returns The text content of the node
  */
 function getNodeText(node: any): string {
-  if (node.type === 'text' && node.value) {
+  if (node.type === &apos;text' && node.value) {
     return node.value;
   }
 

@@ -1,0 +1,23 @@
+/**
+ * Traditional Reader Progress Bar Styles
+ *
+ * This file contains styles for the reading progress bar.
+ */
+
+/* Reading Progress Bar */
+.reading-progress-container {
+  position: fixed;
+  top: 56px; /* Just below the header */
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--color-border);
+  z-index: 45;
+}
+
+.reading-progress-bar {
+  height: 100%;
+  background-color: var(--color-accent);
+  width: 0;
+  transition: width 0.3s ease;
+}

@@ -1,0 +1,28 @@
+/**
+ * Traditional Reader Debug Styles
+ *
+ * This file contains styles for debugging elements like hot zones.
+ */
+
+/* Debug styles to visualize the hot zone (activated with Ctrl+Shift+Alt+D) */
+.hot-zone-indicator {
+  position: fixed;
+  top: calc(var(--row1-height) + var(--row2-height));
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: rgba(255, 0, 0, 0.5);
+  z-index: 1000;
+  pointer-events: none;
+  display: none;
+}
+
+.show-debug .hot-zone-indicator {
+  display: block;
+}
+
+/* Highlight the active section for debugging */
+.show-debug .section-content.active-section {
+  background-color: rgba(0, 255, 0, 0.05);
+  outline: 1px dashed rgba(0, 255, 0, 0.3);
+}

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React from &apos;react';
 
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -37,9 +37,9 @@ export const UBNumberedList: React.FC<UBNumberedListProps> = ({
 
   // Apply appropriate classes based on the content theme and dots option
   const listClasses = [
-    'ub-list',
-    'ub-list-numbered',
-    withDots ? 'ub-list-with-dots' : '',
+    &apos;ub-list',
+    &apos;ub-list-numbered',
+    withDots ? &apos;ub-list-with-dots' : '',
     className,
   ]
     .filter(Boolean)
@@ -75,7 +75,7 @@ export const UBNumberedList: React.FC<UBNumberedListProps> = ({
   // Render list items recursively with numbers included in the text content
   const renderItems = (items: ListItem[], level: number = 1) => {
     return items.map((item, index) => {
-      const itemNumber = typeof item.id === 'number' ? item.id : index + 1;
+      const itemNumber = typeof item.id === &apos;number' ? item.id : index + 1;
 
       return (
         <div key={item.id} className="ub-list-item" id={`list-item-${item.id}`}>

@@ -1,7 +1,9 @@
 'use client';
 
-import { UserPreferences, defaultPreferences, LocalStoragePreferences } from '@ub-ecosystem/config';
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import type { UserPreferences } from '@ub-ecosystem/config';
+import { defaultPreferences, LocalStoragePreferences } from '@ub-ecosystem/config';
+import type { ReactNode } from &apos;react';
+import React, { createContext, useContext, useState, useEffect } from &apos;react';
 
 interface UserPreferencesContextType {
   preferences: UserPreferences;

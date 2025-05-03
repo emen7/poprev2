@@ -1,64 +1,15 @@
 'use client';
 
-import React from 'react';
+import React from &apos;react';
+
+import { usePullup } from '../../contexts/PullupContext';
 
 import { NotesTab } from './NotesTab';
 import { QuotesTab } from './QuotesTab';
 import { SettingsTab } from './SettingsTab';
-import { PullupTab, Note, Quote, ReaderSettings } from './types';
 import './PullupContent.css';
 
 export interface PullupContentProps {
-  /**
-   * The currently active tab
-   */
-  activeTab: PullupTab;
-
-  /**
-   * Array of notes to display in the notes tab
-   */
-  notes: Note[];
-
-  /**
-   * Function called when a note is updated
-   */
-  onNoteUpdate?: (id: string, content: string) => void;
-
-  /**
-   * Function called when a note is deleted
-   */
-  onNoteDelete?: (id: string) => void;
-
-  /**
-   * Array of quotes to display in the quotes tab
-   */
-  quotes: Quote[];
-
-  /**
-   * Function called when a quote is deleted
-   */
-  onQuoteDelete?: (id: string) => void;
-
-  /**
-   * The current reader settings
-   */
-  settings: ReaderSettings;
-
-  /**
-   * Function called when settings are changed
-   */
-  onSettingsChange: (settings: Partial<ReaderSettings>) => void;
-
-  /**
-   * The sort order for notes and quotes
-   */
-  sortOrder?: 'entry' | 'paper';
-
-  /**
-   * Function called when the sort order is changed
-   */
-  onSortOrderChange?: (sortOrder: 'entry' | 'paper') => void;
-
   /**
    * Additional CSS class name
    */
@@ -69,47 +20,58 @@ export interface PullupContentProps {
  * PullupContent Component
  *
  * A component that renders the content of the active tab in the pullup panel.
+ * Uses PullupContext for state management instead of props.
  */
-export function PullupContent({
-  activeTab,
-  notes,
-  onNoteUpdate,
-  onNoteDelete,
-  quotes,
-  onQuoteDelete,
-  settings,
-  onSettingsChange,
-  sortOrder = 'entry',
-  onSortOrderChange,
-  className = '',
-}: PullupContentProps) {
+export function PullupContent({ className = '' }: PullupContentProps) {
+  const {
+    activeTab,
+    notes,
+    handleNoteUpdate,
+    handleNoteDelete,
+    quotes,
+    handleQuoteDelete,
+    settings,
+    updateSettings,
+    sortOrder,
+    setSortOrder,
+    handleNoteAdd,
+    justAddedNoteId,
+    handleEditStarted,
+  } = usePullup();
+
   // Determine container classes
   const containerClasses = ['pullup-content', className].filter(Boolean).join(' ');
 
   // Render the active tab content
   const renderTabContent = () => {
     switch (activeTab) {
-      case 'notes':
+      case &apos;notes':
         return (
           <NotesTab
             notes={notes}
-            onNoteUpdate={onNoteUpdate}
-            onNoteDelete={onNoteDelete}
+            onNoteUpdate={handleNoteUpdate}
+            onNoteDelete={handleNoteDelete}
             sortOrder={sortOrder}
-            onSortOrderChange={onSortOrderChange}
+            onSortOrderChange={setSortOrder}
+            onNoteAdd={handleNoteAdd}
+            justAddedNoteId={justAddedNoteId}
+            onEditStarted={handleEditStarted}
           />
         );
-      case 'quotes':
+      case &apos;quotes':
         return (
           <QuotesTab
             quotes={quotes}
-            onQuoteDelete={onQuoteDelete}
+            onQuoteDelete={handleQuoteDelete}
             sortOrder={sortOrder}
-            onSortOrderChange={onSortOrderChange}
+            onSortOrderChange={setSortOrder}
           />
         );
-      case 'settings':
-        return <SettingsTab settings={settings} onSettingsChange={onSettingsChange} />;
+      case &apos;settings':
+        // Log to identify serialization issues
+        // Removed console.log
+        // Removed console.log
+        return <SettingsTab settings={settings} />;
       default:
         return null;
     }

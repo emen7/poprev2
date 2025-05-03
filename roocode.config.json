@@ -1,0 +1,111 @@
+{
+  "modes": {
+    "architect": {
+      "description": "High-level design discussion for PopRev2, including multi-package integration, document transformation decisions, and TinaCMS plugin integration.",
+      "settings": {
+        "historyKeep": true,
+        "summaryFormat": "concise",
+        "moduleSupport": "monorepo",
+        "loopPrevention": {
+          "enabled": true,
+          "maxRepetitions": 3,
+          "signatureTracking": true,
+          "cooldownPeriod": 5000
+        },
+        "errorHandling": {
+          "retryStrategy": "exponential",
+          "maxRetries": 3,
+          "fallbackMode": "ask"
+        },
+        "progressTracking": {
+          "enabled": true,
+          "checkpointFrequency": "high"
+        }
+      }
+    },
+    "boomerang-mode": {
+      "description": "Orchestrator mode that intercepts output from Architect to summarize and delegate actionable instructions to Code and Debug modes.",
+      "delegation": {
+        "from": "architect",
+        "to": ["code", "debug"],
+        "strategy": "context-summary",
+        "manualApproval": true,
+        "packageSensitivity": true,
+        "contextValidation": {
+          "enabled": true,
+          "requiredFields": ["taskDefinition", "implementationPlan"]
+        },
+        "transactionSafety": {
+          "enabled": true,
+          "rollbackOnFailure": true
+        }
+      },
+      "settings": {
+        "isolation": false,
+        "summarizationLevel": "concise",
+        "stateManagement": {
+          "persistContext": true,
+          "serializationFormat": "json"
+        }
+      }
+    },
+    "code": {
+      "description": "Generates and transforms code based on distilled instructions received from Boomerang.",
+      "settings": {
+        "strictMode": true,
+        "linting": true,
+        "formattingStyle": "poprev2-standard",
+        "errorHandling": {
+          "enabled": true,
+          "recoveryBehavior": "adaptive"
+        }
+      }
+    },
+    "debug": {
+      "description": "Isolated troubleshooting and testing mode for resolving issues in individual packages.",
+      "settings": {
+        "enableLogging": true,
+        "traceLevel": "verbose",
+        "diagnostics": {
+          "captureLoopAttempts": true,
+          "trackApiErrors": true
+        }
+      }
+    },
+    "ask": {
+      "description": "Interactive mode for clarifying issues, asking for detailed explanations, and refining ambiguous requirements.",
+      "settings": {
+        "responseMode": "interactive",
+        "timeout": 300,
+        "recoveryTarget": true
+      }
+    },
+    "deploy": {
+      "description": "Dedicated mode for periodic code pushes to GitHub, ensuring that the Vercel project remains updated while UI and function changes are tested.",
+      "settings": {
+        "autoPush": true,
+        "pushInterval": "4h",
+        "notification": "readyForDeployment"
+      }
+    }
+  },
+  "workflow": ["architect", "boomerang-mode", "code", "debug", "ask", "deploy"],
+  "system": {
+    "loopDetection": {
+      "global": true,
+      "alertThreshold": 2,
+      "preventionThreshold": 3,
+      "metrics": ["textSimilarity", "operationSignature", "apiPatterns"]
+    },
+    "recovery": {
+      "autoCheckpoint": true,
+      "userNotification": true,
+      "fallbackChain": ["ask", "code", "debug"]
+    },
+    "monitoring": {
+      "enabled": true,
+      "logLevel": "info",
+      "persistLogs": true
+    }
+  }
+}

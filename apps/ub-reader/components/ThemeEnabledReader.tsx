@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React from &apos;react';
 
 import { ThemeProvider } from '../contexts/ThemeContext';
 
@@ -10,8 +10,8 @@ import '../styles/themes/index.css';
 interface ThemeEnabledReaderProps {
   title: string;
   children: React.ReactNode;
-  initialUITheme?: 'light' | 'dark';
-  initialContentTheme?: 'modern' | 'traditional';
+  initialUITheme?: &apos;light' | &apos;dark';
+  initialContentTheme?: &apos;modern' | &apos;traditional';
   className?: string;
 }
 
@@ -25,8 +25,8 @@ interface ThemeEnabledReaderProps {
 export function ThemeEnabledReader({
   title,
   children,
-  initialUITheme = 'light',
-  initialContentTheme = 'modern',
+  initialUITheme = &apos;light',
+  initialContentTheme = &apos;modern',
   className = '',
 }: ThemeEnabledReaderProps) {
   // Navigation panel state

@@ -1,6 +1,7 @@
-import React, { ReactNode } from 'react';
 import { render } from '@testing-library/react';
-import { vi } from 'vitest';
+import React, { ReactNode } from &apos;react';
+import { vi } from &apos;vitest';
+
 import { axe, checkA11y } from './axe-helper';
 
 // Mock the HighlightProvider
@@ -18,7 +19,7 @@ vi.mock('../HighlightProvider', () => ({
 // Mock the ThemeContext
 vi.mock('../../contexts/ThemeContext', () => ({
   useTheme: () => ({
-    theme: 'traditional',
+    theme: &apos;traditional',
     setTheme: vi.fn(),
   }),
 }));

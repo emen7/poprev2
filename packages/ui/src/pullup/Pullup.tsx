@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import { Note } from './NotesTab';
 import { PullupContent } from './PullupContent';
@@ -133,6 +133,43 @@ export const Pullup: React.FC<PullupProps> = ({
   maxHeight,
   className = '',
 }) => {
+  // Keep track of the original height and last active tab
+  const [originalHeight, setOriginalHeight] = useState<number>(height);
+  const [previousTab, setPreviousTab] = useState<PullupTab | null>(null);
+  const defaultHeight = minHeight || 40; // Use 40px as the default minimum if not specified
+
+  // Store the original height when component mounts
+  useEffect(() => {
+    if (!isOpen) {
+      setOriginalHeight(height);
+    }
+  }, []);
+
+  // When tab changes, track the previous tab and reset height if toggling
+  useEffect(() => {
+    // If we had a previous tab and it's the same as current (tab was toggled off)
+    if (previousTab === activeTab && isOpen) {
+      // Reset to original height when toggling the same tab
+      if (onHeightChange) {
+        onHeightChange(defaultHeight);
+      }
+    }
+
+    setPreviousTab(isOpen ? activeTab : null);
+  }, [activeTab, isOpen]);
+
+  // Handle custom height changes
+  const handleHeightChange = (newHeight: number) => {
+    if (onHeightChange) {
+      onHeightChange(newHeight);
+
+      // Only update the original height if panel is closed
+      if (!isOpen) {
+        setOriginalHeight(newHeight);
+      }
+    }
+  };
+
   // Determine container classes
   const containerClasses = ['pullup', className].filter(Boolean).join(' ');
 
@@ -143,7 +180,7 @@ export const Pullup: React.FC<PullupProps> = ({
         height={height}
         isPersistent={isPersistent}
         onClose={onClose}
-        onHeightChange={onHeightChange}
+        onHeightChange={handleHeightChange}
         minHeight={minHeight}
         maxHeight={maxHeight}
       >

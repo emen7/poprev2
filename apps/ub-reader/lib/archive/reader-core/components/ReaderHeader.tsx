@@ -4,11 +4,11 @@
  * This component displays the document header with title, subtitle, and metadata.
  */
 
-'use client';
+&apos;use client';
 
-import React from 'react';
+import React from &apos;react';
 
-import { Document, ReaderConfig } from '../models';
+import type { Document, ReaderConfig } from '../models';
 
 /**
  * Props for the ReaderHeader component
@@ -59,13 +59,13 @@ export function ReaderHeader({ document, config, className = '', children }: Rea
       {/* Logo */}
       {config.branding.logo && (
         <div className="reader-logo">
-          <img src={config.branding.logo} alt={config.branding.appName || 'Reader'} />
+          <img src={config.branding.logo} alt={config.branding.appName || &apos;Reader'} />
         </div>
       )}
 
       {/* Title and subtitle */}
       <div className="reader-title-container">
-        <h1 className="reader-title">{document.title || 'Untitled Document'}</h1>
+        <h1 className="reader-title">{document.title || &apos;Untitled Document'}</h1>
         {document.metadata.subtitle && (
           <h2 className="reader-subtitle">{document.metadata.subtitle}</h2>
         )}
@@ -95,7 +95,7 @@ export function ReaderHeader({ document, config, className = '', children }: Rea
       {/* Linkback */}
       {config.navigation.linkbackUrl && (
         <div className="reader-linkback">
-          <a href={config.navigation.linkbackUrl}>{config.navigation.linkbackText || 'Back'}</a>
+          <a href={config.navigation.linkbackUrl}>{config.navigation.linkbackText || &apos;Back'}</a>
         </div>
       )}
 

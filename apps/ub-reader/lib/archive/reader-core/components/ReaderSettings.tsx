@@ -5,11 +5,11 @@
  * including theme, typography, and layout options.
  */
 
-'use client';
+&apos;use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from &apos;react';
 
-import { ReaderConfig } from '../models';
+import type { ReaderConfig } from '../models';
 import './ReaderSettings.css';
 
 /**
@@ -96,7 +96,7 @@ export function ReaderSettings({
   }, [isOpen, onSettingsClose]);
 
   // Update theme
-  const updateTheme = (mode: 'light' | 'dark') => {
+  const updateTheme = (mode: &apos;light' | &apos;dark') => {
     onConfigChange({
       theme: {
         ...config.theme,
@@ -126,7 +126,7 @@ export function ReaderSettings({
   };
 
   // Get extension settings components
-  const extensionSettingsComponents = config.extensions
+  const _extensionSettingsComponents = config.extensions
     .map(extensionId => {
       // This would be implemented to get custom settings components from extensions
       // For now, we'll return null
@@ -143,13 +143,13 @@ export function ReaderSettings({
         aria-label="Toggle settings"
         aria-expanded={isOpen}
       >
-        <i className={`fas ${isOpen ? 'fa-times' : 'fa-cog'}`}></i>
+        <i className={`fas ${isOpen ? &apos;fa-times' : &apos;fa-cog'}`} />
       </button>
 
       {/* Settings Panel */}
       <div
         ref={settingsPanelRef}
-        className={`reader-settings-panel ${isOpen ? 'open' : ''} ${className}`}
+        className={`reader-settings-panel ${isOpen ? &apos;open' : ''} ${className}`}
         aria-hidden={!isOpen}
       >
         {/* Display Settings */}
@@ -161,13 +161,13 @@ export function ReaderSettings({
             <h4 className="reader-settings-option-title">Theme</h4>
             <div className="reader-settings-option-list">
               <button
-                className={`reader-settings-option-button ${config.theme.mode === 'light' ? 'active' : ''}`}
+                className={`reader-settings-option-button ${config.theme.mode === &apos;light' ? &apos;active' : ''}`}
                 onClick={() => updateTheme('light')}
               >
                 Light
               </button>
               <button
-                className={`reader-settings-option-button ${config.theme.mode === 'dark' ? 'active' : ''}`}
+                className={`reader-settings-option-button ${config.theme.mode === &apos;dark' ? &apos;active' : ''}`}
                 onClick={() => updateTheme('dark')}
               >
                 Dark
@@ -179,13 +179,13 @@ export function ReaderSettings({
           <div className="reader-settings-option">
             <h4 className="reader-settings-option-title">Font Size</h4>
             <div className="reader-settings-option-list">
-              {['small', 'medium', 'large', 'x-large'].map(size => (
+              {['small', &apos;medium', &apos;large', &apos;x-large'].map(size => (
                 <button
                   key={size}
-                  className={`reader-settings-option-button ${config.typography.fontSize === size ? 'active' : ''}`}
+                  className={`reader-settings-option-button ${config.typography.fontSize === size ? &apos;active' : ''}`}
                   onClick={() => updateTypography('fontSize', size)}
                 >
-                  {size === 'x-large' ? 'X-Large' : size.charAt(0).toUpperCase() + size.slice(1)}
+                  {size === &apos;x-large' ? &apos;X-Large' : size.charAt(0).toUpperCase() + size.slice(1)}
                 </button>
               ))}
             </div>
@@ -196,14 +196,14 @@ export function ReaderSettings({
             <h4 className="reader-settings-option-title">Font Style</h4>
             <div className="reader-settings-option-list">
               <button
-                className={`reader-settings-option-button ${config.typography.fontStyle === 'sans-serif' ? 'active' : ''}`}
-                onClick={() => updateTypography('fontStyle', 'sans-serif')}
+                className={`reader-settings-option-button ${config.typography.fontStyle === &apos;sans-serif' ? &apos;active' : ''}`}
+                onClick={() => updateTypography('fontStyle', &apos;sans-serif')}
               >
                 Sans-serif
               </button>
               <button
-                className={`reader-settings-option-button ${config.typography.fontStyle === 'serif' ? 'active' : ''}`}
-                onClick={() => updateTypography('fontStyle', 'serif')}
+                className={`reader-settings-option-button ${config.typography.fontStyle === &apos;serif' ? &apos;active' : ''}`}
+                onClick={() => updateTypography('fontStyle', &apos;serif')}
               >
                 Serif
               </button>
@@ -219,10 +219,10 @@ export function ReaderSettings({
           <div className="reader-settings-option">
             <h4 className="reader-settings-option-title">Line Spacing</h4>
             <div className="reader-settings-option-list">
-              {['compact', 'normal', 'relaxed'].map(spacing => (
+              {['compact', &apos;normal', &apos;relaxed'].map(spacing => (
                 <button
                   key={spacing}
-                  className={`reader-settings-option-button ${config.typography.lineSpacing === spacing ? 'active' : ''}`}
+                  className={`reader-settings-option-button ${config.typography.lineSpacing === spacing ? &apos;active' : ''}`}
                   onClick={() => updateTypography('lineSpacing', spacing)}
                 >
                   {spacing.charAt(0).toUpperCase() + spacing.slice(1)}
@@ -235,10 +235,10 @@ export function ReaderSettings({
           <div className="reader-settings-option">
             <h4 className="reader-settings-option-title">Text Width</h4>
             <div className="reader-settings-option-list">
-              {['narrow', 'medium', 'wide'].map(width => (
+              {['narrow', &apos;medium', &apos;wide'].map(width => (
                 <button
                   key={width}
-                  className={`reader-settings-option-button ${config.layout.textWidth === width ? 'active' : ''}`}
+                  className={`reader-settings-option-button ${config.layout.textWidth === width ? &apos;active' : ''}`}
                   onClick={() => updateLayout('textWidth', width)}
                 >
                   {width.charAt(0).toUpperCase() + width.slice(1)}
@@ -252,13 +252,13 @@ export function ReaderSettings({
             <h4 className="reader-settings-option-title">Paragraph Numbers</h4>
             <div className="reader-settings-option-list">
               <button
-                className={`reader-settings-option-button ${config.layout.showParagraphNumbers ? 'active' : ''}`}
+                className={`reader-settings-option-button ${config.layout.showParagraphNumbers ? &apos;active' : ''}`}
                 onClick={() => updateLayout('showParagraphNumbers', true)}
               >
                 Show
               </button>
               <button
-                className={`reader-settings-option-button ${!config.layout.showParagraphNumbers ? 'active' : ''}`}
+                className={`reader-settings-option-button ${!config.layout.showParagraphNumbers ? &apos;active' : ''}`}
                 onClick={() => updateLayout('showParagraphNumbers', false)}
               >
                 Hide
@@ -276,8 +276,8 @@ export function ReaderSettings({
               // This would render extension-specific settings
               // For now, we'll just render a placeholder
               return (
-                <div key={extensionId} className="reader-settings-option">
-                  <h4 className="reader-settings-option-title">{extensionId}</h4>
+                <div key={_extensionId} className="reader-settings-option">
+                  <h4 className="reader-settings-option-title">{_extensionId}</h4>
                   <p className="reader-settings-description">
                     Extension-specific settings would appear here.
                   </p>
@@ -290,12 +290,12 @@ export function ReaderSettings({
 
       {/* Overlay */}
       <div
-        className={`reader-overlay ${isOpen ? 'active' : ''}`}
+        className={`reader-overlay ${isOpen ? &apos;active' : ''}`}
         onClick={() => {
           setIsOpen(false);
           onSettingsClose?.();
         }}
-      ></div>
+      />
     </>
   );
 }

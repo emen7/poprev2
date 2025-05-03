@@ -1,9 +1,11 @@
 'use client';
 
-import React from 'react';
-import { useTheme } from '../contexts/ThemeContext';
-import { useEnhancedHighlight } from './EnhancedHighlightProvider';
+import React from &apos;react';
+
 import { useExtendedUserPreferences } from '../contexts/ExtendedUserPreferencesContext';
+import { useTheme } from '../contexts/ThemeContext';
+
+import { useEnhancedHighlight } from './EnhancedHighlightProvider';
 
 interface EnhancedSettingsPanelProps {
   isOpen: boolean;
@@ -19,12 +21,12 @@ export function EnhancedSettingsPanel({
   onClose,
   className = '',
 }: EnhancedSettingsPanelProps) {
-  const { uiTheme, setUITheme, contentTheme, setContentTheme } = useTheme();
-  const { showHighlights, toggleHighlights } = useEnhancedHighlight();
+  const { _uiTheme, setUITheme, contentTheme, setContentTheme } = useTheme();
+  const { _showHighlights, toggleHighlights } = useEnhancedHighlight();
   const { preferences, updatePreferences } = useExtendedUserPreferences();
 
   // Handle font size change
-  const handleFontSizeChange = (fontSize: 'small' | 'medium' | 'large') => {
+  const handleFontSizeChange = (fontSize: &apos;small' | &apos;medium' | &apos;large') => {
     updatePreferences({
       reader: {
         ...preferences.reader,
@@ -34,7 +36,7 @@ export function EnhancedSettingsPanel({
   };
 
   // Handle line height change
-  const handleLineHeightChange = (lineHeight: 'compact' | 'normal' | 'relaxed') => {
+  const handleLineHeightChange = (lineHeight: &apos;compact' | &apos;normal' | &apos;relaxed') => {
     updatePreferences({
       reader: {
         ...preferences.reader,
@@ -65,7 +67,7 @@ export function EnhancedSettingsPanel({
 
   return (
     <aside
-      className={`er-settings-panel ${isOpen ? 'er-open' : ''} ${className}`}
+      className={`er-settings-panel ${isOpen ? &apos;er-open' : ''} ${className}`}
       aria-hidden={!isOpen}
       role="complementary"
     >
@@ -84,16 +86,16 @@ export function EnhancedSettingsPanel({
           <h3 className="er-settings-option-title">Display Theme</h3>
           <div className="er-settings-option-buttons">
             <button
-              className={`er-settings-option-button ${uiTheme === 'light' ? 'er-active' : ''}`}
+              className={`er-settings-option-button ${uiTheme === &apos;light' ? &apos;er-active' : ''}`}
               onClick={() => setUITheme('light')}
-              aria-pressed={uiTheme === 'light'}
+              aria-pressed={uiTheme === &apos;light'}
             >
               Light
             </button>
             <button
-              className={`er-settings-option-button ${uiTheme === 'dark' ? 'er-active' : ''}`}
+              className={`er-settings-option-button ${uiTheme === &apos;dark' ? &apos;er-active' : ''}`}
               onClick={() => setUITheme('dark')}
-              aria-pressed={uiTheme === 'dark'}
+              aria-pressed={uiTheme === &apos;dark'}
             >
               Dark
             </button>
@@ -106,26 +108,26 @@ export function EnhancedSettingsPanel({
           <div className="er-settings-option-buttons">
             <button
               className={`er-settings-option-button ${
-                contentTheme === 'modern' ? 'er-active' : ''
+                contentTheme === &apos;modern' ? &apos;er-active' : ''
               }`}
               onClick={() => setContentTheme('modern')}
-              aria-pressed={contentTheme === 'modern'}
+              aria-pressed={contentTheme === &apos;modern'}
             >
               Modern
             </button>
             <button
               className={`er-settings-option-button ${
-                contentTheme === 'traditional' ? 'er-active' : ''
+                contentTheme === &apos;traditional' ? &apos;er-active' : ''
               }`}
               onClick={() => setContentTheme('traditional')}
-              aria-pressed={contentTheme === 'traditional'}
+              aria-pressed={contentTheme === &apos;traditional'}
             >
               Traditional
             </button>
           </div>
           <div className="er-settings-option-description">
             <p className="er-settings-option-help-text">
-              {contentTheme === 'modern' ? (
+              {contentTheme === &apos;modern' ? (
                 <>
                   <strong>Modern:</strong> Optimized for digital reading with improved list
                   formatting, sans-serif fonts, and visual indicators for topic changes.
@@ -145,23 +147,23 @@ export function EnhancedSettingsPanel({
           <h3 className="er-settings-option-title">Font Size</h3>
           <div className="er-settings-option-buttons">
             <button
-              className={`er-settings-option-button ${preferences.reader.fontSize === 'small' ? 'er-active' : ''}`}
+              className={`er-settings-option-button ${preferences.reader.fontSize === &apos;small' ? &apos;er-active' : ''}`}
               onClick={() => handleFontSizeChange('small')}
-              aria-pressed={preferences.reader.fontSize === 'small'}
+              aria-pressed={preferences.reader.fontSize === &apos;small'}
             >
               Small
             </button>
             <button
-              className={`er-settings-option-button ${preferences.reader.fontSize === 'medium' ? 'er-active' : ''}`}
+              className={`er-settings-option-button ${preferences.reader.fontSize === &apos;medium' ? &apos;er-active' : ''}`}
               onClick={() => handleFontSizeChange('medium')}
-              aria-pressed={preferences.reader.fontSize === 'medium'}
+              aria-pressed={preferences.reader.fontSize === &apos;medium'}
             >
               Medium
             </button>
             <button
-              className={`er-settings-option-button ${preferences.reader.fontSize === 'large' ? 'er-active' : ''}`}
+              className={`er-settings-option-button ${preferences.reader.fontSize === &apos;large' ? &apos;er-active' : ''}`}
               onClick={() => handleFontSizeChange('large')}
-              aria-pressed={preferences.reader.fontSize === 'large'}
+              aria-pressed={preferences.reader.fontSize === &apos;large'}
             >
               Large
             </button>
@@ -173,23 +175,23 @@ export function EnhancedSettingsPanel({
           <h3 className="er-settings-option-title">Line Spacing</h3>
           <div className="er-settings-option-buttons">
             <button
-              className={`er-settings-option-button ${preferences.reader.lineHeight === 'compact' ? 'er-active' : ''}`}
+              className={`er-settings-option-button ${preferences.reader.lineHeight === &apos;compact' ? &apos;er-active' : ''}`}
               onClick={() => handleLineHeightChange('compact')}
-              aria-pressed={preferences.reader.lineHeight === 'compact'}
+              aria-pressed={preferences.reader.lineHeight === &apos;compact'}
             >
               Compact
             </button>
             <button
-              className={`er-settings-option-button ${preferences.reader.lineHeight === 'normal' ? 'er-active' : ''}`}
+              className={`er-settings-option-button ${preferences.reader.lineHeight === &apos;normal' ? &apos;er-active' : ''}`}
               onClick={() => handleLineHeightChange('normal')}
-              aria-pressed={preferences.reader.lineHeight === 'normal'}
+              aria-pressed={preferences.reader.lineHeight === &apos;normal'}
             >
               Normal
             </button>
             <button
-              className={`er-settings-option-button ${preferences.reader.lineHeight === 'relaxed' ? 'er-active' : ''}`}
+              className={`er-settings-option-button ${preferences.reader.lineHeight === &apos;relaxed' ? &apos;er-active' : ''}`}
               onClick={() => handleLineHeightChange('relaxed')}
-              aria-pressed={preferences.reader.lineHeight === 'relaxed'}
+              aria-pressed={preferences.reader.lineHeight === &apos;relaxed'}
             >
               Relaxed
             </button>
@@ -201,14 +203,14 @@ export function EnhancedSettingsPanel({
           <h3 className="er-settings-option-title">Paragraph Numbers</h3>
           <div className="er-settings-option-buttons">
             <button
-              className={`er-settings-option-button ${preferences.reader.showParagraphNumbers ? 'er-active' : ''}`}
+              className={`er-settings-option-button ${preferences.reader.showParagraphNumbers ? &apos;er-active' : ''}`}
               onClick={handleParagraphNumbersToggle}
               aria-pressed={preferences.reader.showParagraphNumbers}
             >
               Show
             </button>
             <button
-              className={`er-settings-option-button ${!preferences.reader.showParagraphNumbers ? 'er-active' : ''}`}
+              className={`er-settings-option-button ${!preferences.reader.showParagraphNumbers ? &apos;er-active' : ''}`}
               onClick={handleParagraphNumbersToggle}
               aria-pressed={!preferences.reader.showParagraphNumbers}
             >
@@ -222,14 +224,14 @@ export function EnhancedSettingsPanel({
           <h3 className="er-settings-option-title">Note Indicators</h3>
           <div className="er-settings-option-buttons">
             <button
-              className={`er-settings-option-button ${preferences.reader.showNoteIndicators ? 'er-active' : ''}`}
+              className={`er-settings-option-button ${preferences.reader.showNoteIndicators ? &apos;er-active' : ''}`}
               onClick={handleNoteIndicatorsToggle}
               aria-pressed={preferences.reader.showNoteIndicators}
             >
               Show
             </button>
             <button
-              className={`er-settings-option-button ${!preferences.reader.showNoteIndicators ? 'er-active' : ''}`}
+              className={`er-settings-option-button ${!preferences.reader.showNoteIndicators ? &apos;er-active' : ''}`}
               onClick={handleNoteIndicatorsToggle}
               aria-pressed={!preferences.reader.showNoteIndicators}
             >
@@ -243,14 +245,14 @@ export function EnhancedSettingsPanel({
           <h3 className="er-settings-option-title">Highlights</h3>
           <div className="er-settings-option-buttons">
             <button
-              className={`er-settings-option-button ${showHighlights ? 'er-active' : ''}`}
+              className={`er-settings-option-button ${showHighlights ? &apos;er-active' : ''}`}
               onClick={toggleHighlights}
-              aria-pressed={showHighlights}
+              aria-pressed={_showHighlights}
             >
               Show
             </button>
             <button
-              className={`er-settings-option-button ${!showHighlights ? 'er-active' : ''}`}
+              className={`er-settings-option-button ${!showHighlights ? &apos;er-active' : ''}`}
               onClick={toggleHighlights}
               aria-pressed={!showHighlights}
             >

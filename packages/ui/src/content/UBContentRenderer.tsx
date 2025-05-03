@@ -48,6 +48,18 @@ export interface UBContentRendererProps {
   useVerticalNumbering?: boolean;
 
   /**
+   * Text alignment for paragraphs
+   * @default 'left'
+   */
+  textAlignment?: 'left' | 'right' | 'justified';
+
+  /**
+   * Whether to show note indicators
+   * @default true
+   */
+  showNoteIndicators?: boolean;
+
+  /**
    * ID of the currently highlighted paragraph
    */
   highlightedParagraphId?: string;
@@ -74,6 +86,8 @@ export const UBContentRenderer: React.FC<UBContentRendererProps> = ({
   formatType,
   showNumbers = true,
   useVerticalNumbering = true,
+  textAlignment = 'left',
+  showNoteIndicators = true,
   highlightedParagraphId,
   onParagraphClick,
   className = '',
@@ -178,6 +192,8 @@ export const UBContentRenderer: React.FC<UBContentRendererProps> = ({
         formatType={formatType}
         showNumbers={showNumbers}
         useVerticalNumbering={useVerticalNumbering}
+        textAlignment={textAlignment}
+        showNoteIndicators={showNoteIndicators}
         highlightedParagraphId={highlightedParagraphId}
         onParagraphClick={onParagraphClick}
       />

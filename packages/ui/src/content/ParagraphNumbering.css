@@ -5,6 +5,15 @@
   position: relative;
 }
 
+/* Column for notes indicators */
+.paragraph-notes-column {
+  width: 20px;
+  flex-shrink: 0;
+  position: relative;
+  border-right: 1px solid #eaeaea;
+  background-color: #f9f9f9;
+}
+
 /* Column for paragraph numbers */
 .paragraph-numbering-column {
   width: 50px;
@@ -17,8 +26,9 @@
 /* Main content area */
 .paragraph-content {
   flex: 1;
-  padding-left: 15px;
+  padding-left: 20px;
   position: relative;
+  min-width: 0; /* Prevents flex items from overflowing */
 }
 
 /* Individual paragraph numbering */
@@ -26,7 +36,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 10px;
+  padding-right: 5px;
   height: 100%;
   position: absolute;
   top: 0;
@@ -34,6 +44,17 @@
   width: 100%;
   pointer-events: none; /* Make it non-selectable */
   user-select: none;
+}
+
+/* Container for note indicator to ensure proper alignment */
+.paragraph-note-indicator-container {
+  width: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: -15px;
+  height: 100%;
 }
 
 /* Paragraph number */
@@ -53,14 +74,22 @@
   background-color: transparent;
   color: #3498db;
   font-size: 8px;
-  margin-right: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* Ensure text doesn't move when numbers are hidden */
+.paragraph-numbering-container.no-numbers .paragraph-content {
+  padding-left: 20px; /* Keep same padding when numbers are hidden */
+}
+
 /* Media query for smaller screens */
 @media (width <= 768px) {
+  .paragraph-notes-column {
+    width: 15px;
+  }
+
   .paragraph-numbering-column {
     width: 40px;
   }

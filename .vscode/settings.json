@@ -46,5 +46,6 @@
     "**/.next": true,
     "**/coverage": true,
     "**/backup": true
-  }
+  },
+  "files.saveConflictResolution": "overwriteFileOnDisk"
 }

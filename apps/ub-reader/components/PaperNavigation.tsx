@@ -1,7 +1,7 @@
 'use client';
 
-import Link from 'next/link';
-import React from 'react';
+import Link from &apos;next/link';
+import React from &apos;react';
 
 interface PaperNavigationProps {
   currentPaper?: number;
@@ -18,12 +18,12 @@ const PaperNavigation: React.FC<PaperNavigationProps> = ({
   const nextPaper = currentPaper < totalPapers ? currentPaper + 1 : null;
 
   return (
-    <div className="flex justify-between items-center py-4 border-t border-b my-6">
+    <div className="my-6 flex items-center justify-between border-y py-4">
       <div>
         {prevPaper && (
           <Link
             href={`/paper/${prevPaper}`}
-            className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200 transition-colors"
+            className="rounded bg-gray-100 px-4 py-2 transition-colors hover:bg-gray-200"
           >
             ← Paper {prevPaper}
           </Link>
@@ -37,7 +37,7 @@ const PaperNavigation: React.FC<PaperNavigationProps> = ({
             const paper = parseInt(e.target.value, 10);
             window.location.href = `/paper/${paper}`;
           }}
-          className="px-4 py-2 border rounded mr-2"
+          className="mr-2 rounded border px-4 py-2"
         >
           {Array.from({ length: totalPapers }, (_, i) => i + 1).map(paper => (
             <option key={paper} value={paper}>
@@ -53,7 +53,7 @@ const PaperNavigation: React.FC<PaperNavigationProps> = ({
               const section = parseInt(e.target.value, 10);
               window.location.href = `/paper/${currentPaper}/section/${section}`;
             }}
-            className="px-4 py-2 border rounded"
+            className="rounded border px-4 py-2"
           >
             <option value={0}>All Sections</option>
             {/* This would be dynamically populated based on the paper */}
@@ -70,7 +70,7 @@ const PaperNavigation: React.FC<PaperNavigationProps> = ({
         {nextPaper && (
           <Link
             href={`/paper/${nextPaper}`}
-            className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200 transition-colors"
+            className="rounded bg-gray-100 px-4 py-2 transition-colors hover:bg-gray-200"
           >
             Paper {nextPaper} →
           </Link>
