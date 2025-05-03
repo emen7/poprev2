@@ -6,12 +6,14 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const nextConfig = {
   reactStrictMode: true,
-  // Temporarily ignore ESLint and TypeScript errors during build for Vercel deployment
+  // ESLint and TypeScript checking configuration
+  // For Vercel deployment, set ignoreDuringBuilds and ignoreBuildErrors to true
+  // For local development, set them to false to catch errors during build
   eslint: {
-    ignoreDuringBuilds: true, // Set to true to ignore ESLint errors during build
+    ignoreDuringBuilds: process.env.VERCEL === '1', // Only ignore on Vercel
   },
   typescript: {
-    ignoreBuildErrors: true, // Set to true to ignore TypeScript errors during build
+    ignoreBuildErrors: process.env.VERCEL === '1', // Only ignore on Vercel
   },
   // Ensure all @ub-ecosystem packages are transpiled
   transpilePackages: [
