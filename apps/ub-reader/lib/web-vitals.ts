@@ -1,14 +1,8 @@
 // Import directly from web-vitals package
-import { ReportHandler, getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals';
+import { ReportHandler, getCLS, getFID, getFCP, getLCP, getTTFB, Metric } from 'web-vitals';
 
-// Define the metric type for export
-export type WebVitalMetric = {
-  name: string;
-  value: number;
-  delta: number;
-  id: string;
-  navigationType: string;
-};
+// Use the Metric type from web-vitals package
+export type WebVitalMetric = Metric;
 
 /**
  * Web Vitals reporting function
