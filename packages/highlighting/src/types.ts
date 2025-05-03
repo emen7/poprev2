@@ -1,9 +1,22 @@
 /**
  * Types for the UB Highlighting Package
+ *
+ * This module defines all the types used in the highlighting system,
+ * including options, colors, data structures, and component props.
+ *
+ * @module highlighting/types
  */
 
 /**
  * Options for the HighlightManager constructor
+ *
+ * @interface HighlightManagerOptions
+ * @description Configuration options for initializing the HighlightManager
+ * @property {HTMLElement} container - The container element where highlighting will be applied
+ * @property {HighlightColor[]} [colors] - Array of color objects for highlighting
+ * @property {() => boolean} [isDarkMode] - Function that returns true if dark mode is active
+ * @property {(data: HighlightData) => void} [onHighlight] - Callback function when text is highlighted
+ * @property {boolean} [showHighlights=true] - Whether to show highlights initially
  */
 export interface HighlightManagerOptions {
   /** The container element where highlighting will be applied */
@@ -20,6 +33,15 @@ export interface HighlightManagerOptions {
 
 /**
  * Color object for highlighting
+ *
+ * @interface HighlightColor
+ * @description Defines a color that can be used for highlighting text
+ * @property {string} name - Unique identifier for the color
+ * @property {string} lightModeColor - CSS color value for light mode (background color)
+ * @property {string} darkModeColor - CSS color value for dark mode (text color)
+ * @property {string} [displayName] - Human-readable name for the color
+ * @property {boolean} [lightModeOnly] - Whether the color is only available in light mode
+ * @property {boolean} [darkModeOnly] - Whether the color is only available in dark mode
  */
 export interface HighlightColor {
   /** Unique name for the color */
@@ -38,6 +60,12 @@ export interface HighlightColor {
 
 /**
  * Data for a highlight
+ *
+ * @interface HighlightData
+ * @description Contains information about a text highlight
+ * @property {string} text - The highlighted text content
+ * @property {string|null} color - The color name used for the highlight, or null if removed
+ * @property {Range} range - The DOM Range object representing the highlighted text
  */
 export interface HighlightData {
   /** The highlighted text */
@@ -50,6 +78,17 @@ export interface HighlightData {
 
 /**
  * Props for the HighlightProvider component
+ *
+ * @interface HighlightProviderProps
+ * @description Props for the React component that provides highlighting functionality
+ * @property {React.ReactNode} children - The children to render within the provider
+ * @property {string} containerSelector - CSS selector for the container element where highlighting will be applied
+ * @property {() => boolean} isDarkMode - Function that returns true if dark mode is active
+ * @property {HighlightColor[]} [colors] - Array of color objects for highlighting
+ * @property {(data: HighlightData) => void} [onHighlight] - Callback function when text is highlighted
+ * @property {boolean} [showHighlights=true] - Whether to show highlights initially
+ * @property {number} [currentPaper] - Current paper number for context
+ * @property {number} [currentSection] - Current section number for context
  */
 export interface HighlightProviderProps {
   /** The children to render */
@@ -72,10 +111,19 @@ export interface HighlightProviderProps {
 
 /**
  * Context for the highlighting system
+ *
+ * @interface HighlightContextValue
+ * @description The value provided by the HighlightContext
+ * @property {import('./HighlightManager').HighlightManager|null} highlightManager - The underlying highlight manager instance
+ * @property {boolean} showHighlights - Whether highlights are currently visible
+ * @property {(show: boolean) => void} setShowHighlights - Function to set whether highlights are visible
+ * @property {HighlightData[]} highlights - Array of highlight objects
+ * @property {(highlight: HighlightData) => void} addHighlight - Function to add a highlight
+ * @property {(highlight: HighlightData) => void} removeHighlight - Function to remove a highlight
  */
 export interface HighlightContextValue {
   /** The underlying highlight manager instance */
-  highlightManager: any | null;
+  highlightManager: import('./HighlightManager').HighlightManager | null;
   /** Whether highlights are currently visible */
   showHighlights: boolean;
   /** Function to set whether highlights are visible */
@@ -90,6 +138,15 @@ export interface HighlightContextValue {
 
 /**
  * Storage format for highlights
+ *
+ * @interface HighlightStorage
+ * @description Format for storing highlights in localStorage or other storage mechanisms
+ * @property {number} paperNumber - The paper number where the highlight is located
+ * @property {number} sectionNumber - The section number where the highlight is located
+ * @property {number} paragraphNumber - The paragraph number where the highlight is located
+ * @property {string} text - The highlighted text content
+ * @property {string} color - The color name used for the highlight
+ * @property {string} timestamp - ISO timestamp when the highlight was created
  */
 export interface HighlightStorage {
   /** Paper number */

@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState } from &apos;react';
 
+import type { UBReference } from './ReferenceUtils';
 import {
   parseUBReferences,
   applyReferenceContext,
   generateUBReferenceUrl,
   isValidReference,
-  UBReference,
 } from './ReferenceUtils';
 import './ReferenceProcessor.css';
 
@@ -65,7 +65,7 @@ export function ReferenceProcessor({
   showTooltips = true,
   maxPapers = 196,
   maxSections,
-  linkClassName = 'ub-reference',
+  linkClassName = &apos;ub-reference',
   onReferenceClick,
 }: ReferenceProcessorProps) {
   // State for the currently hovered reference
@@ -101,7 +101,7 @@ export function ReferenceProcessor({
       // Create the link element
       const link = `<a 
         href="${url}" 
-        class="${linkClassName} ${isValid ? 'valid-reference' : 'invalid-reference'}" 
+        class="${linkClassName} ${isValid ? &apos;valid-reference' : &apos;invalid-reference'}" 
         data-reference-type="${ref.type}"
         data-reference-paper="${ref.paper}"
         ${ref.section !== undefined ? `data-reference-section="${ref.section}"` : ''}
@@ -128,12 +128,12 @@ export function ReferenceProcessor({
 
     // Extract reference data from data attributes
     const type = target.getAttribute('data-reference-type') as UBReference['type'];
-    const paper = parseInt(target.getAttribute('data-reference-paper') || '0', 10);
+    const paper = parseInt(target.getAttribute('data-reference-paper') || &apos;0', 10);
     const section = target.hasAttribute('data-reference-section')
-      ? parseInt(target.getAttribute('data-reference-section') || '0', 10)
+      ? parseInt(target.getAttribute('data-reference-section') || &apos;0', 10)
       : undefined;
     const paragraph = target.hasAttribute('data-reference-paragraph')
-      ? parseInt(target.getAttribute('data-reference-paragraph') || '0', 10)
+      ? parseInt(target.getAttribute('data-reference-paragraph') || &apos;0', 10)
       : undefined;
 
     // Create reference object
@@ -168,12 +168,12 @@ export function ReferenceProcessor({
 
     // Extract reference data from data attributes
     const type = target.getAttribute('data-reference-type') as UBReference['type'];
-    const paper = parseInt(target.getAttribute('data-reference-paper') || '0', 10);
+    const paper = parseInt(target.getAttribute('data-reference-paper') || &apos;0', 10);
     const section = target.hasAttribute('data-reference-section')
-      ? parseInt(target.getAttribute('data-reference-section') || '0', 10)
+      ? parseInt(target.getAttribute('data-reference-section') || &apos;0', 10)
       : undefined;
     const paragraph = target.hasAttribute('data-reference-paragraph')
-      ? parseInt(target.getAttribute('data-reference-paragraph') || '0', 10)
+      ? parseInt(target.getAttribute('data-reference-paragraph') || &apos;0', 10)
       : undefined;
 
     // Create reference object
@@ -200,16 +200,16 @@ export function ReferenceProcessor({
     let content = '';
 
     switch (reference.type) {
-      case 'paper':
+      case &apos;paper':
         content = `Paper ${reference.paper}`;
         break;
-      case 'paper-section':
+      case &apos;paper-section':
         content = `Paper ${reference.paper}, Section ${reference.section}`;
         break;
-      case 'paper-section-paragraph':
+      case &apos;paper-section-paragraph':
         content = `Paper ${reference.paper}, Section ${reference.section}, Paragraph ${reference.paragraph}`;
         break;
-      case 'section':
+      case &apos;section':
         content = `Section ${reference.section}`;
         break;
     }
@@ -217,27 +217,33 @@ export function ReferenceProcessor({
     return content;
   };
 
+  // In React, we can't use both dangerouslySetInnerHTML and children in the same element
+  // So we need to wrap the content in one div and the tooltip in another
   return (
-    <div
-      className="reference-processor"
-      onMouseOver={handleReferenceHover}
-      onMouseOut={handleReferenceHoverEnd}
-      onClick={handleReferenceClick}
-      dangerouslySetInnerHTML={{ __html: processContent() }}
-    >
-      {/* Tooltip */}
+    <>
+      <div
+        className="reference-processor"
+        onMouseOver={handleReferenceHover}
+        onMouseOut={handleReferenceHoverEnd}
+        onClick={handleReferenceClick}
+        dangerouslySetInnerHTML={{ __html: processContent() }}
+      />
+
+      {/* Tooltip in a separate element */}
       {showTooltips && hoveredReference && (
         <div
           className="reference-tooltip"
           style={{
+            position: &apos;fixed' /* Changed to fixed positioning */,
             top: `${tooltipPosition.y + 20}px`,
             left: `${tooltipPosition.x + 10}px`,
+            zIndex: 1000 /* Ensure it appears above other content */,
           }}
         >
           {formatTooltipContent(hoveredReference)}
         </div>
       )}
-    </div>
+    </>
   );
 }
 

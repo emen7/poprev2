@@ -63,6 +63,32 @@ export interface Note {
    * The text that was selected when the note was created
    */
   selectedText?: string;
+
+  /**
+   * Whether the note is selected (for batch operations)
+   * This is only used for UI state and is not persisted
+   */
+  isSelected?: boolean;
+}
+
+/**
+ * Batch operations interface for notes
+ */
+export interface BatchOperations {
+  /**
+   * Copy selected notes to clipboard
+   */
+  copyToClipboard: (notes: Note[]) => Promise<boolean>;
+
+  /**
+   * Delete selected notes
+   */
+  deleteSelected: (noteIds: string[]) => Promise<boolean>;
+
+  /**
+   * Export selected notes in different formats
+   */
+  exportSelected: (notes: Note[], format: 'text' | 'markdown' | 'json') => Promise<string>;
 }
 
 export interface Quote {
@@ -109,9 +135,9 @@ export interface ReaderSettings {
   fontFamily: string;
 
   /**
-   * Theme (light or dark)
+   * Theme (light, dark, or high-contrast)
    */
-  theme: 'light' | 'dark';
+  theme: 'light' | 'dark' | 'high-contrast';
 
   /**
    * Whether to show paragraph numbers

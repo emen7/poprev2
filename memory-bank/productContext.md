@@ -18,7 +18,10 @@ The UB Reader is a web application designed to provide an enhanced reading exper
 - **Permanent Title Bar**: Fixed position header with app title
 - **Paper Bar**: Secondary header showing current paper information
 - **Reading Area**: Main content container with optimal width
-- **Pullup Component**: Bottom panel with tabs for notes, quotes, and settings
+- **Pullup Component**: Bottom panel with improved behavior and always-visible handle
+- **Tab Interface**: Adjacent left-aligned tabs with cohesive design
+- **Text Formatting**: Multiple alignment options (left, right, justified)
+- **Paragraph Numbering**: Clean display with separate column for notes indicators
 - **Theme System**: Multiple themes with transition effects
 - **Content Transformation**: Processing and display of structured content
 - **Audio Integration**: Audio playback capabilities
@@ -54,12 +57,32 @@ The UB Reader is a web application designed to provide an enhanced reading exper
 
 ## Current Priorities
 
-1. Basic page structure redesign
-   - Permanent Title Bar
-   - Paper Bar
-   - Reading Area with optimal width
-   - Pullup Footer with text-only initial state
-2. Consistent positioning between localhost and Vercel
-3. Clean div structure with minimal nesting
-4. Hybrid implementation approach (HTML/CSS prototype first, then React)
-5. Full paper implementation for content testing
+1. Complete UI improvements validation across environments
+
+   - Test UI enhancements in different browsers and devices
+   - Verify consistent behavior of pullup component
+   - Confirm text alignment features work properly
+
+2. Transition to React implementation phase
+
+   - Create core React components based on HTML prototype
+   - Implement stateful behavior for UI elements
+   - Integrate with existing application structure
+
+3. Performance optimization
+
+   - Optimize component re-rendering
+   - Implement code splitting for better load times
+   - Ensure smooth animations and transitions
+
+4. Next feature enhancements
+
+   - Enhanced note-taking capabilities
+   - Improved theme switching
+   - Additional text formatting options
+   - Persistent user preferences
+
+5. Testing and deployment
+   - Cross-browser compatibility testing
+   - Comprehensive device testing
+   - Optimize build for production deployment

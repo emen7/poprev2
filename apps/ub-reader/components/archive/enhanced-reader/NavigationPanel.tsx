@@ -4,12 +4,11 @@
  * This component renders a slide-in navigation panel with navigation items.
  */
 
-'use client';
+&apos;use client';
 
-import React from 'react';
+import React from &apos;react';
 
-import { NavigationPanelProps } from './types';
-import type { NavigationItem } from './types';
+import type { NavigationPanelProps, NavigationItem } from './types';
 
 /**
  * Navigation Panel Component
@@ -17,43 +16,43 @@ import type { NavigationItem } from './types';
 // Sample navigation items for demonstration
 const sampleNavigationItems: NavigationItem[] = [
   {
-    id: 'part1',
-    title: 'Part I: Introduction',
+    id: &apos;part1',
+    title: &apos;Part I: Introduction',
     children: [
       {
-        id: 'paper1',
-        title: 'Paper 1: Overview',
+        id: &apos;paper1',
+        title: &apos;Paper 1: Overview',
         url: '#paper1',
       },
       {
-        id: 'paper2',
-        title: 'Paper 2: Concepts',
+        id: &apos;paper2',
+        title: &apos;Paper 2: Concepts',
         url: '#paper2',
       },
     ],
   },
   {
-    id: 'part2',
-    title: 'Part II: Implementation',
+    id: &apos;part2',
+    title: &apos;Part II: Implementation',
     children: [
       {
-        id: 'paper3',
-        title: 'Paper 3: Architecture',
+        id: &apos;paper3',
+        title: &apos;Paper 3: Architecture',
         url: '#paper3',
       },
       {
-        id: 'paper4',
-        title: 'Paper 4: Components',
+        id: &apos;paper4',
+        title: &apos;Paper 4: Components',
         url: '#paper4',
         children: [
           {
-            id: 'section1',
-            title: 'Section 1: Navigation',
+            id: &apos;section1',
+            title: &apos;Section 1: Navigation',
             url: '#section1',
           },
           {
-            id: 'section2',
-            title: 'Section 2: Settings',
+            id: &apos;section2',
+            title: &apos;Section 2: Settings',
             url: '#section2',
           },
         ],
@@ -70,7 +69,7 @@ export function NavigationPanel({
 }: NavigationPanelProps) {
   return (
     <nav
-      className={`er-navigation-panel ${isOpen ? 'er-open' : ''} ${className}`}
+      className={`er-navigation-panel ${isOpen ? &apos;er-open' : ''} ${className}`}
       aria-hidden={!isOpen}
       role="navigation"
     >
@@ -122,10 +121,10 @@ function NavigationItem({ item }: { item: NavigationItem }) {
 
         {hasChildren && (
           <button
-            className={`er-navigation-item-toggle ${isExpanded ? 'er-expanded' : ''}`}
+            className={`er-navigation-item-toggle ${isExpanded ? &apos;er-expanded' : ''}`}
             onClick={toggleExpand}
             aria-expanded={isExpanded}
-            aria-label={isExpanded ? 'Collapse' : 'Expand'}
+            aria-label={isExpanded ? &apos;Collapse' : &apos;Expand'}
           >
             <span aria-hidden="true">{isExpanded ? '▼' : '▶'}</span>
           </button>

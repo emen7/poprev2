@@ -1,0 +1,81 @@
+'use client';
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import React, { useState } from 'react';
+import Link from 'next/link';
+/**
+ * Reader UI Demo Page
+ *
+ * This page demonstrates different layout options for the UB Reader UI.
+ * It allows switching between different layout structures to gather feedback.
+ */
+export default function ReaderUIDemoPage() {
+    // State to track which layout option is currently selected
+    const [layoutOption, setLayoutOption] = useState('A');
+    return (_jsxs("div", { className: "min-h-screen flex flex-col", children: [_jsx("div", { className: "bg-gray-100 dark:bg-gray-800 p-4 border-b border-gray-200 dark:border-gray-700", children: _jsxs("div", { className: "max-w-7xl mx-auto", children: [_jsx("h1", { className: "text-2xl font-bold mb-4", children: "Reader UI Demo - Layout Structure" }), _jsxs("div", { className: "flex flex-wrap gap-4 mb-4", children: [_jsx("button", { onClick: () => setLayoutOption('A'), className: `px-4 py-2 rounded-md ${layoutOption === 'A'
+                                        ? 'bg-blue-600 text-white'
+                                        : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200'}`, children: "Option A: Fixed Header" }), _jsx("button", { onClick: () => setLayoutOption('B'), className: `px-4 py-2 rounded-md ${layoutOption === 'B'
+                                        ? 'bg-blue-600 text-white'
+                                        : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200'}`, children: "Option B: Sticky Header" }), _jsx("button", { onClick: () => setLayoutOption('C'), className: `px-4 py-2 rounded-md ${layoutOption === 'C'
+                                        ? 'bg-blue-600 text-white'
+                                        : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200'}`, children: "Option C: Sidebar Layout" })] }), _jsxs("div", { className: "bg-white dark:bg-gray-900 p-4 rounded-md mb-4", children: [_jsxs("h2", { className: "font-semibold mb-2", children: ["Current Option: ", getLayoutDescription(layoutOption)] }), _jsx("p", { className: "text-gray-600 dark:text-gray-400", children: getLayoutDetails(layoutOption) })] }), _jsx(Link, { href: "/", className: "text-blue-600 hover:underline", children: "\u2190 Back to Home" })] }) }), layoutOption === 'A' && _jsx(FixedHeaderLayout, {}), layoutOption === 'B' && _jsx(StickyHeaderLayout, {}), layoutOption === 'C' && _jsx(SidebarLayout, {})] }));
+}
+/**
+ * Helper function to get layout description
+ */
+function getLayoutDescription(option) {
+    switch (option) {
+        case 'A':
+            return 'Fixed Header with Scrollable Content';
+        case 'B':
+            return 'Sticky Header that Minimizes on Scroll';
+        case 'C':
+            return 'Full-height Sidebar with Content Area';
+    }
+}
+/**
+ * Helper function to get layout details
+ */
+function getLayoutDetails(option) {
+    switch (option) {
+        case 'A':
+            return 'A traditional layout with a fixed header at the top and scrollable content below. This provides a clean reading experience with maximum space for content.';
+        case 'B':
+            return 'A modern layout where the header shrinks as you scroll down, providing more reading space while maintaining navigation context.';
+        case 'C':
+            return 'A layout with a persistent sidebar for navigation and a separate content area. This provides quick access to different sections of the book.';
+    }
+}
+/**
+ * Option A: Fixed Header Layout
+ */
+function FixedHeaderLayout() {
+    return (_jsxs("div", { className: "flex flex-col flex-grow", children: [_jsx("header", { className: "bg-gray-800 text-white h-16 flex items-center px-4", children: _jsxs("div", { className: "max-w-7xl w-full mx-auto flex justify-between items-center", children: [_jsxs("div", { className: "flex items-center", children: [_jsxs("button", { className: "p-2 mr-2", children: [_jsx("span", { className: "block w-6 h-0.5 bg-white mb-1" }), _jsx("span", { className: "block w-6 h-0.5 bg-white mb-1" }), _jsx("span", { className: "block w-6 h-0.5 bg-white" })] }), _jsxs("button", { className: "p-2 mr-4", children: [_jsx("span", { className: "block w-5 h-0.5 bg-blue-400 mb-1" }), _jsx("span", { className: "block w-5 h-0.5 bg-blue-400 mb-1" }), _jsx("span", { className: "block w-5 h-0.5 bg-blue-400" })] })] }), _jsx("h1", { className: "text-xl font-semibold", children: "Paper 1: The Universal Father" }), _jsx("div", { children: _jsx("button", { className: "p-2", children: _jsxs("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: [_jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" }), _jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z" })] }) }) })] }) }), _jsx("main", { className: "flex-grow bg-gray-100 dark:bg-gray-900", children: _jsx("div", { className: "max-w-3xl mx-auto py-8 px-4", children: _jsxs("div", { className: "bg-white dark:bg-gray-800 rounded-lg shadow-md p-6", children: [_jsx("h2", { className: "text-2xl font-bold mb-4", children: "1. The Father's Name" }), _jsx("div", { className: "space-y-4", children: Array.from({ length: 10 }).map((_, i) => (_jsx("p", { className: "text-gray-800 dark:text-gray-200", children: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." }, i))) })] }) }) }), _jsx("div", { className: "fixed bottom-6 right-6", children: _jsx("button", { className: "bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg", children: _jsx("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: _jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 15l7-7 7 7" }) }) }) })] }));
+}
+/**
+ * Option B: Sticky Header Layout
+ */
+function StickyHeaderLayout() {
+    const [isScrolled, setIsScrolled] = useState(false);
+    // Add scroll event listener
+    React.useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                setIsScrolled(true);
+            }
+            else {
+                setIsScrolled(false);
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+    return (_jsxs("div", { className: "flex flex-col flex-grow", children: [_jsx("header", { className: `sticky top-0 z-10 bg-gray-800 text-white transition-all duration-300 ${isScrolled ? 'h-12' : 'h-16'}`, children: _jsxs("div", { className: "max-w-7xl w-full mx-auto h-full flex justify-between items-center px-4", children: [_jsxs("div", { className: "flex items-center", children: [_jsxs("button", { className: `p-2 mr-2 transition-all ${isScrolled ? 'scale-75' : ''}`, children: [_jsx("span", { className: "block w-6 h-0.5 bg-white mb-1" }), _jsx("span", { className: "block w-6 h-0.5 bg-white mb-1" }), _jsx("span", { className: "block w-6 h-0.5 bg-white" })] }), _jsxs("button", { className: `p-2 mr-4 transition-all ${isScrolled ? 'scale-75' : ''}`, children: [_jsx("span", { className: "block w-5 h-0.5 bg-blue-400 mb-1" }), _jsx("span", { className: "block w-5 h-0.5 bg-blue-400 mb-1" }), _jsx("span", { className: "block w-5 h-0.5 bg-blue-400" })] })] }), _jsx("h1", { className: `font-semibold transition-all ${isScrolled ? 'text-base' : 'text-xl'}`, children: "Paper 1: The Universal Father" }), _jsx("div", { children: _jsx("button", { className: `p-2 transition-all ${isScrolled ? 'scale-75' : ''}`, children: _jsxs("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: [_jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" }), _jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z" })] }) }) })] }) }), _jsx("main", { className: "flex-grow bg-gray-100 dark:bg-gray-900", children: _jsx("div", { className: "max-w-3xl mx-auto py-8 px-4", children: _jsxs("div", { className: "bg-white dark:bg-gray-800 rounded-lg shadow-md p-6", children: [_jsx("h2", { className: "text-2xl font-bold mb-4", children: "1. The Father's Name" }), _jsx("div", { className: "space-y-4", children: Array.from({ length: 20 }).map((_, i) => (_jsx("p", { className: "text-gray-800 dark:text-gray-200", children: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." }, i))) })] }) }) }), _jsx("div", { className: "fixed bottom-6 right-6", children: _jsx("button", { className: "bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg", children: _jsx("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: _jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 15l7-7 7 7" }) }) }) })] }));
+}
+/**
+ * Option C: Sidebar Layout
+ */
+function SidebarLayout() {
+    const [sidebarOpen, setSidebarOpen] = useState(true);
+    return (_jsxs("div", { className: "flex flex-grow h-full", children: [_jsxs("aside", { className: `bg-gray-800 text-white h-screen transition-all duration-300 ${sidebarOpen ? 'w-64' : 'w-16'} flex flex-col`, children: [_jsxs("div", { className: "p-4 flex items-center justify-between", children: [sidebarOpen && _jsx("h2", { className: "font-semibold", children: "UB Reader" }), _jsx("button", { onClick: () => setSidebarOpen(!sidebarOpen), className: "p-1 rounded-md hover:bg-gray-700", children: sidebarOpen ? (_jsx("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: _jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M11 19l-7-7 7-7m8 14l-7-7 7-7" }) })) : (_jsx("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: _jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M13 5l7 7-7 7M5 5l7 7-7 7" }) })) })] }), _jsx("div", { className: "flex-grow overflow-y-auto", children: sidebarOpen ? (_jsxs("nav", { className: "p-2", children: [_jsxs("div", { className: "mb-4", children: [_jsx("h3", { className: "text-xs uppercase tracking-wider text-gray-400 mb-2 px-2", children: "Parts" }), _jsx("ul", { children: ['Part I', 'Part II', 'Part III', 'Part IV'].map((part, i) => (_jsx("li", { children: _jsx("a", { href: "#", className: "block px-2 py-1 rounded hover:bg-gray-700", children: part }) }, i))) })] }), _jsxs("div", { className: "mb-4", children: [_jsx("h3", { className: "text-xs uppercase tracking-wider text-gray-400 mb-2 px-2", children: "Current Paper" }), _jsx("ul", { children: ["1. The Father's Name", '2. The Reality of God', "3. God's Attributes"].map((section, i) => (_jsx("li", { children: _jsx("a", { href: "#", className: `block px-2 py-1 rounded ${i === 0 ? 'bg-blue-600' : 'hover:bg-gray-700'}`, children: section }) }, i))) })] })] })) : (_jsxs("nav", { className: "flex flex-col items-center p-2", children: [_jsx("button", { className: "p-2 mb-4 rounded hover:bg-gray-700", children: _jsx("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: _jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M4 6h16M4 12h16M4 18h16" }) }) }), _jsx("button", { className: "p-2 mb-4 rounded hover:bg-gray-700", children: _jsx("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: _jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" }) }) }), _jsx("button", { className: "p-2 rounded hover:bg-gray-700", children: _jsx("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: _jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" }) }) })] })) }), _jsx("div", { className: "p-4", children: _jsxs("button", { className: "w-full flex items-center justify-center p-2 bg-blue-600 rounded-md", children: [_jsxs("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: [_jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" }), _jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z" })] }), sidebarOpen && _jsx("span", { className: "ml-2", children: "Settings" })] }) })] }), _jsx("main", { className: "flex-grow bg-gray-100 dark:bg-gray-900 overflow-y-auto", children: _jsx("div", { className: "max-w-3xl mx-auto py-8 px-4", children: _jsxs("div", { className: "bg-white dark:bg-gray-800 rounded-lg shadow-md p-6", children: [_jsx("h1", { className: "text-3xl font-bold mb-2", children: "Paper 1: The Universal Father" }), _jsx("h2", { className: "text-2xl font-bold mb-4", children: "1. The Father's Name" }), _jsx("div", { className: "space-y-4", children: Array.from({ length: 10 }).map((_, i) => (_jsx("p", { className: "text-gray-800 dark:text-gray-200", children: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." }, i))) })] }) }) }), _jsx("div", { className: "fixed bottom-6 right-6", children: _jsx("button", { className: "bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg", children: _jsx("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: _jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 15l7-7 7 7" }) }) }) })] }));
+}
+//# sourceMappingURL=page.js.map

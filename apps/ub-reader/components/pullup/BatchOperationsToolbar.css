@@ -1,0 +1,129 @@
+.batch-operations-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 8px;
+}
+
+.selection-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.selection-count {
+  font-size: 14px;
+  color: #555;
+  margin-right: 8px;
+}
+
+.selection-button {
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  color: #333;
+  transition: background-color 0.2s;
+}
+
+.selection-button:hover {
+  background-color: #e0e0e0;
+}
+
+.selection-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.batch-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.batch-action-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.batch-action-button:hover {
+  background-color: #f0f0f0;
+}
+
+.copy-button {
+  color: #0066cc;
+}
+
+.copy-button:hover {
+  background-color: #e6f0fa;
+}
+
+.delete-button {
+  color: #cc0000;
+}
+
+.delete-button:hover {
+  background-color: #fae6e6;
+}
+
+.batch-action-icon {
+  font-size: 16px;
+}
+
+/* Dark mode styles */
+/* Dark mode styles */
+.dark-theme .batch-operations-toolbar {
+  background-color: #333;
+  border-bottom-color: #444;
+}
+
+.dark-theme .selection-count {
+  color: #ccc;
+}
+
+.dark-theme .selection-button {
+  border-color: #555;
+  color: #eee;
+}
+
+.dark-theme .selection-button:hover {
+  background-color: #444;
+}
+
+.dark-theme .batch-action-button {
+  background-color: #444;
+  border-color: #555;
+  color: #eee;
+}
+
+.dark-theme .batch-action-button:hover {
+  background-color: #555;
+}
+
+.dark-theme .copy-button {
+  color: #66b0ff;
+}
+
+.dark-theme .copy-button:hover {
+  background-color: #2a3b4d;
+}
+
+.dark-theme .delete-button {
+  color: #ff6666;
+}
+
+.dark-theme .delete-button:hover {
+  background-color: #4d2a2a;
+}

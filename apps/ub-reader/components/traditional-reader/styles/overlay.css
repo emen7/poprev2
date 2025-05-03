@@ -1,0 +1,19 @@
+/**
+ * Traditional Reader Overlay Styles
+ *
+ * This file contains styles for the overlay component.
+ */
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  inset: 56px 0 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 30;
+  display: none;
+  backdrop-filter: blur(2px); /* Add subtle blur effect */
+}
+
+.overlay.active {
+  display: block;
+}

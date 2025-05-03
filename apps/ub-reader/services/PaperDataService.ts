@@ -289,7 +289,7 @@ export async function getPaper(paperNumber: number): Promise<Paper> {
   }
 
   // If the paper is not available or there was an error, fall back to mock data
-  console.log(`Using mock data for paper ${paperNumber}`);
+  // Removed console.log
 
   const sectionTitles = getSectionTitles(paperNumber);
 

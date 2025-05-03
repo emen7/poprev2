@@ -2,6 +2,47 @@
 
 This document maintains a chronological record of significant architectural and implementation decisions made during the development of the UB Reader application.
 
+## 2025-05-02: UI Improvements Implementation
+
+**Decision**: Implement a comprehensive set of UI improvements focused on readability, usability, and visual cohesion.
+
+**Rationale**:
+
+- Improve readability with natural case for section titles instead of uppercase
+- Enhance pullup usability with less intrusive design and better state management
+- Create cohesive tab layout with adjacent labels for improved visual consistency
+- Provide text alignment options for greater user customization
+- Separate notes indicators from paragraph numbers for better visual clarity
+- Improve overall UI consistency and user experience
+
+**Implementation**:
+
+- Section Title Styling:
+  - Removed `text-transform: uppercase` from section titles
+  - Modified titles to display in natural case for better readability
+- Pullup Bar Improvements:
+  - Reduced default minHeight from 100px to 40px for less intrusive appearance
+  - Modified transform logic to keep handle visible when collapsed
+  - Added state management to reset height when toggling tabs
+  - Implemented proper return-to-original-state behavior
+- Tab Layout Adjustments:
+  - Made tab labels adjacent with minimal spacing
+  - Reduced padding and eliminated margin between tabs
+  - Added explicit left-alignment for better visual cohesion
+- Text Alignment Settings:
+  - Added text alignment options (left, right, justified) to Settings tab
+  - Set left alignment as the default
+  - Implemented CSS classes for different text alignments
+  - Added proper propagation of settings through component hierarchy
+- Paragraph Numbering Format:
+  - Ensured paragraphs display only their own number
+  - Maintained consistent positioning in dedicated column
+  - Enhanced extraction of paragraph numbers from complex formats
+- Notes Feature Coordination:
+  - Created separate column for notes indicators to the left of paragraph numbers
+  - Added `showNoteIndicators` toggle in settings
+  - Updated layout for clear visual separation of components
+
 ## 2025-04-21: Hybrid Development Approach
 
 **Decision**: Implement a two-phase hybrid approach for page structure redesign:
@@ -252,3 +293,29 @@ This document maintains a chronological record of significant architectural and 
 - Added proper export of PullupProvider from the barrel file in '../pullup' to maintain backward compatibility
 - Ensured consistent naming and export patterns across the codebase
 - Verified that all components using PullupProvider have the correct import paths
+
+## 2025-05-05: TypeScript and ESLint Configuration Improvements
+
+**Decision**: Improve TypeScript and ESLint configuration to ensure code quality without workarounds.
+
+**Rationale**:
+
+- Previous configuration disabled TypeScript and ESLint checks during builds to avoid errors
+- This approach masked underlying code quality issues
+- Proper type checking and linting are essential for maintaining a high-quality codebase
+- A monorepo that can be passed along to others requires consistent code quality standards
+
+**Implementation**:
+
+- Updated TypeScript configuration in all packages:
+  - Added `composite: true` flag to packages that needed it
+  - Set `noEmit: false` in packages that needed it
+  - Temporarily disabled `noUnusedLocals` and `noUnusedParameters` to allow for a phased approach
+- Fixed specific code issues:
+  - Removed unused variables and parameters
+  - Fixed React imports to avoid unused imports
+  - Ensured all code paths in useEffect hooks return a value
+- Updated build configuration:
+  - Enabled ESLint and TypeScript checking during builds in next.config.js
+  - Added type checking to the build process in turbo.json
+- Created CODE_QUALITY_IMPROVEMENTS.md to document changes and provide guidance for future development

@@ -1,29 +1,21 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from &apos;react';
 
-import { usePullup } from './PullupContext';
-import { Note, Quote } from './types';
+import { usePullup } from '../../contexts/PullupContext';
+
+import type { Note, Quote } from './types';
 import './TextSelectionHandler.css';
 
-export interface TextSelectionHandlerProps {
-  /**
-   * Function called when a note is created
-   */
-  onNoteCreate?: (note: Note) => void;
-
-  /**
-   * Function called when a quote is created
-   */
-  onQuoteCreate?: (quote: Quote) => void;
-}
+export interface TextSelectionHandlerProps {}
 
 /**
  * TextSelectionHandler Component
  *
  * A component that handles text selection and shows a menu with options to create notes or quotes.
+ * Uses PullupContext for state management instead of props.
  */
-export function TextSelectionHandler({ onNoteCreate, onQuoteCreate }: TextSelectionHandlerProps) {
+export function TextSelectionHandler({}: TextSelectionHandlerProps) {
   // State for menu position and visibility
   const [menuPosition, setMenuPosition] = useState<{ x: number; y: number } | null>(null);
   const [selectedText, setSelectedText] = useState<string>('');
@@ -34,7 +26,7 @@ export function TextSelectionHandler({ onNoteCreate, onQuoteCreate }: TextSelect
   const menuRef = useRef<HTMLDivElement>(null);
 
   // Get pullup state and actions
-  const { openPullup, setActiveTab } = usePullup();
+  const { openPullup, setActiveTab, _handleNoteCreate, handleQuoteCreate } = usePullup();
 
   // Handle text selection
   useEffect(() => {
@@ -66,9 +58,9 @@ export function TextSelectionHandler({ onNoteCreate, onQuoteCreate }: TextSelect
 
             // Get paper title
             const paperTitleElement = document.querySelector('.paper-title');
-            const paperTitle = paperTitleElement ? paperTitleElement.textContent || '' : '';
+            const _paperTitle = paperTitleElement ? paperTitleElement.textContent || '' : '';
 
-            // Create reference in format "Paper:Section.Paragraph"
+            // Create reference in format &quot;Paper:Section.Paragraph"
             const paperNumber = paperTitle.match(/PAPER (\d+)/)?.[1] || '';
             const sectionNumber = sectionTitle.match(/(\d+)\./)?.[1] || '';
             const reference = `(${paperNumber}:${sectionNumber}.${number})`;
@@ -107,7 +99,7 @@ export function TextSelectionHandler({ onNoteCreate, onQuoteCreate }: TextSelect
 
   // Handle create note
   const handleCreateNote = () => {
-    if (onNoteCreate && selectedText && paragraphId) {
+    if (selectedText && paragraphId) {
       const note: Note = {
         id: Date.now().toString(),
         content: '',
@@ -118,7 +110,7 @@ export function TextSelectionHandler({ onNoteCreate, onQuoteCreate }: TextSelect
         selectedText,
       };
 
-      onNoteCreate(note);
+      handleNoteCreate(note);
 
       // Open pullup with notes tab
       setActiveTab('notes');
@@ -131,7 +123,7 @@ export function TextSelectionHandler({ onNoteCreate, onQuoteCreate }: TextSelect
 
   // Handle create quote
   const handleCreateQuote = () => {
-    if (onQuoteCreate && selectedText && paragraphId) {
+    if (selectedText && paragraphId) {
       const quote: Quote = {
         id: Date.now().toString(),
         content: selectedText,
@@ -140,7 +132,7 @@ export function TextSelectionHandler({ onNoteCreate, onQuoteCreate }: TextSelect
         reference: paragraphReference,
       };
 
-      onQuoteCreate(quote);
+      handleQuoteCreate(quote);
 
       // Open pullup with quotes tab
       setActiveTab('quotes');
@@ -182,10 +174,10 @@ export function TextSelectionHandler({ onNoteCreate, onQuoteCreate }: TextSelect
 
   // Calculate menu style
   const menuStyle: React.CSSProperties = {
-    position: 'absolute',
+    position: &apos;absolute',
     left: `${menuPosition.x}px`,
     top: `${menuPosition.y}px`,
-    transform: 'translateX(-50%)',
+    transform: &apos;translateX(-50%)',
   };
 
   return (

@@ -1,21 +1,28 @@
 'use client';
 
-import React, { useState } from 'react';
-import { ThemeProvider } from '../../../contexts/ThemeContext';
+import React, { useState } from &apos;react';
+
 import { EnhancedHighlightProvider } from '../../../components/EnhancedHighlightProvider';
 import { EnhancedPullupContainer } from '../../../components/EnhancedPullupContainer';
-import { UBEnhancedParagraph } from '../../../components/UBEnhancedParagraph';
+import type { Note } from '../../../components/pullup/types';
 import { ReaderNavigation } from '../../../components/ReaderNavigation';
+import { UBEnhancedParagraph } from '../../../components/UBEnhancedParagraph';
 import { ExtendedUserPreferencesProvider } from '../../../contexts/ExtendedUserPreferencesContext';
+import { ThemeProvider } from '../../../contexts/ThemeContext';
+
 import { paper1Data } from './data';
 
 // Sample notes data
-const initialNotes = [
+const initialNotes: Note[] = [
   {
-    id: 'note-1',
-    paragraphNumber: 1,
-    content: 'This paragraph introduces the Universal Father as the creator of all things.',
+    id: &apos;note-1',
+    paragraphId: &apos;1',
+    content: &apos;This paragraph introduces the Universal Father as the creator of all things.',
     createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    reference: &apos;1:1',
+    selectedText: '',
+    isSelected: false,
   },
 ];
 
@@ -28,8 +35,8 @@ export default function Paper1Page() {
   const [isSettingsPanelOpen, setIsSettingsPanelOpen] = useState(false);
 
   // Handle note indicator click
-  const handleNoteIndicatorClick = (paragraphNumber: number) => {
-    const note = notes.find(n => n.paragraphNumber === paragraphNumber);
+  const handleNoteIndicatorClick = (paragraphId: string) => {
+    const note = notes.find(n => n.paragraphId === paragraphId);
     if (note) {
       setActiveNoteId(note.id);
       // TODO: Open pullup panel and navigate to the note
@@ -38,7 +45,7 @@ export default function Paper1Page() {
 
   // Check if a paragraph has a note
   const paragraphHasNote = (paragraphNumber: number) => {
-    return notes.some(note => note.paragraphNumber === paragraphNumber);
+    return notes.some(note => note.paragraphId === paragraphNumber.toString());
   };
 
   // Handle settings click
@@ -60,7 +67,7 @@ export default function Paper1Page() {
                 <div
                   key={sectionIndex}
                   className="ub-reader-section"
-                  id={sectionIndex === 0 ? 'introduction' : `section-${sectionIndex}`}
+                  id={sectionIndex === 0 ? &apos;introduction' : `section-${sectionIndex}`}
                 >
                   <h2 className="ub-reader-section-title">{section.title}</h2>
                   <div className="ub-reader-paragraphs">

@@ -1,0 +1,37 @@
+/**
+ * Traditional Reader Styles
+ *
+ * This is the main entry point for all Traditional Reader styles.
+ * It imports all modularized CSS files in the correct order.
+ */
+
+/* Import variables first */
+@import './variables.css';
+
+/* Base styles */
+@import './base.css';
+
+/* Layout and structure */
+@import './layout.css';
+@import './header.css';
+@import './navigation.css';
+@import './sticky-header.css';
+@import './menu.css';
+@import './overlay.css';
+@import './progress-bar.css';
+
+/* Content styling */
+@import './content.css';
+
+/* UI components */
+@import './settings-panel.css';
+@import './copy-button.css';
+@import './loading.css';
+
+/* Utilities and helpers */
+@import './utilities.css';
+@import './debug.css';
+@import './animations.css';
+
+/* Responsive styles (should be last) */
+@import './responsive.css';

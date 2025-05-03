@@ -1,0 +1,47 @@
+/**
+ * Traditional Reader Copy Button Styles
+ *
+ * This file contains styles for the copy button and toast notification.
+ */
+
+/* Copy button styles */
+.copy-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 20;
+}
+
+.copy-button:hover {
+  background-color: var(--color-bg-hover);
+}
+
+.toast {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  padding: 8px 16px;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 20;
+  display: none;
+  transition: opacity 0.3s ease;
+}
+
+.toast.show {
+  display: block;
+  animation: fadeInOut 2s ease;
+}

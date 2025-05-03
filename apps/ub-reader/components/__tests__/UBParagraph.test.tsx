@@ -1,12 +1,14 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen, checkA11y } from './test-utils';
+import { describe, it, expect } from &apos;vitest';
+
 import UBParagraph from '../UBParagraph';
+
+import { render, screen, checkA11y } from './test-utils';
 
 describe('UBParagraph', () => {
   it('renders paragraph text correctly', () => {
     const testParagraph = {
       number: 1,
-      text: 'This is a test paragraph',
+      text: &apos;This is a test paragraph',
     };
     render(<UBParagraph paragraph={testParagraph} />);
 
@@ -16,7 +18,7 @@ describe('UBParagraph', () => {
   it('applies the correct CSS class', () => {
     const testParagraph = {
       number: 2,
-      text: 'This is a test paragraph',
+      text: &apos;This is a test paragraph',
     };
     render(<UBParagraph paragraph={testParagraph} />);
 
@@ -27,7 +29,7 @@ describe('UBParagraph', () => {
   it('should not have any accessibility violations', async () => {
     const testParagraph = {
       number: 3,
-      text: 'This is a test paragraph for accessibility',
+      text: &apos;This is a test paragraph for accessibility',
     };
     const { container } = render(<UBParagraph paragraph={testParagraph} />);
 

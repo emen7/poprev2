@@ -5,11 +5,11 @@
  * breadcrumbs, and relationship map.
  */
 
-'use client';
+&apos;use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from &apos;react';
 
-import { Document, ReaderConfig, Section } from '../models';
+import type { Document, ReaderConfig, Section } from '../models';
 import './ReaderNavigation.css';
 
 /**
@@ -105,65 +105,65 @@ export function ReaderNavigation({
   // Mock data for parts and papers (in a real implementation, this would come from the API)
   const parts: Part[] = [
     {
-      id: 'part1',
-      title: 'PART I. THE CENTRAL AND SUPERUNIVERSES',
+      id: &apos;part1',
+      title: &apos;PART I. THE CENTRAL AND SUPERUNIVERSES',
       papers: [
         {
-          id: 'paper1',
-          title: 'Paper 1: The Universal Father',
+          id: &apos;paper1',
+          title: &apos;Paper 1: The Universal Father',
           sections: document.sections, // Use the current document's sections for demo
         },
         {
-          id: 'paper2',
-          title: 'Paper 2: The Nature of God',
+          id: &apos;paper2',
+          title: &apos;Paper 2: The Nature of God',
           sections: [],
         },
       ],
     },
     {
-      id: 'part2',
-      title: 'PART II. THE LOCAL UNIVERSE',
+      id: &apos;part2',
+      title: &apos;PART II. THE LOCAL UNIVERSE',
       papers: [
         {
-          id: 'paper32',
-          title: 'Paper 32: The Evolution of Local Universes',
+          id: &apos;paper32',
+          title: &apos;Paper 32: The Evolution of Local Universes',
           sections: [],
         },
         {
-          id: 'paper33',
-          title: 'Paper 33: Administration of the Local Universe',
+          id: &apos;paper33',
+          title: &apos;Paper 33: Administration of the Local Universe',
           sections: [],
         },
       ],
     },
     {
-      id: 'part3',
-      title: 'PART III. THE HISTORY OF URANTIA',
+      id: &apos;part3',
+      title: &apos;PART III. THE HISTORY OF URANTIA',
       papers: [
         {
-          id: 'paper57',
-          title: 'Paper 57: The Origin of Urantia',
+          id: &apos;paper57',
+          title: &apos;Paper 57: The Origin of Urantia',
           sections: [],
         },
         {
-          id: 'paper58',
-          title: 'Paper 58: Life Establishment on Urantia',
+          id: &apos;paper58',
+          title: &apos;Paper 58: Life Establishment on Urantia',
           sections: [],
         },
       ],
     },
     {
-      id: 'part4',
-      title: 'PART IV. THE LIFE AND TEACHINGS OF JESUS',
+      id: &apos;part4',
+      title: &apos;PART IV. THE LIFE AND TEACHINGS OF JESUS',
       papers: [
         {
-          id: 'paper120',
-          title: 'Paper 120: The Bestowal of Michael on Urantia',
+          id: &apos;paper120',
+          title: &apos;Paper 120: The Bestowal of Michael on Urantia',
           sections: [],
         },
         {
-          id: 'paper121',
-          title: "Paper 121: The Times of Michael's Bestowal",
+          id: &apos;paper121',
+          title: &quot;Paper 121: The Times of Michael's Bestowal",
           sections: [],
         },
       ],
@@ -226,7 +226,7 @@ export function ReaderNavigation({
   }, [isOpen, onNavigationClose]);
 
   // Get extension components
-  const extensionTocComponents = config.extensions
+  const _extensionTocComponents = config.extensions
     .map(extensionId => {
       // This would be implemented to get custom TOC components from extensions
       // For now, we'll return null
@@ -243,13 +243,13 @@ export function ReaderNavigation({
         aria-label="Toggle navigation"
         aria-expanded={isOpen}
       >
-        <i className={`fas ${isOpen ? 'fa-times' : 'fa-bars'}`}></i>
+        <i className={`fas ${isOpen ? &apos;fa-times' : &apos;fa-bars'}`} />
       </button>
 
       {/* Navigation Panel */}
       <div
         ref={navPanelRef}
-        className={`reader-navigation-menu ${isOpen ? 'open' : ''}`}
+        className={`reader-navigation-menu ${isOpen ? &apos;open' : ''}`}
         aria-hidden={!isOpen}
       >
         {/* Active Part Container */}
@@ -259,12 +259,12 @@ export function ReaderNavigation({
             .map(part => (
               <div key={part.id}>
                 <button
-                  className={`reader-part-toggle ${expandedParts.includes(part.id) ? 'expanded' : ''}`}
+                  className={`reader-part-toggle ${expandedParts.includes(part.id) ? &apos;expanded' : ''}`}
                   onClick={() => togglePart(part.id)}
                   aria-expanded={expandedParts.includes(part.id)}
                 >
                   {part.title}
-                  <i className="fas fa-chevron-down"></i>
+                  <i className="fas fa-chevron-down" />
                 </button>
 
                 {expandedParts.includes(part.id) && (
@@ -274,7 +274,7 @@ export function ReaderNavigation({
                         <li key={paper.id} className="reader-nav-item">
                           <a
                             href={`#${paper.id}`}
-                            className={`reader-nav-link ${paper.id === document.id ? 'active' : ''}`}
+                            className={`reader-nav-link ${paper.id === document.id ? &apos;active' : ''}`}
                           >
                             {paper.title}
                           </a>
@@ -299,12 +299,12 @@ export function ReaderNavigation({
             .map(part => (
               <div key={part.id}>
                 <button
-                  className={`reader-part-toggle ${expandedParts.includes(part.id) ? 'expanded' : ''}`}
+                  className={`reader-part-toggle ${expandedParts.includes(part.id) ? &apos;expanded' : ''}`}
                   onClick={() => togglePart(part.id)}
                   aria-expanded={expandedParts.includes(part.id)}
                 >
                   {part.title}
-                  <i className="fas fa-chevron-down"></i>
+                  <i className="fas fa-chevron-down" />
                 </button>
 
                 {expandedParts.includes(part.id) && (
@@ -314,7 +314,7 @@ export function ReaderNavigation({
                         <li key={paper.id} className="reader-nav-item">
                           <a
                             href={`#${paper.id}`}
-                            className={`reader-nav-link ${paper.id === document.id ? 'active' : ''}`}
+                            className={`reader-nav-link ${paper.id === document.id ? &apos;active' : ''}`}
                           >
                             {paper.title}
                           </a>
@@ -330,12 +330,12 @@ export function ReaderNavigation({
 
       {/* Overlay */}
       <div
-        className={`reader-overlay ${isOpen ? 'active' : ''}`}
+        className={`reader-overlay ${isOpen ? &apos;active' : ''}`}
         onClick={() => {
           setIsOpen(false);
           onNavigationClose?.();
         }}
-      ></div>
+      />
 
       {/* Main Navigation Content */}
       <div className={`reader-navigation ${className}`}>
@@ -438,7 +438,7 @@ function TableOfContentsItem({
   const hasSubsections = section.subsections && section.subsections.length > 0;
 
   return (
-    <li className={`reader-toc-item reader-toc-level-${level} ${isActive ? 'active' : ''}`}>
+    <li className={`reader-toc-item reader-toc-level-${level} ${isActive ? &apos;active' : ''}`}>
       <a
         href={`#${section.id}`}
         className="reader-toc-link"

@@ -52,17 +52,25 @@
 /* Paper title */
 .ub-content-renderer-paper-title {
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 20px;
   text-align: center;
+  color: var(--section-title-color, #f0a868);
 }
 
 /* Section title */
 .ub-content-renderer-section-title {
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 24px;
+  font-weight: 600;
   margin: 30px 0 15px;
   text-align: center;
+  color: var(--section-title-color, #f0a868);
+}
+
+/* Special case for intro text */
+.intro-label {
+  font-size: 0.85em;
+  color: #777;
 }
 
 /* Responsive adjustments */

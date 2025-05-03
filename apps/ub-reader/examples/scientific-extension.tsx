@@ -5,9 +5,9 @@
  * This extension adds specialized features for scientific documents.
  */
 
-import React from 'react';
+import React from &apos;react';
 
-import {
+import type {
   ReaderExtension,
   ExtensionComponents,
   ExtensionHooks,
@@ -93,22 +93,22 @@ export class ScientificExtension implements ReaderExtension {
   /**
    * Unique identifier for the extension
    */
-  id = 'scientific-extension';
+  id = &apos;scientific-extension';
 
   /**
    * Display name of the extension
    */
-  name = 'Scientific Extension';
+  name = &apos;Scientific Extension';
 
   /**
    * Description of the extension
    */
-  description = 'Adds specialized features for scientific documents';
+  description = &apos;Adds specialized features for scientific documents';
 
   /**
    * Version of the extension
    */
-  version = '1.0.0';
+  version = &apos;1.0.0';
 
   /**
    * Extension configuration
@@ -122,7 +122,7 @@ export class ScientificExtension implements ReaderExtension {
    */
   initialize(config: any): void {
     this.config = config;
-    console.log('Scientific Extension initialized with config:', config);
+    // Removed console.log
   }
 
   /**

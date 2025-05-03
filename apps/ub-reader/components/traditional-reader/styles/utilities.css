@@ -1,0 +1,14 @@
+/**
+ * Traditional Reader Utility Styles
+ *
+ * This file contains utility classes for spacing and layout.
+ */
+
+/* Margin utilities */
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.ml-1 {
+  margin-left: 0.25rem;
+}

@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from &apos;next/link';
+import React from &apos;react';
 
 import PaperNavigation from '../../../../../components/PaperNavigation';
 import PaperTTSPlayerWrapper from '../../../../../components/PaperTTSPlayerWrapper';
@@ -12,7 +12,7 @@ const getPaperSection = async (paperId: string, sectionId: string) => {
     paper: {
       number: parseInt(paperId, 10),
       title: `Paper ${paperId}`,
-      author: 'Divine Counselor',
+      author: &apos;Divine Counselor',
       sections: [
         {
           number: parseInt(sectionId, 10),
@@ -20,15 +20,15 @@ const getPaperSection = async (paperId: string, sectionId: string) => {
           paragraphs: [
             {
               number: 1,
-              text: 'This is a sample paragraph for demonstration purposes. In the actual implementation, this would be real content from The Urantia Book.',
+              text: &apos;This is a sample paragraph for demonstration purposes. In the actual implementation, this would be real content from The Urantia Book.',
             },
             {
               number: 2,
-              text: 'Another sample paragraph. The real implementation would fetch this data from a database or API.',
+              text: &apos;Another sample paragraph. The real implementation would fetch this data from a database or API.',
             },
             {
               number: 3,
-              text: 'A third sample paragraph with a reference to <a href="/paper/1/section/3" class="ub-reference">Paper 1, Section 3</a>.',
+              text: &apos;A third sample paragraph with a reference to <a href="/paper/1/section/3" class="ub-reference">Paper 1, Section 3</a>.',
             },
           ],
         },
@@ -40,15 +40,15 @@ const getPaperSection = async (paperId: string, sectionId: string) => {
       paragraphs: [
         {
           number: 1,
-          text: 'This is a sample paragraph for demonstration purposes. In the actual implementation, this would be real content from The Urantia Book.',
+          text: &apos;This is a sample paragraph for demonstration purposes. In the actual implementation, this would be real content from The Urantia Book.',
         },
         {
           number: 2,
-          text: 'Another sample paragraph. The real implementation would fetch this data from a database or API.',
+          text: &apos;Another sample paragraph. The real implementation would fetch this data from a database or API.',
         },
         {
           number: 3,
-          text: 'A third sample paragraph with a reference to <a href="/paper/1/section/3" class="ub-reference">Paper 1, Section 3</a>.',
+          text: &apos;A third sample paragraph with a reference to <a href="/paper/1/section/3" class="ub-reference">Paper 1, Section 3</a>.',
         },
       ],
     },
@@ -95,11 +95,11 @@ export default async function SectionPage({
           </div>
         </div>
 
-        <div className="flex justify-between mt-8">
+        <div className="mt-8 flex justify-between">
           {prevSection && (
             <Link
               href={`/paper/${paper.number}/section/${prevSection}`}
-              className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200 transition-colors"
+              className="rounded bg-gray-100 px-4 py-2 transition-colors hover:bg-gray-200"
             >
               ← Section {prevSection}
             </Link>
@@ -107,7 +107,7 @@ export default async function SectionPage({
 
           <Link
             href={`/paper/${paper.number}`}
-            className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200 transition-colors"
+            className="rounded bg-gray-100 px-4 py-2 transition-colors hover:bg-gray-200"
           >
             Full Paper
           </Link>
@@ -115,7 +115,7 @@ export default async function SectionPage({
           {nextSection && (
             <Link
               href={`/paper/${paper.number}/section/${nextSection}`}
-              className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200 transition-colors"
+              className="rounded bg-gray-100 px-4 py-2 transition-colors hover:bg-gray-200"
             >
               Section {nextSection} →
             </Link>

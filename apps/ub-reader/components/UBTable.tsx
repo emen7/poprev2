@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React from &apos;react';
 
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -72,7 +72,7 @@ export const UBTable: React.FC<UBTableProps> = ({ caption, rows, className = '' 
           {rows.map((row, rowIndex) => (
             <tr key={rowIndex} className="ub-table-row">
               {row.cells.map((cell, cellIndex) => {
-                const CellTag = cell.isHeader ? 'th' : 'td';
+                const CellTag = cell.isHeader ? &apos;th' : &apos;td';
                 return (
                   <CellTag
                     key={cellIndex}

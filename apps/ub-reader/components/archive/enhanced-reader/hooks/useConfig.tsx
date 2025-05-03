@@ -4,11 +4,12 @@
  * This hook provides access to the Enhanced Reader configuration.
  */
 
-'use client';
+&apos;use client';
 
-import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect } from &apos;react';
 
-import { EnhancedReaderConfig, DEFAULT_CONFIG } from '../types';
+import type { EnhancedReaderConfig } from '../types';
+import { _DEFAULT_CONFIG } from '../types';
 
 /**
  * Configuration Context

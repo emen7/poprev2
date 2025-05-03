@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef } from &apos;react';
 
 import { useHighlight } from '../components/HighlightProvider';
 import { useTheme } from '../contexts/ThemeContext';
@@ -35,8 +35,10 @@ export const UBParagraph: React.FC<UBParagraphProps> = ({
 
   // Try to use the ThemeContext, but provide a fallback if it's not available
   // We get the theme but don't directly use the variable - it affects the styling through CSS variables
+  let uiTheme = &apos;light';
   try {
-    useTheme(); // This ensures the theme context is available and CSS variables are set
+    const themeContext = useTheme(); // Access theme context
+    uiTheme = themeContext.uiTheme;
   } catch (_) {
     // ThemeContext not available, use default theme (traditional)
     // Silent catch - no need for console logs in production code
@@ -46,7 +48,7 @@ export const UBParagraph: React.FC<UBParagraphProps> = ({
   const showParagraphNumbers = preferences.reader.showParagraphNumbers;
 
   // Apply appropriate classes based on the content theme and topic change status
-  const paragraphClasses = ['ub-paragraph', isTopicChange ? 'ub-topic-change' : '', className]
+  const paragraphClasses = ['ub-paragraph', isTopicChange ? &apos;ub-topic-change' : '', className]
     .filter(Boolean)
     .join(' ');
 
@@ -84,7 +86,7 @@ export const UBParagraph: React.FC<UBParagraphProps> = ({
   ) => {
     // Navigate to the referenced content
     window.location.href =
-      reference.type === 'paper'
+      reference.type === &apos;paper'
         ? `/paper/${reference.paper}`
         : `/paper/${reference.paper}#section-${reference.section}`;
 
@@ -93,7 +95,7 @@ export const UBParagraph: React.FC<UBParagraphProps> = ({
   };
   // Handle text selection for highlighting
   const handleMouseUp = () => {
-    if (typeof window === 'undefined' || !highlightManager) return;
+    if (typeof window === &apos;undefined' || !highlightManager) return;
 
     const selection = window.getSelection();
     if (!selection || selection.isCollapsed || !paragraphRef.current) return;

@@ -1,9 +1,9 @@
-import { Metadata } from 'next';
-import React from 'react';
+import type { Metadata } from &apos;next';
+import React from &apos;react';
 
 export const metadata: Metadata = {
-  title: 'Traditional Theme Test - UB Reader',
-  description: 'A test page for the traditional theme implementation of the UB Reader',
+  title: &apos;Traditional Theme Test - UB Reader',
+  description: &apos;A test page for the traditional theme implementation of the UB Reader',
 };
 
 export default function TraditionalTestLayout({ children }: { children: React.ReactNode }) {

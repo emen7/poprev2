@@ -1,34 +1,12 @@
 'use client';
 
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from &apos;react';
+
+import { usePullup } from '../../contexts/PullupContext';
+import { useTheme } from '../../contexts/ThemeContext';
 import './PullupPanel.css';
 
 export interface PullupPanelProps {
-  /**
-   * Whether the pullup panel is open
-   */
-  isOpen: boolean;
-
-  /**
-   * The height of the pullup panel
-   */
-  height: number;
-
-  /**
-   * Whether the pullup panel is in persistent mode (for large screens)
-   */
-  isPersistent: boolean;
-
-  /**
-   * Function called when the pullup panel is closed
-   */
-  onClose?: () => void;
-
-  /**
-   * Function called when the height of the pullup panel changes
-   */
-  onHeightChange?: (height: number) => void;
-
   /**
    * The minimum height of the pullup panel
    * @default 100
@@ -47,27 +25,39 @@ export interface PullupPanelProps {
   className?: string;
 
   /**
-   * Children to render inside the pullup panel
+   * Content for the tabs area
    */
-  children: React.ReactNode;
+  tabsContent: React.ReactNode;
+
+  /**
+   * Main content for the panel
+   */
+  mainContent: React.ReactNode;
 }
 
 /**
  * PullupPanel Component
  *
  * A panel that slides up from the bottom of the screen.
+ * Supports dragging, peeking, and theme-aware styling.
+ * Uses PullupContext for state management instead of props.
  */
 export function PullupPanel({
-  isOpen,
-  height,
-  isPersistent,
-  onClose,
-  onHeightChange,
   minHeight = 100,
   maxHeight = 600,
   className = '',
-  children,
+  tabsContent,
+  mainContent,
 }: PullupPanelProps) {
+  // Get theme context
+  const { _uiTheme } = useTheme();
+
+  // Get pullup context
+  const { isOpen, height, isPersistent, closePullup, setHeight } = usePullup();
+
+  // Local state for peeking behavior since it's not in the context
+  const [isPeeking, setIsPeeking] = useState(false);
+
   // Ref for the panel element
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -96,8 +86,15 @@ export function PullupPanel({
     setIsDragging(false);
 
     // Notify parent of height change
-    if (onHeightChange && currentHeight !== height) {
-      onHeightChange(currentHeight);
+    if (currentHeight !== height) {
+      setHeight(currentHeight);
+    }
+  };
+
+  // Handle click on the handle when in peeking state
+  const handlePeekClick = () => {
+    if (!isOpen && isPeeking) {
+      setHeight(height);
     }
   };
 
@@ -129,15 +126,14 @@ export function PullupPanel({
       document.removeEventListener('mouseup', handleMouseUp);
     };
   }, [isDragging, minHeight, maxHeight, currentHeight, height]);
-  // Note: We removed onHeightChange from dependencies and added currentHeight
-  // onHeightChange is only used in handleDragEnd which is defined outside the effect
 
   // Determine panel classes
   const panelClasses = [
-    'pullup-panel',
-    isOpen ? 'pullup-panel-open' : '',
-    isPersistent ? 'pullup-panel-persistent' : '',
-    isDragging ? 'pullup-panel-dragging' : '',
+    &apos;pullup-panel',
+    isOpen ? &apos;pullup-panel-open' : '',
+    !isOpen && isPeeking ? &apos;pullup-panel-peeking' : '',
+    isPersistent ? &apos;pullup-panel-persistent' : '',
+    isDragging ? &apos;pullup-panel-dragging' : '',
     className,
   ]
     .filter(Boolean)
@@ -146,25 +142,37 @@ export function PullupPanel({
   // Calculate panel style
   const panelStyle: React.CSSProperties = {
     height: `${currentHeight}px`,
-    transform: isOpen ? 'translateY(0)' : `translateY(${currentHeight}px)`,
+    transform: isOpen
+      ? &apos;translateY(0)'
+      : isPeeking
+        ? &apos;translateY(calc(100% - 48px))' /* Adjust 48px based on actual tab height */
+        : `translateY(${currentHeight}px)`,
   };
 
   return (
     <div className={panelClasses} style={panelStyle} ref={panelRef}>
       {/* Drag handle */}
-      <div className="pullup-panel-handle" ref={handleRef} onMouseDown={handleDragStart}>
-        <div className="pullup-panel-handle-icon"></div>
+      <div
+        className="pullup-panel-handle"
+        ref={handleRef}
+        onMouseDown={handleDragStart}
+        onClick={handlePeekClick}
+      >
+        <div className="pullup-panel-handle-icon" />
       </div>
 
       {/* Close button (only shown when not in persistent mode) */}
-      {!isPersistent && (
-        <button className="pullup-panel-close" onClick={onClose} aria-label="Close panel">
+      {!isPersistent && isOpen && (
+        <button className="pullup-panel-close" onClick={closePullup} aria-label="Close panel">
           ×
         </button>
       )}
 
-      {/* Panel content */}
-      <div className="pullup-panel-content">{children}</div>
+      {/* Tabs content */}
+      <div className="pullup-panel-tabs">{tabsContent}</div>
+
+      {/* Main panel content */}
+      <div className="pullup-panel-content">{mainContent}</div>
     </div>
   );
 }

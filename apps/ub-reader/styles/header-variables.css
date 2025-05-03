@@ -1,0 +1,59 @@
+/**
+ * Header Variables CSS
+ *
+ * This file defines global CSS variables for the three-row header.
+ * These variables are used consistently across all components.
+ */
+
+:root {
+  /* Header row heights */
+  --row1-height: 3rem; /* Title row (top) */
+  --row2-height: 2.5rem; /* Paper row (middle) */
+  --row3-height: 2rem; /* Section row (bottom) */
+
+  /* Calculated total header height */
+  --header-total-height: calc(var(--row1-height) + var(--row2-height) + var(--row3-height));
+
+  /* Z-index layers for proper stacking */
+  --z-index-fixed-low: 90; /* For elements that should appear under the header */
+  --z-index-fixed: 100; /* For the header and fixed elements */
+  --z-index-fixed-high: 110; /* For elements that should appear over the header */
+  --z-index-overlay: 1000; /* For overlay elements like modals */
+
+  /* Background colors for reader container */
+  --reader-container-bg: #f8f8f8; /* Light gray background for the container */
+  --reading-area-bg: #ffffff; /* White background for the reading area */
+
+  /* Spacing variables */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+}
+
+/* Dark theme variables */
+.dark-theme-container {
+  --reader-container-bg: #121212; /* Dark background for the container */
+  --reading-area-bg: #1a1a1a; /* Slightly lighter background for the reading area */
+}
+
+/* Set header total height as a property on document root for JS access */
+html {
+  --document-header-total-height: var(--header-total-height);
+}
+
+/* Media queries for responsive header heights */
+@media (max-width: 767px) {
+  :root {
+    /* Smaller heights on mobile */
+    --row1-height: 2.5rem;
+    --row2-height: 2rem;
+    --row3-height: 1.75rem;
+  }
+}

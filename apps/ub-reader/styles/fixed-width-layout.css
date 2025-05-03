@@ -1,0 +1,100 @@
+/**
+ * Fixed-Width Layout Styles
+ *
+ * This file contains styles for implementing a fixed-width layout
+ * for the UB Reader, providing an optimal reading experience on desktop
+ * while maintaining responsiveness on mobile devices.
+ */
+
+/* Container for the entire reading experience */
+.reader-container {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  background-color: var(--reader-container-bg, #f8f8f8);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark theme adjustment for reader container */
+.dark-theme-container .reader-container {
+  background-color: var(--reader-container-bg, #121212);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Fixed-width reading area */
+.reading-area {
+  width: 800px;
+  margin: 0 auto;
+  padding: 0 50px;
+  background-color: var(--reading-area-bg, #ffffff);
+  min-height: calc(100vh - var(--header-total-height, 7.5rem));
+}
+
+/* Dark theme adjustment for reading area */
+.dark-theme-container .reading-area {
+  background-color: var(--reading-area-bg, #1a1a1a);
+}
+
+/* Three-row header within container */
+.three-row-header {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-index-fixed, 1000);
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 1023px) {
+  .reader-container {
+    max-width: 95%;
+  }
+
+  .reading-area {
+    width: 100%;
+    padding: 0 30px;
+  }
+
+  .three-row-header {
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 767px) {
+  .reader-container,
+  .reading-area {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 15px;
+  }
+
+  .three-row-header {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* Fix any gap between header and content */
+.ub-reading-content {
+  margin-top: var(--header-total-height, 7.5rem) !important;
+  padding-top: 0 !important;
+}
+
+/* Ensure proper content area in traditional reader */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Content area needs to be full height */
+.content-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}

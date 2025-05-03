@@ -11,7 +11,24 @@
     "declarationMap": true,
     "sourceMap": true,
     "composite": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true
   },
-  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"]
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"],
+  "references": [
+    { "path": "./packages/ui" },
+    { "path": "./packages/core" },
+    { "path": "./packages/data-models" },
+    { "path": "./packages/content-transformer" },
+    { "path": "./packages/reference-parser" },
+    { "path": "./packages/theme-system" },
+    { "path": "./packages/highlighting" },
+    { "path": "./packages/state-management" },
+    { "path": "./packages/audio-services" },
+    { "path": "./packages/config" }
+  ]
 }

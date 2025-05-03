@@ -104,13 +104,36 @@ export interface ExtensionSettings {
 }
 
 /**
+ * Generic component props interface
+ */
+export interface ExtensionComponentProps {
+  /**
+   * Extension ID
+   */
+  extensionId: string;
+
+  /**
+   * Slot where the component is rendered
+   */
+  slot: string;
+
+  /**
+   * Any additional props passed to the component
+   */
+  [key: string]: unknown;
+}
+
+/**
  * Extension API interface
  */
 export interface ExtensionAPI {
   /**
    * Register a component for a specific slot
    */
-  registerComponent: (slot: string, component: React.ComponentType<any>) => void;
+  registerComponent: (
+    slot: string,
+    component: React.ComponentType<ExtensionComponentProps>
+  ) => void;
 
   /**
    * Register a hook
@@ -236,52 +259,52 @@ export interface ExtensionComponents {
   /**
    * Header components
    */
-  [ComponentSlot.HEADER]?: React.ComponentType<any>[];
+  [ComponentSlot.HEADER]?: React.ComponentType<ExtensionComponentProps>[];
 
   /**
    * Footer components
    */
-  [ComponentSlot.FOOTER]?: React.ComponentType<any>[];
+  [ComponentSlot.FOOTER]?: React.ComponentType<ExtensionComponentProps>[];
 
   /**
    * Sidebar components
    */
-  [ComponentSlot.SIDEBAR]?: React.ComponentType<any>[];
+  [ComponentSlot.SIDEBAR]?: React.ComponentType<ExtensionComponentProps>[];
 
   /**
    * Content components
    */
-  [ComponentSlot.CONTENT]?: React.ComponentType<any>[];
+  [ComponentSlot.CONTENT]?: React.ComponentType<ExtensionComponentProps>[];
 
   /**
    * Pullup components
    */
-  [ComponentSlot.PULLUP]?: React.ComponentType<any>[];
+  [ComponentSlot.PULLUP]?: React.ComponentType<ExtensionComponentProps>[];
 
   /**
    * Toolbar components
    */
-  [ComponentSlot.TOOLBAR]?: React.ComponentType<any>[];
+  [ComponentSlot.TOOLBAR]?: React.ComponentType<ExtensionComponentProps>[];
 
   /**
    * Settings components
    */
-  [ComponentSlot.SETTINGS]?: React.ComponentType<any>[];
+  [ComponentSlot.SETTINGS]?: React.ComponentType<ExtensionComponentProps>[];
 
   /**
    * Navigation components
    */
-  [ComponentSlot.NAVIGATION]?: React.ComponentType<any>[];
+  [ComponentSlot.NAVIGATION]?: React.ComponentType<ExtensionComponentProps>[];
 
   /**
    * Search components
    */
-  [ComponentSlot.SEARCH]?: React.ComponentType<any>[];
+  [ComponentSlot.SEARCH]?: React.ComponentType<ExtensionComponentProps>[];
 
   /**
    * Reference components
    */
-  [ComponentSlot.REFERENCE]?: React.ComponentType<any>[];
+  [ComponentSlot.REFERENCE]?: React.ComponentType<ExtensionComponentProps>[];
 }
 
 /**
@@ -404,7 +427,9 @@ export interface ExtensionRegistry {
   /**
    * Get components for a specific slot
    */
-  getComponentsForSlot: (slot: ComponentSlot) => React.ComponentType<any>[] | undefined;
+  getComponentsForSlot: (
+    slot: ComponentSlot
+  ) => React.ComponentType<ExtensionComponentProps>[] | undefined;
 
   /**
    * Apply document transformers from all extensions

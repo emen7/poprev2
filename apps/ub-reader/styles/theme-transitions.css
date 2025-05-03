@@ -1,0 +1,102 @@
+/**
+ * Theme Transitions
+ *
+ * This file contains styles for smooth theme transitions.
+ */
+
+/* Apply transitions to specific elements instead of using the universal selector */
+body,
+.app-container,
+.reader-container,
+.reading-area,
+.content,
+.header,
+.pullup-container,
+.pullup-content,
+.pullup-panel,
+.section-title,
+.paragraph-text,
+.ub-paragraph-text,
+.sticky-header,
+.sticky-section-title,
+.navigation-menu,
+.settings-panel,
+.desktop-tab,
+.header-button,
+.settings-option-button,
+.settings-link {
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* When transitioning themes, apply this class to body */
+.theme-transitioning {
+  transition: background-color 0.3s ease;
+}
+
+/* Disable transitions for elements where it might cause performance issues */
+.pullup-panel-dragging *,
+.pullup-panel-dragging {
+  transition: none !important;
+}
+
+/* Ensure text remains readable during transitions */
+.theme-transitioning .pullup-panel-content,
+.theme-transitioning .ub-paragraph-text {
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+/* Smooth transition for the pullup panel */
+.pullup-panel {
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Ensure form controls transition smoothly */
+input,
+textarea,
+select,
+button {
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Media query to disable transitions on devices that might have performance issues */
+@media (prefers-reduced-motion: reduce) {
+  body,
+  .app-container,
+  .reader-container,
+  .reading-area,
+  .content,
+  .header,
+  .pullup-container,
+  .pullup-content,
+  .pullup-panel,
+  .section-title,
+  .paragraph-text,
+  .ub-paragraph-text,
+  .sticky-header,
+  .sticky-section-title,
+  .navigation-menu,
+  .settings-panel,
+  .desktop-tab,
+  .header-button,
+  .settings-option-button,
+  .settings-link,
+  input,
+  textarea,
+  select,
+  button {
+    transition: none !important;
+  }
+}

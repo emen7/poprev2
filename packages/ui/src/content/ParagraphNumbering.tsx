@@ -16,6 +16,12 @@ export interface ParagraphNumberingProps {
    * Whether the numbering is visible
    */
   visible?: boolean;
+
+  /**
+   * Whether to show note indicators
+   * @default true
+   */
+  showNoteIndicators?: boolean;
 }
 
 /**
@@ -25,6 +31,7 @@ export const ParagraphNumbering: React.FC<ParagraphNumberingProps> = ({
   number,
   hasNotes = false,
   visible = true,
+  showNoteIndicators = true,
 }) => {
   if (!visible) {
     return null;
@@ -32,11 +39,13 @@ export const ParagraphNumbering: React.FC<ParagraphNumberingProps> = ({
 
   return (
     <div className="paragraph-numbering">
-      {hasNotes && (
-        <div className="paragraph-note-indicator" title="This paragraph has notes">
-          ●
-        </div>
-      )}
+      <div className="paragraph-note-indicator-container">
+        {hasNotes && showNoteIndicators && (
+          <div className="paragraph-note-indicator" title="This paragraph has notes">
+            ●
+          </div>
+        )}
+      </div>
       <div className="paragraph-number">{number}</div>
     </div>
   );
@@ -52,6 +61,12 @@ export interface ParagraphNumberingContainerProps {
   visible?: boolean;
 
   /**
+   * Whether to show note indicators
+   * @default true
+   */
+  showNoteIndicators?: boolean;
+
+  /**
    * Children elements
    */
   children: React.ReactNode;
@@ -62,16 +77,29 @@ export interface ParagraphNumberingContainerProps {
  */
 export const ParagraphNumberingContainer: React.FC<ParagraphNumberingContainerProps> = ({
   visible = true,
+  showNoteIndicators = true,
   children,
 }) => {
   if (!visible) {
     return <>{children}</>;
   }
 
+  const containerClasses = [
+    'paragraph-numbering-container',
+    showNoteIndicators ? 'show-note-indicators' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
-    <div className="paragraph-numbering-container">
+    <div className={containerClasses}>
+      {showNoteIndicators && (
+        <div className="paragraph-notes-column">
+          {/* This column will contain note indicators */}
+        </div>
+      )}
       <div className="paragraph-numbering-column">
-        {/* This column will be filled with ParagraphNumbering components */}
+        {/* This column will be filled with paragraph numbers */}
       </div>
       <div className="paragraph-content">{children}</div>
     </div>

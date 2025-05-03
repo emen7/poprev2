@@ -13,6 +13,8 @@
       --paper-bar-height: 28px;
       --section-bar-height: 28px;
       --pullup-closed-height: 40px;
+      --note-indicator-column-width: 20px;
+      --paragraph-number-column-width: 40px;
       --reading-max-width: 700px;
       --content-padding: 20px;
 
@@ -241,22 +243,50 @@
     .paragraph {
       margin-bottom: 1.5rem;
       position: relative;
-      padding-left: 45px;
+      padding-left: calc(var(--note-indicator-column-width) + var(--paragraph-number-column-width) + 5px);
       line-height: 1.6;
     }
 
     .paragraph-text {
+      text-align: left;
+      /* Changed default to left alignment instead of justify */
+    }
+
+    /* Text alignment classes */
+    .text-align-left {
+      text-align: left;
+    }
+
+    .text-align-right {
+      text-align: right;
+    }
+
+    .text-align-justified {
       text-align: justify;
     }
 
-    .paragraph-number {
+    /* Note indicator */
+    .note-indicator {
       position: absolute;
       left: 0;
+      top: 0.25rem;
+      width: var(--note-indicator-column-width);
+      color: #3498db;
+      font-size: 0.75rem;
+      text-align: center;
+      user-select: none;
+      line-height: 1.4;
+    }
+
+    /* Paragraph number */
+    .paragraph-number {
+      position: absolute;
+      left: var(--note-indicator-column-width);
       top: 0.25rem;
       color: #777;
       font-size: 0.75rem;
       font-family: var(--font-family);
-      width: 40px;
+      width: var(--paragraph-number-column-width);
       text-align: right;
       padding-right: 5px;
       user-select: none;
@@ -289,7 +319,7 @@
 
     .pullup-handle {
       width: 100%;
-      height: 30px;
+      height: 24px;
       cursor: ns-resize;
       display: flex;
       justify-content: center;
@@ -297,16 +327,14 @@
       padding: 5px 0;
       background-color: #444;
       border-bottom: 1px solid var(--border-color);
-      display: none;
-      /* Hidden in closed state */
       position: relative;
       z-index: 10;
       transition: background-color 0.2s ease;
     }
 
-    .pullup-footer.expanded .pullup-handle {
-      display: flex;
-      /* Shown in expanded state */
+    .pullup-footer:not(.expanded) .pullup-handle {
+      height: 100%;
+      /* When collapsed, the handle takes full height */
     }
 
     .pullup-handle:hover,
@@ -318,17 +346,7 @@
       background-color: #666;
     }
 
-    .pullup-handle-text {
-      position: absolute;
-      font-size: 0.7rem;
-      color: #aaa;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      pointer-events: none;
-      /* Make text not interfere with drag */
-      user-select: none;
-      /* Prevent text selection */
-    }
+    /* Removed pullup-handle-text */
 
     .pullup-handle-bar {
       width: 60px;
@@ -354,10 +372,15 @@
       max-width: var(--reading-max-width);
       margin: 0 auto;
       width: 100%;
+      justify-content: flex-start;
+      /* Left align tabs */
+      padding-left: 16px;
+      /* Add left padding */
     }
 
     .pullup-tab {
-      flex: 1;
+      flex: 0 1 auto;
+      /* No longer flex:1 to make them adjacent */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -368,6 +391,10 @@
       cursor: pointer;
       font-size: 0.9rem;
       transition: background-color 0.2s ease;
+      padding: 0 16px;
+      /* Add horizontal padding */
+      margin-right: 0;
+      /* Remove margin between tabs */
     }
 
     .pullup-tab:hover {
@@ -623,7 +650,8 @@
       <div class="paper-content">
         <!-- Introduction (unlabeled) -->
         <div class="paragraph">
-          <span class="paragraph-number">0:0.1</span>
+          <span class="note-indicator"></span>
+          <span class="paragraph-number">1</span>
           <div class="paragraph-text">THE Universal Father is the God of all creation, the First Source and Center of
             all things and beings. First think of God as a creator, then as a controller, and lastly as an infinite
             upholder. The truth about the Universal Father had begun to dawn upon mankind when the prophet said: "You,
@@ -635,7 +663,8 @@
         </div>
 
         <div class="paragraph">
-          <span class="paragraph-number">0:0.2</span>
+          <span class="note-indicator"></span>
+          <span class="paragraph-number">2</span>
           <div class="paragraph-text">The myriads of planetary systems were all made to be eventually inhabited by many
             different types of intelligent creatures, beings who could know God, receive the divine affection, and love
             him in return. The universe of universes is the work of God and the dwelling place of his diverse creatures.
@@ -644,7 +673,8 @@
         </div>
 
         <div class="paragraph">
-          <span class="paragraph-number">0:0.3</span>
+          <span class="note-indicator">●</span>
+          <span class="paragraph-number">3</span>
           <div class="paragraph-text">The enlightened worlds all recognize and worship the Universal Father, the eternal
             maker and infinite upholder of all creation. The will creatures of universe upon universe have embarked upon
             the long, long journey to the Paradise of the Father, the intriguing challenge of the adventure of attaining
@@ -656,7 +686,8 @@
         <h3 class="section-title">1. The Father's Name</h3>
 
         <div class="paragraph">
-          <span class="paragraph-number">1:1.1</span>
+          <span class="note-indicator"></span>
+          <span class="paragraph-number">1</span>
           <div class="paragraph-text">OF ALL the names by which God the Father is known throughout the universes, those
             which designate him as the First Source and the Universe Center are most often encountered. The First Father
             is known by various names in different universes and in different sectors of the same universe. The names
@@ -668,7 +699,8 @@
         </div>
 
         <div class="paragraph">
-          <span class="paragraph-number">1:1.2</span>
+          <span class="note-indicator">●</span>
+          <span class="paragraph-number">2</span>
           <div class="paragraph-text">The Universal Father never imposes any form of arbitrary recognition, formal
             worship, or slavish service upon the intelligent will creatures of the universes. The evolutionary
             inhabitants of the worlds of time and space must of themselves—in their own hearts—recognize, love, and
@@ -679,10 +711,11 @@
         </div>
 
         <!-- Section 2: THE REALITY OF GOD -->
-        <h3 class="section-title">2. THE REALITY OF GOD</h3>
+        <h3 class="section-title">2. The Reality of God</h3>
 
         <div class="paragraph">
-          <span class="paragraph-number">1:2.1</span>
+          <span class="note-indicator"></span>
+          <span class="paragraph-number">1</span>
           <div class="paragraph-text">God is primal reality in the spirit world; God is the source of truth in the mind
             spheres; God overshadows all throughout the material realms. To all created intelligences God is a
             personality, and to the universe of universes he is the First Source and Center of eternal reality. God is
@@ -691,7 +724,8 @@
         </div>
 
         <div class="paragraph">
-          <span class="paragraph-number">1:2.2</span>
+          <span class="note-indicator"></span>
+          <span class="paragraph-number">2</span>
           <div class="paragraph-text">The eternal God is infinitely more than reality idealized or the universe
             personalized. God is not simply the supreme desire of man, the mortal quest objectified. Neither is God
             merely a concept, the power-potential of righteousness. The Universal Father is not a synonym for nature,
@@ -706,9 +740,8 @@
 
     <!-- Pullup Footer -->
     <footer class="pullup-footer" id="pullupFooter">
-      <div class="pullup-handle" id="pullupHandle" title="Drag to resize">
+      <div class="pullup-handle" id="pullupHandle" title="Resize">
         <div class="pullup-handle-bar"></div>
-        <span class="pullup-handle-text">Drag to resize</span>
       </div>
       <div class="pullup-tabs">
         <button class="pullup-tab" id="notesTab">Notes</button>
@@ -765,10 +798,13 @@
           <div class="settings-section">
             <h4>Text Alignment</h4>
             <div class="settings-controls alignment-buttons">
-              <button class="alignment-btn" data-align="left">
+              <button class="alignment-btn alignment-selected" data-align="left">
                 <span class="alignment-icon">≡≡<br>≡≡≡<br>≡≡</span>
               </button>
-              <button class="alignment-btn alignment-selected" data-align="justify">
+              <button class="alignment-btn" data-align="right">
+                <span class="alignment-icon"> ≡≡<br>≡≡≡<br> ≡≡</span>
+              </button>
+              <button class="alignment-btn" data-align="justify">
                 <span class="alignment-icon">≡≡≡<br>≡≡≡<br>≡≡≡</span>
               </button>
             </div>

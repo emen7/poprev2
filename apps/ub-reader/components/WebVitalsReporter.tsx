@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect } from &apos;react';
+
 import { analyticsReporter, reportWebVitals } from '../lib/web-vitals';
 
 /**

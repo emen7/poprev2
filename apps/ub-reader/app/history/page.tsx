@@ -1,9 +1,10 @@
 'use client';
 
-import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
+import Link from &apos;next/link';
+import React, { useState, useEffect } from &apos;react';
 
-import { getHistory, clearHistory, HistoryEntry } from '../../services/HistoryService';
+import type { HistoryEntry } from '../../services/HistoryService';
+import { getHistory, clearHistory } from '../../services/HistoryService';
 
 /**
  * History Page
@@ -32,19 +33,19 @@ export default function HistoryPage() {
   const formatDate = (timestamp: number) => {
     const date = new Date(timestamp);
     return date.toLocaleDateString(undefined, {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
+      year: &apos;numeric',
+      month: &apos;short',
+      day: &apos;numeric',
+      hour: &apos;2-digit',
+      minute: &apos;2-digit',
     });
   };
 
   if (loading) {
     return (
       <div className="container mx-auto p-8">
-        <div className="flex justify-center items-center h-64">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        <div className="flex h-64 items-center justify-center">
+          <div className="size-12 animate-spin rounded-full border-y-2 border-blue-500" />
         </div>
       </div>
     );
@@ -52,17 +53,17 @@ export default function HistoryPage() {
 
   return (
     <div className="container mx-auto p-8">
-      <h1 className="text-3xl font-bold mb-6">Reading History</h1>
+      <h1 className="mb-6 text-3xl font-bold">Reading History</h1>
 
-      <div className="mb-8 flex justify-between items-center">
-        <Link href="/" className="text-blue-600 hover:underline inline-block">
+      <div className="mb-8 flex items-center justify-between">
+        <Link href="/" className="inline-block text-blue-600 hover:underline">
           ← Back to Home
         </Link>
 
         {history.length > 0 && (
           <button
             onClick={handleClearHistory}
-            className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+            className="rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700"
           >
             Clear History
           </button>
@@ -70,29 +71,29 @@ export default function HistoryPage() {
       </div>
 
       {history.length === 0 ? (
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+        <div className="rounded-lg bg-white p-6 shadow-md dark:bg-gray-800">
           <p className="text-gray-600 dark:text-gray-400">
             You haven't read any papers yet. Your reading history will appear here.
           </p>
         </div>
       ) : (
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+        <div className="rounded-lg bg-white p-6 shadow-md dark:bg-gray-800">
           <table className="w-full">
             <thead>
               <tr className="border-b border-gray-300 dark:border-gray-700">
-                <th className="text-left py-2 w-16">Paper</th>
-                <th className="text-left py-2">Title</th>
-                <th className="text-left py-2">Last Read</th>
+                <th className="w-16 py-2 text-left">Paper</th>
+                <th className="py-2 text-left">Title</th>
+                <th className="py-2 text-left">Last Read</th>
               </tr>
             </thead>
             <tbody>
               {history.map((entry, index) => (
                 <tr
                   key={index}
-                  className="border-t border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750"
+                  className="dark:hover:bg-gray-750 border-t border-gray-200 hover:bg-gray-50 dark:border-gray-700"
                 >
                   <td className="py-2 text-gray-600 dark:text-gray-400">
-                    {entry.paperId === 0 ? 'FW' : entry.paperId}
+                    {entry.paperId === 0 ? &apos;FW' : entry.paperId}
                   </td>
                   <td className="py-2">
                     <Link

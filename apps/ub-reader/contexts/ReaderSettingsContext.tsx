@@ -1,6 +1,7 @@
 'use client';
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import type { ReactNode } from &apos;react';
+import React, { createContext, useContext, useState } from &apos;react';
 
 interface ReaderSettings {
   showParagraphNumbers: boolean;

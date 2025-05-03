@@ -61,7 +61,7 @@ export const PullupPanel: React.FC<PullupPanelProps> = ({
   isPersistent,
   onClose,
   onHeightChange,
-  minHeight = 100,
+  minHeight = 40,
   maxHeight = 600,
   className = '',
   children,
@@ -87,6 +87,11 @@ export const PullupPanel: React.FC<PullupPanelProps> = ({
   const handleDragStart = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDragging(true);
+
+    // When starting to drag, make sure the panel is in open state
+    if (!isOpen && onClose) {
+      onClose(); // This will toggle the panel open
+    }
   };
 
   // Handle drag end
@@ -103,13 +108,18 @@ export const PullupPanel: React.FC<PullupPanelProps> = ({
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (isDragging && panelRef.current) {
-        const panelRect = panelRef.current.getBoundingClientRect();
+        // We don't need panelRect here, so we can remove it
         const newHeight = window.innerHeight - e.clientY;
 
         // Constrain height within min and max
         const constrainedHeight = Math.max(minHeight, Math.min(maxHeight, newHeight));
 
         setCurrentHeight(constrainedHeight);
+
+        // If the panel is dragged up significantly, ensure it's in the open state
+        if (constrainedHeight > minHeight + 10 && !isOpen && onClose) {
+          onClose(); // This will toggle the panel open
+        }
       }
     };
 
@@ -139,10 +149,15 @@ export const PullupPanel: React.FC<PullupPanelProps> = ({
     .filter(Boolean)
     .join(' ');
 
-  // Calculate panel style
+  // Calculate panel style - keep handle visible when collapsed
+  const handleHeight = 24; // The height of the handle
   const panelStyle: React.CSSProperties = {
     height: `${currentHeight}px`,
-    transform: isOpen ? 'translateY(0)' : `translateY(${currentHeight}px)`,
+    transform: isOpen
+      ? 'translateY(0)'
+      : isDragging
+        ? `translateY(${Math.max(currentHeight - handleHeight, 0)}px)`
+        : `translateY(${currentHeight - handleHeight}px)`,
   };
 
   return (

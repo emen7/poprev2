@@ -1,0 +1,53 @@
+/**
+ * UBReferenceLink Component Styles
+ */
+
+.ub-reference {
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px dotted #0066cc;
+  transition: color 0.2s, border-bottom-color 0.2s;
+  cursor: pointer;
+}
+
+.ub-reference:hover {
+  color: #004499;
+  border-bottom-color: #004499;
+}
+
+.ub-reference:active {
+  color: #003377;
+  border-bottom-color: #003377;
+}
+
+/* Style for different reference types */
+.ub-reference[data-reference-type="paper"] {
+  font-weight: 600;
+}
+
+.ub-reference[data-reference-type="paper-section"] {
+  font-weight: 500;
+}
+
+.ub-reference[data-reference-type="paper-section-paragraph"] {
+  font-weight: 400;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .ub-reference {
+    color: #66aaff;
+    border-bottom-color: #66aaff;
+  }
+
+  .ub-reference:hover {
+    color: #99ccff;
+    border-bottom-color: #99ccff;
+  }
+
+  .ub-reference:active {
+    color: #aaddff;
+    border-bottom-color: #aaddff;
+  }
+}

@@ -1,0 +1,50 @@
+/**
+ * Paper Row Component Styles (Row 2)
+ *
+ * This file contains styles for the PaperRow component,
+ * which is the second row in the 3-row header.
+ */
+
+.paper-row {
+  display: flex;
+  align-items: center;
+  height: var(--row2-height, 2.5rem);
+  padding: 0 var(--spacing-md, 1rem);
+  background-color: var(--color-bg-secondary, #f5f5f5);
+  border-bottom: 1px solid var(--color-border-primary, rgba(0, 0, 0, 0.1));
+  position: relative;
+  z-index: var(--z-index-fixed, 200);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.paper-title {
+  font-size: var(--font-size-lg, 1.125rem);
+  font-weight: 500;
+  color: var(--title-color, #2c5282);
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  line-height: var(--row2-height, 2.5rem);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 480px) {
+  .paper-title {
+    font-size: var(--font-size-md, 1rem);
+  }
+}
+
+/* Dark theme adjustments */
+.dark-theme-container .paper-row {
+  background-color: var(--color-bg-secondary, #222222);
+  border-bottom-color: var(--color-border-primary, rgba(255, 255, 255, 0.1));
+}
+
+.dark-theme-container .paper-title {
+  color: var(--title-color, rgba(255, 255, 255, 0.95));
+}

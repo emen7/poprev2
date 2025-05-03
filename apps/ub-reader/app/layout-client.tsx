@@ -1,11 +1,11 @@
 'use client';
 
-import React from 'react';
+import React from &apos;react';
 
-import { ThemeProvider } from '../contexts/ThemeContext';
-import { UserPreferencesProvider } from '../contexts/UserPreferencesContext';
 import { HighlightProvider } from '../components/HighlightProvider';
 import { WebVitalsReporter } from '../components/WebVitalsReporter';
+import { ThemeProvider } from '../contexts/ThemeContext';
+import { UserPreferencesProvider } from '../contexts/UserPreferencesContext';
 
 // Import only the essential styles
 import '../styles/globals.css';

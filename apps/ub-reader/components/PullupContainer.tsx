@@ -1,8 +1,15 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from &apos;react';
 
-import { Pullup, usePullup, Note, Quote, ReaderSettings, TextSelectionHandler } from './pullup';
+import { usePullup } from '../contexts/PullupContext';
+import { useTheme } from '../contexts/ThemeContext';
+
+import { Pullup } from './pullup/Pullup';
+import { TextSelectionHandler } from './pullup/TextSelectionHandler';
+import type { Note, Quote, ReaderSettings, PullupTab } from './pullup/types';
+import '../styles/themes/global.css';
+import '../styles/theme-transitions.css';
 
 /**
  * PullupContainer Component
@@ -11,6 +18,9 @@ import { Pullup, usePullup, Note, Quote, ReaderSettings, TextSelectionHandler } 
  * It provides a bottom panel with tabs for Notes, Quotes, and Settings.
  */
 export const PullupContainer: React.FC = () => {
+  // Get theme context
+  const { _uiTheme } = useTheme();
+
   // Get pullup state and actions from the usePullup hook
   const {
     isOpen,
@@ -19,9 +29,18 @@ export const PullupContainer: React.FC = () => {
     isPersistent,
     // openPullup is not used in this component
     closePullup,
-    setActiveTab,
+    setActiveTab: originalSetActiveTab, // Rename original hook function
     setHeight,
   } = usePullup();
+
+  // State for peeking
+  const [isPeeking, setIsPeeking] = useState(true);
+
+  // State to track if we're on desktop
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  // Reference to desktop tabs container
+  const desktopTabsRef = useRef<HTMLDivElement>(null);
 
   // State for notes
   const [notes, setNotes] = useState<Note[]>([]);
@@ -33,14 +52,38 @@ export const PullupContainer: React.FC = () => {
   const [settings, setSettings] = useState<ReaderSettings>({
     fontSize: 16,
     lineHeight: 1.6,
-    fontFamily: 'Georgia, serif',
-    theme: 'light',
+    fontFamily: &apos;Georgia, serif',
+    theme: uiTheme,
     showParagraphNumbers: true,
-    formatType: 'traditional',
+    formatType: &apos;traditional',
   });
 
   // State for sort order
-  const [sortOrder, setSortOrder] = useState<'entry' | 'paper'>('entry');
+  const [sortOrder, setSortOrder] = useState<'entry' | &apos;paper'>('entry');
+
+  // State to track the ID of a newly added note to trigger editing
+  const [justAddedNoteId, setJustAddedNoteId] = useState<string | null>(null);
+
+  // Update settings when theme changes
+  useEffect(() => {
+    handleSettingsChange({ theme: uiTheme });
+  }, [uiTheme]);
+
+  // Detect desktop screen size
+  useEffect(() => {
+    const checkIfDesktop = () => {
+      const desktopBreakpoint = 1024;
+      setIsDesktop(window.innerWidth >= desktopBreakpoint);
+    };
+
+    // Check on mount and when window resizes
+    checkIfDesktop();
+    window.addEventListener('resize', checkIfDesktop);
+
+    return () => {
+      window.removeEventListener('resize', checkIfDesktop);
+    };
+  }, []);
 
   // Load notes and quotes from localStorage on component mount
   useEffect(() => {
@@ -98,41 +141,101 @@ export const PullupContainer: React.FC = () => {
   };
 
   // Handle sort order change
-  const handleSortOrderChange = (newSortOrder: 'entry' | 'paper') => {
+  const handleSortOrderChange = (newSortOrder: &apos;entry' | &apos;paper') => {
     setSortOrder(newSortOrder);
   };
 
   // Handle note creation
-  const handleNoteCreate = (note: Note) => {
+  const _handleNoteCreate = (note: Note) => {
     setNotes([note, ...notes]);
   };
 
   // Handle quote creation
-  const handleQuoteCreate = (quote: Quote) => {
+  const _handleQuoteCreate = (quote: Quote) => {
     setQuotes([quote, ...quotes]);
+  };
+
+  // Handle adding a new note
+  const handleAddNewNote = () => {
+    const newNote: Note = {
+      id: `note-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`, // Simple unique ID
+      content: '', // Start with empty content
+      reference: &apos;New Note', // Placeholder reference
+      selectedText: '',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      paragraphId: &apos;new-note', // Placeholder ID
+    };
+    setNotes([newNote, ...notes]); // Add to the beginning of the list
+    originalSetActiveTab('notes'); // Switch to notes tab using the renamed function
+    // Ideally, we'd also set the editingNoteId here, but that state is in NotesTab.
+    // We might need to lift that state up or pass a callback to NotesTab
+    // to trigger editing mode for the new note ID after it's added.
+
+    // For now, just adding the note.
+    // We also need to trigger editing in NotesTab via justAddedNoteId state.
+    setJustAddedNoteId(newNote.id);
+  };
+
+  // Callback for NotesTab to signal editing has started and reset the trigger state
+  const handleEditStarted = () => {
+    setJustAddedNoteId(null);
+  };
+
+  // Handle height change
+  const handleHeightChange = (newHeight: number) => {
+    setHeight(newHeight);
+    if (!isOpen && isPeeking) {
+      // If panel is peeking and user drags it, open it fully
+      setIsPeeking(false);
+    }
+  };
+
+  // Handle desktop tab click
+  const handleDesktopTabClick = (tab: PullupTab) => {
+    originalSetActiveTab(tab);
+
+    if (!isOpen) {
+      setHeight(300);
+      setIsPeeking(false);
+    }
   };
 
   return (
     <>
-      <Pullup
-        isOpen={isOpen}
-        activeTab={activeTab}
-        height={height}
-        isPersistent={isPersistent}
-        onClose={closePullup}
-        onTabSelect={setActiveTab}
-        onHeightChange={setHeight}
-        notes={notes}
-        onNoteUpdate={handleNoteUpdate}
-        onNoteDelete={handleNoteDelete}
-        quotes={quotes}
-        onQuoteDelete={handleQuoteDelete}
-        settings={settings}
-        onSettingsChange={handleSettingsChange}
-        sortOrder={sortOrder}
-        onSortOrderChange={handleSortOrderChange}
-      />
-      <TextSelectionHandler onNoteCreate={handleNoteCreate} onQuoteCreate={handleQuoteCreate} />
+      {/* Main Pullup component */}
+      <div className="pullup-container">
+        {/* Desktop-specific tabs */}
+        {isDesktop && (
+          <div className="desktop-tabs" ref={desktopTabsRef}>
+            <button
+              className={`desktop-tab ${activeTab === &apos;notes' ? &apos;active' : ''}`}
+              onClick={() => handleDesktopTabClick('notes')}
+            >
+              Notes
+            </button>
+            <button
+              className={`desktop-tab ${activeTab === &apos;quotes' ? &apos;active' : ''}`}
+              onClick={() => handleDesktopTabClick('quotes')}
+            >
+              Quotes
+            </button>
+            <button
+              className={`desktop-tab ${activeTab === &apos;settings' ? &apos;active' : ''}`}
+              onClick={() => handleDesktopTabClick('settings')}
+            >
+              Settings
+            </button>
+          </div>
+        )}
+
+        {/* Standard pullup component */}
+        {/* Note: We've updated this to use the new interface that doesn't pass function props */}
+        <Pullup className={isDesktop ? &apos;desktop-mode' : ''} />
+      </div>
+
+      {/* Text selection handler */}
+      <TextSelectionHandler />
     </>
   );
 };

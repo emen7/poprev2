@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React from &apos;react';
 
 import { useUserPreferences } from '../../contexts/UserPreferencesContext';
 
@@ -21,14 +21,14 @@ export default function TestPreferencesPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">User Preferences Test</h1>
+      <h1 className="mb-6 text-3xl font-bold">User Preferences Test</h1>
 
-      <div className="bg-white rounded-lg shadow p-6 mb-6">
-        <h2 className="text-xl font-semibold mb-4">Current Preferences</h2>
+      <div className="mb-6 rounded-lg bg-white p-6 shadow">
+        <h2 className="mb-4 text-xl font-semibold">Current Preferences</h2>
 
         <div className="mb-4">
           <div className="font-medium">Show Paragraph Numbers:</div>
-          <div className="ml-4">{preferences.reader.showParagraphNumbers ? 'Yes' : 'No'}</div>
+          <div className="ml-4">{preferences.reader.showParagraphNumbers ? &apos;Yes' : &apos;No'}</div>
         </div>
 
         <div className="mb-4">
@@ -44,35 +44,35 @@ export default function TestPreferencesPage() {
         <div className="mb-4">
           <div className="font-medium">TTS Settings:</div>
           <div className="ml-4">
-            <div>Voice ID: {preferences.reader.tts.voiceId || 'Default'}</div>
+            <div>Voice ID: {preferences.reader.tts.voiceId || &apos;Default'}</div>
             <div>Rate: {preferences.reader.tts.rate}</div>
             <div>Pitch: {preferences.reader.tts.pitch}</div>
           </div>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6 mb-6">
-        <h2 className="text-xl font-semibold mb-4">Test Controls</h2>
+      <div className="mb-6 rounded-lg bg-white p-6 shadow">
+        <h2 className="mb-4 text-xl font-semibold">Test Controls</h2>
 
         <div className="flex flex-col space-y-4">
           <button
             onClick={toggleParagraphNumbers}
-            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+            className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
           >
             Toggle Paragraph Numbers
           </button>
 
           <button
             onClick={resetPreferences}
-            className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded"
+            className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
           >
             Reset All Preferences
           </button>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
-        <h2 className="text-xl font-semibold mb-4">Sample Paragraphs</h2>
+      <div className="rounded-lg bg-white p-6 shadow">
+        <h2 className="mb-4 text-xl font-semibold">Sample Paragraphs</h2>
 
         <div className="ub-paragraph mb-4">
           {preferences.reader.showParagraphNumbers && (

@@ -15,16 +15,18 @@
       --reading-max-width: 700px;
       --content-padding: 20px;
 
-      /* Colors */
-      --bg-color: #1a1a1a;
-      --text-color: #e2e8f0;
-      --header-bg-color: #222;
-      --header-text-color: #fff;
+      /* Default theme (dark) */
+      --outer-frame-color: #000000;
+      --reading-bg-color: #181a1b;
+      --text-color: #e8e6e3;
+      --header-bg-color: #000000;
+      --header-text-color: #e8e6e3;
       --border-color: #333;
       --accent-color: #0088ff;
-      --pullup-bg-color: #222;
-      --pullup-text-color: #fff;
+      --pullup-bg-color: #000000;
+      --pullup-text-color: #e8e6e3;
       --pullup-handle-color: #666;
+      --shadow-color: rgba(0, 0, 0, 0.2);
 
       /* Typography */
       --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -33,6 +35,20 @@
       --subheading-font-size: 1.25rem;
       --content-line-height: 1.7;
       --title-font-weight: 600;
+    }
+
+    /* Light theme class */
+    .light-theme-active {
+      --outer-frame-color: #ffffff;
+      --reading-bg-color: #f7f6f3;
+      --text-color: #222222;
+      --header-bg-color: #ffffff;
+      --header-text-color: #222222;
+      --border-color: #ddd;
+      --pullup-bg-color: #ffffff;
+      --pullup-text-color: #222222;
+      --pullup-handle-color: #aaa;
+      --shadow-color: rgba(0, 0, 0, 0.1);
     }
 
     /* Utility class for preventing selection */
@@ -55,12 +71,21 @@
       box-sizing: border-box;
     }
 
+    /* Add transition effect for smooth theme switching */
+    body,
+    .reading-area,
+    .title-bar,
+    .paper-bar,
+    .pullup-footer {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
     body {
       font-family: var(--font-family);
       font-size: var(--base-font-size);
       line-height: 1.6;
       color: var(--text-color);
-      background-color: var(--bg-color);
+      background-color: var(--outer-frame-color);
       min-height: 100vh;
       position: relative;
     }
@@ -154,6 +179,11 @@
       color: var(--text-color);
       font-size: var(--base-font-size);
       line-height: var(--content-line-height);
+      background-color: var(--reading-bg-color);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px var(--shadow-color);
+      margin-bottom: 2rem;
     }
 
     .paper-content {
@@ -397,15 +427,18 @@
     }
 
     .dark-theme {
-      background-color: #1a1a1a;
+      background-color: #181a1b;
+      border: 1px solid #000000;
     }
 
     .light-theme {
-      background-color: #f5f5f5;
+      background-color: #f7f6f3;
+      border: 1px solid #ffffff;
     }
 
-    .sepia-theme {
-      background-color: #f4ecd8;
+    .system-theme {
+      background: linear-gradient(to right, #181a1b 50%, #f7f6f3 50%);
+      border: 1px solid #666;
     }
 
     /* Font size controls */
@@ -682,9 +715,9 @@
                 <div class="theme-preview light-theme"></div>
                 <span>Light</span>
               </div>
-              <div class="theme-option" data-theme="sepia">
-                <div class="theme-preview sepia-theme"></div>
-                <span>Sepia</span>
+              <div class="theme-option" data-theme="system">
+                <div class="theme-preview system-theme"></div>
+                <span>System</span>
               </div>
             </div>
           </div>
@@ -907,6 +940,67 @@
         activePanel.style.minHeight = (parseInt(pullupFooter.style.height) - 70) + 'px';
       }
     }
+
+    // Theme switching functionality
+    const themeOptions = document.querySelectorAll('.theme-option');
+    const body = document.body;
+    let systemThemeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    // Function to set theme
+    function setTheme(theme) {
+      // Remove all theme classes
+      body.classList.remove('light-theme-active');
+
+      // Handle system theme
+      if (theme === 'system') {
+        if (systemThemeMediaQuery.matches) {
+          // System preference is dark, use default (dark) theme
+          theme = 'dark';
+        } else {
+          // System preference is light
+          body.classList.add('light-theme-active');
+          theme = 'light';
+        }
+      } else if (theme === 'light') {
+        // Explicitly set light theme
+        body.classList.add('light-theme-active');
+      }
+      // For dark theme, no class needed as it's the default
+
+      // Update selected state in UI
+      themeOptions.forEach(option => {
+        if (option.dataset.theme === (theme === 'light' && systemThemeMediaQuery.matches ? 'system' : option.dataset.theme)) {
+          option.classList.add('theme-option-selected');
+        } else {
+          option.classList.remove('theme-option-selected');
+        }
+      });
+
+      // Save preference to localStorage
+      localStorage.setItem('ub-reader-theme', theme);
+    }
+
+    // Add click event listeners to theme options
+    themeOptions.forEach(option => {
+      option.addEventListener('click', function () {
+        const theme = this.dataset.theme;
+        setTheme(theme);
+      });
+    });
+
+    // Listen for system theme changes
+    systemThemeMediaQuery.addEventListener('change', (e) => {
+      const currentTheme = localStorage.getItem('ub-reader-theme') || 'dark';
+      if (currentTheme === 'system') {
+        setTheme('system');
+      }
+    });
+
+    // Load saved theme preference on page load
+    document.addEventListener('DOMContentLoaded', function () {
+      const savedTheme = localStorage.getItem('ub-reader-theme') || 'dark';
+      setTheme(savedTheme);
+    });
   </script>
 </body>
 

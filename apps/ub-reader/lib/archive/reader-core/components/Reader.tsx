@@ -4,11 +4,12 @@
  * This is the main Reader component that renders a document with configurable extensions.
  */
 
-'use client';
+&apos;use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from &apos;react';
 
-import { Document, ReaderConfig, createConfig, DEFAULT_CONFIG } from '../models';
+import type { Document, ReaderConfig } from '../models';
+import { createConfig, _DEFAULT_CONFIG } from '../models';
 import { DocumentAdapter, globalExtensionRegistry } from '../utils';
 
 import './Reader.css';
@@ -77,11 +78,11 @@ export function Reader({ document, config = {}, className = '', style = {} }: Re
   // Convert document to internal format
   useEffect(() => {
     // Check if the document is already in our format
-    if (document && 'id' in document && 'sections' in document) {
+    if (document && &apos;id' in document && &apos;sections' in document) {
       setInternalDocument(document as Document);
     }
     // Otherwise, convert from TransformedDocument
-    else if (document && 'content' in document && 'metadata' in document) {
+    else if (document && &apos;content' in document && &apos;metadata' in document) {
       const convertedDocument = DocumentAdapter.fromTransformedDocument(document);
       setInternalDocument(convertedDocument);
     }
@@ -134,50 +135,50 @@ export function Reader({ document, config = {}, className = '', style = {} }: Re
 
     // Theme colors
     '--reader-background-color':
-      readerConfig.theme.mode === 'dark'
+      readerConfig.theme.mode === &apos;dark'
         ? readerConfig.theme.colors?.background || '#1a202c'
         : readerConfig.theme.colors?.background || '#ffffff',
     '--reader-text-color':
-      readerConfig.theme.mode === 'dark'
+      readerConfig.theme.mode === &apos;dark'
         ? readerConfig.theme.colors?.text || '#e2e8f0'
         : readerConfig.theme.colors?.text || '#333333',
     '--reader-border-color':
-      readerConfig.theme.mode === 'dark'
+      readerConfig.theme.mode === &apos;dark'
         ? readerConfig.theme.colors?.border || '#4a5568'
         : readerConfig.theme.colors?.border || '#e2e8f0',
     '--reader-panel-background':
-      readerConfig.theme.mode === 'dark'
+      readerConfig.theme.mode === &apos;dark'
         ? readerConfig.theme.colors?.panelBackground || '#2d3748'
         : readerConfig.theme.colors?.panelBackground || '#f7fafc',
 
     // Typography
     '--reader-font-family':
       readerConfig.typography.fontFamily ||
-      (readerConfig.typography.fontStyle === 'serif'
-        ? 'Georgia, Cambria, "Times New Roman", Times, serif'
-        : 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'),
+      (readerConfig.typography.fontStyle === &apos;serif'
+        ? &apos;Georgia, Cambria, &quot;Times New Roman", Times, serif'
+        : &apos;system-ui, -apple-system, BlinkMacSystemFont, &quot;Segoe UI", Roboto, &quot;Helvetica Neue", Arial, sans-serif'),
     '--reader-font-size':
-      readerConfig.typography.fontSize === 'small'
-        ? '14px'
-        : readerConfig.typography.fontSize === 'medium'
-          ? '16px'
-          : readerConfig.typography.fontSize === 'large'
-            ? '18px'
-            : '20px',
+      readerConfig.typography.fontSize === &apos;small'
+        ? &apos;14px'
+        : readerConfig.typography.fontSize === &apos;medium'
+          ? &apos;16px'
+          : readerConfig.typography.fontSize === &apos;large'
+            ? &apos;18px'
+            : &apos;20px',
     '--reader-line-height':
-      readerConfig.typography.lineSpacing === 'compact'
-        ? '1.4'
-        : readerConfig.typography.lineSpacing === 'normal'
-          ? '1.6'
-          : '1.8',
+      readerConfig.typography.lineSpacing === &apos;compact'
+        ? &apos;1.4'
+        : readerConfig.typography.lineSpacing === &apos;normal'
+          ? &apos;1.6'
+          : &apos;1.8',
 
     // Layout
     '--reader-max-width':
-      readerConfig.layout.textWidth === 'narrow'
-        ? '600px'
-        : readerConfig.layout.textWidth === 'medium'
-          ? '800px'
-          : '1000px',
+      readerConfig.layout.textWidth === &apos;narrow'
+        ? &apos;600px'
+        : readerConfig.layout.textWidth === &apos;medium'
+          ? &apos;800px'
+          : &apos;1000px',
 
     ...style,
   } as React.CSSProperties;

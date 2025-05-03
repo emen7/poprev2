@@ -1,27 +1,27 @@
 'use client';
 
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import React, { useState, useEffect, useRef } from 'react';
+import Link from &apos;next/link';
+import { useRouter } from &apos;next/navigation';
+import React, { useState, useEffect, useRef } from &apos;react';
 
-import { UBParagraph } from '../UBParagraph';
-import { UBSectionDivider } from '../UBSectionDivider';
+import { PullupProvider } from '../../contexts/PullupContext';
 import { useTheme } from '../../contexts/ThemeContext';
 import { addToHistory } from '../../services/HistoryService';
+import type { Paper, Part } from '../../services/PaperDataService';
 import {
   getPaper,
   getParts,
-  getPreviousPaper,
+  _getPreviousPaper,
   getNextPaper,
   getPartForPaper,
-  Paper,
-  Part,
 } from '../../services/PaperDataService';
 import Breadcrumbs from '../navigation/Breadcrumbs';
-import { PullupProvider } from '../pullup';
 import { PullupContainer } from '../PullupContainer';
+import { ThreeRowHeader } from '../three-row-header';
+import { UBParagraph } from '../UBParagraph';
+import { UBSectionDivider } from '../UBSectionDivider';
 import '../navigation/Breadcrumbs.css';
-import './TraditionalReader.css';
+import './styles/index.css';
 
 interface TraditionalReaderProps {
   paperId?: number;
@@ -37,31 +37,31 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
   const router = useRouter();
 
   // Theme state from context
-  const { contentTheme, setContentTheme, uiTheme, setUITheme } = useTheme();
+  const { contentTheme, setContentTheme, _uiTheme, setUITheme } = useTheme();
 
   // Use inline styles based on theme
   const getThemeStyles = () => {
     return {
       appContainer: {
-        backgroundColor: uiTheme === 'light' ? '#ffffff' : '#1a1a1a',
-        color: uiTheme === 'light' ? '#333333' : '#f0e6d8',
+        backgroundColor: uiTheme === &apos;light' ? '#ffffff' : '#1a1a1a',
+        color: uiTheme === &apos;light' ? '#333333' : '#f0e6d8',
       },
       header: {
-        backgroundColor: uiTheme === 'light' ? '#f8f8f8' : '#222222',
-        borderBottom: uiTheme === 'light' ? '1px solid #e2e8f0' : '1px solid #333333',
+        backgroundColor: uiTheme === &apos;light' ? '#f8f8f8' : '#222222',
+        borderBottom: uiTheme === &apos;light' ? &apos;1px solid #e2e8f0' : &apos;1px solid #333333',
       },
       title: {
-        color: uiTheme === 'light' ? '#2c5282' : '#7fc8f5',
+        color: uiTheme === &apos;light' ? '#2c5282' : '#7fc8f5',
       },
       settingsPanel: {
-        backgroundColor: uiTheme === 'light' ? '#f8f8f8' : '#222222',
-        borderLeft: uiTheme === 'light' ? '1px solid #e2e8f0' : '1px solid #333333',
+        backgroundColor: uiTheme === &apos;light' ? '#f8f8f8' : '#222222',
+        borderLeft: uiTheme === &apos;light' ? &apos;1px solid #e2e8f0' : &apos;1px solid #333333',
       },
       text: {
-        color: uiTheme === 'light' ? '#333333' : '#f0e6d8',
+        color: uiTheme === &apos;light' ? '#333333' : '#f0e6d8',
       },
       sectionTitle: {
-        color: uiTheme === 'light' ? '#2c5282' : '#91a7f9',
+        color: uiTheme === &apos;light' ? '#2c5282' : '#91a7f9',
       },
     };
   };
@@ -83,9 +83,6 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
   // Section dropdown state
   const [sectionDropdownOpen, setSectionDropdownOpen] = useState(false);
 
-  // Active section state
-  const [activeSection, setActiveSection] = useState<string | null>(null);
-
   // Debug mode state
   const [debugMode, setDebugMode] = useState(false);
 
@@ -96,11 +93,11 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
   const sectionDropdownRef = useRef<HTMLDivElement>(null);
   const readingAreaRef = useRef<HTMLDivElement>(null);
 
-  // Current section state for sticky header
+  // Current section state for paper info only
+  // (section title handled by ThreeRowHeader)
   const [currentSection, setCurrentSection] = useState({
     part: '',
     paper: '',
-    section: '',
   });
 
   // Fetch paper data
@@ -113,16 +110,15 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
 
         // Update current section info
         const partNumber = getPartForPaper(paperId);
-        const partTitle = parts.find(p => p.number === partNumber)?.title || '';
+        const _partTitle = parts.find(p => p.number === partNumber)?.title || '';
 
         setCurrentSection({
-          part: `Part ${partNumber}: ${partTitle}`,
+          part: `Part ${partNumber}: ${_partTitle}`,
           paper: `Paper ${paperData.number}: ${paperData.title}`,
-          section: '',
         });
 
         // Add to reading history
-        const title = paperId === 0 ? 'Foreword' : `Paper ${paperId}: ${paperData.title}`;
+        const title = paperId === 0 ? &apos;Foreword' : `Paper ${paperId}: ${paperData.title}`;
         addToHistory(paperId, title);
       } catch (error) {
         console.error('Error fetching paper:', error);
@@ -145,54 +141,20 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
     const appContainer = document.querySelector('.app-container');
     if (appContainer) {
       // Apply styles directly based on theme
-      if (uiTheme === 'light') {
+      if (uiTheme === &apos;light') {
         document.body.style.backgroundColor = '#ffffff';
         document.body.style.color = '#333333';
         appContainer.setAttribute(
-          'style',
-          'background-color: #ffffff !important; color: #333333 !important;'
+          &apos;style',
+          &apos;background-color: #ffffff !important; color: #333333 !important;'
         );
-
-        // Update header and other elements
-        const header = document.querySelector('.header');
-        if (header) {
-          header.setAttribute(
-            'style',
-            'background-color: #f8f8f8 !important; border-bottom: 1px solid #e2e8f0 !important;'
-          );
-        }
-
-        // Update titles
-        const titles = document.querySelectorAll(
-          '.header-title, .section-title, .sticky-part-title, .sticky-paper-title, .sticky-section-title'
-        );
-        titles.forEach(title => {
-          title.setAttribute('style', 'color: #2c5282 !important;');
-        });
       } else {
         document.body.style.backgroundColor = '#1a1a1a';
         document.body.style.color = '#f0e6d8';
         appContainer.setAttribute(
-          'style',
-          'background-color: #1a1a1a !important; color: #f0e6d8 !important;'
+          &apos;style',
+          &apos;background-color: #1a1a1a !important; color: #f0e6d8 !important;'
         );
-
-        // Update header and other elements
-        const header = document.querySelector('.header');
-        if (header) {
-          header.setAttribute(
-            'style',
-            'background-color: #222222 !important; border-bottom: 1px solid #333333 !important;'
-          );
-        }
-
-        // Update titles
-        const titles = document.querySelectorAll(
-          '.header-title, .section-title, .sticky-part-title, .sticky-paper-title, .sticky-section-title'
-        );
-        titles.forEach(title => {
-          title.setAttribute('style', 'color: #7fc8f5 !important;');
-        });
       }
     }
   }, [uiTheme]);
@@ -224,9 +186,6 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
     setSectionDropdownOpen(false);
   };
 
-  // This function was previously used for section dropdown toggle
-  // Now removed as part of the UI redesign
-
   // Close section dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -252,14 +211,17 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
     // Scroll to section
     const sectionElement = document.getElementById(sectionId);
     if (sectionElement) {
-      // Offset for the sticky header
-      const headerOffset = 120;
+      // Offset for the three-row header
+      const headerOffset =
+        parseInt(
+          getComputedStyle(document.documentElement).getPropertyValue('--header-total-height')
+        ) || 120;
       const elementPosition = sectionElement.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth',
+        behavior: &apos;smooth',
       });
     }
   };
@@ -282,7 +244,7 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
   };
 
   // Handle theme change
-  const handleThemeChange = (theme: 'modern' | 'traditional') => {
+  const handleThemeChange = (theme: &apos;modern' | &apos;traditional') => {
     setContentTheme(theme);
   };
 
@@ -308,153 +270,12 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
     }
   };
 
-  // Previous/next navigation functions removed as part of UI redesign
-  // Navigation now handled through the menu system
-
   // Handle title click (navigate to contents)
   const handleTitleClick = () => {
     router.push('/contents');
   };
 
-  // Create sticky section title element on mount
-  useEffect(() => {
-    if (!readingAreaRef.current) return;
-
-    // Create the sticky section title element if it doesn't exist
-    let stickySection = document.getElementById('sticky-section-title');
-    if (!stickySection) {
-      console.log('Creating initial sticky section title element');
-      const readingArea = document.querySelector('.reading-area');
-      if (readingArea) {
-        stickySection = document.createElement('div');
-        stickySection.id = 'sticky-section-title';
-        stickySection.style.position = 'fixed';
-        stickySection.style.top = '105px';
-        stickySection.style.left = '0';
-        stickySection.style.right = '0';
-        stickySection.style.zIndex = '25';
-        stickySection.style.backgroundColor = uiTheme === 'light' ? '#ffffff' : '#1a1a1a';
-        stickySection.style.borderBottom = '2px solid var(--border-color)';
-        stickySection.style.padding = '0.6rem 1.5rem';
-        stickySection.style.width = '100%';
-        stickySection.style.maxWidth = '800px';
-        stickySection.style.margin = '0 auto';
-        stickySection.style.boxShadow = '0 3px 5px rgba(0, 0, 0, 0.2)';
-        stickySection.style.color = uiTheme === 'light' ? '#2c5282' : '#91a7f9';
-        stickySection.style.fontWeight = '700';
-        stickySection.style.fontSize = '1.1rem';
-        stickySection.style.display = 'none'; // Initially hidden
-        stickySection.textContent = 'Current Section';
-        readingArea.appendChild(stickySection);
-      }
-    }
-  }, [readingAreaRef, uiTheme]);
-
-  // Set up intersection observer for section titles
-  useEffect(() => {
-    if (!readingAreaRef.current) return;
-
-    // Options for the observer
-    const options = {
-      root: null, // Use the viewport
-      rootMargin: '-120px 0px -70% 0px', // Adjusted margins for better detection
-      threshold: [0, 0.1, 0.5], // Lower threshold for earlier detection
-    };
-
-    // Function to update the sticky section title
-    const updateStickyTitle = (sectionId: string | null, sectionText: string) => {
-      const stickySection = document.getElementById('sticky-section-title');
-      if (sectionId && sectionText) {
-        if (stickySection) {
-          stickySection.style.display = 'block';
-          stickySection.textContent = sectionText;
-          console.log('Updated sticky title to:', sectionText);
-        }
-      } else {
-        if (stickySection) {
-          stickySection.style.display = 'none';
-        }
-      }
-    };
-
-    // Get all section titles for reference
-    const allSectionTitles = Array.from(document.querySelectorAll('h3.section-title'));
-
-    // Callback for the observer
-    const callback = (entries: IntersectionObserverEntry[]) => {
-      // First, handle entries that are leaving the viewport
-      const leavingEntries = entries.filter(
-        entry => !entry.isIntersecting && entry.boundingClientRect.top < 0
-      );
-
-      if (leavingEntries.length > 0) {
-        // Sort by position (closest to viewport top first)
-        leavingEntries.sort(
-          (a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top)
-        );
-        const closestLeavingEntry = leavingEntries[0];
-
-        // Find the next section that should be active
-        const leavingSectionId = closestLeavingEntry.target.id;
-        const leavingIndex = allSectionTitles.findIndex(section => section.id === leavingSectionId);
-
-        if (leavingIndex > 0) {
-          // There's a previous section, make it active
-          const nextActiveSection = allSectionTitles[leavingIndex - 1];
-          setActiveSection(nextActiveSection.id);
-          const sectionText = nextActiveSection.textContent || '';
-          setCurrentSection(prev => ({ ...prev, section: sectionText }));
-          updateStickyTitle(nextActiveSection.id, sectionText);
-        }
-      }
-
-      // Then handle entries that are entering the viewport
-      const visibleEntries = entries.filter(
-        entry => entry.isIntersecting && entry.intersectionRatio > 0.1
-      );
-
-      if (visibleEntries.length > 0) {
-        // Sort by position (top to bottom)
-        visibleEntries.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        const topVisibleEntry = visibleEntries[0];
-
-        const sectionId = topVisibleEntry.target.id;
-        // Only update if this is a different section than the current active one
-        if (sectionId !== activeSection) {
-          console.log('Setting active section:', sectionId);
-          setActiveSection(sectionId);
-
-          // Update current section title
-          const fullText = topVisibleEntry.target.textContent || '';
-          setCurrentSection(prev => ({ ...prev, section: fullText }));
-          updateStickyTitle(sectionId, fullText);
-        }
-      }
-
-      // If no sections are visible and we're at the top, clear the active section
-      if (visibleEntries.length === 0 && window.scrollY < 100) {
-        setActiveSection(null);
-        setCurrentSection(prev => ({ ...prev, section: '' }));
-        updateStickyTitle(null, '');
-      }
-    };
-
-    // Create observer
-    const observer = new IntersectionObserver(callback, options);
-
-    // Observe all section titles
-    allSectionTitles.forEach(title => {
-      observer.observe(title);
-    });
-
-    console.log('Observing section titles:', allSectionTitles.length);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [activeSection, paper, uiTheme]);
-
-  // Set up scroll listener for reading progress
+  // Monitor scroll position to update reading progress
   useEffect(() => {
     const handleScroll = () => {
       if (!readingAreaRef.current) return;
@@ -463,20 +284,25 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
       const docHeight = document.documentElement.scrollHeight;
       const winHeight = window.innerHeight;
       const scrollPercent = scrollTop / (docHeight - winHeight);
+
       setReadingProgress(scrollPercent * 100);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Initial update
+    handleScroll();
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [readingAreaRef]);
 
   // Add keyboard shortcut for debug mode (Ctrl+Shift+D)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-        console.log('Toggling debug mode');
+      if (e.ctrlKey && e.shiftKey && e.key === &apos;D') {
+        // Removed console.log
         setDebugMode(prev => !prev);
       }
     };
@@ -491,10 +317,10 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
   if (loading) {
     return (
       <div
-        className={`app-container ${uiTheme === 'dark' ? 'dark-theme-container' : 'light-theme-container'}`}
+        className={`app-container ${uiTheme === &apos;dark' ? &apos;dark-theme-container' : &apos;light-theme-container'}`}
       >
         <div className="loading-container">
-          <div className="loading-spinner"></div>
+          <div className="loading-spinner" />
           <div className="loading-text">Loading...</div>
         </div>
       </div>
@@ -502,293 +328,161 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
   }
 
   return (
-    <PullupProvider>
+    <PullupProvider
+      initialSettings={{
+        fontSize: 16,
+        lineHeight: 1.6,
+        fontFamily: &apos;system-ui, sans-serif',
+        theme: uiTheme,
+        showParagraphNumbers: true,
+        formatType: &apos;traditional',
+      }}
+    >
       <div
-        className={`app-container ${uiTheme === 'dark' ? 'dark-theme-container' : 'light-theme-container'}`}
+        className={`app-container ${uiTheme === &apos;dark' ? &apos;dark-theme-container' : &apos;light-theme-container'}`}
       >
-        {/* Header */}
-        <header className="header" style={themeStyles.header}>
-          {/* Left Group - Navigation Button */}
-          <div className="header-left-group">
-            {/* Paper Navigation Button - Changed to hamburger icon */}
-            <button
-              id="toggle-nav"
-              className="header-button"
-              onClick={handleNavigationToggle}
-              title="Papers"
-            >
-              <i className="fas fa-bars"></i>
-            </button>
-          </div>
-
-          {/* Center Group - Title Only */}
-          <div className="header-center-group">
-            {/* Book Title - Removed "The" */}
-            <div className="header-title-container">
-              <button
-                className="header-title"
-                onClick={handleTitleClick}
-                style={{
-                  cursor: 'pointer',
-                  background: 'none',
-                  border: 'none',
-                  padding: 0,
-                  font: 'inherit',
-                  fontSize: '1.5rem',
-                  fontWeight: 600,
-                  color: themeStyles.title.color,
-                }}
-              >
-                Urantia Book
-              </button>
-            </div>
-          </div>
-
-          {/* Right Group - Settings Button with hamburger icon */}
-          <button
-            id="toggle-settings"
-            className="header-button"
-            onClick={handleSettingsToggle}
-            title="Settings"
-          >
-            <i className="fas fa-bars"></i>
-          </button>
-        </header>
-
-        {/* Navigation Menu */}
-        <nav id="navigation-menu" className={`navigation-menu ${navigationOpen ? 'open' : ''}`}>
-          {/* Parts and Papers */}
-          {parts.map(part => (
-            <div
-              key={part.number}
-              className={
-                part.number === getPartForPaper(paperId) ? 'nav-fixed-top' : 'nav-fixed-bottom'
-              }
-            >
-              <button
-                className={`part-toggle ${
-                  part.number === getPartForPaper(paperId) ? 'active expanded' : ''
-                }`}
-                data-part={`part${part.number}`}
-                onClick={() => handlePartToggle(part.number)}
-              >
-                PART {part.number}. {part.title}
-                <i className="fas fa-chevron-down"></i>
-              </button>
+        {/* Reader Container - New fixed-width wrapper */}
+        <div className="reader-container">
+          {/* Navigation Menu */}
+          <nav id="navigation-menu" className={`navigation-menu ${navigationOpen ? &apos;open' : ''}`}>
+            {/* Parts and Papers */}
+            {parts.map(part => (
               <div
-                className={`part-content ${
-                  part.number === getPartForPaper(paperId) ? 'expanded' : ''
-                }`}
-                id={`part${part.number}-content`}
+                key={part.number}
+                className={
+                  part.number === getPartForPaper(paperId) ? &apos;nav-fixed-top' : &apos;nav-fixed-bottom'
+                }
               >
-                <ul className="nav-list">
-                  {part.papers.map(paperItem => (
-                    <li key={paperItem.number}>
-                      <button
-                        className={`nav-paper-button ${paperItem.number === paperId ? 'active' : ''}`}
-                        onClick={() => handlePaperClick(paperItem.number)}
-                        style={{
-                          background: 'none',
-                          border: 'none',
-                          padding: '0.25rem 0.5rem',
-                          color: 'inherit',
-                          textAlign: 'left',
-                          width: '100%',
-                          cursor: 'pointer',
-                        }}
-                      >
-                        Paper {paperItem.number}: {paperItem.title}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </nav>
-
-        {/* Settings Panel */}
-        <div id="settings-panel" className={`settings-panel ${settingsOpen ? 'open' : ''}`}>
-          <div className="settings-section">
-            <h3 className="settings-title">Display Settings</h3>
-            <div className="settings-option">
-              <h4 className="settings-option-title">Theme</h4>
-              <div className="settings-option-list">
                 <button
-                  className={`settings-option-button ${uiTheme === 'dark' ? 'active' : ''}`}
-                  onClick={() => setUITheme('dark')}
+                  className={`part-toggle ${
+                    part.number === getPartForPaper(paperId) ? &apos;active expanded' : ''
+                  }`}
+                  data-part={`part${part.number}`}
+                  onClick={() => handlePartToggle(part.number)}
                 >
-                  Dark
+                  PART {part.number}. {part.title}
+                  <i className="fas fa-chevron-down" />
                 </button>
+                <div
+                  className={`part-content ${
+                    part.number === getPartForPaper(paperId) ? &apos;expanded' : ''
+                  }`}
+                  id={`part${part.number}-content`}
+                >
+                  <ul className="nav-list">
+                    {part.papers.map(paperItem => (
+                      <li key={paperItem.number}>
+                        <button
+                          className={`nav-paper-button ${paperItem.number === paperId ? &apos;active' : ''}`}
+                          onClick={() => handlePaperClick(paperItem.number)}
+                          style={{
+                            background: &apos;none',
+                            border: &apos;none',
+                            padding: &apos;0.25rem 0.5rem',
+                            color: &apos;inherit',
+                            textAlign: &apos;left',
+                            width: &apos;100%',
+                            cursor: &apos;pointer',
+                          }}
+                        >
+                          Paper {paperItem.number}: {paperItem.title}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </nav>
+
+          {/* Settings Panel */}
+          <div id="settings-panel" className={`settings-panel ${settingsOpen ? &apos;open' : ''}`}>
+            <h2 className="settings-title">Settings</h2>
+
+            {/* Theme selection */}
+            <div className="settings-section">
+              <h3 className="settings-section-title">UI Theme</h3>
+              <div className="settings-options">
                 <button
-                  className={`settings-option-button ${uiTheme === 'light' ? 'active' : ''}`}
+                  className={`theme-button ${uiTheme === &apos;light' ? &apos;active' : ''}`}
                   onClick={() => setUITheme('light')}
                 >
                   Light
                 </button>
+                <button
+                  className={`theme-button ${uiTheme === &apos;dark' ? &apos;active' : ''}`}
+                  onClick={() => setUITheme('dark')}
+                >
+                  Dark
+                </button>
+                {/* System theme option is not yet supported in the UITheme type */}
+                <button
+                  className="theme-button"
+                  onClick={() => {
+                    // Use preferred color scheme from OS
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    setUITheme(prefersDark ? &apos;dark' : &apos;light');
+                  }}
+                >
+                  System
+                </button>
               </div>
             </div>
-            <div className="settings-option">
-              <h4 className="settings-option-title">Content Formatting</h4>
-              <div className="settings-option-list">
+
+            {/* Content theme selection */}
+            <div className="settings-section">
+              <h3 className="settings-section-title">Content Format</h3>
+              <div className="settings-options">
                 <button
-                  className={`settings-option-button ${contentTheme === 'modern' ? 'active' : ''}`}
-                  onClick={() => handleThemeChange('modern')}
-                >
-                  Modern
-                </button>
-                <button
-                  className={`settings-option-button ${
-                    contentTheme === 'traditional' ? 'active' : ''
-                  }`}
+                  className={`theme-button ${contentTheme === &apos;traditional' ? &apos;active' : ''}`}
                   onClick={() => handleThemeChange('traditional')}
                 >
                   Traditional
                 </button>
-              </div>
-            </div>
-            <div className="settings-option">
-              <h4 className="settings-option-title">Font Size</h4>
-              <div className="settings-option-list">
-                <button className="settings-option-button">Small</button>
-                <button className="settings-option-button active">Medium</button>
-                <button className="settings-option-button">Large</button>
-                <button className="settings-option-button">X-Large</button>
-              </div>
-            </div>
-            <div className="settings-option">
-              <h4 className="settings-option-title">Font Style</h4>
-              <div className="settings-option-list">
-                <button className="settings-option-button">Sans-serif</button>
-                <button className="settings-option-button active">Serif</button>
-              </div>
-            </div>
-          </div>
-          <div className="settings-section">
-            <h3 className="settings-title">Reading Settings</h3>
-            <div className="settings-option">
-              <h4 className="settings-option-title">Line Spacing</h4>
-              <div className="settings-option-list">
-                <button className="settings-option-button">Compact</button>
-                <button className="settings-option-button active">Normal</button>
-                <button className="settings-option-button">Relaxed</button>
-              </div>
-            </div>
-            <div className="settings-option">
-              <h4 className="settings-option-title">Text Width</h4>
-              <div className="settings-option-list">
-                <button className="settings-option-button">Narrow</button>
-                <button className="settings-option-button active">Medium</button>
-                <button className="settings-option-button">Wide</button>
-              </div>
-            </div>
-          </div>
-          <div className="settings-section">
-            <h3 className="settings-title">Navigation</h3>
-            <div className="settings-option">
-              <h4 className="settings-option-title">Reading History</h4>
-              <div className="settings-option-description">
-                View your reading history and quickly access recently read papers.
-              </div>
-              <div className="mt-2">
-                <Link
-                  href="/history"
-                  className="settings-link"
-                  onClick={() => setSettingsOpen(false)}
+                <button
+                  className={`theme-button ${contentTheme === &apos;modern' ? &apos;active' : ''}`}
+                  onClick={() => handleThemeChange('modern')}
                 >
-                  View Reading History <i className="fas fa-arrow-right ml-1"></i>
+                  Modern
+                </button>
+              </div>
+            </div>
+
+            {/* About Information */}
+            <div className="settings-about">
+              <div className="mt-2">
+                <Link href="/contents" className="settings-link">
+                  Table of Contents
                 </Link>
               </div>
-            </div>
-            <div className="settings-option">
-              <h4 className="settings-option-title">Contents</h4>
-              <div className="settings-option-description">
-                Browse the complete table of contents.
-              </div>
               <div className="mt-2">
-                <Link
-                  href="/contents"
-                  className="settings-link"
-                  onClick={() => setSettingsOpen(false)}
-                >
-                  View Contents <i className="fas fa-arrow-right ml-1"></i>
+                <Link href="/" className="settings-link">
+                  Reader Home
                 </Link>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Overlay */}
-        <button
-          id="overlay"
-          className={`overlay ${
-            navigationOpen || settingsOpen || sectionDropdownOpen ? 'active' : ''
-          }`}
-          onClick={handleOverlayClick}
-          aria-label="Close panels"
-          style={{
-            background: 'none',
-            border: 'none',
-            padding: 0,
-            width: '100%',
-            height: '100%',
-            position: 'fixed',
-            inset: '56px 0 0',
-            zIndex: 30,
-            display: navigationOpen || settingsOpen || sectionDropdownOpen ? 'block' : 'none',
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-            backdropFilter: 'blur(2px)',
-          }}
-        ></button>
-
-        {/* Reading Progress Bar */}
-        <div className="reading-progress-container">
+          {/* Content Overlay (for closing menus) */}
           <div
-            className="reading-progress-bar"
-            style={{ width: `${readingProgress}%` }}
-            title={`Reading progress: ${Math.round(readingProgress)}%`}
-          ></div>
-        </div>
-
-        {/* Breadcrumbs Navigation */}
-        {paper && (
-          <Breadcrumbs
-            paperId={paperId}
-            paperTitle={paper.title}
-            sectionTitle={currentSection.section}
+            className={`content-overlay ${navigationOpen || settingsOpen ? &apos;active' : ''}`}
+            onClick={handleOverlayClick}
           />
-        )}
 
-        {/* Content Container */}
-        <div className="content-container">
-          {/* Section Navigation Sidebar */}
-          {paper && (
-            <div className="section-navigation-sidebar">
-              <div className="section-navigation-title" style={themeStyles.sectionTitle}>
-                Sections
-              </div>
-              <ul className="section-navigation-list">
-                {paper.sections.map(section => (
-                  <li
-                    key={section.number}
-                    className={activeSection === `section${section.number}` ? 'active' : ''}
-                  >
+          {/* Section Dropdown (if needed) */}
+          <div
+            id="section-dropdown"
+            className={`section-dropdown ${sectionDropdownOpen ? &apos;open' : ''}`}
+            ref={sectionDropdownRef}
+          >
+            <div className="section-dropdown-content">
+              <h3 className="section-dropdown-title">Jump to Section</h3>
+              <ul className="section-list">
+                {paper?.sections.map(section => (
+                  <li key={section.number}>
                     <button
-                      onClick={e => handleSectionClick(e, `section${section.number}`)}
-                      className="section-navigation-button"
-                      style={{
-                        background: 'none',
-                        border: 'none',
-                        padding: '0.5rem 1rem',
-                        color: uiTheme === 'light' ? '#333333' : '#f0e6d8',
-                        textDecoration: 'none',
-                        fontSize: '0.9rem',
-                        transition: 'background-color 0.2s',
-                        borderLeft: '3px solid transparent',
-                        textAlign: 'left',
-                        width: '100%',
-                        display: 'block',
-                      }}
+                      className="section-link"
+                      onClick={e => handleSectionClick(e, `section-title-${section.number}`)}
                     >
                       {section.number}. {section.title}
                     </button>
@@ -796,88 +490,40 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
                 ))}
               </ul>
             </div>
-          )}
+          </div>
 
-          {/* Reading Area */}
-          <div className="reading-area" id="reading-area" ref={readingAreaRef}>
+          {/* Reading Area with fixed width */}
+          <div className="reading-area ub-reading-content" id="reading-area" ref={readingAreaRef}>
             <div className="content" data-theme={contentTheme}>
-              {/* Sticky Headers */}
-              <div
-                className={`sticky-header ${activeSection ? 'section-active' : ''}`}
-                style={{
-                  position: 'fixed',
-                  top: '56px',
-                  left: 0,
-                  right: 0,
-                  zIndex: 20,
-                  backgroundColor: uiTheme === 'light' ? '#ffffff' : '#1a1a1a',
-                  padding: '0.4rem 0 0.3rem',
-                  borderBottom: '1px solid var(--border-color)',
-                  width: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'flex-start',
-                  maxWidth: '800px',
-                  margin: '0 auto',
-                  paddingLeft: '1.5rem',
-                }}
-              >
-                <div
-                  className="sticky-part-title"
-                  id="sticky-part-title"
-                  style={{
-                    ...themeStyles.sectionTitle,
-                    fontSize: '0.85rem',
-                    fontWeight: 600,
-                    marginBottom: '0.2rem',
-                    display: 'block',
+              {/* Three-Row Header moved inside content div */}
+              {paper && (
+                <ThreeRowHeader
+                  paper={{
+                    id: `paper-${paper.number}`,
+                    number: paper.number,
+                    title: paper.title,
+                    sections: paper.sections.map(section => ({
+                      id: `section-${section.number}`,
+                      number: section.number,
+                      title: section.title,
+                    })),
                   }}
-                >
-                  {currentSection.part}
-                </div>
-                <div
-                  className="sticky-paper-title"
-                  id="sticky-paper-title"
-                  style={{
-                    ...themeStyles.sectionTitle,
-                    fontSize: '1.1rem',
-                    fontWeight: 600,
-                    marginBottom: '0.3rem',
+                  onBookMenuToggle={handleNavigationToggle}
+                  onSectionMenuToggle={() => setSectionDropdownOpen(!sectionDropdownOpen)}
+                  onPreviousPaper={() => {
+                    if (paper) {
+                      const prevPaperNum = getPreviousPaper(paper.number);
+                      if (prevPaperNum !== null) handlePaperClick(prevPaperNum);
+                    }
                   }}
-                >
-                  {currentSection.paper}
-                </div>
-              </div>
-
-              {/* Sticky Section Header - Always visible when a section is active */}
-              {activeSection && (
-                <div
-                  id="sticky-section-title"
-                  data-active="true"
-                  data-has-content={currentSection.section ? 'true' : 'false'}
-                  style={{
-                    position: 'fixed',
-                    top: '105px',
-                    left: 0,
-                    right: 0,
-                    zIndex: 25,
-                    backgroundColor: uiTheme === 'light' ? '#ffffff' : '#1a1a1a',
-                    borderBottom: '2px solid var(--border-color)',
-                    padding: '0.6rem 1.5rem',
-                    width: '100%',
-                    maxWidth: '800px',
-                    margin: '0 auto',
-                    boxShadow: '0 3px 5px rgba(0, 0, 0, 0.2)',
-                    color: uiTheme === 'light' ? '#2c5282' : '#91a7f9',
-                    fontWeight: 700,
-                    fontSize: '1.1rem',
-                    display: 'block',
+                  onNextPaper={() => {
+                    if (paper) {
+                      const nextPaperNum = getNextPaper(paper.number);
+                      if (nextPaperNum !== null) handlePaperClick(nextPaperNum);
+                    }
                   }}
-                >
-                  {currentSection.section || 'Current Section'} {/* Add fallback text */}
-                </div>
+                />
               )}
-
               {/* Paper Introduction */}
               {paper && (
                 <>
@@ -910,117 +556,74 @@ export default function TraditionalReader({ paperId = 1 }: TraditionalReaderProp
                       {/* Add section divider for visual separation */}
                       <UBSectionDivider />
 
-                      {section.paragraphs.map((paragraph, index) => (
-                        <UBParagraph
-                          key={paragraph.number}
-                          paragraph={paragraph}
-                          currentPaper={paper.number}
-                          isTopicChange={index > 0 && index % 3 === 0} // Add topic change spacing every 3 paragraphs
-                        />
-                      ))}
+                      {/* Render section paragraphs */}
+                      <div className="paragraphs">
+                        {section.paragraphs.map((paragraph, index) => (
+                          <UBParagraph
+                            key={paragraph.number}
+                            paragraph={paragraph}
+                            currentPaper={paper.number}
+                          />
+                        ))}
+                      </div>
                     </div>
                   ))}
                 </>
               )}
             </div>
           </div>
-        </div>
-
-        {/* Copy Button */}
-        <button className="copy-button" title="Copy selected text" onClick={handleCopyClick}>
-          <i className="fas fa-copy"></i>
-        </button>
-
+        </div>{' '}
+        {/* End of reader-container */}
         {/* Toast Notification */}
         <div className="toast">Text copied to clipboard!</div>
-
-        {/* Debug Panel - Enhanced for better visibility */}
-        {debugMode && (
+        {/* Reading Progress Bar */}
+        <div className="reading-progress-container">
           <div
-            className="debug-panel"
-            style={{
-              position: 'fixed',
-              top: '150px',
-              right: '20px',
-              background: 'rgba(0,0,0,0.9)',
-              color: 'white',
-              padding: '15px',
-              zIndex: 1000,
-              borderRadius: '5px',
-              maxWidth: '350px',
-              fontFamily: 'monospace',
-              fontSize: '13px',
-              boxShadow: '0 0 10px rgba(0,0,0,0.5)',
-            }}
-          >
-            <h4 style={{ margin: '0 0 10px 0', color: '#7fc8f5' }}>Debug Info</h4>
-            <p style={{ margin: '5px 0' }}>
-              <strong>Active Section:</strong> {activeSection || 'none'}
+            className="reading-progress-bar"
+            style={{ width: `${readingProgress}%` }}
+            aria-label="reading progress"
+          />
+        </div>
+        {/* Copy Button */}
+        <button className="copy-button" onClick={handleCopyClick} title="Copy selected text">
+          <i className="fas fa-copy" />
+        </button>
+        {/* Pullup Panel Component */}
+        <PullupContainer />
+        {/* Debug Info (if enabled) */}
+        {debugMode && (
+          <div className="debug-info">
+            <h3>Debug Info</h3>
+            <p>
+              <strong>Paper ID:</strong> {paperId}
             </p>
-            <p style={{ margin: '5px 0' }}>
-              <strong>Current Section Title:</strong>{' '}
-              <span style={{ color: currentSection.section ? '#90ee90' : '#ff6666' }}>
-                {currentSection.section || 'none'}
-              </span>
+            <p>
+              <strong>UI Theme:</strong> {_uiTheme}
             </p>
-            <p style={{ margin: '5px 0' }}>
-              <strong>Sticky Section Visible:</strong>{' '}
-              <span style={{ color: activeSection ? '#90ee90' : '#ff6666' }}>
-                {activeSection ? 'Yes' : 'No'}
-              </span>
+            <p>
+              <strong>Content Theme:</strong> {contentTheme}
             </p>
-            <p style={{ margin: '5px 0' }}>
+            <p>
               <strong>Section Titles Count:</strong>{' '}
-              {document.querySelectorAll('h3.section-title').length}
+              {document.querySelectorAll('h3.section-heading').length ||
+                document.querySelectorAll('h3.section-title').length}
             </p>
-            <div style={{ marginTop: '10px', display: 'flex', gap: '10px' }}>
+            <p>
+              <strong>Reading Progress:</strong> {readingProgress.toFixed(2)}%
+            </p>
+            <div className="debug-controls">
               <button
-                onClick={() => setDebugMode(false)}
-                style={{
-                  background: '#555',
-                  border: 'none',
-                  color: 'white',
-                  padding: '5px 10px',
-                  borderRadius: '3px',
-                  cursor: 'pointer',
-                }}
-              >
-                Close Debug
-              </button>
-              <button
+                className="debug-button"
                 onClick={() => {
-                  // Force toggle the sticky section title visibility
-                  const stickySection = document.getElementById('sticky-section-title');
-                  if (stickySection) {
-                    // Simple toggle for debugging
-                    if (stickySection.style.display === 'block') {
-                      stickySection.style.display = 'none';
-                    } else {
-                      stickySection.style.display = 'block';
-                      // Make sure it has content
-                      if (!stickySection.textContent || stickySection.textContent.trim() === '') {
-                        stickySection.textContent = currentSection.section || 'Current Section';
-                      }
-                    }
-                  }
-                }}
-                style={{
-                  background: '#2c5282',
-                  border: 'none',
-                  color: 'white',
-                  padding: '5px 10px',
-                  borderRadius: '3px',
-                  cursor: 'pointer',
+                  // Toggle debug mode
+                  setDebugMode(prev => !prev);
                 }}
               >
-                Toggle Section Title
+                Toggle Debug Mode
               </button>
             </div>
           </div>
         )}
-
-        {/* Pullup Container */}
-        <PullupContainer />
       </div>
     </PullupProvider>
   );

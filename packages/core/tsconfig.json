@@ -12,7 +12,9 @@
     "jsxImportSource": "react",
     "lib": ["dom", "dom.iterable", "esnext"],
     "types": ["react", "react-dom", "jest", "jest-axe"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts", "**/__tests__/**"]

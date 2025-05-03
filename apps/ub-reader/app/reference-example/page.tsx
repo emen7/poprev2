@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from &apos;next/link';
+import React from &apos;react';
 
 import ReferenceExampleClient from './client';
 
@@ -7,10 +7,10 @@ export default function ReferenceExamplePage() {
   return (
     <div className="container mx-auto p-8">
       <div className="mb-6">
-        <Link href="/" className="text-blue-600 hover:underline flex items-center">
+        <Link href="/" className="flex items-center text-blue-600 hover:underline">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 mr-1"
+            className="mr-1 size-5"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -24,9 +24,9 @@ export default function ReferenceExamplePage() {
         </Link>
       </div>
 
-      <h1 className="text-3xl font-bold mb-6">UB Reference Detection Example</h1>
+      <h1 className="mb-6 text-3xl font-bold">UB Reference Detection Example</h1>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+      <div className="rounded-lg bg-white p-6 shadow-md dark:bg-gray-800">
         <p className="mb-4">
           This page demonstrates the reference detection and linking functionality for the UB
           Reader. The component automatically detects references to The Urantia Book in text content

@@ -1,6 +1,7 @@
 'use client';
 
-import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
+import type { ReactNode } from &apos;react';
+import React, { createContext, useState, useContext, useEffect } from &apos;react';
 
 // Define the selection menu position type
 interface Position {
@@ -23,7 +24,7 @@ interface HighlightMetadata {
 }
 
 // Local storage key for highlights
-const HIGHLIGHTS_STORAGE_KEY = 'ub-reader-highlights';
+const HIGHLIGHTS_STORAGE_KEY = &apos;ub-reader-highlights';
 
 // Define the highlight manager type
 interface HighlightManager {
@@ -121,7 +122,7 @@ export const HighlightProvider: React.FC<HighlightProviderProps> = ({
 
   // Helper function to save highlights to localStorage
   const saveHighlightsToStorage = (highlightsToSave: Highlight[]) => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== &apos;undefined') {
       try {
         localStorage.setItem(HIGHLIGHTS_STORAGE_KEY, JSON.stringify(highlightsToSave));
       } catch (error) {
@@ -132,7 +133,7 @@ export const HighlightProvider: React.FC<HighlightProviderProps> = ({
 
   // Helper function to load highlights from localStorage
   const loadHighlightsFromStorage = (): Highlight[] => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== &apos;undefined') {
       try {
         const storedHighlights = localStorage.getItem(HIGHLIGHTS_STORAGE_KEY);
         if (storedHighlights) {
@@ -162,7 +163,7 @@ export const HighlightProvider: React.FC<HighlightProviderProps> = ({
   const highlightText = (
     text: string,
     color: string,
-    metadata: HighlightMetadata = { paperId: '0', paragraphId: '0' }
+    metadata: HighlightMetadata = { paperId: &apos;0', paragraphId: &apos;0' }
   ) => {
     const newHighlight: Highlight = {
       id: `highlight-${Date.now()}`,
@@ -240,7 +241,7 @@ export const HighlightProvider: React.FC<HighlightProviderProps> = ({
   return (
     <HighlightContext.Provider
       value={{
-        showHighlights,
+        _showHighlights,
         toggleHighlights,
         highlightText,
         removeHighlight,
@@ -255,7 +256,7 @@ export const HighlightProvider: React.FC<HighlightProviderProps> = ({
         <div
           className="ub-selection-menu"
           style={{
-            position: 'absolute',
+            position: &apos;absolute',
             top: `${selectionMenuPosition.top}px`,
             left: `${selectionMenuPosition.left}px`,
           }}
@@ -267,7 +268,7 @@ export const HighlightProvider: React.FC<HighlightProviderProps> = ({
               setSelectionMenuVisible(false);
             }}
           >
-            <span style={{ backgroundColor: 'rgba(255, 245, 120, 0.6)', padding: '4px 8px' }}>
+            <span style={{ backgroundColor: &apos;rgba(255, 245, 120, 0.6)', padding: &apos;4px 8px' }}>
               A
             </span>
           </button>
@@ -279,7 +280,7 @@ export const HighlightProvider: React.FC<HighlightProviderProps> = ({
               setSelectionMenuVisible(false);
             }}
           >
-            <span style={{ backgroundColor: 'rgba(152, 251, 152, 0.6)', padding: '4px 8px' }}>
+            <span style={{ backgroundColor: &apos;rgba(152, 251, 152, 0.6)', padding: &apos;4px 8px' }}>
               A
             </span>
           </button>
@@ -291,7 +292,7 @@ export const HighlightProvider: React.FC<HighlightProviderProps> = ({
               setSelectionMenuVisible(false);
             }}
           >
-            <span style={{ backgroundColor: 'rgba(176, 196, 222, 0.6)', padding: '4px 8px' }}>
+            <span style={{ backgroundColor: &apos;rgba(176, 196, 222, 0.6)', padding: &apos;4px 8px' }}>
               A
             </span>
           </button>

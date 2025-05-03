@@ -28,9 +28,20 @@ export interface ReaderSettings {
   showParagraphNumbers: boolean;
 
   /**
+   * Whether to show note indicators
+   */
+  showNoteIndicators?: boolean;
+
+  /**
    * The formatting type for paragraphs
    */
   formatType: 'traditional' | 'modern';
+
+  /**
+   * The text alignment for paragraphs
+   * @default 'left'
+   */
+  textAlignment?: 'left' | 'right' | 'justified';
 }
 
 export interface SettingsTabProps {
@@ -92,6 +103,17 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({
   // Handle format type change
   const handleFormatTypeChange = (formatType: 'traditional' | 'modern') => {
     onSettingsChange({ formatType });
+  };
+
+  // Handle text alignment change
+  const handleTextAlignmentChange = (textAlignment: 'left' | 'right' | 'justified') => {
+    onSettingsChange({ textAlignment });
+  };
+
+  // Handle note indicators toggle
+  const handleNoteIndicatorsToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const showNoteIndicators = e.target.checked;
+    onSettingsChange({ showNoteIndicators });
   };
 
   // Determine container classes
@@ -242,6 +264,56 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({
             >
               Modern
             </button>
+          </div>
+        </div>
+
+        {/* Text Alignment */}
+        <div className="settings-control">
+          <span className="settings-label">Text Alignment</span>
+          <div className="settings-format-options">
+            <button
+              className={`settings-format-option ${
+                settings.textAlignment === 'left' || !settings.textAlignment
+                  ? 'settings-format-option-active'
+                  : ''
+              }`}
+              onClick={() => handleTextAlignmentChange('left')}
+            >
+              Left
+            </button>
+            <button
+              className={`settings-format-option ${
+                settings.textAlignment === 'right' ? 'settings-format-option-active' : ''
+              }`}
+              onClick={() => handleTextAlignmentChange('right')}
+            >
+              Right
+            </button>
+            <button
+              className={`settings-format-option ${
+                settings.textAlignment === 'justified' ? 'settings-format-option-active' : ''
+              }`}
+              onClick={() => handleTextAlignmentChange('justified')}
+            >
+              Justified
+            </button>
+          </div>
+        </div>
+
+        {/* Note indicators */}
+        <div className="settings-control">
+          <label htmlFor="note-indicators" className="settings-label">
+            Show Note Indicators
+          </label>
+          <div className="settings-switch">
+            <input
+              id="note-indicators"
+              type="checkbox"
+              checked={settings.showNoteIndicators !== false}
+              onChange={handleNoteIndicatorsToggle}
+              className="settings-checkbox"
+            />
+            <span className="settings-switch-slider"></span>
           </div>
         </div>
       </div>

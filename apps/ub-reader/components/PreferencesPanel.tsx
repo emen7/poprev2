@@ -1,7 +1,7 @@
 'use client';
 
 import { useHighlight } from '@ub/highlighting';
-import React, { useState } from 'react';
+import React, { useState } from &apos;react';
 
 import { useUserPreferences } from '../contexts/UserPreferencesContext';
 
@@ -10,7 +10,7 @@ import { useUserPreferences } from '../contexts/UserPreferencesContext';
  */
 export const PreferencesPanel: React.FC = () => {
   const { preferences, updatePreferences, resetPreferences } = useUserPreferences();
-  const { showHighlights, setShowHighlights } = useHighlight();
+  const { _showHighlights, setShowHighlights } = useHighlight();
   const [isOpen, setIsOpen] = useState(false);
 
   const togglePanel = () => {
@@ -26,7 +26,7 @@ export const PreferencesPanel: React.FC = () => {
     });
   };
 
-  const handleFontSizeChange = (size: 'small' | 'medium' | 'large') => {
+  const handleFontSizeChange = (size: &apos;small' | &apos;medium' | &apos;large') => {
     updatePreferences({
       reader: {
         ...preferences.reader,
@@ -35,7 +35,7 @@ export const PreferencesPanel: React.FC = () => {
     });
   };
 
-  const handleThemeChange = (theme: 'light' | 'dark' | 'system') => {
+  const handleThemeChange = (theme: &apos;light' | &apos;dark' | &apos;system') => {
     updatePreferences({
       reader: {
         ...preferences.reader,
@@ -52,12 +52,12 @@ export const PreferencesPanel: React.FC = () => {
     <div className="preferences-panel">
       <button
         onClick={togglePanel}
-        className="fixed bottom-4 right-4 bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full shadow-lg"
+        className="fixed bottom-4 right-4 rounded-full bg-blue-500 p-2 text-white shadow-lg hover:bg-blue-600"
         aria-label="Preferences"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6"
+          className="size-6"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -78,9 +78,9 @@ export const PreferencesPanel: React.FC = () => {
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl p-6 max-w-md w-full">
-            <div className="flex justify-between items-center mb-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-xl">
+            <div className="mb-4 flex items-center justify-between">
               <h2 className="text-xl font-bold">Reader Preferences</h2>
               <button
                 onClick={togglePanel}
@@ -89,7 +89,7 @@ export const PreferencesPanel: React.FC = () => {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
+                  className="size-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -106,58 +106,58 @@ export const PreferencesPanel: React.FC = () => {
 
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <label className="flex items-center cursor-pointer">
+                <label className="flex cursor-pointer items-center">
                   <input
                     type="checkbox"
                     checked={preferences.reader.showParagraphNumbers}
                     onChange={handleToggleParagraphNumbers}
-                    className="form-checkbox h-5 w-5 text-blue-600"
+                    className="form-checkbox size-5 text-blue-600"
                   />
                   <span className="ml-2 text-gray-700">Show paragraph numbers</span>
                 </label>
               </div>
 
               <div className="flex items-center justify-between">
-                <label className="flex items-center cursor-pointer">
+                <label className="flex cursor-pointer items-center">
                   <input
                     type="checkbox"
-                    checked={showHighlights}
+                    checked={_showHighlights}
                     onChange={e => setShowHighlights(e.target.checked)}
-                    className="form-checkbox h-5 w-5 text-blue-600"
+                    className="form-checkbox size-5 text-blue-600"
                   />
                   <span className="ml-2 text-gray-700">Show highlights</span>
                 </label>
               </div>
 
               <div>
-                <label className="block text-gray-700 mb-2">Font Size</label>
+                <label className="mb-2 block text-gray-700">Font Size</label>
                 <div className="flex space-x-2">
                   <button
                     onClick={() => handleFontSizeChange('small')}
-                    className={`px-4 py-2 rounded ${
-                      preferences.reader.fontSize === 'small'
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-gray-200 text-gray-700'
+                    className={`rounded px-4 py-2 ${
+                      preferences.reader.fontSize === &apos;small'
+                        ? &apos;bg-blue-500 text-white'
+                        : &apos;bg-gray-200 text-gray-700'
                     }`}
                   >
                     Small
                   </button>
                   <button
                     onClick={() => handleFontSizeChange('medium')}
-                    className={`px-4 py-2 rounded ${
-                      preferences.reader.fontSize === 'medium'
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-gray-200 text-gray-700'
+                    className={`rounded px-4 py-2 ${
+                      preferences.reader.fontSize === &apos;medium'
+                        ? &apos;bg-blue-500 text-white'
+                        : &apos;bg-gray-200 text-gray-700'
                     }`}
                   >
                     Medium
                   </button>
                   <button
                     onClick={() => handleFontSizeChange('large')}
-                    className={`px-4 py-2 rounded ${
-                      preferences.reader.fontSize === 'large'
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-gray-200 text-gray-700'
+                    className={`rounded px-4 py-2 ${
+                      preferences.reader.fontSize === &apos;large'
+                        ? &apos;bg-blue-500 text-white'
+                        : &apos;bg-gray-200 text-gray-700'
                     }`}
                   >
                     Large
@@ -166,34 +166,34 @@ export const PreferencesPanel: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-gray-700 mb-2">Theme</label>
+                <label className="mb-2 block text-gray-700">Theme</label>
                 <div className="flex space-x-2">
                   <button
                     onClick={() => handleThemeChange('light')}
-                    className={`px-4 py-2 rounded ${
-                      preferences.reader.theme === 'light'
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-gray-200 text-gray-700'
+                    className={`rounded px-4 py-2 ${
+                      preferences.reader.theme === &apos;light'
+                        ? &apos;bg-blue-500 text-white'
+                        : &apos;bg-gray-200 text-gray-700'
                     }`}
                   >
                     Light
                   </button>
                   <button
                     onClick={() => handleThemeChange('dark')}
-                    className={`px-4 py-2 rounded ${
-                      preferences.reader.theme === 'dark'
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-gray-200 text-gray-700'
+                    className={`rounded px-4 py-2 ${
+                      preferences.reader.theme === &apos;dark'
+                        ? &apos;bg-blue-500 text-white'
+                        : &apos;bg-gray-200 text-gray-700'
                     }`}
                   >
                     Dark
                   </button>
                   <button
                     onClick={() => handleThemeChange('system')}
-                    className={`px-4 py-2 rounded ${
-                      preferences.reader.theme === 'system'
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-gray-200 text-gray-700'
+                    className={`rounded px-4 py-2 ${
+                      preferences.reader.theme === &apos;system'
+                        ? &apos;bg-blue-500 text-white'
+                        : &apos;bg-gray-200 text-gray-700'
                     }`}
                   >
                     System
@@ -201,7 +201,7 @@ export const PreferencesPanel: React.FC = () => {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-gray-200">
+              <div className="border-t border-gray-200 pt-4">
                 <button
                   onClick={handleResetPreferences}
                   className="text-red-500 hover:text-red-700"

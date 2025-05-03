@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from &apos;next/link';
+import React from &apos;react';
 
 import PaperNavigation from '../../../components/PaperNavigation';
 import PaperTTSPlayerWrapper from '../../../components/PaperTTSPlayerWrapper';
@@ -11,39 +11,39 @@ const getPaper = async (id: string) => {
   return {
     number: parseInt(id, 10),
     title: `Paper ${id}`,
-    author: 'Divine Counselor',
+    author: &apos;Divine Counselor',
     sections: [
       {
         number: 1,
-        title: 'Introduction',
+        title: &apos;Introduction',
         paragraphs: [
           {
             number: 1,
-            text: 'This is a sample paragraph for demonstration purposes. In the actual implementation, this would be real content from The Urantia Book. See Paper 2, Section 1 for more information.',
+            text: &apos;This is a sample paragraph for demonstration purposes. In the actual implementation, this would be real content from The Urantia Book. See Paper 2, Section 1 for more information.',
           },
           {
             number: 2,
-            text: 'Another sample paragraph. The real implementation would fetch this data from a database or API. You can also refer to Section 3 of this paper for more details.',
+            text: &apos;Another sample paragraph. The real implementation would fetch this data from a database or API. You can also refer to Section 3 of this paper for more details.',
           },
         ],
       },
       {
         number: 2,
-        title: 'Sample Section',
+        title: &apos;Sample Section',
         paragraphs: [
           {
             number: 1,
-            text: 'This is a sample paragraph in section 2. It demonstrates how sections and paragraphs are structured. For more information on this topic, see Paper 3:2.5 or Paper 1-3.',
+            text: &apos;This is a sample paragraph in section 2. It demonstrates how sections and paragraphs are structured. For more information on this topic, see Paper 3:2.5 or Paper 1-3.',
           },
         ],
       },
       {
         number: 3,
-        title: 'References Section',
+        title: &apos;References Section',
         paragraphs: [
           {
             number: 1,
-            text: 'This section demonstrates various reference formats: Paper 1, Section 3; 2:1; 3-2; Paper 4; Section 2.',
+            text: &apos;This section demonstrates various reference formats: Paper 1, Section 3; 2:1; 3-2; Paper 4; Section 2.',
           },
         ],
       },
@@ -69,9 +69,9 @@ export default async function PaperPage({ params }: { params: { id: string } }) 
         <PaperTTSPlayerWrapper paper={paper} />
 
         {/* Table of Contents for this paper */}
-        <div className="my-6 p-4 bg-gray-50 rounded">
-          <h2 className="text-xl font-semibold mb-2">Sections in this Paper</h2>
-          <ul className="pl-6 space-y-1">
+        <div className="my-6 rounded bg-gray-50 p-4">
+          <h2 className="mb-2 text-xl font-semibold">Sections in this Paper</h2>
+          <ul className="space-y-1 pl-6">
             {paper.sections.map(section => (
               <li key={section.number}>
                 <Link

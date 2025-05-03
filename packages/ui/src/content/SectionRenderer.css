@@ -10,10 +10,10 @@
 
 /* Section title */
 .section-title {
-  font-size: 1.25rem;
+  font-size: 24px;
   font-weight: 600;
   margin: 1.5rem 0 1rem;
-  color: var(--section-title-color, #7fc8f5);
+  color: var(--section-title-color, #f0a868);
   padding-top: 0.5rem;
   border-top: 1px solid var(--section-border-color, #333);
 }
@@ -40,7 +40,6 @@
 /* Traditional formatting */
 .section-format-traditional .section-title {
   font-family: Georgia, Times, 'Times New Roman', serif;
-  text-transform: uppercase;
 }
 
 .section-format-traditional .section-content {
@@ -56,7 +55,6 @@
     'Segoe UI',
     Roboto,
     sans-serif;
-  text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 

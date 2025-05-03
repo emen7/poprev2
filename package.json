@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
+    "build:analyze": "ANALYZE=true turbo run build",
     "lint": "turbo run lint",
     "lint:css": "stylelint \"**/*.css\" --fix",
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx .",
@@ -16,8 +17,13 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,json,md}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,css,json,md}\"",
     "test": "turbo run test",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
     "clean": "turbo run clean",
-    "prepare": "husky"
+    "prepare": "husky",
+    "type-check": "tsc --build --force",
+    "type-check:watch": "tsc --build --watch"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -35,21 +41,35 @@
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
+    "@next/bundle-analyzer": "^15.3.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@types/jest-axe": "^3.5.9",
     "@typescript-eslint/eslint-plugin": "^8.29.1",
     "@typescript-eslint/parser": "^8.29.1",
+    "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^8.40.0",
     "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jest-dom": "^5.5.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-prettier": "^5.2.6",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-tailwindcss": "^3.18.0",
+    "eslint-plugin-testing-library": "^7.1.1",
+    "glob": "^11.0.2",
     "husky": "^9.1.7",
+    "jest-axe": "^10.0.0",
+    "jsdom": "^26.0.0",
     "lint-staged": "^15.5.1",
     "prettier": "^3.5.3",
     "stylelint": "^16.18.0",
     "stylelint-config-standard": "^38.0.0",
     "turbo": "^1.10.0",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "typescript-plugin-css-modules": "^5.1.0",
+    "vitest": "^3.1.1"
   },
   "engines": {
     "node": ">=16.0.0"

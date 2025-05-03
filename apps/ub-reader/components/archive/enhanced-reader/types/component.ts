@@ -4,7 +4,7 @@
  * This file contains type definitions for the Enhanced Reader components.
  */
 
-import { EnhancedReaderConfig } from './config';
+import type { EnhancedReaderConfig } from './config';
 
 /**
  * Enhanced Reader Props

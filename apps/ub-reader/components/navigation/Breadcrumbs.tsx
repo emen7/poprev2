@@ -1,7 +1,7 @@
 'use client';
 
-import Link from 'next/link';
-import React from 'react';
+import Link from &apos;next/link';
+import React from &apos;react';
 
 import { getPartForPaper } from '../../services/PaperDataService';
 
@@ -17,10 +17,10 @@ interface BreadcrumbsProps {
  * This component displays breadcrumb navigation showing the current location
  * in the book hierarchy (part > paper > section).
  */
-export default function Breadcrumbs({ paperId, paperTitle, sectionTitle }: BreadcrumbsProps) {
+export default function Breadcrumbs({ paperId, _paperTitle, sectionTitle }: BreadcrumbsProps) {
   // Get part information
   const partNumber = getPartForPaper(paperId);
-  const partTitle = getPartTitle(partNumber);
+  const _partTitle = getPartTitle(partNumber);
 
   return (
     <nav className="breadcrumbs" aria-label="breadcrumbs">
@@ -43,7 +43,7 @@ export default function Breadcrumbs({ paperId, paperTitle, sectionTitle }: Bread
 
         <li className="breadcrumbs-item">
           <Link href={`/traditional-reader/${paperId}`} className="breadcrumbs-link">
-            {paperId === 0 ? 'Foreword' : `Paper ${paperId}`}
+            {paperId === 0 ? &apos;Foreword' : `Paper ${paperId}`}
           </Link>
           {sectionTitle && <span className="breadcrumbs-separator">/</span>}
         </li>
@@ -64,13 +64,13 @@ export default function Breadcrumbs({ paperId, paperTitle, sectionTitle }: Bread
 function getPartTitle(partNumber: number): string {
   switch (partNumber) {
     case 1:
-      return 'THE CENTRAL AND SUPERUNIVERSES';
+      return &apos;THE CENTRAL AND SUPERUNIVERSES';
     case 2:
-      return 'THE LOCAL UNIVERSE';
+      return &apos;THE LOCAL UNIVERSE';
     case 3:
-      return 'THE HISTORY OF URANTIA';
+      return &apos;THE HISTORY OF URANTIA';
     case 4:
-      return 'THE LIFE AND TEACHINGS OF JESUS';
+      return &apos;THE LIFE AND TEACHINGS OF JESUS';
     default:
       return '';
   }

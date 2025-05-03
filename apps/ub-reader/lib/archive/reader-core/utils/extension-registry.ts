@@ -4,7 +4,7 @@
  * This file implements the extension registry for managing Reader extensions.
  */
 
-import { ReaderExtension, ExtensionRegistry } from '../models/extension';
+import type { ReaderExtension, ExtensionRegistry } from '../models/extension';
 
 /**
  * Implementation of the ExtensionRegistry interface
@@ -28,7 +28,7 @@ export class ReaderExtensionRegistry implements ExtensionRegistry {
     }
 
     this.extensions.set(extension.id, extension);
-    console.log(`Extension ${extension.name} (${extension.id}) registered successfully.`);
+    // Removed console.log registered successfully.`);
   }
 
   /**
@@ -36,15 +36,15 @@ export class ReaderExtensionRegistry implements ExtensionRegistry {
    *
    * @param extensionId The ID of the extension to unregister
    */
-  public unregister(extensionId: string): void {
-    if (!this.extensions.has(extensionId)) {
-      console.warn(`Extension with ID ${extensionId} is not registered.`);
+  public unregister(_extensionId: string): void {
+    if (!this.extensions.has(_extensionId)) {
+      console.warn(`Extension with ID ${_extensionId} is not registered.`);
       return;
     }
 
-    const extension = this.extensions.get(extensionId);
-    this.extensions.delete(extensionId);
-    console.log(`Extension ${extension?.name} (${extensionId}) unregistered successfully.`);
+    const extension = this.extensions.get(_extensionId);
+    this.extensions.delete(_extensionId);
+    // Removed console.log unregistered successfully.`);
   }
 
   /**
@@ -53,8 +53,8 @@ export class ReaderExtensionRegistry implements ExtensionRegistry {
    * @param extensionId The ID of the extension to get
    * @returns The extension, or undefined if not found
    */
-  public getExtension(extensionId: string): ReaderExtension | undefined {
-    return this.extensions.get(extensionId);
+  public getExtension(_extensionId: string): ReaderExtension | undefined {
+    return this.extensions.get(_extensionId);
   }
 
   /**
@@ -75,7 +75,7 @@ export class ReaderExtensionRegistry implements ExtensionRegistry {
   public getComponentsByType(componentType: string): Record<string, React.ComponentType<any>> {
     const components: Record<string, React.ComponentType<any>> = {};
 
-    this.extensions.forEach((extension, extensionId) => {
+    this.extensions.forEach((extension, _extensionId) => {
       const extensionComponents = extension.getComponents();
       const component = extensionComponents[componentType] as React.ComponentType<any>;
 
@@ -159,10 +159,10 @@ export class ReaderExtensionRegistry implements ExtensionRegistry {
    * @param extensionConfigs Configuration for each extension
    */
   public initializeExtensions(extensionConfigs: Record<string, any> = {}): void {
-    this.extensions.forEach((extension, extensionId) => {
+    this.extensions.forEach((extension, _extensionId) => {
       const config = extensionConfigs[extensionId] || {};
       extension.initialize(config);
-      console.log(`Extension ${extension.name} (${extensionId}) initialized.`);
+      // Removed console.log initialized.`);
     });
   }
 }

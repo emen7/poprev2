@@ -1,0 +1,16 @@
+'use client';
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { useUserPreferences } from '../../contexts/UserPreferencesContext';
+/**
+ * Test page for user preferences
+ */
+export default function TestPreferencesPage() {
+    const { preferences, updatePreferences, resetPreferences } = useUserPreferences();
+    const toggleParagraphNumbers = () => {
+        updatePreferences({
+            reader: Object.assign(Object.assign({}, preferences.reader), { showParagraphNumbers: !preferences.reader.showParagraphNumbers }),
+        });
+    };
+    return (_jsxs("div", { className: "container mx-auto px-4 py-8", children: [_jsx("h1", { className: "text-3xl font-bold mb-6", children: "User Preferences Test" }), _jsxs("div", { className: "bg-white rounded-lg shadow p-6 mb-6", children: [_jsx("h2", { className: "text-xl font-semibold mb-4", children: "Current Preferences" }), _jsxs("div", { className: "mb-4", children: [_jsx("div", { className: "font-medium", children: "Show Paragraph Numbers:" }), _jsx("div", { className: "ml-4", children: preferences.reader.showParagraphNumbers ? 'Yes' : 'No' })] }), _jsxs("div", { className: "mb-4", children: [_jsx("div", { className: "font-medium", children: "Font Size:" }), _jsx("div", { className: "ml-4", children: preferences.reader.fontSize })] }), _jsxs("div", { className: "mb-4", children: [_jsx("div", { className: "font-medium", children: "Theme:" }), _jsx("div", { className: "ml-4", children: preferences.reader.theme })] }), _jsxs("div", { className: "mb-4", children: [_jsx("div", { className: "font-medium", children: "TTS Settings:" }), _jsxs("div", { className: "ml-4", children: [_jsxs("div", { children: ["Voice ID: ", preferences.reader.tts.voiceId || 'Default'] }), _jsxs("div", { children: ["Rate: ", preferences.reader.tts.rate] }), _jsxs("div", { children: ["Pitch: ", preferences.reader.tts.pitch] })] })] })] }), _jsxs("div", { className: "bg-white rounded-lg shadow p-6 mb-6", children: [_jsx("h2", { className: "text-xl font-semibold mb-4", children: "Test Controls" }), _jsxs("div", { className: "flex flex-col space-y-4", children: [_jsx("button", { onClick: toggleParagraphNumbers, className: "bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded", children: "Toggle Paragraph Numbers" }), _jsx("button", { onClick: resetPreferences, className: "bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded", children: "Reset All Preferences" })] })] }), _jsxs("div", { className: "bg-white rounded-lg shadow p-6", children: [_jsx("h2", { className: "text-xl font-semibold mb-4", children: "Sample Paragraphs" }), _jsxs("div", { className: "ub-paragraph mb-4", children: [preferences.reader.showParagraphNumbers && (_jsx("span", { className: "ub-paragraph-number", children: "1" })), _jsx("span", { className: "ub-paragraph-text", children: "This is a sample paragraph. The paragraph number should be visible or hidden based on your preference setting." })] }), _jsxs("div", { className: "ub-paragraph mb-4", children: [preferences.reader.showParagraphNumbers && (_jsx("span", { className: "ub-paragraph-number", children: "2" })), _jsx("span", { className: "ub-paragraph-text", children: "This is another sample paragraph. Try toggling the paragraph numbers to see the effect." })] })] })] }));
+}
+//# sourceMappingURL=page.js.map

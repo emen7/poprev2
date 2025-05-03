@@ -1,8 +1,11 @@
 'use client';
 
-import React from 'react';
+import React from &apos;react';
 
-import { ReaderSettings } from './types';
+import { usePullup } from '../../contexts/PullupContext';
+import { ThemeSettingsPanel } from '../ThemeSettingsPanel';
+
+import type { ReaderSettings } from './types';
 import './SettingsTab.css';
 
 export interface SettingsTabProps {
@@ -10,11 +13,6 @@ export interface SettingsTabProps {
    * The current reader settings
    */
   settings: ReaderSettings;
-
-  /**
-   * Function called when settings are changed
-   */
-  onSettingsChange: (settings: Partial<ReaderSettings>) => void;
 
   /**
    * Additional CSS class name
@@ -26,36 +24,43 @@ export interface SettingsTabProps {
  * SettingsTab Component
  *
  * A tab for adjusting reader settings.
+ * Uses PullupContext for state management.
+ *
+ * Note: We removed the onSettingsChange prop to fix Next.js serialization errors.
+ * The component now uses the context directly for settings updates.
  */
-export function SettingsTab({ settings, onSettingsChange, className = '' }: SettingsTabProps) {
+export function SettingsTab({ settings, className = '' }: SettingsTabProps) {
+  // Get pullup context
+  const { updateSettings } = usePullup();
+
   // Handle font size change
   const handleFontSizeChange = (fontSize: number) => {
-    onSettingsChange({ fontSize });
+    updateSettings({ fontSize });
   };
 
   // Handle line height change
   const handleLineHeightChange = (lineHeight: number) => {
-    onSettingsChange({ lineHeight });
+    updateSettings({ lineHeight });
   };
 
   // Handle font family change
   const handleFontFamilyChange = (fontFamily: string) => {
-    onSettingsChange({ fontFamily });
+    updateSettings({ fontFamily });
   };
 
   // Handle theme change
-  const handleThemeChange = (theme: 'light' | 'dark') => {
-    onSettingsChange({ theme });
+  const handleThemeChange = (theme: &apos;light' | &apos;dark') => {
+    updateSettings({ theme });
   };
 
   // Handle paragraph numbers toggle
   const handleParagraphNumbersToggle = (showParagraphNumbers: boolean) => {
-    onSettingsChange({ showParagraphNumbers });
+    updateSettings({ showParagraphNumbers });
   };
 
   // Handle format type change
-  const handleFormatTypeChange = (formatType: 'traditional' | 'modern') => {
-    onSettingsChange({ formatType });
+  const handleFormatTypeChange = (formatType: &apos;traditional' | &apos;modern') => {
+    updateSettings({ formatType });
   };
 
   // Determine container classes
@@ -70,25 +75,25 @@ export function SettingsTab({ settings, onSettingsChange, className = '' }: Sett
         <h4 className="settings-section-title">Font Size</h4>
         <div className="settings-options">
           <button
-            className={`settings-option-button ${settings.fontSize === 14 ? 'active' : ''}`}
+            className={`settings-option-button ${settings.fontSize === 14 ? &apos;active' : ''}`}
             onClick={() => handleFontSizeChange(14)}
           >
             Small
           </button>
           <button
-            className={`settings-option-button ${settings.fontSize === 16 ? 'active' : ''}`}
+            className={`settings-option-button ${settings.fontSize === 16 ? &apos;active' : ''}`}
             onClick={() => handleFontSizeChange(16)}
           >
             Medium
           </button>
           <button
-            className={`settings-option-button ${settings.fontSize === 18 ? 'active' : ''}`}
+            className={`settings-option-button ${settings.fontSize === 18 ? &apos;active' : ''}`}
             onClick={() => handleFontSizeChange(18)}
           >
             Large
           </button>
           <button
-            className={`settings-option-button ${settings.fontSize === 20 ? 'active' : ''}`}
+            className={`settings-option-button ${settings.fontSize === 20 ? &apos;active' : ''}`}
             onClick={() => handleFontSizeChange(20)}
           >
             X-Large
@@ -101,19 +106,19 @@ export function SettingsTab({ settings, onSettingsChange, className = '' }: Sett
         <h4 className="settings-section-title">Line Spacing</h4>
         <div className="settings-options">
           <button
-            className={`settings-option-button ${settings.lineHeight === 1.4 ? 'active' : ''}`}
+            className={`settings-option-button ${settings.lineHeight === 1.4 ? &apos;active' : ''}`}
             onClick={() => handleLineHeightChange(1.4)}
           >
             Compact
           </button>
           <button
-            className={`settings-option-button ${settings.lineHeight === 1.6 ? 'active' : ''}`}
+            className={`settings-option-button ${settings.lineHeight === 1.6 ? &apos;active' : ''}`}
             onClick={() => handleLineHeightChange(1.6)}
           >
             Normal
           </button>
           <button
-            className={`settings-option-button ${settings.lineHeight === 1.8 ? 'active' : ''}`}
+            className={`settings-option-button ${settings.lineHeight === 1.8 ? &apos;active' : ''}`}
             onClick={() => handleLineHeightChange(1.8)}
           >
             Relaxed
@@ -127,7 +132,7 @@ export function SettingsTab({ settings, onSettingsChange, className = '' }: Sett
         <div className="settings-options">
           <button
             className={`settings-option-button ${
-              settings.fontFamily === 'Arial, sans-serif' ? 'active' : ''
+              settings.fontFamily === &apos;Arial, sans-serif' ? &apos;active' : ''
             }`}
             onClick={() => handleFontFamilyChange('Arial, sans-serif')}
           >
@@ -135,7 +140,7 @@ export function SettingsTab({ settings, onSettingsChange, className = '' }: Sett
           </button>
           <button
             className={`settings-option-button ${
-              settings.fontFamily === 'Georgia, serif' ? 'active' : ''
+              settings.fontFamily === &apos;Georgia, serif' ? &apos;active' : ''
             }`}
             onClick={() => handleFontFamilyChange('Georgia, serif')}
           >
@@ -144,23 +149,10 @@ export function SettingsTab({ settings, onSettingsChange, className = '' }: Sett
         </div>
       </div>
 
-      {/* Theme */}
+      {/* Theme - Using the shared ThemeSettingsPanel component */}
       <div className="settings-section">
         <h4 className="settings-section-title">Theme</h4>
-        <div className="settings-options">
-          <button
-            className={`settings-option-button ${settings.theme === 'light' ? 'active' : ''}`}
-            onClick={() => handleThemeChange('light')}
-          >
-            Light
-          </button>
-          <button
-            className={`settings-option-button ${settings.theme === 'dark' ? 'active' : ''}`}
-            onClick={() => handleThemeChange('dark')}
-          >
-            Dark
-          </button>
-        </div>
+        <ThemeSettingsPanel inline={true} isOpen={true} onClose={() => {}} />
       </div>
 
       {/* Format Type */}
@@ -169,14 +161,14 @@ export function SettingsTab({ settings, onSettingsChange, className = '' }: Sett
         <div className="settings-options">
           <button
             className={`settings-option-button ${
-              settings.formatType === 'traditional' ? 'active' : ''
+              settings.formatType === &apos;traditional' ? &apos;active' : ''
             }`}
             onClick={() => handleFormatTypeChange('traditional')}
           >
             Traditional
           </button>
           <button
-            className={`settings-option-button ${settings.formatType === 'modern' ? 'active' : ''}`}
+            className={`settings-option-button ${settings.formatType === &apos;modern' ? &apos;active' : ''}`}
             onClick={() => handleFormatTypeChange('modern')}
           >
             Modern
@@ -189,13 +181,13 @@ export function SettingsTab({ settings, onSettingsChange, className = '' }: Sett
         <h4 className="settings-section-title">Paragraph Numbers</h4>
         <div className="settings-options">
           <button
-            className={`settings-option-button ${settings.showParagraphNumbers ? 'active' : ''}`}
+            className={`settings-option-button ${settings.showParagraphNumbers ? &apos;active' : ''}`}
             onClick={() => handleParagraphNumbersToggle(true)}
           >
             Show
           </button>
           <button
-            className={`settings-option-button ${!settings.showParagraphNumbers ? 'active' : ''}`}
+            className={`settings-option-button ${!settings.showParagraphNumbers ? &apos;active' : ''}`}
             onClick={() => handleParagraphNumbersToggle(false)}
           >
             Hide
