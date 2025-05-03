@@ -36,7 +36,7 @@ export const reportWebVitals = (onPerfEntry?: ReportHandler): void => {
  *
  * @param metric - The Web Vitals metric to report
  */
-export const analyticsReporter: ReportHandler = metric => {
+export const analyticsReporter = (metric: Metric): void => {
   // Log metrics to console in development
   if (process.env.NODE_ENV === 'development') {
     // eslint-disable-next-line no-console
