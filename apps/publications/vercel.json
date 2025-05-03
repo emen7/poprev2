@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "cd ../.. && pnpm turbo run build --filter=ub-reader...",
+  "buildCommand": "cd ../.. && pnpm turbo run build --filter=ub-publications...",
   "installCommand": "cd ../.. && pnpm install --no-frozen-lockfile",
   "outputDirectory": ".next",
   "headers": [
@@ -35,18 +35,7 @@
       ]
     }
   ],
-  "redirects": [
-    {
-      "source": "/paper/1",
-      "destination": "/",
-      "permanent": false
-    }
-  ],
   "rewrites": [
-    {
-      "source": "/index.html",
-      "destination": "/"
-    },
     {
       "source": "/(.*)",
       "destination": "/$1"

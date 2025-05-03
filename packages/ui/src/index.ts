@@ -3,11 +3,13 @@
  *
  * This is the main entry point for the UI components package.
  * It exports all components, hooks, and utilities for use in applications.
+ *
+ * Includes accessibility utilities, layout components, navigation, content rendering,
+ * and specialized components for the UB Reader application.
  */
 
 // Layout Components
 export { ThreeRowHeader, HeaderRow, DynamicSectionTitle } from './layout';
-
 // Navigation Components
 export {
   DualHamburgerNavigation,
@@ -19,7 +21,7 @@ export {
 } from './navigation';
 
 // Content Components
-export { ContentRenderer, ParagraphRenderer, SectionRenderer } from './content';
+export { ContentRenderer, ParagraphRenderer, SectionRenderer, UBContentRenderer } from './content';
 
 // Re-export content types with namespace to avoid conflicts
 import * as ContentTypes from './content';
@@ -30,6 +32,14 @@ export { FormatToggle } from './settings';
 
 // Hooks
 export { useFormatting } from './hooks';
+
+// Re-export content types
+export type {
+  ContentRendererProps,
+  ParagraphRendererProps,
+  SectionRendererProps,
+  UBContentRendererProps,
+} from './content';
 
 // Re-export types from hooks
 export type { FormatType, UseFormattingOptions, UseFormattingResult } from './hooks';
@@ -80,3 +90,10 @@ export { PullupTypes };
 
 // Reader Components
 export * from './components';
+
+// Accessibility Utilities
+export * from './accessibility';
+
+// Re-export accessibility types with namespace to avoid conflicts
+import * as AccessibilityUtils from './accessibility';
+export { AccessibilityUtils };

@@ -1,13 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { ThemeProvider } from '../contexts/ThemeContext';
 import { UserPreferencesProvider } from '../contexts/UserPreferencesContext';
 import { HighlightProvider } from '../components/HighlightProvider';
+import { DebugHelper } from '../components/debug/DebugHelper';
+import { analyticsReporter, reportWebVitals } from '../lib/web-vitals';
 
 import '../styles/globals.css';
 import '../styles/global.css'; // Import our new global CSS
+import '../styles/header-variables.css'; // Import header variables first
+import '../styles/themes/global.css'; // Import our centralized theme variables
+import '../styles/theme-transitions.css'; // Import theme transition styles
 import '../styles/themes/index.css'; // Import theme styles
 import '../styles/highlighting/highlighting.css'; // Import highlighting styles
+import '../styles/three-row-header.css'; // Import 3-row header styles
+import '../styles/fixed-width-layout.css'; // Import fixed-width layout styles
+import '../styles/desktop-pullup.css'; // Import desktop pullup styles
+
+// Report web vitals
+export function reportWebVitalsMetrics(metric: {
+  name: string;
+  value: number;
+  delta: number;
+  id: string;
+  navigationType: string;
+}) {
+  analyticsReporter(metric);
+}
 
 export const metadata = {
   title: 'UB Reader',
@@ -15,6 +34,11 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // Initialize web vitals reporting
+  useEffect(() => {
+    reportWebVitals(analyticsReporter);
+  }, []);
+
   return (
     <html lang="en">
       <head>
@@ -22,13 +46,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         />
+        <meta name="color-scheme" content="light dark" />
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#222222" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body>
-        {/* Restore the original providers for backward compatibility */}
+        {/* Providers for theme, preferences, and highlighting */}
         <UserPreferencesProvider>
           <ThemeProvider>
             <HighlightProvider containerSelector=".ub-paper">
               <main className="min-h-screen">{children}</main>
+              <DebugHelper />
             </HighlightProvider>
           </ThemeProvider>
         </UserPreferencesProvider>

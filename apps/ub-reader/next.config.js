@@ -6,13 +6,14 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const nextConfig = {
   reactStrictMode: true,
-  // Disable ESLint and TypeScript type checking during build to avoid errors
+  // Enable ESLint and TypeScript type checking during build
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
+  // Ensure all @ub-ecosystem packages are transpiled
   transpilePackages: [
     '@ub-ecosystem/ui',
     '@ub-ecosystem/content-transformer',
@@ -24,14 +25,33 @@ const nextConfig = {
     '@ub-ecosystem/core',
     '@ub-ecosystem/theme-system',
     '@ub/highlighting',
+    '@ub-ecosystem/content-storage',
+    '@ub-ecosystem/table-transformer',
   ],
+  // Performance optimizations
+  swcMinify: true,
+  compiler: {
+    // Enable React compiler optimizations
+    reactRemoveProperties: process.env.NODE_ENV === 'production',
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  // Image optimization settings
+  images: {
+    domains: ['localhost'],
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+  },
   // Ensure we can access the content directory
   experimental: {
     outputFileTracingRoot: '../../',
+    // Enable app directory features
+    serverActions: true,
   },
   // Override any existing redirects
   async redirects() {
     return [];
   },
 };
+
 module.exports = withBundleAnalyzer(nextConfig);
