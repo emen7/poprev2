@@ -1,0 +1,41 @@
+name: Lighthouse CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      # Setup pnpm first
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8.15.5
+          
+      # Then setup Node.js with pnpm cache
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+          
+      - name: Install dependencies
+        run: pnpm install
+        
+      - name: Build
+        run: pnpm build
+        
+      - name: Start server
+        run: pnpm --filter=ub-reader start & npx wait-on http://localhost:3000
+        
+      - name: Run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli@0.12.x
+          lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
