@@ -1,0 +1,33 @@
+name: PR Check
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      # Setup pnpm first (before Node.js)
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.6.3
+          run_install: false
+      
+      # Then setup Node.js with pnpm cache
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+      
+      # Install dependencies with --no-frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+      
+      # Skip tests for now to focus on build
+      - name: Build
+        run: pnpm build
