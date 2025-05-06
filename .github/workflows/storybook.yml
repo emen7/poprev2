@@ -1,11 +1,13 @@
-name: PR Check
+name: Storybook Check
 on:
   pull_request:
     branches: [main]
+    paths:
+      - 'packages/ui/**'
 
 jobs:
   build:
-    name: Build
+    name: Build Storybook
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,6 +27,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      # Skip tests for now to focus on build
-      - name: Build
-        run: pnpm build
+      # Build state-management package first
+      - name: Build state-management
+        run: pnpm --filter=@ub-ecosystem/state-management build
+
+      # Build UI package
+      - name: Build UI
+        run: pnpm --filter=@ub-ecosystem/ui build
+
+      # Build Storybook
+      - name: Build Storybook
+        run: cd packages/ui && npx storybook build
