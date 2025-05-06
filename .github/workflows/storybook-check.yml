@@ -11,25 +11,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       # Install pnpm globally
       - name: Install pnpm
         run: npm install -g pnpm@8.6.3
-      
+
       # Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      
+
       # Install dependencies with --no-frozen-lockfile
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
-      
+
       # Build UI package
       - name: Build UI
         run: pnpm --filter=@ub-ecosystem/ui build
-      
+
       # Build Storybook
       - name: Build Storybook
-        run: pnpm --filter=@ub-ecosystem/ui build-storybook
+        run: cd packages/ui && npx storybook build

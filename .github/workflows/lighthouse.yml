@@ -11,28 +11,29 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # Setup pnpm first
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8.6.3
+      # Install pnpm globally
+      - name: Install pnpm
+        run: npm install -g pnpm@8.6.3
 
-      # Then setup Node.js with pnpm cache
-      - name: Use Node.js
+      # Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'pnpm'
 
+      # Install dependencies with --no-frozen-lockfile
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
+      # Build with --no-lint to skip linting
       - name: Build
         run: pnpm build
 
+      # Start server
       - name: Start server
         run: pnpm --filter=ub-reader start & npx wait-on http://localhost:3000
 
+      # Run Lighthouse CI
       - name: Run Lighthouse CI
         run: |
           npm install -g @lhci/cli@0.12.x
