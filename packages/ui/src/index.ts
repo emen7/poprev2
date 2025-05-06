@@ -36,6 +36,7 @@ export {
   SectionRenderer,
   UBContentRenderer,
   ParagraphComponent,
+  SectionTitle,
 } from './content';
 
 // Re-export content types with namespace to avoid conflicts
@@ -45,7 +46,7 @@ export { ContentTypes };
 export { FormatToggle } from './settings';
 
 // Theme Components
-export { ThemeToggle } from './theme';
+export { ThemeToggle, ReaderThemeProvider, useReaderTheme } from './theme';
 
 // Hooks
 export { useFormatting } from './hooks';
@@ -62,7 +63,14 @@ export type {
 export type { FormatType, UseFormattingOptions, UseFormattingResult } from './hooks';
 
 // Re-export theme types
-export type { ThemeToggleProps, ThemeOption } from './theme';
+export type {
+  ThemeToggleProps,
+  ThemeOption,
+  ReaderThemeProviderProps,
+  ThemeContextType,
+  UITheme,
+  ContentTheme,
+} from './theme';
 
 // Scientific Content Components
 export {
