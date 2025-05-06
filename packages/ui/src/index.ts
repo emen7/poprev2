@@ -8,6 +8,14 @@
  * and specialized components for the UB Reader application.
  */
 
+// Import namespaces
+import * as AccessibilityUtils from './accessibility';
+import * as ContentTypes from './content';
+import * as PanelTypes from './panels';
+import * as PullupTypes from './pullup';
+import * as ScientificTypes from './scientific';
+import * as SelectionTypes from './selection';
+
 // Layout Components
 export { ThreeRowHeader, HeaderRow, DynamicSectionTitle } from './layout';
 // Navigation Components
@@ -18,17 +26,26 @@ export {
   SectionNavigationPanel,
   SectionTracker,
   useIntersectionObserver,
+  TabsComponent,
 } from './navigation';
 
 // Content Components
-export { ContentRenderer, ParagraphRenderer, SectionRenderer, UBContentRenderer } from './content';
+export {
+  ContentRenderer,
+  ParagraphRenderer,
+  SectionRenderer,
+  UBContentRenderer,
+  ParagraphComponent,
+} from './content';
 
 // Re-export content types with namespace to avoid conflicts
-import * as ContentTypes from './content';
 export { ContentTypes };
 
 // Settings Components
 export { FormatToggle } from './settings';
+
+// Theme Components
+export { ThemeToggle } from './theme';
 
 // Hooks
 export { useFormatting } from './hooks';
@@ -44,6 +61,9 @@ export type {
 // Re-export types from hooks
 export type { FormatType, UseFormattingOptions, UseFormattingResult } from './hooks';
 
+// Re-export theme types
+export type { ThemeToggleProps, ThemeOption } from './theme';
+
 // Scientific Content Components
 export {
   ScientificTooltip,
@@ -53,8 +73,6 @@ export {
 } from './scientific';
 
 // Re-export scientific types with namespace to avoid conflicts
-import * as PanelTypes from './panels';
-import * as ScientificTypes from './scientific';
 export { ScientificTypes };
 
 // Panel Components
@@ -67,7 +85,6 @@ export { PanelTypes };
 export { SelectionMenu, useSelectionMenu } from './selection';
 
 // Re-export selection types with namespace to avoid conflicts
-import * as SelectionTypes from './selection';
 export { SelectionTypes };
 
 // Pullup Components
@@ -82,7 +99,6 @@ export {
 } from './pullup';
 
 // Re-export pullup types with namespace to avoid conflicts
-import * as PullupTypes from './pullup';
 export { PullupTypes };
 
 // Examples are excluded to avoid build issues
@@ -95,5 +111,4 @@ export * from './components';
 export * from './accessibility';
 
 // Re-export accessibility types with namespace to avoid conflicts
-import * as AccessibilityUtils from './accessibility';
 export { AccessibilityUtils };
