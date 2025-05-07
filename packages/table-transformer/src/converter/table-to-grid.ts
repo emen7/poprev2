@@ -1,12 +1,16 @@
-import { Table, Grid, GridItem } from '@ub-ecosystem/data-models';
+import { Table, Grid, GridItem, TableRow } from '@ub-ecosystem/data-models';
 
+/**
+ *
+ * @param table
+ */
 export function tableToGrid(table: Table): Grid {
   const items: GridItem[] = [];
   const gridAreas: string[][] = [];
 
   // Determine grid dimensions
   const rows = table.rows.length;
-  const columns = Math.max(...table.rows.map(row => row.cells.length));
+  const columns = Math.max(...table.rows.map((row: TableRow) => row.cells.length));
 
   // Create grid areas for simple mapping
   for (let i = 0; i < rows; i++) {

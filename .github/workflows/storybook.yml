@@ -1,0 +1,40 @@
+name: Storybook Check
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'packages/ui/**'
+
+jobs:
+  build:
+    name: Build Storybook
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Setup PNPM
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8.15.5
+
+      # Setup Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      # Install dependencies with --no-frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      # Build state-management package first
+      - name: Build state-management
+        run: pnpm --filter=@ub-ecosystem/state-management build
+
+      # Build UI package
+      - name: Build UI
+        run: pnpm --filter=@ub-ecosystem/ui build
+
+      # Build Storybook
+      - name: Build Storybook
+        run: cd packages/ui && npx storybook build

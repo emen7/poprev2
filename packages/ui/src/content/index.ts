@@ -22,5 +22,11 @@ export type {
 export { default as ParagraphContainer } from './ParagraphContainer';
 export type { ParagraphContainerProps } from './ParagraphContainer';
 
+export { default as ParagraphComponent } from './ParagraphComponent';
+export type { ParagraphComponentProps } from './ParagraphComponent';
+
+export { default as SectionTitle } from './SectionTitle';
+export type { SectionTitleProps } from './SectionTitle';
+
 export { default as UBContentRenderer } from './UBContentRenderer';
 export type { UBContentRendererProps } from './UBContentRenderer';

@@ -1,0 +1,59 @@
+.paragraph-container {
+  position: relative;
+  display: flex;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.paragraph-number-container {
+  flex: 0 0 2rem;
+  text-align: right;
+  padding-right: 0.5rem;
+  position: relative;
+}
+
+.paragraph-number {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+}
+
+.paragraph-note-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.paragraph-text {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  text-align: var(--text-align, left);
+}
+
+.paragraph-highlight {
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.paragraph-highlight:hover {
+  opacity: 0.7;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .paragraph-container {
+    margin-bottom: 1rem;
+  }
+  
+  .paragraph-number-container {
+    flex: 0 0 1.5rem;
+    padding-right: 0.3rem;
+  }
+  
+  .paragraph-number {
+    font-size: 0.8rem;
+  }
+}

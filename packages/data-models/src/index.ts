@@ -19,3 +19,6 @@ export * from './user';
 
 // Search Models
 export * from './search';
+
+// Table Models
+export * from './table';
