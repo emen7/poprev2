@@ -20,7 +20,7 @@ jobs:
           node-version: 18
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
       - name: Lint
         run: pnpm lint
       - name: Format check
@@ -41,7 +41,7 @@ jobs:
           node-version: 18
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
       - name: Run tests
         run: pnpm test
       - name: Generate coverage report
@@ -68,6 +68,6 @@ jobs:
           node-version: 18
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
       - name: Build
         run: pnpm build

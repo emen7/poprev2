@@ -30,9 +30,11 @@ jobs:
       - name: Build
         run: pnpm build
 
-      # Start server
+      # Start server with timeout
       - name: Start server
-        run: pnpm --filter=ub-reader start & npx wait-on http://localhost:3000
+        run: |
+          pnpm --filter=ub-reader start &
+          npx wait-on --timeout 60000 http://localhost:3000 || (echo "Server failed to start within timeout" && exit 1)
 
       # Run Lighthouse CI
       - name: Run Lighthouse CI
