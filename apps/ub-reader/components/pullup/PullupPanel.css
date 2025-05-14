@@ -9,7 +9,7 @@
   border-top: 1px solid var(--pullup-border-color);
   border-top-left-radius: var(--radius-lg);
   border-top-right-radius: var(--radius-lg);
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow for depth */
   transition:
     transform var(--transition-normal),
     width var(--transition-normal),
@@ -43,6 +43,13 @@
 
 .pullup-panel-dragging {
   transition: none;
+}
+
+/* Snap points animation */
+.pullup-panel-with-snap-points:not(.pullup-panel-dragging) {
+  transition:
+    transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    height 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 /* Add a peek state for better discoverability */

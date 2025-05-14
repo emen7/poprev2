@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { TabsComponent } from './TabsComponent';
 
 const meta: Meta<typeof TabsComponent> = {
-  title: 'Navigation/TabsComponent',
+  title: 'Core/Navigation/TabsComponent',
   component: TabsComponent,
   parameters: {
     layout: 'centered',
@@ -194,3 +194,4 @@ export const MobileView: Story = {
     },
   },
 };
+

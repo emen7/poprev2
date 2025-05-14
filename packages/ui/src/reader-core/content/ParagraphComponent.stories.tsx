@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ParagraphComponent } from './ParagraphComponent';
 
 const meta: Meta<typeof ParagraphComponent> = {
-  title: 'Content/ParagraphComponent',
+  title: 'ReaderCore/Content/ParagraphComponent',
   component: ParagraphComponent,
   parameters: {
     layout: 'centered',
@@ -92,3 +92,4 @@ export const MobileView: Story = {
     },
   },
 };
+

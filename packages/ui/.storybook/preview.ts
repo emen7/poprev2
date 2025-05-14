@@ -1,5 +1,9 @@
 import type { Preview } from '@storybook/react';
 import { withThemeByClassName } from '@storybook/addon-themes';
+import { withThemeProvider } from './preview-wrapper';
+
+// Import our theme CSS
+import '../src/styles/theme.css';
 
 const preview: Preview = {
   parameters: {
@@ -11,27 +15,27 @@ const preview: Preview = {
       },
     },
     backgrounds: {
-      default: 'light',
-      values: [
-        {
-          name: 'light',
-          value: '#ffffff',
-        },
-        {
-          name: 'dark',
-          value: '#222222',
-        },
-      ],
+      disable: true, // Disable Storybook backgrounds in favor of our theme system
     },
     layout: 'centered',
+    themes: {
+      default: 'dark',
+      list: [
+        { name: 'dark', class: 'dark-theme', color: '#121212' },
+        { name: 'light', class: 'light-theme', color: '#ffffff' },
+        { name: 'system', class: 'system-theme', color: '#888888' },
+      ],
+    },
   },
   decorators: [
+    withThemeProvider,
     withThemeByClassName({
       themes: {
-        light: 'light-theme',
         dark: 'dark-theme',
+        light: 'light-theme',
+        system: 'system-theme',
       },
-      defaultTheme: 'light',
+      defaultTheme: 'dark',
     }),
   ],
 };

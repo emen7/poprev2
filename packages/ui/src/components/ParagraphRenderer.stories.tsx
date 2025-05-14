@@ -5,16 +5,18 @@ import { ThemeProvider } from '../contexts/ThemeContext';
 import { action } from '@storybook/addon-actions';
 
 const meta: Meta<typeof ParagraphRenderer> = {
-  title: 'UB Reader/Components/ParagraphRenderer',
+  title: 'ReaderCore/Components/ParagraphRenderer',
   component: ParagraphRenderer,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
   decorators: [
-    (Story) => (
+    Story => (
       <ThemeProvider>
-        <div style={{ maxWidth: '700px', padding: '2rem', backgroundColor: 'var(--color-surface)' }}>
+        <div
+          style={{ maxWidth: '700px', padding: '2rem', backgroundColor: 'var(--color-surface)' }}
+        >
           <Story />
         </div>
       </ThemeProvider>
@@ -95,7 +97,7 @@ export const MultipleParagraphs: Story = {
       />
       <ParagraphRenderer
         number={2}
-        text="The truth about the Universal Father had begun to dawn upon mankind when the prophet said: "You, God, are alone; there is none beside you. You have created the heaven and the heaven of heavens, with all their hosts; you preserve and control them. By the Sons of God were the universes made. The Creator covers himself with light as with a garment and stretches out the heavens as a curtain.""
+        text="The truth about the Universal Father had begun to dawn upon mankind when the prophet said: 'You, God, are alone; there is none beside you. You have created the heaven and the heaven of heavens, with all their hosts; you preserve and control them. By the Sons of God were the universes made. The Creator covers himself with light as with a garment and stretches out the heavens as a curtain.'"
         highlights={[
           {
             id: '1',
@@ -116,7 +118,7 @@ export const MultipleParagraphs: Story = {
       />
       <ParagraphRenderer
         number={5}
-        text="The great controller makes no mistakes. He is resplendent in majesty and glory. "God is light, and in him is no darkness at all." "He knows the way that I take, and when he has tried me, I shall come forth as gold.""
+        text="The great controller makes no mistakes. He is resplendent in majesty and glory. 'God is light, and in him is no darkness at all.' 'He knows the way that I take, and when he has tried me, I shall come forth as gold.'"
         highlights={[
           {
             id: '2',
@@ -135,3 +137,4 @@ export const MultipleParagraphs: Story = {
     </div>
   ),
 };
+

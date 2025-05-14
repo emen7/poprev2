@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { ThemeToggle } from './ThemeToggle';
 
 const meta: Meta<typeof ThemeToggle> = {
-  title: 'Theme/ThemeToggle',
+  title: 'Core/Theme/ThemeToggle',
   component: ThemeToggle,
   parameters: {
     layout: 'centered',
@@ -160,3 +160,4 @@ export const CustomThemes: Story = {
     currentTheme: 'blue',
   },
 };
+

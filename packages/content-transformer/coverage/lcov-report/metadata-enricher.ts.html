@@ -353,7 +353,8 @@
 <a name='L288'></a><a href='#L288'>288</a>
 <a name='L289'></a><a href='#L289'>289</a>
 <a name='L290'></a><a href='#L290'>290</a>
-<a name='L291'></a><a href='#L291'>291</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L291'></a><a href='#L291'>291</a>
+<a name='L292'></a><a href='#L292'>292</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -643,9 +644,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * Metadata Enricher
- * 
+ *
  * This module handles the extraction and enhancement of metadata from document content.
  * It identifies and extracts key information such as title, author, date, and categories.
  */
@@ -654,7 +656,7 @@ import { DocumentNode, RootNode, DocumentMetadata } from './types';
 &nbsp;
 /**
  * Enrich the document with metadata
- * 
+ *
  * @param content The content to enrich
  * @param options Optional configuration for the enrichment process
  * @returns A promise that resolves to the enriched content
@@ -662,32 +664,32 @@ import { DocumentNode, RootNode, DocumentMetadata } from './types';
 <span class="cstat-no" title="statement not covered" >export a</span>sync function <span class="fstat-no" title="function not covered" >enrichMetadata(</span>content: any, options: any = <span class="branch-0 cbranch-no" title="branch not covered" >{})</span>: Promise&lt;any&gt; {
   // Get existing metadata
   const existingMetadata = <span class="cstat-no" title="statement not covered" >content.metadata || {};</span>
-  
+&nbsp;
   // Extract additional metadata from content if not already present
   const extractedMetadata = <span class="cstat-no" title="statement not covered" >extractMetadataFromContent(content.content);</span>
-  
+&nbsp;
   // Merge existing and extracted metadata, with existing taking precedence
   const mergedMetadata<span class="cstat-no" title="statement not covered" >: DocumentMetadata = {</span>
     ...extractedMetadata,
-    ...existingMetadata
+    ...existingMetadata,
   };
-  
+&nbsp;
   // Return the enriched content
 <span class="cstat-no" title="statement not covered" >  return {</span>
     ...content,
-    metadata: mergedMetadata
+    metadata: mergedMetadata,
   };
 }
 &nbsp;
 /**
  * Extract metadata from document content
- * 
+ *
  * @param rootNode The root node of the document
  * @returns The extracted metadata
  */
 function <span class="fstat-no" title="function not covered" >extractMetadataFromContent(</span>rootNode: RootNode): DocumentMetadata {
   const metadata: DocumentMetadata = <span class="cstat-no" title="statement not covered" >{};</span>
-  
+&nbsp;
   // Extract title from first heading if not already set
 <span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (!metadata.title) {</span>
     const firstHeading = <span class="cstat-no" title="statement not covered" >findFirstHeading(rootNode);</span>
@@ -695,7 +697,7 @@ function <span class="fstat-no" title="function not covered" >extractMetadataFro
 <span class="cstat-no" title="statement not covered" >      metadata.title = getTextContent(firstHeading);</span>
     }
   }
-  
+&nbsp;
   // Extract categories and tags from content
   const { categories, tags } = <span class="cstat-no" title="statement not covered" >extractCategoriesAndTags(rootNode);</span>
 <span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (categories.length &gt; 0) {</span>
@@ -704,32 +706,32 @@ function <span class="fstat-no" title="function not covered" >extractMetadataFro
 <span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (tags.length &gt; 0) {</span>
 <span class="cstat-no" title="statement not covered" >    metadata.tags = tags;</span>
   }
-  
+&nbsp;
   // Extract date from content if possible
   const extractedDate = <span class="cstat-no" title="statement not covered" >extractDateFromContent(rootNode);</span>
 <span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (extractedDate &amp;&amp; !metadata.date) {</span>
 <span class="cstat-no" title="statement not covered" >    metadata.date = extractedDate;</span>
   }
-  
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  return metadata;</span>
 }
 &nbsp;
 /**
  * Find the first heading in the document
- * 
+ *
  * @param rootNode The root node of the document
  * @returns The first heading node, or undefined if none found
  */
 function <span class="fstat-no" title="function not covered" >findFirstHeading(</span>rootNode: RootNode): DocumentNode | undefined {
   const children = <span class="cstat-no" title="statement not covered" >rootNode.children || [];</span>
-  
+&nbsp;
   // Look for the first heading node
 <span class="cstat-no" title="statement not covered" >  for (const child of children) {</span>
 <span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (child.type === 'heading') {</span>
 <span class="cstat-no" title="statement not covered" >      return child;</span>
     }
   }
-  
+&nbsp;
   // If no heading found at the top level, search recursively
 <span class="cstat-no" title="statement not covered" >  for (const child of children) {</span>
 <span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (child.children &amp;&amp; child.children.length &gt; 0) {</span>
@@ -739,13 +741,13 @@ function <span class="fstat-no" title="function not covered" >findFirstHeading(<
       }
     }
   }
-  
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  return undefined;</span>
 }
 &nbsp;
 /**
  * Recursively find the first heading in a node
- * 
+ *
  * @param node The node to search
  * @returns The first heading node, or undefined if none found
  */
@@ -753,7 +755,7 @@ function <span class="fstat-no" title="function not covered" >findFirstHeadingRe
 <span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (node.type === 'heading') {</span>
 <span class="cstat-no" title="statement not covered" >    return node;</span>
   }
-  
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (node.children &amp;&amp; node.children.length &gt; 0) {</span>
 <span class="cstat-no" title="statement not covered" >    for (const child of node.children) {</span>
       const heading = <span class="cstat-no" title="statement not covered" >findFirstHeadingRecursive(child);</span>
@@ -762,13 +764,13 @@ function <span class="fstat-no" title="function not covered" >findFirstHeadingRe
       }
     }
   }
-  
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  return undefined;</span>
 }
 &nbsp;
 /**
  * Get the text content of a node
- * 
+ *
  * @param node The node to extract text from
  * @returns The text content of the node
  */
@@ -776,39 +778,39 @@ function <span class="fstat-no" title="function not covered" >getTextContent(</s
 <span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (node.type === 'text' &amp;&amp; node.value) {</span>
 <span class="cstat-no" title="statement not covered" >    return node.value;</span>
   }
-  
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (node.children &amp;&amp; node.children.length &gt; 0) {</span>
 <span class="cstat-no" title="statement not covered" >    return node.children.map(getTextContent).join('');</span>
   }
-  
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  return '';</span>
 }
 &nbsp;
 /**
  * Extract categories and tags from the document content
- * 
+ *
  * @param rootNode The root node of the document
  * @returns The extracted categories and tags
  */
 function <span class="fstat-no" title="function not covered" >extractCategoriesAndTags(</span>rootNode: RootNode): { categories: string[]; tags: string[] } {
   const categories: string[] = <span class="cstat-no" title="statement not covered" >[];</span>
   const tags: string[] = <span class="cstat-no" title="statement not covered" >[];</span>
-  
+&nbsp;
   // Look for sections that might contain categories or tags
   const children = <span class="cstat-no" title="statement not covered" >rootNode.children || [];</span>
-  
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; children.length; i++) {</span>
     const node = <span class="cstat-no" title="statement not covered" >children[i];</span>
-    
+&nbsp;
     // Check for headings that might indicate categories or tags
 <span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (node.type === 'heading') {</span>
       const headingText = <span class="cstat-no" title="statement not covered" >getTextContent(node).toLowerCase();</span>
-      
+&nbsp;
 <span class="cstat-no" title="statement not covered" >      if (headingText.includes('categor') || headingText.includes('topic')) {</span>
         // The next node might contain categories
 <span class="cstat-no" title="statement not covered" >        <span class="missing-if-branch" title="if path not taken" >I</span>if (i + 1 &lt; children.length) {</span>
           const nextNode = <span class="cstat-no" title="statement not covered" >children[i + 1];</span>
-          
+&nbsp;
 <span class="cstat-no" title="statement not covered" >          if (nextNode.type === 'list') {</span>
             // Extract categories from list items
             const listItems = <span class="cstat-no" title="statement not covered" >nextNode.children || [];</span>
@@ -835,7 +837,7 @@ function <span class="fstat-no" title="function not covered" >extractCategoriesA
         // The next node might contain tags
 <span class="cstat-no" title="statement not covered" >        <span class="missing-if-branch" title="if path not taken" >I</span>if (i + 1 &lt; children.length) {</span>
           const nextNode = <span class="cstat-no" title="statement not covered" >children[i + 1];</span>
-          
+&nbsp;
 <span class="cstat-no" title="statement not covered" >          if (nextNode.type === 'list') {</span>
             // Extract tags from list items
             const listItems = <span class="cstat-no" title="statement not covered" >nextNode.children || [];</span>
@@ -861,13 +863,13 @@ function <span class="fstat-no" title="function not covered" >extractCategoriesA
       }
     }
   }
-  
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  return { categories, tags };</span>
 }
 &nbsp;
 /**
  * Extract a date from the document content
- * 
+ *
  * @param rootNode The root node of the document
  * @returns The extracted date in ISO format (YYYY-MM-DD), or undefined if none found
  */
@@ -881,12 +883,12 @@ function <span class="fstat-no" title="function not covered" >extractDateFromCon
     // European format: 15 January 2023 or 15 Jan 2023
     /\b(\d{1,2})(?:st|nd|rd|th)?\s+(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[.,]?\s+(\d{4})\b/i,
     // Numeric format: 01/15/2023 or 15/01/2023
-    /\b(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{4})\b/
+    /\b(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{4})\b/,
   ];
-  
+&nbsp;
   // Get all text content
   const allText = <span class="cstat-no" title="statement not covered" >getAllText(rootNode);</span>
-  
+&nbsp;
   // Try each regex
 <span class="cstat-no" title="statement not covered" >  for (const regex of dateRegexes) {</span>
     const match = <span class="cstat-no" title="statement not covered" >allText.match(regex);</span>
@@ -902,45 +904,46 @@ function <span class="fstat-no" title="function not covered" >extractDateFromCon
       }
     }
   }
-  
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  return undefined;</span>
 }
 &nbsp;
 /**
  * Get all text content from a document
- * 
+ *
  * @param rootNode The root node of the document
  * @returns All text content concatenated
  */
 function <span class="fstat-no" title="function not covered" >getAllText(</span>rootNode: RootNode): string {
   let text = <span class="cstat-no" title="statement not covered" >'';</span>
-  
+&nbsp;
   function <span class="fstat-no" title="function not covered" >traverse(</span>node: DocumentNode) {
 <span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (node.type === 'text' &amp;&amp; node.value) {</span>
 <span class="cstat-no" title="statement not covered" >      text += node.value + ' ';</span>
     }
-    
+&nbsp;
 <span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (node.children &amp;&amp; node.children.length &gt; 0) {</span>
 <span class="cstat-no" title="statement not covered" >      for (const child of node.children) {</span>
 <span class="cstat-no" title="statement not covered" >        traverse(child);</span>
       }
     }
   }
-  
+&nbsp;
   const children = <span class="cstat-no" title="statement not covered" >rootNode.children || [];</span>
 <span class="cstat-no" title="statement not covered" >  for (const child of children) {</span>
 <span class="cstat-no" title="statement not covered" >    traverse(child);</span>
   }
-  
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  return text;</span>
-}</pre></td></tr></table></pre>
+}
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-04-02T16:52:45.965Z
+                at 2025-05-03T18:31:29.695Z
             </div>
         <script src="prettify.js"></script>
         <script>

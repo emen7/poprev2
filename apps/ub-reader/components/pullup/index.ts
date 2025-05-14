@@ -11,6 +11,7 @@ export { PullupTabs } from './PullupTabs';
 export { PullupContent } from './PullupContent';
 export { NotesTab } from './NotesTab';
 export { QuotesTab } from './QuotesTab';
+export { SearchTab } from './SearchTab';
 export { SettingsTab } from './SettingsTab';
 export { TextSelectionHandler } from './TextSelectionHandler';
 

@@ -23,9 +23,10 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
+    'plugin:jsdoc/recommended',
     'prettier', // Make sure this is last to override other configs
   ],
-  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'import', 'prettier'],
+  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'import', 'prettier', 'jsdoc'],
   settings: {
     react: {
       version: 'detect',
@@ -65,6 +66,23 @@ module.exports = {
 
     // Prettier integration
     'prettier/prettier': ['error', {}, { usePrettierrc: true }],
+
+    // JSDoc rules
+    'jsdoc/require-jsdoc': [
+      'warn',
+      {
+        publicOnly: true,
+        require: {
+          FunctionDeclaration: true,
+          MethodDefinition: true,
+          ClassDeclaration: true,
+          ArrowFunctionExpression: false,
+          FunctionExpression: false,
+        },
+      },
+    ],
+    'jsdoc/require-param-type': 'off', // TypeScript handles types
+    'jsdoc/require-returns-type': 'off', // TypeScript handles types
   },
   overrides: [
     {

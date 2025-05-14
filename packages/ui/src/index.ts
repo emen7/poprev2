@@ -46,7 +46,19 @@ export { ContentTypes };
 export { FormatToggle } from './settings';
 
 // Theme Components
-export { ThemeToggle, ReaderThemeProvider, useReaderTheme } from './theme';
+export {
+  // Legacy theme components
+  ThemeToggle,
+  ReaderThemeProvider,
+  useReaderTheme,
+
+  // New theme system (preferred)
+  ThemeProvider,
+  useTheme,
+  EnhancedThemeToggle,
+  TextAlignmentToggle,
+  ThemeSettings,
+} from './theme';
 
 // Hooks
 export { useFormatting } from './hooks';
@@ -64,12 +76,17 @@ export type { FormatType, UseFormattingOptions, UseFormattingResult } from './ho
 
 // Re-export theme types
 export type {
+  // Legacy theme types
   ThemeToggleProps,
   ThemeOption,
   ReaderThemeProviderProps,
   ThemeContextType,
   UITheme,
   ContentTheme,
+
+  // New theme system types
+  ThemeMode,
+  TextAlignment,
 } from './theme';
 
 // Scientific Content Components

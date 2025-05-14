@@ -1,8 +1,12 @@
-import { render, screen } from '@testing-library/react';
-import { TransformedDocument } from '@ub-ecosystem/content-transformer';
 import React from 'react';
+import { render, screen } from '@testing-library/react';
+import { axe, toHaveNoViolations } from 'jest-axe';
+import { TransformedDocument } from '@ub-ecosystem/content-transformer';
 
 import { DocumentReader } from '../document-reader';
+
+// Add jest-axe matchers
+expect.extend(toHaveNoViolations);
 
 // Mock the TransformedDocument
 const mockDocument: TransformedDocument = {
@@ -103,5 +107,21 @@ describe('DocumentReader', () => {
     expect(screen.getByText('Main Title')).toBeInTheDocument();
     expect(screen.getByText('Section 1')).toBeInTheDocument();
     expect(screen.getByText('Section 2')).toBeInTheDocument();
+  });
+
+  it('has no accessibility violations', async () => {
+    const { container } = render(<DocumentReader document={mockDocument} />);
+
+    // Run axe accessibility tests
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+
+  it('applies custom className when provided', () => {
+    render(<DocumentReader document={mockDocument} className="custom-reader" />);
+
+    // Check if the custom class is applied
+    const readerElement = screen.getByRole('article');
+    expect(readerElement).toHaveClass('custom-reader');
   });
 });

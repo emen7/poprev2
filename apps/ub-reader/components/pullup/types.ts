@@ -4,7 +4,7 @@
  * This file defines the types for the pullup components.
  */
 
-export type PullupTab = 'notes' | 'quotes' | 'settings';
+export type PullupTab = 'notes' | 'quotes' | 'settings' | 'search';
 
 export interface PullupState {
   /**
@@ -109,9 +109,9 @@ export interface ReaderSettings {
   fontFamily: string;
 
   /**
-   * Theme (light or dark)
+   * Theme (light, dark, sepia, or system)
    */
-  theme: 'light' | 'dark';
+  theme: 'light' | 'dark' | 'sepia' | 'system';
 
   /**
    * Whether to show paragraph numbers

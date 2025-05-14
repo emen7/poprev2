@@ -5,6 +5,7 @@ import { PullupContent } from './PullupContent';
 import { PullupPanel } from './PullupPanel';
 import { PullupTabs, PullupTab } from './PullupTabs';
 import { Quote } from './QuotesTab';
+import { SearchResult } from './SearchTab';
 import { ReaderSettings } from './SettingsTab';
 import './Pullup.css';
 
@@ -90,6 +91,16 @@ export interface PullupProps {
   onSortOrderChange?: (sortOrder: 'entry' | 'paper') => void;
 
   /**
+   * Function to search for content
+   */
+  onSearch?: (query: string) => Promise<SearchResult[]>;
+
+  /**
+   * Function called when a search result is selected
+   */
+  onSearchResultSelect?: (result: SearchResult) => void;
+
+  /**
    * The minimum height of the pullup panel
    * @default 100
    */
@@ -100,6 +111,12 @@ export interface PullupProps {
    * @default 600
    */
   maxHeight?: number;
+
+  /**
+   * Whether to enable snap points
+   * @default true
+   */
+  enableSnapPoints?: boolean;
 
   /**
    * Additional CSS class name
@@ -129,8 +146,11 @@ export const Pullup: React.FC<PullupProps> = ({
   onSettingsChange,
   sortOrder = 'entry',
   onSortOrderChange,
+  onSearch,
+  onSearchResultSelect,
   minHeight,
   maxHeight,
+  enableSnapPoints = true,
   className = '',
 }) => {
   // Determine container classes
@@ -146,6 +166,7 @@ export const Pullup: React.FC<PullupProps> = ({
         onHeightChange={onHeightChange}
         minHeight={minHeight}
         maxHeight={maxHeight}
+        enableSnapPoints={enableSnapPoints}
       >
         <div className="pullup-inner">
           <PullupTabs activeTab={activeTab} onTabSelect={onTabSelect} />
@@ -160,6 +181,8 @@ export const Pullup: React.FC<PullupProps> = ({
             onSettingsChange={onSettingsChange}
             sortOrder={sortOrder}
             onSortOrderChange={onSortOrderChange}
+            onSearch={onSearch}
+            onSearchResultSelect={onSearchResultSelect}
           />
         </div>
       </PullupPanel>

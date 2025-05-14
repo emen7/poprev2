@@ -4,7 +4,7 @@ import React from 'react';
 import { ReaderLayout } from './ReaderLayout';
 
 const meta: Meta<typeof ReaderLayout> = {
-  title: 'Layout/ReaderLayout',
+  title: 'ReaderCore/Layout/ReaderLayout',
   component: ReaderLayout,
   parameters: {
     layout: 'fullscreen',
@@ -144,3 +144,4 @@ export const MobileView: Story = {
     },
   },
 };
+

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { SectionTitle } from './SectionTitle';
 
 const meta: Meta<typeof SectionTitle> = {
-  title: 'Content/SectionTitle',
+  title: 'ReaderCore/Content/SectionTitle',
   component: SectionTitle,
   parameters: {
     layout: 'centered',
@@ -91,3 +91,4 @@ export const Subsection: Story = {
     level: 'h4',
   },
 };
+

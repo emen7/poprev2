@@ -6,7 +6,7 @@
   left: 0;
   right: 0;
   background-color: #fff;
-  box-shadow: 0 -2px 10px rgb(0 0 0 / 10%);
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow for depth */
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   transition:
@@ -36,6 +36,13 @@
 .pullup-panel-dragging {
   transition: none;
   user-select: none;
+}
+
+/* Snap points animation */
+.pullup-panel-with-snap-points:not(.pullup-panel-dragging) {
+  transition:
+    transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    height 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 /* Drag handle */

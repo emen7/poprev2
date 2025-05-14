@@ -5,7 +5,7 @@ import { ThemeProvider } from '../contexts/ThemeContext';
 import { action } from '@storybook/addon-actions';
 
 const meta: Meta<typeof SelectionMenu> = {
-  title: 'UB Reader/Components/SelectionMenu',
+  title: 'ReaderCore/Components/SelectionMenu',
   component: SelectionMenu,
   parameters: {
     layout: 'centered',
@@ -98,3 +98,4 @@ export const Interactive: Story = {
     );
   },
 };
+

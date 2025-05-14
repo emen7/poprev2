@@ -5,7 +5,7 @@ import { ReaderThemeProvider, useReaderTheme } from './ReaderThemeProvider';
 import { ThemeToggle } from './ThemeToggle';
 
 const meta: Meta<typeof ReaderThemeProvider> = {
-  title: 'Theme/ReaderThemeProvider',
+  title: 'Core/Theme/ReaderThemeProvider',
   component: ReaderThemeProvider,
   parameters: {
     layout: 'fullscreen',
@@ -155,3 +155,4 @@ export const TraditionalContentTheme: Story = {
     initialContentTheme: 'traditional',
   },
 };
+
