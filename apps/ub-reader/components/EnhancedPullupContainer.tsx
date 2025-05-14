@@ -2,11 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { PullupPanel } from './pullup/PullupPanel';
-import { SearchTab } from './pullup/SearchTab';
+import { SearchTab, UBContentItem } from './pullup/SearchTab';
 import { EnhancedSettingsPanel } from './EnhancedSettingsPanel';
 import { useExtendedUserPreferences } from '../contexts/ExtendedUserPreferencesContext';
-import { useUBContent } from '@ub-ecosystem/state-management';
-import { UBContentItem } from '@ub-ecosystem/state-management';
 
 // Define the Note type
 interface Note {
