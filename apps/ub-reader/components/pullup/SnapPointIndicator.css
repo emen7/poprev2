@@ -1,0 +1,74 @@
+/* SnapPointIndicator Styles */
+
+.snap-point-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.snap-point-indicator .indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--indicator-color, rgba(255, 255, 255, 0.3));
+  transition: all 0.2s ease;
+}
+
+.snap-point-indicator .indicator.active {
+  background-color: var(--indicator-active-color, rgba(255, 255, 255, 0.8));
+  width: 8px;
+  height: 8px;
+}
+
+/* Light theme overrides */
+.light-theme .snap-point-indicator .indicator {
+  background-color: var(--indicator-color, rgba(0, 0, 0, 0.2));
+}
+
+.light-theme .snap-point-indicator .indicator.active {
+  background-color: var(--indicator-active-color, rgba(0, 0, 0, 0.6));
+}
+
+/* Animation for active indicator */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.snap-point-indicator .indicator.active {
+  animation: pulse 1s ease-in-out;
+}
+
+/* Media query for small screens */
+@media (width <= 768px) {
+  .snap-point-indicator {
+    gap: 6px;
+  }
+  
+  .snap-point-indicator .indicator {
+    width: 5px;
+    height: 5px;
+  }
+  
+  .snap-point-indicator .indicator.active {
+    width: 7px;
+    height: 7px;
+  }
+}

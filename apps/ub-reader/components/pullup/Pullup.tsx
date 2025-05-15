@@ -90,6 +90,16 @@ export interface PullupProps {
   onSortOrderChange?: (sortOrder: 'entry' | 'paper') => void;
 
   /**
+   * Function to search for content
+   */
+  onSearch?: (query: string) => Promise<any[]>;
+
+  /**
+   * Function called when a search result is selected
+   */
+  onSearchResultSelect?: (item: any) => void;
+
+  /**
    * The minimum height of the pullup panel
    * @default 100
    */
@@ -129,6 +139,8 @@ export function Pullup({
   onSettingsChange,
   sortOrder = 'entry',
   onSortOrderChange,
+  onSearch,
+  onSearchResultSelect,
   minHeight,
   maxHeight,
   className = '',
@@ -160,6 +172,8 @@ export function Pullup({
             onSettingsChange={onSettingsChange}
             sortOrder={sortOrder}
             onSortOrderChange={onSortOrderChange}
+            onSearch={onSearch}
+            onSearchResultSelect={onSearchResultSelect}
           />
         </div>
       </PullupPanel>

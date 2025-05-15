@@ -145,6 +145,12 @@ pnpm type-check
 
 # Run tests
 pnpm test
+
+# Run tests with coverage
+pnpm test:coverage
+
+# Start Storybook for UI component development
+pnpm storybook
 ```
 
 ### Building
@@ -158,7 +164,26 @@ pnpm build:analyze
 
 # Build a specific application
 pnpm build --filter=ub-reader
+
+# Build Storybook static site
+pnpm build-storybook
 ```
+
+### Code Quality Tools
+
+This project uses several tools to ensure code quality:
+
+- **ESLint**: Static code analysis for JavaScript/TypeScript
+- **Prettier**: Code formatting
+- **Stylelint**: CSS linting
+- **TypeScript**: Static type checking
+- **Jest/Vitest**: Unit testing
+- **Storybook**: UI component development and testing
+- **Husky**: Git hooks for pre-commit checks
+- **Commitlint**: Commit message validation
+- **Codecov**: Code coverage reporting
+
+For more details, see the [Code Quality Tools](./CODE_QUALITY.md) documentation.
 
 ## Technical Architecture
 

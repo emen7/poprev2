@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './PullupTabs.css';
 
 // Define PullupTab type locally
-export type PullupTab = 'notes' | 'quotes' | 'settings';
+export type PullupTab = 'notes' | 'quotes' | 'settings' | 'search';
 
 export interface PullupTabsProps {
   /**
@@ -36,13 +36,57 @@ export const PullupTabs: React.FC<PullupTabsProps> = ({
     { id: 'notes', label: 'Notes', icon: '📝' },
     { id: 'quotes', label: 'Quotes', icon: '💬' },
     { id: 'settings', label: 'Settings', icon: '⚙️' },
+    { id: 'search', label: 'Search', icon: '🔍' },
   ];
+
+  // State for tracking swipe
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
+
+  // Handle swipe gestures
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX || !touchEndX) return;
+
+    const distance = touchStartX - touchEndX;
+    const isSwipe = Math.abs(distance) > 50; // Minimum swipe distance
+
+    if (isSwipe) {
+      const currentIndex = tabs.findIndex(tab => tab.id === activeTab);
+
+      if (distance > 0) {
+        // Swipe left - go to next tab
+        const nextIndex = (currentIndex + 1) % tabs.length;
+        onTabSelect(tabs[nextIndex].id);
+      } else {
+        // Swipe right - go to previous tab
+        const prevIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+        onTabSelect(tabs[prevIndex].id);
+      }
+    }
+
+    // Reset touch coordinates
+    setTouchStartX(null);
+    setTouchEndX(null);
+  };
 
   // Determine container classes
   const containerClasses = ['pullup-tabs', className].filter(Boolean).join(' ');
 
   return (
-    <div className={containerClasses}>
+    <div
+      className={containerClasses}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       {tabs.map(tab => (
         <button
           key={tab.id}

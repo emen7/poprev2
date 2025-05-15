@@ -1,0 +1,26 @@
+warning: in the working copy of 'packages/highlighting/package.json', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/packages/highlighting/package.json b/packages/highlighting/package.json[m
+[1mindex b281a1c..6ea1384 100644[m
+[1m--- a/packages/highlighting/package.json[m
+[1m+++ b/packages/highlighting/package.json[m
+[36m@@ -5,9 +5,8 @@[m
+   "main": "dist/index.js",[m
+   "types": "dist/index.d.ts",[m
+   "scripts": {[m
+[31m-    "build": "tsc && rimraf dist/styles && mkdir -p dist/styles && cp -r src/styles/highlighting.css dist/styles/",[m
+[31m-    "build:windows": "tsc && (if not exist dist\\styles mkdir dist\\styles) && copy src\\styles\\highlighting.css dist\\styles\\",[m
+[31m-    "dev": "tsc --watch",[m
+[32m+[m[32m    "build": "npx tsc && cross-env NODE_ENV=production copyfiles -u 1 \"src/styles/**/*.css\" dist/",[m
+[32m+[m[32m    "dev": "npx tsc --watch",[m
+     "clean": "rimraf dist",[m
+     "lint": "eslint src --ext .ts,.tsx",[m
+     "test": "jest --passWithNoTests"[m
+[36m@@ -26,6 +25,8 @@[m
+   "devDependencies": {[m
+     "@types/react": "^18.2.0",[m
+     "@types/react-dom": "^18.2.0",[m
+[32m+[m[32m    "copyfiles": "^2.4.1",[m
+[32m+[m[32m    "cross-env": "^7.0.3",[m
+     "typescript": "^5.0.0",[m
+     "eslint": "^8.0.0",[m
+     "jest": "^29.0.0",[m

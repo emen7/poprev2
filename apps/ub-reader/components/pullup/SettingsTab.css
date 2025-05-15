@@ -60,6 +60,36 @@
   margin: 4px 0 8px;
 }
 
+/* Theme preview styles */
+.settings-theme-preview {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  margin-right: 8px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.settings-theme-light {
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.settings-theme-dark {
+  background-color: #222;
+  border: 1px solid #444;
+}
+
+.settings-theme-sepia {
+  background-color: #f4ecd8;
+  border: 1px solid #d8ccb8;
+}
+
+.settings-theme-system {
+  background: linear-gradient(to right, #fff 50%, #222 50%);
+  border: 1px solid #ddd;
+}
+
 /* Dark theme variables */
 :root {
   --title-color: #fff;
@@ -88,6 +118,21 @@
   --button-active-color: #333;
   --button-active-border-color: #0078d4;
   --description-color: #888;
+}
+
+/* Sepia theme variables */
+.sepia-theme {
+  --title-color: #5f4b32;
+  --section-title-color: #7d6852;
+  --button-bg-color: #e8e0cc;
+  --button-color: #7d6852;
+  --button-border-color: #d8ccb8;
+  --button-hover-bg-color: #d8ccb8;
+  --button-hover-color: #5f4b32;
+  --button-active-bg-color: #d8ccb8;
+  --button-active-color: #5f4b32;
+  --button-active-border-color: #8c6d46;
+  --description-color: #7d6852;
 }
 
 /* Media query for persistent mode */

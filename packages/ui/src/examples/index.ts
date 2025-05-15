@@ -19,3 +19,6 @@ export { SelectionMenuExample } from './SelectionMenuExample';
 export { PullupExample } from './PullupExample';
 
 export { HighlightExample } from './HighlightExample';
+
+export { Button } from './button';
+export type { ButtonProps, ButtonVariant } from './button';

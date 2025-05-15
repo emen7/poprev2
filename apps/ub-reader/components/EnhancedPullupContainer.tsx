@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { PullupPanel } from './pullup/PullupPanel';
+import { SearchTab, UBContentItem } from './pullup/SearchTab';
 import { EnhancedSettingsPanel } from './EnhancedSettingsPanel';
 import { useExtendedUserPreferences } from '../contexts/ExtendedUserPreferencesContext';
 
@@ -26,12 +27,12 @@ interface Quote {
  * EnhancedPullupContainer Component
  *
  * This component connects the pullup UI components with the state management.
- * It provides a bottom panel with tabs for Notes, Quotes, and Settings.
+ * It provides a bottom panel with tabs for Notes, Quotes, Settings, and Search.
  */
 export const EnhancedPullupContainer: React.FC = () => {
   // State for pullup
   const [isOpen, setIsOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<'notes' | 'quotes' | 'settings'>('notes');
+  const [activeTab, setActiveTab] = useState<'notes' | 'quotes' | 'settings' | 'search'>('notes');
   const [height, setHeight] = useState(300);
   const [isPersistent, setIsPersistent] = useState(false);
 
@@ -79,7 +80,7 @@ export const EnhancedPullupContainer: React.FC = () => {
   }, [quotes]);
 
   // Open pullup
-  const openPullup = (tab: 'notes' | 'quotes' | 'settings' = 'notes') => {
+  const openPullup = (tab: 'notes' | 'quotes' | 'settings' | 'search' = 'notes') => {
     setActiveTab(tab);
     setIsOpen(true);
   };
@@ -154,6 +155,12 @@ export const EnhancedPullupContainer: React.FC = () => {
             onClick={() => setActiveTab('settings')}
           >
             Settings
+          </button>
+          <button
+            className={`pullup-tab ${activeTab === 'search' ? 'active' : ''}`}
+            onClick={() => setActiveTab('search')}
+          >
+            Search
           </button>
         </div>
 
@@ -272,6 +279,16 @@ export const EnhancedPullupContainer: React.FC = () => {
                 </div>
               </div>
             </div>
+          )}
+
+          {/* Search Tab */}
+          {activeTab === 'search' && (
+            <SearchTab
+              onResultSelect={(item: UBContentItem) => {
+                console.log('Selected search result:', item);
+                // Handle search result selection
+              }}
+            />
           )}
         </div>
       </PullupPanel>

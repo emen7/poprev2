@@ -1,6 +1,6 @@
 // Add Jest DOM matchers
-import '@testing-library/jest-dom';
-import { toHaveNoViolations } from 'jest-axe';
+require('@testing-library/jest-dom');
+const { toHaveNoViolations } = require('jest-axe');
 
 // Add jest-axe custom matcher
 expect.extend(toHaveNoViolations);

@@ -288,7 +288,12 @@
 <a name='L223'></a><a href='#L223'>223</a>
 <a name='L224'></a><a href='#L224'>224</a>
 <a name='L225'></a><a href='#L225'>225</a>
-<a name='L226'></a><a href='#L226'>226</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L226'></a><a href='#L226'>226</a>
+<a name='L227'></a><a href='#L227'>227</a>
+<a name='L228'></a><a href='#L228'>228</a>
+<a name='L229'></a><a href='#L229'>229</a>
+<a name='L230'></a><a href='#L230'>230</a>
+<a name='L231'></a><a href='#L231'>231</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -488,6 +493,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -513,9 +522,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * Content Normalizer
- * 
+ *
  * This module handles the normalization of content structure across different document types.
  * It ensures that all documents have a consistent structure regardless of their original format.
  */
@@ -524,34 +534,34 @@ import { DocumentNode, RootNode } from './types';
 &nbsp;
 /**
  * Normalize the content structure
- * 
+ *
  * @param content The content to normalize
  * @returns A promise that resolves to the normalized content
  */
 <span class="cstat-no" title="statement not covered" >export a</span>sync function <span class="fstat-no" title="function not covered" >normalizeContent(</span>content: any): Promise&lt;any&gt; {
   // Extract the root node
   const rootNode = <span class="cstat-no" title="statement not covered" >content.content as RootNode;</span>
-  
+&nbsp;
   // Apply normalization rules
   const normalizedRoot = <span class="cstat-no" title="statement not covered" >normalizeNode(rootNode);</span>
-  
+&nbsp;
   // Return the normalized content
 <span class="cstat-no" title="statement not covered" >  return {</span>
     ...content,
-    content: normalizedRoot
+    content: normalizedRoot,
   };
 }
 &nbsp;
 /**
  * Normalize a document node and its children
- * 
+ *
  * @param node The node to normalize
  * @returns The normalized node
  */
 function <span class="fstat-no" title="function not covered" >normalizeNode(</span>node: DocumentNode): DocumentNode {
   // Create a copy of the node to avoid mutating the original
   const normalizedNode<span class="cstat-no" title="statement not covered" >: DocumentNode = { ...node };</span>
-  
+&nbsp;
   // Apply normalization rules based on node type
 <span class="cstat-no" title="statement not covered" >  switch (node.type) {</span>
     case 'heading':
@@ -560,28 +570,28 @@ function <span class="fstat-no" title="function not covered" >normalizeNode(</sp
 <span class="cstat-no" title="statement not covered" >        normalizedNode.depth = Math.max(1, Math.min(6, normalizedNode.depth));</span>
       }
 <span class="cstat-no" title="statement not covered" >      break;</span>
-      
+&nbsp;
     case 'list':
       // Ensure ordered lists have a start value
 <span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (normalizedNode.ordered &amp;&amp; normalizedNode.start === undefined) {</span>
 <span class="cstat-no" title="statement not covered" >        normalizedNode.start = 1;</span>
       }
 <span class="cstat-no" title="statement not covered" >      break;</span>
-      
+&nbsp;
     case 'link':
       // Ensure links have a valid URL
 <span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (!normalizedNode.url) {</span>
 <span class="cstat-no" title="statement not covered" >        normalizedNode.url = '#';</span>
       }
 <span class="cstat-no" title="statement not covered" >      break;</span>
-      
+&nbsp;
     case 'image':
       // Ensure images have alt text
 <span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (!normalizedNode.alt) {</span>
 <span class="cstat-no" title="statement not covered" >        normalizedNode.alt = normalizedNode.title || 'Image';</span>
       }
 <span class="cstat-no" title="statement not covered" >      break;</span>
-      
+&nbsp;
     case 'table':
       // Ensure tables have alignment information
 <span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (!normalizedNode.align &amp;&amp; normalizedNode.children &amp;&amp; normalizedNode.children.length &gt; 0) {</span>
@@ -592,21 +602,21 @@ function <span class="fstat-no" title="function not covered" >normalizeNode(</sp
       }
 <span class="cstat-no" title="statement not covered" >      break;</span>
   }
-  
+&nbsp;
   // Normalize children recursively
 <span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (normalizedNode.children &amp;&amp; Array.isArray(normalizedNode.children)) {</span>
 <span class="cstat-no" title="statement not covered" >    normalizedNode.children = normalizedNode.children.map(normalizeNode);</span>
   }
-  
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  return normalizedNode;</span>
 }
 &nbsp;
 /**
  * Standardize heading hierarchy
- * 
+ *
  * This function ensures that heading levels are properly nested and sequential.
  * For example, it prevents h1 -&gt; h3 without an h2 in between.
- * 
+ *
  * @param rootNode The root node of the document
  * @returns The root node with standardized heading hierarchy
  */
@@ -614,54 +624,54 @@ function <span class="fstat-no" title="function not covered" >normalizeNode(</sp
   // Create a copy of the root node
   const normalizedRoot<span class="cstat-no" title="statement not covered" >: RootNode = {</span>
     ...rootNode,
-    children: [...(rootNode.children || [])]
+    children: [...(rootNode.children || [])],
   };
-  
+&nbsp;
   // Track the current heading level
   let currentLevel = <span class="cstat-no" title="statement not covered" >1;</span>
-  
+&nbsp;
   // Process each node
   const children = <span class="cstat-no" title="statement not covered" >normalizedRoot.children || [];</span>
 <span class="cstat-no" title="statement not covered" >  for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; children.length; i++) {</span>
     const node = <span class="cstat-no" title="statement not covered" >children[i];</span>
-    
+&nbsp;
 <span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (node.type === 'heading') {</span>
       const headingNode = <span class="cstat-no" title="statement not covered" >node as any;</span>
-      
+&nbsp;
       // Ensure heading levels don't skip (e.g., h1 -&gt; h3)
 <span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (headingNode.depth &gt; currentLevel + 1) {</span>
 <span class="cstat-no" title="statement not covered" >        headingNode.depth = currentLevel + 1;</span>
       }
-      
+&nbsp;
       // Update current level
 <span class="cstat-no" title="statement not covered" >      currentLevel = headingNode.depth;</span>
     }
   }
-  
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  return normalizedRoot;</span>
 }
 &nbsp;
 /**
  * Normalize link formats
- * 
+ *
  * This function ensures that all links have a consistent format.
- * 
+ *
  * @param rootNode The root node of the document
  * @returns The root node with normalized links
  */
 <span class="cstat-no" title="statement not covered" >export function <span class="fstat-no" title="function not covered" >n</span>ormalizeLinks(</span>rootNode: RootNode): RootNode {
   // Create a copy of the root node
   const normalizedRoot<span class="cstat-no" title="statement not covered" >: RootNode = { ...rootNode };</span>
-  
+&nbsp;
   // Function to process nodes recursively
   function <span class="fstat-no" title="function not covered" >processNode(</span>node: DocumentNode): DocumentNode {
     // Create a copy of the node
     const processedNode<span class="cstat-no" title="statement not covered" >: DocumentNode = { ...node };</span>
-    
+&nbsp;
     // Normalize link if this is a link node
 <span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (processedNode.type === 'link') {</span>
       const linkNode = <span class="cstat-no" title="statement not covered" >processedNode as any;</span>
-      
+&nbsp;
       // Ensure URL has a protocol
 <span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (linkNode.url &amp;&amp; !linkNode.url.match(/^[a-zA-Z]+:\/\//)) {</span>
         // If it's a relative path or just a domain
@@ -672,80 +682,85 @@ function <span class="fstat-no" title="function not covered" >normalizeNode(</sp
         }
       }
     }
-    
+&nbsp;
     // Process children recursively
 <span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (processedNode.children &amp;&amp; Array.isArray(processedNode.children)) {</span>
 <span class="cstat-no" title="statement not covered" >      processedNode.children = processedNode.children.map(processNode);</span>
     }
-    
+&nbsp;
 <span class="cstat-no" title="statement not covered" >    return processedNode;</span>
   }
-  
+&nbsp;
   // Process all children
 <span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (normalizedRoot.children &amp;&amp; Array.isArray(normalizedRoot.children)) {</span>
 <span class="cstat-no" title="statement not covered" >    normalizedRoot.children = normalizedRoot.children.map(processNode);</span>
   }
-  
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  return normalizedRoot;</span>
 }
 &nbsp;
 /**
  * Normalize image references
- * 
+ *
  * This function ensures that all image references have a consistent format.
- * 
+ *
  * @param rootNode The root node of the document
  * @returns The root node with normalized image references
  */
 <span class="cstat-no" title="statement not covered" >export function <span class="fstat-no" title="function not covered" >n</span>ormalizeImages(</span>rootNode: RootNode): RootNode {
   // Create a copy of the root node
   const normalizedRoot<span class="cstat-no" title="statement not covered" >: RootNode = { ...rootNode };</span>
-  
+&nbsp;
   // Function to process nodes recursively
   function <span class="fstat-no" title="function not covered" >processNode(</span>node: DocumentNode): DocumentNode {
     // Create a copy of the node
     const processedNode<span class="cstat-no" title="statement not covered" >: DocumentNode = { ...node };</span>
-    
+&nbsp;
     // Normalize image if this is an image node
 <span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (processedNode.type === 'image') {</span>
       const imageNode = <span class="cstat-no" title="statement not covered" >processedNode as any;</span>
-      
+&nbsp;
       // Ensure URL has a protocol
-<span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (imageNode.url &amp;&amp; !imageNode.url.match(/^[a-zA-Z]+:\/\//) &amp;&amp; !imageNode.url.startsWith('data:')) {</span>
+<span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (</span>
+        imageNode.url &amp;&amp;
+        !imageNode.url.match(/^[a-zA-Z]+:\/\//) &amp;&amp;
+        !imageNode.url.startsWith('data:')
+      ) {
         // If it's a relative path, leave it as is
 <span class="cstat-no" title="statement not covered" >        <span class="missing-if-branch" title="if path not taken" >I</span>if (!imageNode.url.startsWith('/')) {</span>
 <span class="cstat-no" title="statement not covered" >          imageNode.url = `/${imageNode.url}`;</span>
         }
       }
-      
+&nbsp;
       // Ensure alt text
 <span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (!imageNode.alt) {</span>
 <span class="cstat-no" title="statement not covered" >        imageNode.alt = imageNode.title || 'Image';</span>
       }
     }
-    
+&nbsp;
     // Process children recursively
 <span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (processedNode.children &amp;&amp; Array.isArray(processedNode.children)) {</span>
 <span class="cstat-no" title="statement not covered" >      processedNode.children = processedNode.children.map(processNode);</span>
     }
-    
+&nbsp;
 <span class="cstat-no" title="statement not covered" >    return processedNode;</span>
   }
-  
+&nbsp;
   // Process all children
 <span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (normalizedRoot.children &amp;&amp; Array.isArray(normalizedRoot.children)) {</span>
 <span class="cstat-no" title="statement not covered" >    normalizedRoot.children = normalizedRoot.children.map(processNode);</span>
   }
-  
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  return normalizedRoot;</span>
-}</pre></td></tr></table></pre>
+}
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-04-02T16:52:45.965Z
+                at 2025-05-03T18:31:29.695Z
             </div>
         <script src="prettify.js"></script>
         <script>

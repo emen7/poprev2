@@ -1,0 +1,113 @@
+/**
+ * TabsComponent Styles
+ */
+
+.tabs-component {
+  width: 100%;
+}
+
+/* Tabs list */
+.tabs-list {
+  display: flex;
+  border-bottom: 1px solid var(--border-color, #ddd);
+}
+
+/* Horizontal tabs */
+.tabs-horizontal .tabs-list {
+  flex-direction: row;
+}
+
+/* Vertical tabs */
+.tabs-vertical .tabs-list {
+  flex-direction: column;
+  border-bottom: none;
+  border-right: 1px solid var(--border-color, #ddd);
+}
+
+/* Tab button */
+.tab-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color, #333);
+  transition: all 0.2s ease;
+  position: relative;
+  white-space: nowrap;
+}
+
+.tab-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.tab-active {
+  color: var(--accent-color, #0088ff);
+  font-weight: 500;
+}
+
+.tab-active::after {
+  content: '';
+  position: absolute;
+  background-color: var(--accent-color, #0088ff);
+}
+
+.tabs-horizontal .tab-active::after {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.tabs-vertical .tab-active::after {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 2px;
+}
+
+.tab-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Tab icon */
+.tab-icon {
+  margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Size variants */
+.tabs-small .tab-button {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+}
+
+.tabs-medium .tab-button {
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+}
+
+.tabs-large .tab-button {
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .tabs-horizontal .tabs-list {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tabs-medium .tab-button {
+    padding: 0.75rem 1rem;
+  }
+
+  .tabs-large .tab-button {
+    padding: 0.75rem 1.25rem;
+  }
+}

@@ -44,7 +44,7 @@ export function SettingsTab({ settings, onSettingsChange, className = '' }: Sett
   };
 
   // Handle theme change
-  const handleThemeChange = (theme: 'light' | 'dark') => {
+  const handleThemeChange = (theme: 'light' | 'dark' | 'sepia' | 'system') => {
     onSettingsChange({ theme });
   };
 
@@ -152,13 +152,29 @@ export function SettingsTab({ settings, onSettingsChange, className = '' }: Sett
             className={`settings-option-button ${settings.theme === 'light' ? 'active' : ''}`}
             onClick={() => handleThemeChange('light')}
           >
+            <span className="settings-theme-preview settings-theme-light"></span>
             Light
           </button>
           <button
             className={`settings-option-button ${settings.theme === 'dark' ? 'active' : ''}`}
             onClick={() => handleThemeChange('dark')}
           >
+            <span className="settings-theme-preview settings-theme-dark"></span>
             Dark
+          </button>
+          <button
+            className={`settings-option-button ${settings.theme === 'sepia' ? 'active' : ''}`}
+            onClick={() => handleThemeChange('sepia')}
+          >
+            <span className="settings-theme-preview settings-theme-sepia"></span>
+            Sepia
+          </button>
+          <button
+            className={`settings-option-button ${settings.theme === 'system' ? 'active' : ''}`}
+            onClick={() => handleThemeChange('system')}
+          >
+            <span className="settings-theme-preview settings-theme-system"></span>
+            System
           </button>
         </div>
       </div>

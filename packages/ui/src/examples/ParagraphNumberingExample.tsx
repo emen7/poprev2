@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { ParagraphContainer } from '../content/ParagraphContainer';
-import { Paragraph } from '../content/ParagraphRenderer';
+import { Paragraph } from '../reader-core/content/ParagraphRenderer';
 import './ParagraphNumberingExample.css';
 
 /**
@@ -190,3 +190,4 @@ export const ParagraphNumberingExample: React.FC = () => {
 };
 
 export default ParagraphNumberingExample;
+

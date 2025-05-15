@@ -247,42 +247,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -300,6 +282,23 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -389,22 +388,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * Markdown Transformer
- * 
+ *
  * This module handles the transformation of markdown content into the standardized
  * internal representation using the unified.js ecosystem (remark/rehype).
  */
 &nbsp;
-<span class="cstat-no" title="statement not covered" >import { unified } from 'unified';</span>
+<span class="cstat-no" title="statement not covered" >import rehypeStringify from 'rehype-stringify';</span>
 <span class="cstat-no" title="statement not covered" >import remarkParse from 'remark-parse';</span>
 <span class="cstat-no" title="statement not covered" >import remarkRehype from 'remark-rehype';</span>
-<span class="cstat-no" title="statement not covered" >import rehypeStringify from 'rehype-stringify';</span>
+<span class="cstat-no" title="statement not covered" >import { unified } from 'unified';</span>
+&nbsp;
 import { RootNode, DocumentNode } from './types';
 &nbsp;
 /**
  * Extract metadata from markdown frontmatter if present
- * 
+ *
  * @param content The markdown content
  * @returns An object containing the extracted metadata and the content without frontmatter
  */
@@ -412,14 +413,14 @@ function <span class="fstat-no" title="function not covered" >extractFrontmatter
   // Simple frontmatter extraction (YAML between --- delimiters)
   const frontmatterRegex = <span class="cstat-no" title="statement not covered" >/^---\s*\n([\s\S]*?)\n---\s*\n/;</span>
   const match = <span class="cstat-no" title="statement not covered" >content.match(frontmatterRegex);</span>
-  
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (!match) {</span>
 <span class="cstat-no" title="statement not covered" >    return { metadata: {}, content };</span>
   }
-  
+&nbsp;
   const frontmatter = <span class="cstat-no" title="statement not covered" >match[1];</span>
   const contentWithoutFrontmatter = <span class="cstat-no" title="statement not covered" >content.slice(match[0].length);</span>
-  
+&nbsp;
   // Parse YAML frontmatter
   const metadata: Record&lt;string, any&gt; = <span class="cstat-no" title="statement not covered" >{};</span>
 <span class="cstat-no" title="statement not covered" >  frontmatter.split('\n').forEach(<span class="fstat-no" title="function not covered" >line </span>=&gt; {</span>
@@ -429,25 +430,23 @@ function <span class="fstat-no" title="function not covered" >extractFrontmatter
 <span class="cstat-no" title="statement not covered" >      metadata[key.trim()] = value;</span>
     }
   });
-  
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  return { metadata, content: contentWithoutFrontmatter };</span>
 }
 &nbsp;
 /**
  * Transform markdown content into the standardized internal representation
- * 
+ *
  * @param content The markdown content to transform
  * @returns A promise that resolves to the transformed content
  */
 <span class="cstat-no" title="statement not covered" >export a</span>sync function <span class="fstat-no" title="function not covered" >transformMarkdown(</span>content: string): Promise&lt;any&gt; {
   // Extract frontmatter metadata if present
   const { metadata, content: contentWithoutFrontmatter } = <span class="cstat-no" title="statement not covered" >extractFrontmatter(content);</span>
-  
+&nbsp;
   // Parse markdown to AST
-  const markdownAST = <span class="cstat-no" title="statement not covered" >unified()</span>
-    .use(remarkParse)
-    .parse(contentWithoutFrontmatter);
-  
+  const markdownAST = <span class="cstat-no" title="statement not covered" >unified().use(remarkParse).parse(contentWithoutFrontmatter);</span>
+&nbsp;
   // Convert to HTML for preview/display purposes
   const html = <span class="cstat-no" title="statement not covered" >String(</span>
     await unified()
@@ -456,20 +455,20 @@ function <span class="fstat-no" title="function not covered" >extractFrontmatter
       .use(rehypeStringify)
       .process(contentWithoutFrontmatter)
   );
-  
+&nbsp;
   // Convert the remark AST to our internal representation
   const transformedContent = <span class="cstat-no" title="statement not covered" >convertRemarkAstToInternalFormat(markdownAST);</span>
-  
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  return {</span>
     content: transformedContent,
     metadata,
-    html
+    html,
   };
 }
 &nbsp;
 /**
  * Convert a remark AST to our internal document representation format
- * 
+ *
  * @param ast The remark AST to convert
  * @returns The converted AST in our internal format
  */
@@ -477,29 +476,29 @@ function <span class="fstat-no" title="function not covered" >convertRemarkAstTo
   // Start with the root node
   const root: RootNode = <span class="cstat-no" title="statement not covered" >{</span>
     type: 'root',
-    children: []
+    children: [],
   };
-  
+&nbsp;
   // Process each child node
 <span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (ast.children &amp;&amp; Array.isArray(ast.children)) {</span>
 <span class="cstat-no" title="statement not covered" >    root.children = ast.children.map(convertNode);</span>
   }
-  
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  return root;</span>
 }
 &nbsp;
 /**
  * Convert a single remark node to our internal format
- * 
+ *
  * @param node The remark node to convert
  * @returns The converted node in our internal format
  */
 function <span class="fstat-no" title="function not covered" >convertNode(</span>node: any): DocumentNode {
   // Base node structure
   const convertedNode: DocumentNode = <span class="cstat-no" title="statement not covered" >{</span>
-    type: node.type
+    type: node.type,
   };
-  
+&nbsp;
   // Copy relevant properties based on node type
 <span class="cstat-no" title="statement not covered" >  switch (node.type) {</span>
     case 'heading':
@@ -545,21 +544,22 @@ function <span class="fstat-no" title="function not covered" >convertNode(</span
       }
 <span class="cstat-no" title="statement not covered" >      break;</span>
   }
-  
+&nbsp;
   // Process children recursively
 <span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (node.children &amp;&amp; Array.isArray(node.children)) {</span>
 <span class="cstat-no" title="statement not covered" >    convertedNode.children = node.children.map(convertNode);</span>
   }
-  
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  return convertedNode;</span>
-}</pre></td></tr></table></pre>
+}
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-04-02T16:52:45.965Z
+                at 2025-05-03T18:31:29.695Z
             </div>
         <script src="prettify.js"></script>
         <script>

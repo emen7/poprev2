@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 import { Header, Footer } from '../layout';
-import ReaderLayout from '../layout/ReaderLayout';
-import NotesPanel from '../panels/NotesPanel';
+import ReaderLayout from '../reader-core/layout/ReaderLayout';
+import NotesPanel from '../reader-core/panels/NotesPanel';
 import { ScientificContentProvider } from '../scientific/ScientificContentContext';
 import ScientificTooltip from '../scientific/ScientificTooltip';
 import { exampleTooltipData } from '../types/TooltipData';
@@ -184,3 +184,4 @@ export function ReaderDemo() {
 }
 
 export default ReaderDemo;
+
