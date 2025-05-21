@@ -64,7 +64,11 @@ interface AuthProviderProps {
 /**
  * Authentication provider component
  */
-export const AuthProvider: React.FC<AuthProviderProps> = ({ children, service, publicationId }) => {
+export const AuthContextProvider: React.FC<AuthProviderProps> = ({
+  children,
+  service,
+  publicationId,
+}) => {
   // Create service if not provided
   const authService = service || (publicationId ? createAuthService(publicationId) : authService);
 
