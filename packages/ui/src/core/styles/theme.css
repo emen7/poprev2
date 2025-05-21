@@ -1,0 +1,315 @@
+/**
+ * UB Reader Theme System
+ *
+ * This file contains all design tokens and CSS variables used throughout the application.
+ * It defines light, dark, sepia, and system themes, as well as responsive adjustments.
+ */
+
+:root {
+  /* Color Palette - Light Theme */
+  --color-primary-light: #1976d2;
+  --color-primary-hover-light: #1565c0;
+  --color-secondary-light: #03a9f4;
+  --color-accent-light: #ff4081;
+  --color-background-light: #ffffff;
+  --color-surface-light: #f5f5f5;
+  --color-error-light: #f44336;
+  --color-success-light: #4caf50;
+  --color-warning-light: #ff9800;
+  --color-info-light: #2196f3;
+
+  /* Text Colors - Light Theme */
+  --color-text-primary-light: #212121;
+  --color-text-secondary-light: #757575;
+  --color-text-disabled-light: #9e9e9e;
+  --color-text-hint-light: #9e9e9e;
+
+  /* Border Colors - Light Theme */
+  --color-border-light: #e0e0e0;
+  --color-divider-light: #eeeeee;
+
+  /* Color Palette - Dark Theme (VS Code inspired with warmish tones) */
+  --color-primary-dark: #4d9fff;
+  --color-primary-hover-dark: #3b82f6;
+  --color-secondary-dark: #6b9fff;
+  --color-accent-dark: #c586c0;
+  --color-background-dark: #1a1a1a; /* Slightly lighter than pure black */
+  --color-surface-dark: #222222;
+  --color-surface-lighter-dark: #2a2a2a;
+  --color-surface-darker-dark: #151515;
+  --color-error-dark: #f14c4c;
+  --color-success-dark: #4ec9b0;
+  --color-warning-dark: #cca700;
+  --color-info-dark: #569cd6;
+
+  /* Text Colors - Dark Theme */
+  --color-text-primary-dark: #f0f0e8; /* Warmish off-white text */
+  --color-text-secondary-dark: #b0b0a8; /* Lighter gray with warm tint */
+  --color-text-disabled-dark: #6c6c6c;
+  --color-text-hint-dark: #6c6c6c;
+
+  /* Border Colors - Dark Theme */
+  --color-border-dark: #3e3e42;
+  --color-divider-dark: #424242;
+
+  /* Color Palette - Sepia Theme */
+  --color-primary-sepia: #8c6d46;
+  --color-primary-hover-sepia: #7a5e3c;
+  --color-secondary-sepia: #a68a64;
+  --color-accent-sepia: #d4a76a;
+  --color-background-sepia: #f4ecd8;
+  --color-surface-sepia: #e8e0cc;
+  --color-surface-lighter-sepia: #f8f1e3;
+  --color-surface-darker-sepia: #d8ccb8;
+  --color-error-sepia: #c25450;
+  --color-success-sepia: #6b8e4e;
+  --color-warning-sepia: #d9a441;
+  --color-info-sepia: #6e91b6;
+
+  /* Text Colors - Sepia Theme */
+  --color-text-primary-sepia: #5f4b32;
+  --color-text-secondary-sepia: #7d6852;
+  --color-text-disabled-sepia: #a99e8c;
+  --color-text-hint-sepia: #a99e8c;
+
+  /* Border Colors - Sepia Theme */
+  --color-border-sepia: #d8ccb8;
+  --color-divider-sepia: #e5ded0;
+
+  /* Syntax Highlighting Colors (VS Code inspired) */
+  --color-syntax-keyword-dark: #569cd6;
+  --color-syntax-string-dark: #ce9178;
+  --color-syntax-comment-dark: #6a9955;
+  --color-syntax-function-dark: #dcdcaa;
+  --color-syntax-variable-dark: #9cdcfe;
+  --color-syntax-type-dark: #4ec9b0;
+  --color-syntax-number-dark: #b5cea8;
+  --color-syntax-operator-dark: #d4d4d4;
+  --color-syntax-parameter-dark: #9cdcfe;
+
+  /* Typography */
+  --font-family-serif: Georgia, 'Times New Roman', Times, serif;
+  --font-family-sans-serif:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+    'Helvetica Neue', sans-serif;
+
+  /* Font Sizes */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-md: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem; /* 36px */
+
+  /* Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* Text Alignment */
+  --text-align-default: left;
+  --text-align-justify: justify;
+  --text-align-right: right;
+  --text-align-center: center;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem; /* 8px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 2rem; /* 32px */
+  --spacing-2xl: 3rem; /* 48px */
+  --spacing-3xl: 4rem; /* 64px */
+
+  /* Border Radius */
+  --border-radius-sm: 0.125rem; /* 2px */
+  --border-radius-md: 0.25rem; /* 4px */
+  --border-radius-lg: 0.5rem; /* 8px */
+  --border-radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  /* Transitions */
+  --transition-fast: 150ms;
+  --transition-normal: 300ms;
+  --transition-slow: 500ms;
+
+  /* Z-index */
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1100;
+  --z-index-fixed: 1200;
+  --z-index-modal-backdrop: 1300;
+  --z-index-modal: 1400;
+  --z-index-popover: 1500;
+  --z-index-tooltip: 1600;
+
+  /* Component-specific variables */
+  --header-height: 60px;
+  --sidebar-width: 280px;
+  --pullup-tab-height: 48px;
+
+  /* Default font family based on screen size - will be overridden in media queries */
+  --font-family-base: var(--font-family-serif);
+
+  /* Default text alignment */
+  --text-align: var(--text-align-default);
+}
+
+/* Dark Theme - Default */
+:root {
+  /* Apply dark theme by default */
+  --color-primary: var(--color-primary-dark);
+  --color-primary-hover: var(--color-primary-hover-dark);
+  --color-secondary: var(--color-secondary-dark);
+  --color-accent: var(--color-accent-dark);
+  --color-background: var(--color-background-dark);
+  --color-surface: var(--color-surface-dark);
+  --color-error: var(--color-error-dark);
+  --color-success: var(--color-success-dark);
+  --color-warning: var(--color-warning-dark);
+  --color-info: var(--color-info-dark);
+  --color-text-primary: var(--color-text-primary-dark);
+  --color-text-secondary: var(--color-text-secondary-dark);
+  --color-text-disabled: var(--color-text-disabled-dark);
+  --color-text-hint: var(--color-text-hint-dark);
+  --color-border: var(--color-border-dark);
+  --color-divider: var(--color-divider-dark);
+}
+
+/* Light Theme Class */
+.light-theme {
+  --color-primary: var(--color-primary-light);
+  --color-primary-hover: var(--color-primary-hover-light);
+  --color-secondary: var(--color-secondary-light);
+  --color-accent: var(--color-accent-light);
+  --color-background: var(--color-background-light);
+  --color-surface: var(--color-surface-light);
+  --color-error: var(--color-error-light);
+  --color-success: var(--color-success-light);
+  --color-warning: var(--color-warning-light);
+  --color-info: var(--color-info-light);
+  --color-text-primary: var(--color-text-primary-light);
+  --color-text-secondary: var(--color-text-secondary-light);
+  --color-text-disabled: var(--color-text-disabled-light);
+  --color-text-hint: var(--color-text-hint-light);
+  --color-border: var(--color-border-light);
+  --color-divider: var(--color-divider-light);
+}
+
+/* Sepia Theme Class */
+.sepia-theme {
+  --color-primary: var(--color-primary-sepia);
+  --color-primary-hover: var(--color-primary-hover-sepia);
+  --color-secondary: var(--color-secondary-sepia);
+  --color-accent: var(--color-accent-sepia);
+  --color-background: var(--color-background-sepia);
+  --color-surface: var(--color-surface-sepia);
+  --color-error: var(--color-error-sepia);
+  --color-success: var(--color-success-sepia);
+  --color-warning: var(--color-warning-sepia);
+  --color-info: var(--color-info-sepia);
+  --color-text-primary: var(--color-text-primary-sepia);
+  --color-text-secondary: var(--color-text-secondary-sepia);
+  --color-text-disabled: var(--color-text-disabled-sepia);
+  --color-text-hint: var(--color-text-hint-sepia);
+  --color-border: var(--color-border-sepia);
+  --color-divider: var(--color-divider-sepia);
+}
+
+/* System Theme Class - Will use media query to determine theme */
+.system-theme {
+  /* Default to light theme variables */
+  --color-primary: var(--color-primary-light);
+  --color-primary-hover: var(--color-primary-hover-light);
+  --color-secondary: var(--color-secondary-light);
+  --color-accent: var(--color-accent-light);
+  --color-background: var(--color-background-light);
+  --color-surface: var(--color-surface-light);
+  --color-error: var(--color-error-light);
+  --color-success: var(--color-success-light);
+  --color-warning: var(--color-warning-light);
+  --color-info: var(--color-info-light);
+  --color-text-primary: var(--color-text-primary-light);
+  --color-text-secondary: var(--color-text-secondary-light);
+  --color-text-disabled: var(--color-text-disabled-light);
+  --color-text-hint: var(--color-text-hint-light);
+  --color-border: var(--color-border-light);
+  --color-divider: var(--color-divider-light);
+}
+
+/* System Theme - Dark Mode Detection */
+@media (prefers-color-scheme: dark) {
+  .system-theme {
+    --color-primary: var(--color-primary-dark);
+    --color-primary-hover: var(--color-primary-hover-dark);
+    --color-secondary: var(--color-secondary-dark);
+    --color-accent: var(--color-accent-dark);
+    --color-background: var(--color-background-dark);
+    --color-surface: var(--color-surface-dark);
+    --color-error: var(--color-error-dark);
+    --color-success: var(--color-success-dark);
+    --color-warning: var(--color-warning-dark);
+    --color-info: var(--color-info-dark);
+    --color-text-primary: var(--color-text-primary-dark);
+    --color-text-secondary: var(--color-text-secondary-dark);
+    --color-text-disabled: var(--color-text-disabled-dark);
+    --color-text-hint: var(--color-text-hint-dark);
+    --color-border: var(--color-border-dark);
+    --color-divider: var(--color-divider-dark);
+  }
+}
+
+/* Responsive Typography - Sans-serif for small screens */
+@media (max-width: 768px) {
+  :root {
+    --font-family-base: var(--font-family-sans-serif);
+  }
+}
+
+/* Text Alignment Classes */
+.text-left {
+  text-align: left;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Color Utility Classes */
+.text-primary {
+  color: var(--color-text-primary);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-surface {
+  background-color: var(--color-surface);
+}
+
+/* Font Family Utility Classes */
+.font-serif {
+  font-family: var(--font-family-serif);
+}
+
+.font-sans {
+  font-family: var(--font-family-sans-serif);
+}

@@ -6,6 +6,45 @@
   flex-direction: column;
   overflow: hidden;
   background-color: var(--content-bg-color, #1a1a1a);
+  position: relative;
+}
+
+/* Tab content transitions */
+.tab-transition-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease-out;
+}
+
+.tab-content.entering-right {
+  transform: translateX(100%);
+}
+
+.tab-content.entering-left {
+  transform: translateX(-100%);
+}
+
+.tab-content.active {
+  transform: translateX(0);
+  z-index: 2;
+}
+
+.tab-content.exiting-right {
+  transform: translateX(100%);
+}
+
+.tab-content.exiting-left {
+  transform: translateX(-100%);
 }
 
 /* Dark theme variables */

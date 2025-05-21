@@ -1,0 +1,101 @@
+import React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import { ParagraphComponent } from './ParagraphComponent';
+
+const meta: Meta<typeof ParagraphComponent> = {
+  title: 'ReaderCore/Content/ParagraphComponent',
+  component: ParagraphComponent,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'centered',
+  },
+  argTypes: {
+    number: {
+      control: 'number',
+      description: 'The paragraph number',
+    },
+    text: {
+      control: 'text',
+      description: 'The paragraph text content',
+    },
+    showNumber: {
+      control: 'boolean',
+      description: 'Whether to show the paragraph number',
+    },
+    isHighlighted: {
+      control: 'boolean',
+      description: 'Whether the paragraph is highlighted',
+    },
+    highlightColor: {
+      control: 'color',
+      description: 'The color of the highlight',
+    },
+    onClick: {
+      action: 'clicked',
+      description: 'Function called when the paragraph is clicked',
+    },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof ParagraphComponent>;
+
+// Default paragraph
+export const Default: Story = {
+  args: {
+    number: 1,
+    text: 'This is a sample paragraph for the ParagraphComponent.',
+    showNumber: true,
+    isHighlighted: false,
+  },
+};
+
+// Highlighted paragraph
+export const Highlighted: Story = {
+  args: {
+    number: 2,
+    text: 'This paragraph is highlighted to demonstrate the highlighting feature.',
+    showNumber: true,
+    isHighlighted: true,
+    highlightColor: '#ffeb3b',
+  },
+};
+
+// Paragraph without number
+export const WithoutNumber: Story = {
+  args: {
+    number: 3,
+    text: 'This paragraph does not display its number.',
+    showNumber: false,
+  },
+};
+
+// Short text paragraph
+export const ShortText: Story = {
+  args: {
+    number: 4,
+    text: 'Short text.',
+    showNumber: true,
+  },
+};
+
+// Long text paragraph
+export const LongText: Story = {
+  args: {
+    number: 5,
+    text: 'This is a much longer paragraph that demonstrates how the component handles longer text content. It should wrap properly and maintain readability. The paragraph continues with more text to ensure it spans multiple lines in the display. This helps us verify that the styling and layout work correctly for realistic content lengths that might be encountered in actual documents.',
+    showNumber: true,
+  },
+};
+
+// Mobile view
+export const MobileView: Story = {
+  args: {
+    ...Default.args,
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile1',
+    },
+  },
+};

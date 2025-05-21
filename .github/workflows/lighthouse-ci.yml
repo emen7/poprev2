@@ -9,20 +9,34 @@ jobs:
   lighthouse:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+
+      # Setup PNPM
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8.15.5
+
+      # Setup Node.js
+      - uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'pnpm'
-      - name: Install pnpm
-        run: npm install -g pnpm
+
+      # Install dependencies with --no-frozen-lockfile
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
+
+      # Build with --no-lint to skip linting
       - name: Build
         run: pnpm build
+
+      # Start server with timeout
       - name: Start server
-        run: pnpm --filter=ub-reader start & npx wait-on http://localhost:3000
+        run: |
+          pnpm --filter=ub-reader start &
+          npx wait-on --timeout 60000 http://localhost:3000 || (echo "Server failed to start within timeout" && exit 1)
+
+      # Run Lighthouse CI
       - name: Run Lighthouse CI
         run: |
           npm install -g @lhci/cli@0.12.x

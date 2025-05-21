@@ -1,0 +1,100 @@
+/**
+ * ThemeToggle Component Styles
+ */
+
+.theme-toggle {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Theme option */
+.theme-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  position: relative;
+}
+
+.theme-option:hover {
+  opacity: 1;
+}
+
+.theme-option-selected {
+  opacity: 1;
+}
+
+.theme-option-selected::after {
+  content: '✓';
+  position: absolute;
+  color: var(--accent-color, #0088ff);
+  font-weight: bold;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Theme preview */
+.theme-preview {
+  border-radius: 4px;
+  border: 1px solid #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Theme label */
+.theme-label {
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+/* Size variants */
+.theme-toggle-small .theme-preview {
+  width: 30px;
+  height: 20px;
+}
+
+.theme-toggle-small .theme-label {
+  font-size: 0.7rem;
+}
+
+.theme-toggle-medium .theme-preview {
+  width: 50px;
+  height: 30px;
+}
+
+.theme-toggle-medium .theme-label {
+  font-size: 0.8rem;
+}
+
+.theme-toggle-large .theme-preview {
+  width: 70px;
+  height: 40px;
+}
+
+.theme-toggle-large .theme-label {
+  font-size: 0.9rem;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .theme-toggle {
+    gap: 0.5rem;
+  }
+
+  .theme-toggle-medium .theme-preview {
+    width: 40px;
+    height: 25px;
+  }
+
+  .theme-toggle-large .theme-preview {
+    width: 50px;
+    height: 30px;
+  }
+}

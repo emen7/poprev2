@@ -10,6 +10,12 @@
         "ignoreAtRules": ["tailwind", "apply", "layer", "screen"]
       }
     ],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ],
     "no-descending-specificity": null,
     "no-duplicate-selectors": null,
     "at-rule-no-deprecated": null,

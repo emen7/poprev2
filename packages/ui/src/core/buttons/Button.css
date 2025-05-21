@@ -1,0 +1,82 @@
+/**
+ * Button Component Styles
+ */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+  border: 1px solid var(--button-border-color, #d1d5db);
+  background-color: var(--button-bg-color, #ffffff);
+  color: var(--button-text-color, #374151);
+}
+
+.button:hover:not(:disabled) {
+  background-color: var(--button-hover-bg-color, #f9fafb);
+  border-color: var(--button-hover-border-color, #c1c5cb);
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--button-focus-ring-color, rgba(209, 213, 219, 0.5));
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Primary button */
+.button--primary {
+  background-color: var(--button-primary-bg-color, #3b82f6);
+  border-color: var(--button-primary-border-color, #3b82f6);
+  color: var(--button-primary-text-color, #ffffff);
+}
+
+.button--primary:hover:not(:disabled) {
+  background-color: var(--button-primary-hover-bg-color, #2563eb);
+  border-color: var(--button-primary-hover-border-color, #2563eb);
+}
+
+.button--primary:focus {
+  box-shadow: 0 0 0 3px var(--button-primary-focus-ring-color, rgba(59, 130, 246, 0.5));
+}
+
+/* Secondary button */
+.button--secondary {
+  background-color: var(--button-secondary-bg-color, #6b7280);
+  border-color: var(--button-secondary-border-color, #6b7280);
+  color: var(--button-secondary-text-color, #ffffff);
+}
+
+.button--secondary:hover:not(:disabled) {
+  background-color: var(--button-secondary-hover-bg-color, #4b5563);
+  border-color: var(--button-secondary-hover-border-color, #4b5563);
+}
+
+.button--secondary:focus {
+  box-shadow: 0 0 0 3px var(--button-secondary-focus-ring-color, rgba(107, 114, 128, 0.5));
+}
+
+/* Danger button */
+.button--danger {
+  background-color: var(--button-danger-bg-color, #ef4444);
+  border-color: var(--button-danger-border-color, #ef4444);
+  color: var(--button-danger-text-color, #ffffff);
+}
+
+.button--danger:hover:not(:disabled) {
+  background-color: var(--button-danger-hover-bg-color, #dc2626);
+  border-color: var(--button-danger-hover-border-color, #dc2626);
+}
+
+.button--danger:focus {
+  box-shadow: 0 0 0 3px var(--button-danger-focus-ring-color, rgba(239, 68, 68, 0.5));
+}

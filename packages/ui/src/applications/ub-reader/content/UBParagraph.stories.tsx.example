@@ -1,0 +1,103 @@
+import React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import { UBParagraph } from './UBParagraph';
+
+const meta: Meta<typeof UBParagraph> = {
+  title: 'Applications/UBReader/Content/UBParagraph',
+  component: UBParagraph,
+  parameters: {
+    layout: 'centered',
+  },
+  tags: ['autodocs'],
+  argTypes: {
+    paragraph: {
+      control: 'object',
+      description: 'The paragraph object containing number and text',
+    },
+    showParagraphNumbers: {
+      control: 'boolean',
+      description: 'Whether to show paragraph numbers',
+    },
+    isTopicChange: {
+      control: 'boolean',
+      description: 'Whether this paragraph represents a topic change',
+    },
+    className: {
+      control: 'text',
+      description: 'Additional CSS class names',
+    },
+  },
+  args: {
+    // Default args for all stories
+    paragraph: {
+      number: 1,
+      text: 'Default paragraph text for UB Reader component.',
+    },
+    showParagraphNumbers: true,
+    isTopicChange: false,
+    className: '',
+  },
+  decorators: [
+    Story => (
+      <div style={{ maxWidth: '700px', margin: '0 auto', fontFamily: 'serif' }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+export default meta;
+type Story = StoryObj<typeof UBParagraph>;
+
+// Basic paragraph
+export const Default: Story = {
+  args: {
+    paragraph: {
+      number: 1,
+      text: 'The Universal Father is the God of all creation, the First Source and Center of all things and beings.',
+    },
+    showParagraphNumbers: true,
+  },
+};
+
+// Paragraph with HTML formatting
+export const WithHTMLFormatting: Story = {
+  args: {
+    paragraph: {
+      number: 2,
+      text: 'The <em>Universal Father</em> is the God of all creation, the <strong>First Source and Center</strong> of all things and beings.',
+    },
+  },
+};
+
+// Paragraph without numbers
+export const WithoutNumbers: Story = {
+  args: {
+    paragraph: {
+      number: 3,
+      text: 'This paragraph does not display its number.',
+    },
+    showParagraphNumbers: false,
+  },
+};
+
+// Paragraph with topic change
+export const TopicChange: Story = {
+  args: {
+    paragraph: {
+      number: 4,
+      text: 'This paragraph represents a topic change in the document.',
+    },
+    isTopicChange: true,
+  },
+};
+
+// Long paragraph
+export const LongParagraph: Story = {
+  args: {
+    paragraph: {
+      number: 5,
+      text: 'This is a much longer paragraph that demonstrates how the UB Reader component handles longer text content. It should wrap properly and maintain readability. The paragraph continues with more text to ensure it spans multiple lines in the display. This helps us verify that the styling and layout work correctly for realistic content lengths that might be encountered in actual UB papers. The Universal Father is the God of all creation, the First Source and Center of all things and beings. The Universal Father exists before all things and underlies all things. The Universal Father is the spirit personality, the universal spiritual reality. He is the first and last, the Alpha and Omega, the cause and destiny of all spirituality.',
+    },
+  },
+};

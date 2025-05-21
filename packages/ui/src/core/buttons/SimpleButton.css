@@ -1,0 +1,87 @@
+/**
+ * SimpleButton Component Styles
+ */
+
+.simple-button {
+  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  border: 0;
+  border-radius: 3em;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1;
+  transition: all 0.15s ease;
+}
+
+/* Primary variant */
+.simple-button--primary {
+  color: white;
+  background-color: #1ea7fd;
+}
+
+.simple-button--primary:hover:not(:disabled) {
+  background-color: #1a91e0;
+}
+
+/* Secondary variant */
+.simple-button--secondary {
+  color: #333;
+  background-color: transparent;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
+}
+
+.simple-button--secondary:hover:not(:disabled) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Size variants */
+.simple-button--small {
+  font-size: 12px;
+  padding: 10px 16px;
+}
+
+.simple-button--medium {
+  font-size: 14px;
+  padding: 11px 20px;
+}
+
+.simple-button--large {
+  font-size: 16px;
+  padding: 12px 24px;
+}
+
+/* Disabled state */
+.simple-button--disabled,
+.simple-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Focus state */
+.simple-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(30, 167, 253, 0.5);
+}
+
+/* Dark theme overrides */
+:global(.dark-theme) .simple-button--secondary {
+  color: #e0e0e0;
+  box-shadow: rgba(255, 255, 255, 0.15) 0px 0px 0px 1px inset;
+}
+
+:global(.dark-theme) .simple-button--secondary:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Sepia theme overrides */
+:global(.theme-sepia) .simple-button--primary {
+  background-color: #947a62;
+}
+
+:global(.theme-sepia) .simple-button--primary:hover:not(:disabled) {
+  background-color: #7d6652;
+}
+
+:global(.theme-sepia) .simple-button:focus {
+  box-shadow: 0 0 0 2px rgba(148, 122, 98, 0.5);
+}

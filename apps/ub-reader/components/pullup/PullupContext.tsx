@@ -99,8 +99,28 @@ export function PullupProvider({
   initialState = {},
   persistentBreakpoint = 1024,
 }: PullupProviderProps) {
-  // Merge default state with any provided initial state
-  const mergedInitialState = { ...initialPullupState, ...initialState };
+  // Load saved state from localStorage if available
+  const loadSavedState = (): Partial<PullupState> => {
+    if (typeof window === 'undefined') return {}; // Server-side rendering check
+
+    try {
+      const savedState = localStorage.getItem('pullup-state');
+      if (savedState) {
+        return JSON.parse(savedState);
+      }
+    } catch (error) {
+      console.error('Error loading pullup state from localStorage:', error);
+    }
+
+    return {};
+  };
+
+  // Merge default state with saved state and any provided initial state
+  const mergedInitialState = {
+    ...initialPullupState,
+    ...loadSavedState(),
+    ...initialState,
+  };
 
   // Create reducer state and dispatch
   const [state, dispatch] = useReducer(pullupReducer, mergedInitialState);
@@ -129,6 +149,25 @@ export function PullupProvider({
       window.removeEventListener('resize', handleResize);
     };
   }, [persistentBreakpoint, state.isPersistent]);
+
+  // Save state to localStorage when it changes
+  useEffect(() => {
+    if (typeof window === 'undefined') return; // Server-side rendering check
+
+    try {
+      // Only save certain properties to avoid persisting temporary UI states
+      const stateToSave = {
+        activeTab: state.activeTab,
+        height: state.height,
+        isOpen: state.isOpen,
+        // Don't save isPersistent as it's determined by screen size
+      };
+
+      localStorage.setItem('pullup-state', JSON.stringify(stateToSave));
+    } catch (error) {
+      console.error('Error saving pullup state to localStorage:', error);
+    }
+  }, [state.activeTab, state.height, state.isOpen]);
 
   // Memoize context value to prevent unnecessary re-renders
   const contextValue = useMemo(() => ({ state, dispatch }), [state]);

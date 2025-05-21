@@ -1,0 +1,201 @@
+.note-editor-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.note-editor {
+  background-color: var(--color-surface);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease-out;
+}
+
+.note-editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.note-editor-title {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--color-text-primary);
+}
+
+.note-editor-close-button {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  transition: background-color 0.2s;
+}
+
+.note-editor-close-button:hover {
+  background-color: var(--color-surface-lighter-dark);
+  color: var(--color-text-primary);
+}
+
+.note-editor-selected-text {
+  padding: 1rem;
+  background-color: var(--color-surface-darker-dark);
+  border-bottom: 1px solid var(--color-border);
+  font-style: italic;
+  color: var(--color-text-secondary);
+}
+
+.note-editor-selected-text p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.note-editor-content {
+  padding: 1rem;
+}
+
+.note-editor-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface-darker-dark);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  font-size: 1rem;
+  resize: vertical;
+  min-height: 100px;
+  transition: border-color 0.2s;
+}
+
+.note-editor-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.note-editor-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.note-editor-cancel-button,
+.note-editor-save-button,
+.note-editor-delete-button {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.note-editor-cancel-button {
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.note-editor-cancel-button:hover {
+  background-color: var(--color-surface-lighter-dark);
+}
+
+.note-editor-save-button {
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  color: white;
+}
+
+.note-editor-save-button:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.note-editor-save-button:disabled {
+  background-color: var(--color-surface-lighter-dark);
+  border-color: var(--color-border);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.note-editor-delete-button {
+  background-color: var(--color-error);
+  border: 1px solid var(--color-error);
+  color: white;
+  margin-right: auto;
+}
+
+.note-editor-delete-button:hover {
+  background-color: #d32f2f;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .note-editor {
+    width: 95%;
+    max-width: none;
+  }
+  
+  .note-editor-header {
+    padding: 0.75rem;
+  }
+  
+  .note-editor-content,
+  .note-editor-selected-text,
+  .note-editor-actions {
+    padding: 0.75rem;
+  }
+  
+  .note-editor-textarea {
+    padding: 0.5rem;
+  }
+  
+  .note-editor-cancel-button,
+  .note-editor-save-button,
+  .note-editor-delete-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}

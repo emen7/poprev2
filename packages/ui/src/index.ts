@@ -8,6 +8,15 @@
  * and specialized components for the UB Reader application.
  */
 
+// Import namespaces
+import * as AccessibilityUtils from './accessibility';
+import * as ContentTypes from './content';
+import * as CoreTypes from './core';
+import * as PanelTypes from './panels';
+import * as PullupTypes from './pullup';
+import * as ScientificTypes from './scientific';
+import * as SelectionTypes from './selection';
+
 // Layout Components
 export { ThreeRowHeader, HeaderRow, DynamicSectionTitle } from './layout';
 // Navigation Components
@@ -18,17 +27,39 @@ export {
   SectionNavigationPanel,
   SectionTracker,
   useIntersectionObserver,
+  TabsComponent,
 } from './navigation';
 
 // Content Components
-export { ContentRenderer, ParagraphRenderer, SectionRenderer, UBContentRenderer } from './content';
+export {
+  ContentRenderer,
+  ParagraphRenderer,
+  SectionRenderer,
+  UBContentRenderer,
+  ParagraphComponent,
+  SectionTitle,
+} from './content';
 
 // Re-export content types with namespace to avoid conflicts
-import * as ContentTypes from './content';
 export { ContentTypes };
 
 // Settings Components
 export { FormatToggle } from './settings';
+
+// Theme Components
+export {
+  // Legacy theme components
+  ThemeToggle,
+  ReaderThemeProvider,
+  useReaderTheme,
+
+  // New theme system (preferred)
+  ThemeProvider,
+  useTheme,
+  EnhancedThemeToggle,
+  TextAlignmentToggle,
+  ThemeSettings,
+} from './theme';
 
 // Hooks
 export { useFormatting } from './hooks';
@@ -44,6 +75,21 @@ export type {
 // Re-export types from hooks
 export type { FormatType, UseFormattingOptions, UseFormattingResult } from './hooks';
 
+// Re-export theme types
+export type {
+  // Legacy theme types
+  ThemeToggleProps,
+  ThemeOption,
+  ReaderThemeProviderProps,
+  ThemeContextType,
+  UITheme,
+  ContentTheme,
+
+  // New theme system types
+  ThemeMode,
+  TextAlignment,
+} from './theme';
+
 // Scientific Content Components
 export {
   ScientificTooltip,
@@ -53,8 +99,6 @@ export {
 } from './scientific';
 
 // Re-export scientific types with namespace to avoid conflicts
-import * as PanelTypes from './panels';
-import * as ScientificTypes from './scientific';
 export { ScientificTypes };
 
 // Panel Components
@@ -67,7 +111,6 @@ export { PanelTypes };
 export { SelectionMenu, useSelectionMenu } from './selection';
 
 // Re-export selection types with namespace to avoid conflicts
-import * as SelectionTypes from './selection';
 export { SelectionTypes };
 
 // Pullup Components
@@ -82,7 +125,6 @@ export {
 } from './pullup';
 
 // Re-export pullup types with namespace to avoid conflicts
-import * as PullupTypes from './pullup';
 export { PullupTypes };
 
 // Examples are excluded to avoid build issues
@@ -95,5 +137,28 @@ export * from './components';
 export * from './accessibility';
 
 // Re-export accessibility types with namespace to avoid conflicts
-import * as AccessibilityUtils from './accessibility';
 export { AccessibilityUtils };
+
+// Core Components
+export { Button, SimpleButton, IconButton } from './core/buttons';
+export { TextAlignmentToggle, ThemeToggle } from './core/toggles';
+export { TabsComponent } from './core/navigation';
+export { SnapPointIndicator } from './core/indicators';
+export { ThemeSettings } from './core/settings';
+export { EnhancedPullup } from './core/pullup';
+export { ReaderThemeProvider, useReaderTheme } from './core/theme';
+export { AuthPanel } from './core/auth/AuthPanel';
+
+// Icon System
+export {
+  IconWrapper,
+  SearchIcon,
+  HeartIcon,
+  GearIcon,
+  BookmarkIcon,
+  NoteIcon,
+} from './core/icons/IconWrapper';
+export type { IconProps, IconWeight, IconSize } from './core/icons/types';
+
+// Re-export core types with namespace to avoid conflicts
+export { CoreTypes };

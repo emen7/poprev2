@@ -1,0 +1,105 @@
+import React, { useState } from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import { ThemeProvider } from '../../../core/theme/ThemeProvider';
+import { ThemeSettings } from '../../../core/settings/ThemeSettings';
+import { samplePaper, sampleNotes, sampleQuotes } from '../../sampleData';
+
+// Import the UBParagraph component
+import { UBParagraph } from '../../../applications/ub-reader/content/UBParagraph';
+
+/**
+ * UB Reader Theme Demo Component
+ *
+ * This component demonstrates a complete UB Reader page with the new theme system.
+ */
+const UBReaderThemeDemo = () => {
+  // State for active tab
+  const [activeTab, setActiveTab] = useState('content');
+
+  // Get paragraphs from the sample data
+  const paragraphs = samplePaper.sections[0].paragraphs.slice(0, 10);
+
+  return (
+    <div className="ub-reader-theme-demo">
+      {/* Header */}
+      <header className="reader-header">
+        <h1>The Urantia Book</h1>
+        <div className="header-controls">
+          <button onClick={() => setActiveTab('settings')}>Settings</button>
+        </div>
+      </header>
+
+      {/* Main content */}
+      <main className="reader-content">
+        {activeTab === 'content' ? (
+          <div className="paper-content">
+            <h2 className="paper-title">{samplePaper.title}</h2>
+            <div className="paper-paragraphs">
+              {paragraphs.map((paragraph) => (
+                <UBParagraph
+                  key={paragraph.number}
+                  paragraph={paragraph}
+                  showParagraphNumbers={true}
+                />
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="settings-panel">
+            <ThemeSettings />
+          </div>
+        )}
+      </main>
+
+      {/* Footer */}
+      <footer className="reader-footer">
+        <div className="footer-tabs">
+          <button
+            className={activeTab === 'content' ? 'active' : ''}
+            onClick={() => setActiveTab('content')}
+          >
+            Content
+          </button>
+          <button
+            className={activeTab === 'notes' ? 'active' : ''}
+            onClick={() => setActiveTab('notes')}
+          >
+            Notes
+          </button>
+          <button
+            className={activeTab === 'quotes' ? 'active' : ''}
+            onClick={() => setActiveTab('quotes')}
+          >
+            Quotes
+          </button>
+          <button
+            className={activeTab === 'settings' ? 'active' : ''}
+            onClick={() => setActiveTab('settings')}
+          >
+            Settings
+          </button>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+const meta: Meta<typeof UBReaderThemeDemo> = {
+  title: 'Examples/UBReader/ThemeDemo',
+  component: UBReaderThemeDemo,
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        component:
+          'A complete UB Reader demo page showcasing the new theme system with dark mode default and responsive typography.',
+      },
+    },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof UBReaderThemeDemo>;
+
+// Default story
+export const Default: Story = {};
