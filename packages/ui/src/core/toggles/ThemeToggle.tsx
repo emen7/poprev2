@@ -1,17 +1,17 @@
 import React from 'react';
-import { useTheme, ThemeMode } from '../contexts/ThemeContext';
+import { useTheme, ThemeMode } from '../../contexts/ThemeContext';
 
-interface ThemeToggleProps {
+export interface ThemeToggleProps {
   /**
    * Additional CSS class name
    */
   className?: string;
-  
+
   /**
    * Whether to show labels next to icons
    */
   showLabels?: boolean;
-  
+
   /**
    * Whether to show the system theme option
    */
@@ -20,7 +20,7 @@ interface ThemeToggleProps {
 
 /**
  * ThemeToggle Component
- * 
+ *
  * A component that allows users to toggle between dark, light, and system themes.
  */
 export const ThemeToggle: React.FC<ThemeToggleProps> = ({
@@ -29,11 +29,11 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
   showSystemOption = true,
 }) => {
   const { themeMode, setThemeMode } = useTheme();
-  
+
   const handleThemeChange = (mode: ThemeMode) => {
     setThemeMode(mode);
   };
-  
+
   return (
     <div className={`theme-toggle ${className}`}>
       <div className="theme-toggle-buttons">
@@ -47,7 +47,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
           <span className="theme-toggle-icon">🌙</span>
           {showLabels && <span className="theme-toggle-label">Dark</span>}
         </button>
-        
+
         <button
           type="button"
           className={`theme-toggle-button ${themeMode === 'light' ? 'active' : ''}`}
@@ -58,7 +58,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
           <span className="theme-toggle-icon">☀️</span>
           {showLabels && <span className="theme-toggle-label">Light</span>}
         </button>
-        
+
         {showSystemOption && (
           <button
             type="button"
@@ -72,20 +72,20 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
           </button>
         )}
       </div>
-      
+
       <style jsx>{`
         .theme-toggle {
           display: inline-flex;
           align-items: center;
         }
-        
+
         .theme-toggle-buttons {
           display: flex;
           border-radius: var(--border-radius-md);
           overflow: hidden;
           border: 1px solid var(--color-border);
         }
-        
+
         .theme-toggle-button {
           display: flex;
           align-items: center;
@@ -97,22 +97,22 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
           cursor: pointer;
           transition: background-color var(--transition-fast);
         }
-        
+
         .theme-toggle-button:hover {
           background-color: var(--color-primary-hover);
           color: white;
         }
-        
+
         .theme-toggle-button.active {
           background-color: var(--color-primary);
           color: white;
         }
-        
+
         .theme-toggle-icon {
           font-size: 1rem;
           margin-right: ${showLabels ? '0.5rem' : '0'};
         }
-        
+
         .theme-toggle-label {
           font-size: 0.875rem;
         }

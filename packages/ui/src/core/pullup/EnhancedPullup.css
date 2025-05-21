@@ -1,0 +1,149 @@
+/* EnhancedPullup Component Styles */
+
+.enhanced-pullup {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--pullup-bg-color, #fff);
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.15);
+  border-top-left-radius: var(--radius-lg, 8px);
+  border-top-right-radius: var(--radius-lg, 8px);
+  transition:
+    transform 0.3s ease,
+    height 0.3s ease;
+  z-index: var(--z-index-pullup, 1000);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-width: var(--content-max-width, 800px);
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Open state */
+.enhanced-pullup-open {
+  transform: translateY(0) !important;
+}
+
+/* Persistent mode (for large screens) */
+.enhanced-pullup-persistent {
+  position: relative;
+  box-shadow: none;
+  border: 1px solid var(--border-color, #eaeaea);
+  border-radius: var(--radius-md, 8px);
+  margin-top: 20px;
+}
+
+/* Dragging state */
+.enhanced-pullup-dragging {
+  transition: none;
+  user-select: none;
+}
+
+/* Handle for dragging */
+.enhanced-pullup-handle {
+  position: relative;
+  width: 100%;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: ns-resize;
+  background-color: var(--pullup-handle-bg-color, #f8f8f8);
+  border-bottom: 1px solid var(--border-color, #eaeaea);
+}
+
+/* Handle bar */
+.enhanced-pullup-handle-bar {
+  width: 40px;
+  height: 4px;
+  background-color: var(--pullup-handle-bar-color, #ccc);
+  border-radius: 2px;
+}
+
+/* Close button */
+.enhanced-pullup-close {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--pullup-close-bg-color, #f0f0f0);
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--pullup-close-color, #666);
+}
+
+.enhanced-pullup-close:hover {
+  background-color: var(--pullup-close-hover-bg-color, #e0e0e0);
+}
+
+/* Snap point indicator */
+.enhanced-pullup-snap-indicator {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Content area */
+.enhanced-pullup-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Tab content */
+.enhanced-pullup-tab-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+/* Dark theme overrides */
+:global(.dark-theme) .enhanced-pullup {
+  background-color: var(--pullup-bg-color-dark, #1a1a1a);
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+}
+
+:global(.dark-theme) .enhanced-pullup-handle {
+  background-color: var(--pullup-handle-bg-color-dark, #2a2a2a);
+  border-bottom-color: var(--border-color-dark, #333);
+}
+
+:global(.dark-theme) .enhanced-pullup-handle-bar {
+  background-color: var(--pullup-handle-bar-color-dark, #555);
+}
+
+:global(.dark-theme) .enhanced-pullup-close {
+  background-color: var(--pullup-close-bg-color-dark, #333);
+  color: var(--pullup-close-color-dark, #ccc);
+}
+
+:global(.dark-theme) .enhanced-pullup-close:hover {
+  background-color: var(--pullup-close-hover-bg-color-dark, #444);
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  .enhanced-pullup {
+    border-radius: 0;
+  }
+}
+
+@media (min-width: 769px) {
+  .enhanced-pullup-persistent {
+    position: relative;
+    box-shadow: none;
+    border: 1px solid var(--border-color, #eaeaea);
+    border-radius: var(--radius-md, 8px);
+  }
+}

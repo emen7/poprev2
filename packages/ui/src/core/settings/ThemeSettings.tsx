@@ -1,34 +1,34 @@
 import React from 'react';
-import ThemeToggle from './ThemeToggle';
-import TextAlignmentToggle from './TextAlignmentToggle';
-import { TextAlignment } from '../contexts/ThemeContext';
+import { ThemeToggle } from '../toggles/ThemeToggle';
+import { TextAlignmentToggle } from '../toggles/TextAlignmentToggle';
+import { TextAlignment } from '../../contexts/ThemeContext';
 
-interface ThemeSettingsProps {
+export interface ThemeSettingsProps {
   /**
    * Additional CSS class name
    */
   className?: string;
-  
+
   /**
    * Whether to show labels next to icons
    */
   showLabels?: boolean;
-  
+
   /**
    * Whether to show the system theme option
    */
   showSystemOption?: boolean;
-  
+
   /**
    * Which text alignment options to show
    */
   alignmentOptions?: TextAlignment[];
-  
+
   /**
    * Whether to show the theme toggle
    */
   showThemeToggle?: boolean;
-  
+
   /**
    * Whether to show the text alignment toggle
    */
@@ -37,7 +37,7 @@ interface ThemeSettingsProps {
 
 /**
  * ThemeSettings Component
- * 
+ *
  * A component that combines theme and text alignment controls.
  */
 export const ThemeSettings: React.FC<ThemeSettingsProps> = ({
@@ -56,14 +56,14 @@ export const ThemeSettings: React.FC<ThemeSettingsProps> = ({
           <ThemeToggle showLabels={showLabels} showSystemOption={showSystemOption} />
         </div>
       )}
-      
+
       {showAlignmentToggle && (
         <div className="theme-settings-section">
           <h3 className="theme-settings-heading">Text Alignment</h3>
           <TextAlignmentToggle showLabels={showLabels} options={alignmentOptions} />
         </div>
       )}
-      
+
       <style jsx>{`
         .theme-settings {
           display: flex;
@@ -74,13 +74,13 @@ export const ThemeSettings: React.FC<ThemeSettingsProps> = ({
           border-radius: var(--border-radius-md);
           border: 1px solid var(--color-border);
         }
-        
+
         .theme-settings-section {
           display: flex;
           flex-direction: column;
           gap: 0.5rem;
         }
-        
+
         .theme-settings-heading {
           font-size: 1rem;
           font-weight: 600;

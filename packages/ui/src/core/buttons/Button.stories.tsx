@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { Button } from './button';
+import { Button } from './Button';
 
 const meta: Meta<typeof Button> = {
   title: 'Core/Buttons/Button',
@@ -15,12 +15,19 @@ const meta: Meta<typeof Button> = {
     },
     children: {
       control: 'text',
-      description: 'The content to display inside the button',
+      description: 'The content of the button',
     },
-    onClick: { action: 'clicked' },
+    onClick: {
+      action: 'clicked',
+      description: 'Function called when the button is clicked',
+    },
     disabled: {
       control: 'boolean',
       description: 'Whether the button is disabled',
+    },
+    className: {
+      control: 'text',
+      description: 'Additional CSS class names',
     },
   },
 };
@@ -28,44 +35,50 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
+// Default button
 export const Default: Story = {
   args: {
-    children: 'Default Button',
+    children: 'Button',
+    variant: 'default',
   },
 };
 
+// Primary button
 export const Primary: Story = {
   args: {
-    variant: 'primary',
     children: 'Primary Button',
+    variant: 'primary',
   },
 };
 
+// Secondary button
 export const Secondary: Story = {
   args: {
-    variant: 'secondary',
     children: 'Secondary Button',
+    variant: 'secondary',
   },
 };
 
+// Danger button
 export const Danger: Story = {
   args: {
-    variant: 'danger',
     children: 'Danger Button',
+    variant: 'danger',
   },
 };
 
+// Disabled button
 export const Disabled: Story = {
   args: {
-    disabled: true,
     children: 'Disabled Button',
+    disabled: true,
   },
 };
 
+// Button with custom class
 export const WithCustomClass: Story = {
   args: {
-    className: 'custom-button',
     children: 'Custom Class Button',
+    className: 'custom-button',
   },
 };
-

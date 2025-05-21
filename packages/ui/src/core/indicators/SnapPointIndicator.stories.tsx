@@ -9,6 +9,20 @@ const meta: Meta<typeof SnapPointIndicator> = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    currentHeight: {
+      control: { type: 'number', min: 0, max: 1000, step: 10 },
+      description: 'The current height of the pullup panel',
+    },
+    snapPoints: {
+      control: 'object',
+      description: 'The snap points configuration',
+    },
+    className: {
+      control: 'text',
+      description: 'Additional CSS class name',
+    },
+  },
 };
 
 export default meta;
@@ -26,6 +40,13 @@ export const Collapsed: Story = {
       full: 600,
     },
   },
+  decorators: [
+    (Story) => (
+      <div style={{ padding: '20px', background: '#333', borderRadius: '8px', position: 'relative', height: '30px' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 /**
@@ -40,6 +61,13 @@ export const HalfExpanded: Story = {
       full: 600,
     },
   },
+  decorators: [
+    (Story) => (
+      <div style={{ padding: '20px', background: '#333', borderRadius: '8px', position: 'relative', height: '30px' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 /**
@@ -54,6 +82,13 @@ export const FullyExpanded: Story = {
       full: 600,
     },
   },
+  decorators: [
+    (Story) => (
+      <div style={{ padding: '20px', background: '#333', borderRadius: '8px', position: 'relative', height: '30px' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 /**
@@ -91,4 +126,3 @@ export const Interactive = () => {
     </div>
   );
 };
-

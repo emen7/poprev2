@@ -72,14 +72,13 @@ export interface ReaderThemeProviderProps {
  *
  * A context provider for managing UI and content themes in the UB Reader.
  * Supports light, dark, and sepia UI themes, and modern and traditional content themes.
- * @param root0
- * @param root0.children
- * @param root0.initialUITheme
- * @param root0.initialContentTheme
- * @param root0.persistTheme
- * @param root0.uiThemeStorageKey
- * @param root0.contentThemeStorageKey
- * @returns A theme provider component
+ * 
+ * @example
+ * ```tsx
+ * <ReaderThemeProvider initialUITheme="dark" initialContentTheme="modern">
+ *   <App />
+ * </ReaderThemeProvider>
+ * ```
  */
 export function ReaderThemeProvider({
   children,
@@ -92,21 +91,21 @@ export function ReaderThemeProvider({
   // Initialize state with stored values or defaults
   const [uiTheme, setUIThemeState] = useState<UITheme>(() => {
     if (persistTheme && typeof window !== 'undefined') {
-      const storedTheme = localStorage.getItem(uiThemeStorageKey) as UITheme | null;
-      return storedTheme || initialUITheme;
+      const storedTheme = localStorage.getItem(uiThemeStorageKey);
+      return (storedTheme as UITheme) || initialUITheme;
     }
     return initialUITheme;
   });
 
   const [contentTheme, setContentThemeState] = useState<ContentTheme>(() => {
     if (persistTheme && typeof window !== 'undefined') {
-      const storedTheme = localStorage.getItem(contentThemeStorageKey) as ContentTheme | null;
-      return storedTheme || initialContentTheme;
+      const storedTheme = localStorage.getItem(contentThemeStorageKey);
+      return (storedTheme as ContentTheme) || initialContentTheme;
     }
     return initialContentTheme;
   });
 
-  // Update UI theme and store in localStorage if persistTheme is true
+  // Update UI theme and persist if enabled
   const setUITheme = (theme: UITheme) => {
     setUIThemeState(theme);
     if (persistTheme && typeof window !== 'undefined') {
@@ -114,13 +113,38 @@ export function ReaderThemeProvider({
     }
   };
 
-  // Update content theme and store in localStorage if persistTheme is true
+  // Update content theme and persist if enabled
   const setContentTheme = (theme: ContentTheme) => {
     setContentThemeState(theme);
     if (persistTheme && typeof window !== 'undefined') {
       localStorage.setItem(contentThemeStorageKey, theme);
     }
   };
+
+  // Handle system theme preference changes
+  useEffect(() => {
+    if (uiTheme === 'system' && typeof window !== 'undefined') {
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      
+      // Initial check
+      const handleChange = (e: MediaQueryListEvent | MediaQueryList) => {
+        document.documentElement.classList.remove('theme-light', 'theme-dark');
+        document.documentElement.classList.add(`theme-${e.matches ? 'dark' : 'light'}`);
+      };
+      
+      // Set initial value
+      handleChange(mediaQuery);
+      
+      // Add listener for changes
+      const mediaQueryListener = (e: MediaQueryListEvent) => handleChange(e);
+      mediaQuery.addEventListener('change', mediaQueryListener);
+      
+      // Cleanup
+      return () => {
+        mediaQuery.removeEventListener('change', mediaQueryListener);
+      };
+    }
+  }, [uiTheme]);
 
   // Apply the theme classes to the document element
   useEffect(() => {
@@ -130,7 +154,9 @@ export function ReaderThemeProvider({
       document.documentElement.classList.remove('content-modern', 'content-traditional');
 
       // Add the current theme classes
-      document.documentElement.classList.add(`theme-${uiTheme}`);
+      if (uiTheme !== 'system') {
+        document.documentElement.classList.add(`theme-${uiTheme}`);
+      }
       document.documentElement.classList.add(`content-${contentTheme}`);
     }
   }, [uiTheme, contentTheme]);

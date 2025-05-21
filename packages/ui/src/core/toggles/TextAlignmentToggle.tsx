@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTheme, TextAlignment } from '../../contexts/ThemeContext';
 
-interface TextAlignmentToggleProps {
+export interface TextAlignmentToggleProps {
   /**
    * Additional CSS class name
    */

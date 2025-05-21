@@ -11,6 +11,7 @@
 // Import namespaces
 import * as AccessibilityUtils from './accessibility';
 import * as ContentTypes from './content';
+import * as CoreTypes from './core';
 import * as PanelTypes from './panels';
 import * as PullupTypes from './pullup';
 import * as ScientificTypes from './scientific';
@@ -137,3 +138,27 @@ export * from './accessibility';
 
 // Re-export accessibility types with namespace to avoid conflicts
 export { AccessibilityUtils };
+
+// Core Components
+export { Button, SimpleButton, IconButton } from './core/buttons';
+export { TextAlignmentToggle, ThemeToggle } from './core/toggles';
+export { TabsComponent } from './core/navigation';
+export { SnapPointIndicator } from './core/indicators';
+export { ThemeSettings } from './core/settings';
+export { EnhancedPullup } from './core/pullup';
+export { ReaderThemeProvider, useReaderTheme } from './core/theme';
+export { AuthPanel } from './core/auth/AuthPanel';
+
+// Icon System
+export {
+  IconWrapper,
+  SearchIcon,
+  HeartIcon,
+  GearIcon,
+  BookmarkIcon,
+  NoteIcon,
+} from './core/icons/IconWrapper';
+export type { IconProps, IconWeight, IconSize } from './core/icons/types';
+
+// Re-export core types with namespace to avoid conflicts
+export { CoreTypes };
